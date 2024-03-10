@@ -1,121 +1,72 @@
 import os
 import shutil
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 import time
 import requests
+import pyotp
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from time import sleep
-import pyotp
+import csv 
+import keyboard
 
-# Đoạn script này dùng để khởi tạo 1 chrome profile
-def initDriverProfile():
-    CHROMEDRIVER_PATH = '/usr/bin/chromedriver'
-    WINDOW_SIZE = "1000,2000"
-    chrome_options = Options()
-    # chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--window-size=%s" % WINDOW_SIZE)
-    chrome_options.add_argument('--no-sandbox')
-    chrome_options.add_argument('disable-infobars')
-    chrome_options.add_argument('--disable-gpu') if os.name == 'nt' else None  # Windows workaround
-    chrome_options.add_argument("--verbose")
-    chrome_options.add_argument("--no-default-browser-check")
-    chrome_options.add_argument("--ignore-ssl-errors")
-    chrome_options.add_argument("--allow-running-insecure-content")
-    chrome_options.add_argument("--disable-web-security")
-    chrome_options.add_argument("--disable-feature=IsolateOrigins,site-per-process")
-    chrome_options.add_argument("--no-first-run")
-    chrome_options.add_argument("--disable-notifications")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--disable-translate")
-    chrome_options.add_argument("--ignore-certificate-error-spki-list")
-    chrome_options.add_argument("--ignore-certificate-errors")
-    chrome_options.add_argument("--disable-blink-features=AutomationControllered")
-    chrome_options.add_experimental_option('useAutomationExtension', False)
-    prefs = {"profile.default_content_setting_values.notifications": 2}
-    chrome_options.add_experimental_option("prefs", prefs)
-    chrome_options.add_argument("--start-maximized")  # open Browser in maximized mode
-    chrome_options.add_argument("--disable-dev-shm-usage")  # overcome limited resource problems
-    chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
-    # chrome_options.add_experimental_option("prefs", {"profile.managed_default_content_settings.images": 2})
-    chrome_options.add_argument('disable-infobars')
+data_list = []
+def writeAllDataToCSV(fileName, data_list):
+    with open(fileName, 'w', newline='', encoding='utf-8') as csvfile:
+        fieldnames = ['post_id', 'content', 'images']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
-    driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH,
-                              options=chrome_options
-                              )
-    return driver
+        # Viết tiêu đề cột
+        writer.writeheader()
 
+        # Ghi dữ liệu vào file CSV
+        for data in data_list:
+            writer.writerow(data)
 
 def checkLiveClone(driver):
     try:
         driver.get("https://mbasic.facebook.com/")
-        time.sleep(2)
-        driver.get("https://mbasic.facebook.com/")
         time.sleep(1)
-        elementLive = driver.find_elements_by_name("view_post")
+        elementLive = driver.find_elements(By.NAME, "view_post")
         if (len(elementLive) > 0):
             print("Live")
             return True
-
         return False
     except:
         print("view fb err")
 
 
-def getCodeFrom2FA(code):
-    totp = pyotp.TOTP(str(code).strip().replace(" ", "")[:32])
-    time.sleep(2)
-    return totp.now()
 
-
-def confirm2FA(driver):
-    time.sleep(2)
-    btnRadioClick = driver.find_elements_by_css_selector(
-        "section > section.x > div:nth-child(2) > div > div.y.ba > label > input[type=radio]")[0].click()
-    time.sleep(2)
-    continueBntSubmit = driver.find_elements_by_css_selector("#checkpointSubmitButton-actual-button")[0].click()
-
-
-def loginBy2FA(driver, username, password, code):
-    # changeMacAdrress()
-    # changeIp4G()
-    # readIp()
+def login(driver, username, password):
     driver.get("https://mbasic.facebook.com/login/?next&ref=dbl&fl&refid=8")
-    sleep(10)
-    userNameElement = driver.find_elements_by_css_selector("#m_login_email")
-    userNameElement[0].send_keys(username)
+    sleep(2)
+    userNameElement = driver.find_element(By.ID, "m_login_email")
+    userNameElement.send_keys(username)
     time.sleep(2)
-    passwordElement = driver.find_elements_by_css_selector("#login_form > ul > li:nth-child(2) > section > input")
-    passwordElement[0].send_keys(password)
+    passwordElement = driver.find_element(By.NAME, "pass")
+    passwordElement.send_keys(password)
     time.sleep(2)
-    btnSubmit = driver.find_elements_by_css_selector("#login_form > ul > li:nth-child(3) > input")
-    btnSubmit[0].click()
-    faCodeElement = driver.find_elements_by_css_selector("#approvals_code")
-    faCodeElement[0].send_keys(str(getCodeFrom2FA(code)))
+    btnSubmit = driver.find_element(By.NAME, "login")
+    btnSubmit.click()
+    sleep(5)
+    notNowBtn = driver.find_element(By.XPATH,"/html/body/div/div/div/div/table/tbody/tr/td/div/div[3]/a")
+    notNowBtn.click()
     time.sleep(2)
-    btn2fa = driver.find_elements_by_css_selector("#checkpointSubmitButton-actual-button")
-    btn2fa[0].click()
-    confirm2FA(driver)
-    btn2fa = driver.find_elements_by_css_selector("#checkpointSubmitButton-actual-button")
-    if (len(btn2fa) > 0):
-        btn2fa[0].click()
-        btn2faContinue = driver.find_elements_by_css_selector("#checkpointSubmitButton-actual-button")
-        if (len(btn2faContinue) > 0):
-            btn2faContinue[0].click()
-            confirm2FA(driver)
-    # end login
-
+data_list = []
 fileIds = 'post_ids.csv'
-def readData(fileName):
-    f = open(fileName, 'r', encoding='utf-8')
+def readData(fileName, num_posts):
     data = []
-    for i, line in enumerate(f):
-        try:
-            line = repr(line)
-            line = line[1:len(line) - 3]
-            data.append(line)
-        except:
-            print("err")
+    with open(fileName, 'r', encoding='utf-8') as f:
+        for i, line in enumerate(f):
+            if i >= num_posts:
+                break
+            try:
+                line = repr(line)
+                line = line[1:len(line) - 3]
+                data.append(line)
+            except:
+                print("err")
     return data
 
 def writeFileTxt(fileName, content):
@@ -130,9 +81,9 @@ def getPostsGroup(driver, idGroup, numberId):
         if (not file_exists):
             writeFileTxt(fileIds, '')
 
-        sumLinks = readData(fileIds)
+        sumLinks = readData(fileIds,number_of_posts)
         while (len(sumLinks) < numberId):
-            likeBtn = driver.find_elements_by_xpath('//*[contains(@id, "like_")]')
+            likeBtn = driver.find_elements(By.XPATH, '//*[contains(@id, "like_")]')
             if len(likeBtn):
                 for id in likeBtn:
                     idPost = id.get_attribute('id').replace("like_", "")
@@ -140,7 +91,7 @@ def getPostsGroup(driver, idGroup, numberId):
                         sumLinks.append(idPost)
                         writeFileTxt(fileIds, idPost)
                         print(idPost)
-            nextBtn = driver.find_elements_by_xpath('//a[contains(@href, "?bacr")]')
+            nextBtn = driver.find_elements(By.XPATH, '//a[contains(@href, "?bacr")]')
             if (len(nextBtn)):
                 sleep(6)
                 nextBtn[0].click()
@@ -149,38 +100,34 @@ def getPostsGroup(driver, idGroup, numberId):
                 break
     except:
         print('Error')
-
-
 def clonePostContent(driver, postId = "1902017913316274"):
     try:
         driver.get("https://mbasic.facebook.com/" + str(postId))
-        parrentImage = driver.find_elements_by_xpath("//div[@data-gt='{\"tn\":\"E\"}']")
+        parrentImage = driver.find_elements(By.XPATH, "//div[@data-gt='{\"tn\":\"E\"}']")
         if (len(parrentImage) == 0):
-            parrentImage = driver.find_elements_by_xpath("//div[@data-ft='{\"tn\":\"E\"}']")
+            parrentImage = driver.find_elements(By.XPATH, "//div[@data-ft='{\"tn\":\"E\"}']")
 
-        contentElement = driver.find_elements_by_xpath("//div[@data-gt='{\"tn\":\"*s\"}']")
+        contentElement = driver.find_elements(By.XPATH, "//div[@data-gt='{\"tn\":\"*s\"}']")
         if (len(contentElement) == 0):
-            contentElement = driver.find_elements_by_xpath("//div[@data-ft='{\"tn\":\"*s\"}']")
+            contentElement = driver.find_elements(By.XPATH, "//div[@data-ft='{\"tn\":\"*s\"}']")
 
-        #get Content if Have
         if (len(contentElement)):
             content = contentElement[0].text
 
-        #get Image if have
         linksArr = []
         if (len(parrentImage)):
-            childsImage = parrentImage[0].find_elements_by_xpath(".//*")
+            childsImage = parrentImage[0].find_elements(By.XPATH, ".//*")
             for childLink in childsImage:
                 linkImage = childLink.get_attribute('href')
                 if (linkImage != None):
                     linksArr.append(linkImage.replace("m.facebook", "mbasic.facebook"))
         linkImgsArr = []
-        if (len(linksArr)):
-            linkImgsArr = []
-            for link in linksArr:
-                driver.get(link)
-                linkImg = driver.find_elements_by_xpath('//*[@id="MPhotoContent"]/div[1]/div[2]/span/div/span/a[1]')
-                linkImgsArr.append(linkImg[0].get_attribute('href'))
+        # if (len(linksArr)):
+        #     linkImgsArr = []
+        #     for link in linksArr:
+        #         driver.get(link)
+        #         linkImg = driver.find_elements(By.XPATH, '//*[@id="MPhotoContent"]/div[1]/div[2]/span/div/span/a[1]')
+        #         linkImgsArr.append(linkImg[0].get_attribute('href'))
 
         postData = {"post_id": postId, "content" : "", "images": []}
 
@@ -188,7 +135,7 @@ def clonePostContent(driver, postId = "1902017913316274"):
             postData["images"] = linkImgsArr
         if (len(contentElement)):
             postData["content"] = content
-        print(postData)
+        # print(postData)
         return postData
     except:
         return False
@@ -217,25 +164,37 @@ def download_file(url, localFileNameParam = "", idPost = "123456", pathName = "/
                 shutil.copyfileobj(r.raw, f)
     except:
         print("download file err")
+def writeAllDataToCSV(fileName, data_list):
+    with open(fileName, 'w', newline='', encoding='utf-8') as csvfile:
+        fieldnames = ['post_id', 'content', 'images']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
+        # Viết tiêu đề cột
+        writer.writeheader()
+
+        # Ghi dữ liệu vào file CSV
+        for data in data_list:
+            # Thay thế xuống dòng bằng \n
+            content = data['content'].replace('\n', '\\n')
+            writer.writerow({'post_id': data['post_id'], 'content': content, 'images': data['images']})
 
 def joinGroup(driver, idGoup):
     try:
         driver.get("https://mbasic.facebook.com/groups/" + idGoup)
         sleep(1)
-        isJoined = driver.find_elements_by_xpath('//a[contains(@href, "cancelgroup")]')
+        isJoined = driver.find_elements(By.XPATH, '//a[contains(@href, "cancelgroup")]')
         if (len(isJoined) == 0):
             sleep(1)
-            driver.find_elements_by_css_selector("#root > div.bj > form > input.bu.bv.bw")[0].click()
+            driver.find_elements(By.CSS_SELECTOR, "#root > div.bj > form > input.bu.bv.bw")[0].click()
             sleep(1)
-            textea = driver.find_elements_by_tag_name("textarea")
+            textea = driver.find_elements(By.TAG_NAME, "textarea")
 
             if (len(textea) > 0):
                 for el in textea:
                     sleep(1)
                     el.send_keys("oki admin ")
             sleep(1)
-            btnSubmit = driver.find_elements_by_css_selector("#group-membership-criteria-answer-form > div > div > input")
+            btnSubmit = driver.find_elements(By.CSS_SELECTOR, "#group-membership-criteria-answer-form > div > div > input")
 
             if (len(btnSubmit)):
                 btnSubmit[0].click()
@@ -244,48 +203,80 @@ def joinGroup(driver, idGoup):
             print("joined")
     except:
         print("error join!")
+stop_crawl = False
+def write_to_csv(file_name, data):
+    fields = ['post_id', 'content', 'images']
+    with open(file_name, mode='w', newline='', encoding='utf-8') as file:
+        writer = csv.DictWriter(file, fieldnames=fields)
+        writer.writeheader()  # Write the header row
+        for item in data:
+            writer.writerow(item)  # Write each dictionary as a row in the CSV file
 
+def stop_crawling():
+    global stop_crawl
+    stop_crawl = True
+def crawl_post_data(driver, post_ids, data_list, content_type='page' ):
+    folder_path = "/data_crawl/"
 
-def crawlPostData(driver, postIds, type = 'page'):
-    folderPath = "/data_crawl/"
-    for id in postIds:
+    for post_id in post_ids:
         try:
             time.sleep(2)
-            dataPost = clonePostContent(driver, id)
-            dataImage = []
-            if (dataPost != False and len(dataPost["images"])):
-                if (type == 'group'):
-                    for img in dataPost["images"]:
-                        driver.get(img)
-                        dataImage.append(driver.current_url)
-                else:
-                    dataImage = dataPost["images"]
+            post_data = clonePostContent(driver, post_id)
+            if post_data:
+                data_image = []  # List to store image URLs
+                if post_data.get("images") and len(post_data["images"]) > 0:
+                    if content_type == 'group':
+                        for image_url in post_data["images"]:
+                            driver.get(image_url)
+                            data_image.append(driver.current_url)
+                    else:
+                        data_image = post_data["images"]  # Use existing image URLs for pages
 
-                postId = str(dataPost['post_id'])
-                postContent = str(dataPost['content'])
-                stt = 0
-                for img in dataImage:
-                    stt += 1
-                    download_file(img, str(stt), postId, folderPath)
-                writeFileTxt('post_crawl.csv', str(id))
-                writeFileTxtPost('content.csv', postContent, postId, folderPath)
-        except:
-            print("crawl fail")
+                post_id_str = str(post_data['post_id'])
+                post_content = str(post_data['content'])
+                download_count = 0
 
+                for image_url in data_image:
+                    download_count += 1
+                    try:
+                        download_file(image_url, str(download_count), post_id_str, folder_path)
+                    except Exception as e:
+                        print(f"Error downloading image: {e}")
 
-driver = initDriverProfile()
-isLogin = checkLiveClone(driver)  # Check live
+                # Tạo từ điển mới để lưu trữ dữ liệu của bài đăng
+                post_dict = {"post_id": post_id_str, "content": post_content, "images": data_image}
+                data_list.append(post_dict)  # Thêm từ điển vào danh sách data_list
+
+        except Exception as e:
+            print(f"Error crawling post {post_id}: {e}")
+    # Ghi dữ liệu vào tệp CSV
+    for post_data in data_list:
+        print(post_data["post_id"])
+    write_to_csv("output.csv", data_list)
+    writeAllDataToCSV("output1.csv",data_list)
+    return data_list
+# Thêm sự kiện theo dõi phím s và S để dừng crawl
+keyboard.add_hotkey('s', stop_crawling)
+keyboard.add_hotkey('S', stop_crawling)
+
+# driver = initDriverProfile()
+driver = webdriver.Chrome()
+isLogin = checkLiveClone(driver) 
 print(isLogin)
-userName = '100015012581501'
-passWord = 'nguyenden123@'
-twoFa= 'RTWF2XYGJDDQV2F2EPBTF1HCZV4DDMP2N'
-
+userName = '0325835204'
+passWord = 'trungbkdn1022'
 if (isLogin == False):
-    loginBy2FA(driver, userName, passWord, twoFa)
+    login(driver, userName, passWord)
 
 value = input('Enter 1 to crawl id post of group, enter 2 to crawl content: ')
+number_of_posts = int(input('Enter the number of posts you want to crawl: '))
+
 if (int(value) == 1):
-    getPostsGroup(driver, 'vieclamCNTTDaNang', 1000)
+    getPostsGroup(driver, 'vieclamCNTTDaNang', number_of_posts)
 else:
-    postIds = readData(fileIds)
-    crawlPostData(driver, postIds, 'group')
+    postIds = readData(fileIds,number_of_posts)
+    crawl_post_data(driver, postIds,data_list ,'group')
+data_list = crawl_post_data(driver, postIds, data_list, 'group')
+write_to_csv("output.csv", data_list)
+
+print("END GAME") 
