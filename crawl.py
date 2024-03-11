@@ -10,6 +10,14 @@ from selenium.webdriver.common.keys import Keys
 from time import sleep
 import csv 
 import keyboard
+import pandas as pd
+
+def remove_empty_lines(input_file, output_file):
+    df = pd.read_csv(input_file)
+    
+    df = df.dropna(how='all')
+    
+    df.to_csv(output_file, index=False)
 
 data_list = []
 def writeAllDataToCSV(fileName, data_list):
@@ -40,19 +48,17 @@ def checkLiveClone(driver):
 
 def login(driver, username, password):
     driver.get("https://mbasic.facebook.com/login/?next&ref=dbl&fl&refid=8")
-    sleep(2)
+    sleep(1)
     userNameElement = driver.find_element(By.ID, "m_login_email")
     userNameElement.send_keys(username)
-    time.sleep(2)
     passwordElement = driver.find_element(By.NAME, "pass")
     passwordElement.send_keys(password)
-    time.sleep(2)
     btnSubmit = driver.find_element(By.NAME, "login")
     btnSubmit.click()
-    sleep(5)
+    sleep(1)
     notNowBtn = driver.find_element(By.XPATH,"/html/body/div/div/div/div/table/tbody/tr/td/div/div[3]/a")
     notNowBtn.click()
-    time.sleep(2)
+    time.sleep(1)
 data_list = []
 fileIds = 'post_ids.csv'
 def readData(fileName, num_posts):
@@ -78,7 +84,7 @@ def getPostsGroup(driver, idGroup, numberId):
         driver.get('https://mbasic.facebook.com/groups/' + str(idGroup))
         file_exists = os.path.exists(fileIds)
         if (not file_exists):
-            writeFileTxt(fileIds, '')
+            writeFileTxt(fileIds, '\n')
 
         sumLinks = readData(fileIds,number_of_posts)
         while (len(sumLinks) < numberId):
@@ -184,7 +190,11 @@ def joinGroup(driver, idGoup):
         isJoined = driver.find_elements(By.XPATH, '//a[contains(@href, "cancelgroup")]')
         if (len(isJoined) == 0):
             sleep(1)
-            driver.find_elements(By.CSS_SELECTOR, "#root > div.bj > form > input.bu.bv.bw")[0].click()
+            # driver.find_elements(By.CSS_SELECTOR, "#root > div.bj > form > input.bu.bv.bw")[0].click()
+            input_elements = driver.find_elements(By.CSS_SELECTOR, "#root > div.bj > form > input.bu.bv.bw")
+            if input_elements:
+                input_elements[0].click()
+
             sleep(1)
             textea = driver.find_elements(By.TAG_NAME, "textarea")
 
@@ -205,7 +215,7 @@ def joinGroup(driver, idGoup):
 stop_crawl = False
 def write_to_csv(file_name, data):
     fields = ['post_id', 'content', 'images']
-    with open(file_name, mode='w', newline='', encoding='utf-8') as file:
+    with open(file_name, mode='a', newline='', encoding='utf-8') as file:
         writer = csv.DictWriter(file, fieldnames=fields)
         writer.writeheader()  # Write the header row
         for item in data:
@@ -219,7 +229,7 @@ def crawl_post_data(driver, post_ids, data_list, content_type='page' ):
 
     for post_id in post_ids:
         try:
-            time.sleep(2)
+            time.sleep(1)
             post_data = clonePostContent(driver, post_id)
             if post_data:
                 data_image = []  # List to store image URLs
@@ -272,10 +282,11 @@ number_of_posts = int(input('Enter the number of posts you want to crawl: '))
 
 if (int(value) == 1):
     getPostsGroup(driver, 'vieclamCNTTDaNang', number_of_posts)
+    remove_empty_lines('post_ids.csv','post_ids.csv')
 else:
     postIds = readData(fileIds,number_of_posts)
     crawl_post_data(driver, postIds,data_list ,'group')
-write_to_csv("output.csv", data_list)
+    write_to_csv("output.csv", data_list)
 
 print("END GAME") 
 driver.quit()
