@@ -62,8 +62,7 @@ def readData(fileName, num_posts):
             if i >= num_posts:
                 break
             try:
-                line = repr(line)
-                line = line[1:len(line) - 3]
+                line = line.strip()
                 data.append(line)
             except:
                 print("err")
@@ -89,9 +88,9 @@ def getPostsGroup(driver, idGroup, numberId):
                     idPost = id.get_attribute('id').replace("like_", "")
                     if (idPost not in sumLinks):
                         sumLinks.append(idPost)
-                        writeFileTxt(fileIds, idPost)
+                        writeFileTxt(fileIds, idPost.strip())
                         print(idPost)
-            nextBtn = driver.find_elements(By.XPATH, '//a[contains(@href, "?bacr")]')
+            nextBtn = driver.find_elements(By.XPATH, '//*[@id="m_group_stories_container"]/div/a')
             if (len(nextBtn)):
                 sleep(6)
                 nextBtn[0].click()
@@ -279,3 +278,4 @@ else:
 write_to_csv("output.csv", data_list)
 
 print("END GAME") 
+driver.quit()
