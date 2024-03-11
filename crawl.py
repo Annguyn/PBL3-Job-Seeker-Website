@@ -135,7 +135,7 @@ def clonePostContent(driver, postId = "1902017913316274"):
             postData["images"] = linkImgsArr
         if (len(contentElement)):
             postData["content"] = content
-        # print(postData)
+        print(postData)
         return postData
     except:
         return False
@@ -276,7 +276,6 @@ if (int(value) == 1):
 else:
     postIds = readData(fileIds,number_of_posts)
     crawl_post_data(driver, postIds,data_list ,'group')
-data_list = crawl_post_data(driver, postIds, data_list, 'group')
 write_to_csv("output.csv", data_list)
 
 print("END GAME") 
