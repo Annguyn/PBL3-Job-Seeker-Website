@@ -9,7 +9,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from time import sleep
 import csv 
-import keyboard
 import pandas as pd
 
 def remove_empty_lines(input_file, output_file):
@@ -25,10 +24,7 @@ def writeAllDataToCSV(fileName, data_list):
         fieldnames = ['post_id', 'content', 'images']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
-        # Viết tiêu đề cột
         writer.writeheader()
-
-        # Ghi dữ liệu vào file CSV
         for data in data_list:
             writer.writerow(data)
 
@@ -173,13 +169,8 @@ def writeAllDataToCSV(fileName, data_list):
     with open(fileName, 'w', newline='', encoding='utf-8') as csvfile:
         fieldnames = ['post_id', 'content', 'images']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-
-        # Viết tiêu đề cột
         writer.writeheader()
-
-        # Ghi dữ liệu vào file CSV
         for data in data_list:
-            # Thay thế xuống dòng bằng \n
             content = data['content'].replace('\n', '\\n')
             writer.writerow({'post_id': data['post_id'], 'content': content, 'images': data['images']})
 
@@ -201,7 +192,6 @@ def joinGroup(driver, idGoup):
             if (len(textea) > 0):
                 for el in textea:
                     sleep(1)
-                    el.send_keys("oki admin ")
             sleep(1)
             btnSubmit = driver.find_elements(By.CSS_SELECTOR, "#group-membership-criteria-answer-form > div > div > input")
 
@@ -217,9 +207,9 @@ def write_to_csv(file_name, data):
     fields = ['post_id', 'content', 'images']
     with open(file_name, mode='a', newline='', encoding='utf-8') as file:
         writer = csv.DictWriter(file, fieldnames=fields)
-        writer.writeheader()  # Write the header row
+        writer.writeheader()  
         for item in data:
-            writer.writerow(item)  # Write each dictionary as a row in the CSV file
+            writer.writerow(item)  
 
 def stop_crawling():
     global stop_crawl
@@ -232,14 +222,14 @@ def crawl_post_data(driver, post_ids, data_list, content_type='page' ):
             time.sleep(1)
             post_data = clonePostContent(driver, post_id)
             if post_data:
-                data_image = []  # List to store image URLs
+                data_image = []  
                 if post_data.get("images") and len(post_data["images"]) > 0:
                     if content_type == 'group':
                         for image_url in post_data["images"]:
                             driver.get(image_url)
                             data_image.append(driver.current_url)
                     else:
-                        data_image = post_data["images"]  # Use existing image URLs for pages
+                        data_image = post_data["images"]  
 
                 post_id_str = str(post_data['post_id'])
                 post_content = str(post_data['content'])
@@ -251,24 +241,16 @@ def crawl_post_data(driver, post_ids, data_list, content_type='page' ):
                         download_file(image_url, str(download_count), post_id_str, folder_path)
                     except Exception as e:
                         print(f"Error downloading image: {e}")
-
-                # Tạo từ điển mới để lưu trữ dữ liệu của bài đăng
                 post_dict = {"post_id": post_id_str, "content": post_content, "images": data_image}
-                data_list.append(post_dict)  # Thêm từ điển vào danh sách data_list
+                data_list.append(post_dict)  
 
         except Exception as e:
             print(f"Error crawling post {post_id}: {e}")
-    # Ghi dữ liệu vào tệp CSV
     for post_data in data_list:
         print(post_data["post_id"])
     write_to_csv("output.csv", data_list)
     writeAllDataToCSV("output1.csv",data_list)
     return data_list
-# Thêm sự kiện theo dõi phím s và S để dừng crawl
-keyboard.add_hotkey('s', stop_crawling)
-keyboard.add_hotkey('S', stop_crawling)
-
-# driver = initDriverProfile()
 driver = webdriver.Chrome()
 isLogin = checkLiveClone(driver) 
 print(isLogin)
