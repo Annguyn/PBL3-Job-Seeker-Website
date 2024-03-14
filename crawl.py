@@ -2,11 +2,8 @@ import os
 import shutil
 import time
 import requests
-import pyotp
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
 from time import sleep
 import csv 
 import pandas as pd
@@ -20,7 +17,7 @@ def remove_empty_lines(input_file, output_file):
 
 data_list = []
 def writeAllDataToCSV(fileName, data_list):
-    with open(fileName, 'w', newline='', encoding='utf-8') as csvfile:
+    with open(fileName, 'a', newline='', encoding='utf-8') as csvfile:
         fieldnames = ['post_id', 'content', 'images']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
@@ -215,8 +212,6 @@ def stop_crawling():
     global stop_crawl
     stop_crawl = True
 def crawl_post_data(driver, post_ids, data_list, content_type='page' ):
-    folder_path = "/data_crawl/"
-
     for post_id in post_ids:
         try:
             time.sleep(1)
@@ -243,7 +238,6 @@ def crawl_post_data(driver, post_ids, data_list, content_type='page' ):
                         print(f"Error downloading image: {e}")
                 post_dict = {"post_id": post_id_str, "content": post_content, "images": data_image}
                 data_list.append(post_dict)  
-
         except Exception as e:
             print(f"Error crawling post {post_id}: {e}")
     for post_data in data_list:
@@ -263,7 +257,8 @@ value = input('Enter 1 to crawl id post of group, enter 2 to crawl content: ')
 number_of_posts = int(input('Enter the number of posts you want to crawl: '))
 
 if (int(value) == 1):
-    getPostsGroup(driver, 'vieclamCNTTDaNang', number_of_posts)
+    # getPostsGroup(driver, 'vieclamCNTTDaNang', number_of_posts)
+    getPostsGroup(driver, 'it.tuyendung.24.7', number_of_posts)
     remove_empty_lines('post_ids.csv','post_ids.csv')
 else:
     postIds = readData(fileIds,number_of_posts)
