@@ -7,17 +7,17 @@ git clone https://github.com/Annguyn/PBL3-Applying-AI-to-analyze-recruitment-inf
 để clone project về máy
 2. Cài đặt các thư viện python cần thiết.
 # Cài đặt 'requests'
-    ```python
+```python
     pip install requests
-    ```
+```
   # Cài đặt pyotp
-    ```python
+```python
     pip install pyotp
-    ```
+```
   # Cài đặt Selenium
   ```python
   pip install selenium
- ```
+  ```
   # Cài đặt Pandas
   ```python
   pip install pandas
