@@ -20,7 +20,6 @@ def writeAllDataToCSV(fileName, data_list):
     with open(fileName, 'a', newline='', encoding='utf-8') as csvfile:
         fieldnames = ['post_id', 'content', 'images']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-
         writer.writeheader()
         for data in data_list:
             writer.writerow(data)
@@ -120,12 +119,12 @@ def clonePostContent(driver, postId = "1902017913316274"):
                 if (linkImage != None):
                     linksArr.append(linkImage.replace("m.facebook", "mbasic.facebook"))
         linkImgsArr = []
-        # if (len(linksArr)):
-        #     linkImgsArr = []
-        #     for link in linksArr:
-        #         driver.get(link)
-        #         linkImg = driver.find_elements(By.XPATH, '//*[@id="MPhotoContent"]/div[1]/div[2]/span/div/span/a[1]')
-        #         linkImgsArr.append(linkImg[0].get_attribute('href'))
+        if (len(linksArr)):
+            linkImgsArr = []
+            for link in linksArr:
+                driver.get(link)
+                linkImg = driver.find_elements(By.XPATH, '//*[@id="MPhotoContent"]/div[1]/div[2]/span/div/span/a[1]')
+                linkImgsArr.append(linkImg[0].get_attribute('href'))
 
         postData = {"post_id": postId, "content" : "", "images": []}
 
@@ -137,7 +136,6 @@ def clonePostContent(driver, postId = "1902017913316274"):
         return postData
     except:
         return False
-        print("Fail clone Post")
 
 def writeFileTxtPost(fileName, content, idPost, pathImg="/img/"):
     pathImage = os.getcwd() + pathImg + str(idPost)
@@ -163,7 +161,7 @@ def download_file(url, localFileNameParam = "", idPost = "123456", pathName = "/
     except:
         print("download file err")
 def writeAllDataToCSV(fileName, data_list):
-    with open(fileName, 'w', newline='', encoding='utf-8') as csvfile:
+    with open(fileName, 'a', newline='', encoding='utf-8') as csvfile:
         fieldnames = ['post_id', 'content', 'images']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
@@ -212,6 +210,7 @@ def stop_crawling():
     global stop_crawl
     stop_crawl = True
 def crawl_post_data(driver, post_ids, data_list, content_type='page' ):
+    folder_path = 'img'
     for post_id in post_ids:
         try:
             time.sleep(1)
