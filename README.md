@@ -5,6 +5,7 @@
 git clone https://github.com/Annguyn/PBL3-Applying-AI-to-analyze-recruitment-information-on-Facebook/
 ```
 để clone project về máy
+
 2. Cài đặt các thư viện python cần thiết.
 # Cài đặt 'requests'
 ```python
