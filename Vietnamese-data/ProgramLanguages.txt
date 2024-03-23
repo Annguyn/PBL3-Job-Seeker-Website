@@ -1,0 +1,30 @@
+C
+C++
+Rust
+Python
+Java
+JavaScript
+Ruby
+Swift
+Kotlin
+Go
+TypeScript
+PHP
+HTML/CSS (not traditional programming languages but commonly used for web development)
+SQL
+MATLAB
+R
+Perl
+Lua
+Shell scripting languages (e.g., Bash)
+Scala
+Haskell
+Dart
+Objective-C
+Assembly language
+Visual Basic
+Cobol
+Fortran
+Lisp
+Scheme
+Prolog
