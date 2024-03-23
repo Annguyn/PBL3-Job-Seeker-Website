@@ -1,7 +1,6 @@
 import os
 import shutil
 import time
-import requests
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from time import sleep
@@ -244,7 +243,7 @@ def crawl_post_data(driver, post_ids, data_list, content_type='page' ):
     write_to_csv("output.csv", data_list)
     writeAllDataToCSV("output1.csv",data_list)
     return data_list
-driver = webdriver.Chrome()
+driver = webdriver.Edge()
 isLogin = checkLiveClone(driver) 
 print(isLogin)
 userName = '0325835204'
