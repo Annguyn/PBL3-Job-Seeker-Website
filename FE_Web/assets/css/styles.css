@@ -1,0 +1,162 @@
+* {
+    box-sizing: border-box;
+}
+:root {
+    --primary-color: #202430;
+}
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+    font-family: "Epilogue";
+    background-color: #202430;
+    height: 10000px;
+}
+/* Common */
+.content {
+    width: 1110px;
+    max-width: calc(100% - 48px);
+    margin-left: auto;
+    margin-right: auto;
+}
+a {
+    text-decoration: none;
+}
+.btn {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 1.6rem;
+    line-height: 1.6;
+    text-align: center;
+    color: #ffffff;
+    background-color: #4640de;
+    padding: 16px 18px;
+}
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.row a {
+    display: inline-block;
+}
+.row h2 {
+    font-family: Clash Display Variable;
+    font-size: 4.8rem;
+    font-weight: 600;
+    line-height: 1.1;
+    color: #f8f8fd;
+}
+.row span {
+    color: #26a4ff;
+}
+.link span {
+    font-family: Epilogue;
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 1.6;
+    text-align: center;
+    color: #4640de;
+}
+.btn:hover {
+    opacity: 0.8;
+}
+/* Header */
+.header {
+    height: 100vh;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+.navbar ul {
+    display: flex;
+    margin-left: 50px;
+}
+.navbar .action {
+    margin-left: auto;
+}
+.navbar ul a {
+    font-weight: 500;
+    font-size: 1.6rem;
+    line-height: 1.6;
+    color: #f8f8fd;
+    padding: 4px 8px;
+}
+.navbar ul a:hover {
+    text-decoration: underline;
+}
+.navbar .action-login {
+    font-weight: 700;
+    font-size: 1.6rem;
+    line-height: 1.6;
+    color: #4640de;
+    text-align: center;
+    padding: 12px 24px;
+}
+
+.navbar .action-btn {
+    min-width: 98px;
+}
+/* Hero */
+.hero {
+    margin-top: 80px;
+}
+.hero .info {
+    width: 48%;
+}
+.hero .title {
+    font-family: "Clash Display";
+    font-weight: 600;
+    font-size: 7.2rem;
+    line-height: 1.1;
+    color: #f8f8fd;
+}
+.hero .title span {
+    color: #26a4ff;
+}
+.hero .sub-title {
+    margin-top: 8px;
+    font-weight: 400;
+    font-size: 2rem;
+    line-height: 1.6;
+    color: #ffffff;
+}
+.sreach {
+    margin-top: 25px;
+}
+.sreach .box {
+    display: flex;
+}
+.sreach .desc {
+    margin-top: 10px;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1.6;
+    text-align: left;
+    color: #ffffff;
+}
+.clients .content .desc {
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 1.6;
+    text-align: left;
+    color: #ffffff;
+}
+.clients .trademark {
+    margin-top: 40px;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Category */
+
+.categoty {
+    margin-top: 100px;
+}
