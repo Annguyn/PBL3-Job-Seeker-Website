@@ -1,0 +1,91 @@
+body {
+  margin: 0;
+  line-height: normal;
+}
+
+:root {
+  /* fonts */
+  --body-normal-medium: Epilogue;
+  --heading-h3: "Clash Display Variable";
+  --body-small-medium: Inter;
+  --font-red-hat-display: "Red Hat Display";
+
+  /* font sizes */
+  --body-normal-medium-size: 16px;
+  --display-2-size: 20px;
+  --body-small-semibold-size: 14px;
+  --body-large-bold-size: 18px;
+  --display-1-size: 72px;
+  --font-size-39xl: 58px;
+  --font-size-24xl: 43px;
+  --font-size-5xl: 24px;
+  --font-size-lgi: 19px;
+  --heading-h3-size: 32px;
+
+  /* Colors */
+  --color-white: #fff;
+  --brands-tertiary: #e9ebfd;
+  --other-colors-untitled-border-dashboard: #e2e7f5;
+  --neutrals-20: #d6ddeb;
+  --neutrals-40: #a8adb7;
+  --neutrals-60: #7c8493;
+  --neutrals-100: #25324b;
+  --brands-primary: #4640de;
+  --other-colors-job-listing: #f9fafc;
+  --color-dimgray: #515b6f;
+  --accents-green: #56cdad;
+  --color-text: #202430;
+  --color-gray-100: rgba(32, 36, 48, 0.5);
+  --accents-yellow: #feb836;
+  --lights-gray: #f8f8fd;
+  --accents-red: #ff6550;
+  --accents-blue: #26a4ff;
+  --brands-secondary: #cbcbf5;
+
+  /* Gaps */
+  --gap-5xl: 24px;
+  --gap-4xl-5: 23.5px;
+  --gap-base: 16px;
+  --gap-5xs: 8px;
+  --gap-lg: 18px;
+  --gap-xs: 12px;
+  --gap-9xs: 4px;
+  --gap-xl: 20px;
+  --gap-7xs: 6px;
+  --gap-13xl: 32px;
+  --gap-24xl: 43px;
+  --gap-8xl: 27px;
+
+  /* Paddings */
+  --padding-xl: 20px;
+  --padding-13xl: 32px;
+  --padding-5xl: 24px;
+  --padding-2xs: 11px;
+  --padding-4xs: 9px;
+  --padding-7xs: 6px;
+  --padding-smi: 13px;
+  --padding-9xl: 28px;
+  --padding-12xs: 1px;
+  --padding-mini: 15px;
+  --padding-10xs: 3px;
+  --padding-9xs: 4px;
+  --padding-12xs-5: 0.5px;
+  --padding-mid: 17px;
+  --padding-4xl: 23px;
+  --padding-5xs: 8px;
+  --padding-2xl: 21px;
+  --padding-xs: 12px;
+  --padding-base: 16px;
+
+  /* Border radiuses */
+  --br-9xs: 4px;
+  --br-61xl: 80px;
+  --br-5xs: 8px;
+  --br-7xl-7: 26.7px;
+  --br-xl: 20px;
+
+  /* Effects */
+  --drop-shadow: -8px 8px 40px rgba(0, 0, 0, 0.08);
+  --x-border: 0px -1px 0px #d6ddeb inset;
+  --y-border: 1px 0px 0px #d3d6db;
+}
