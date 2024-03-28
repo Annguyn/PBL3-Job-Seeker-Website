@@ -174,14 +174,13 @@ a {
 }
 .categoty .list .row2 ul li,
 .categoty .list .row1 ul li {
-  flex: 1 1 0; /* Chia không gian đều cho mỗi ô */
-  margin-right: 32px; /* Margin giữa các ô */
+  flex: 1 1 0; 
+  margin-right: 32px; 
   padding: 32px;
   border: 1px solid pink;
   background-color: white;
 }
 
-/* Loại bỏ margin-right cho ô cuối cùng trong mỗi hàng */
 .categoty .list .row2 ul li:last-child,
 .categoty .list .row1 ul li:last-child {
   margin-right: 0;
@@ -224,4 +223,43 @@ a {
     margin-right: auto; 
     max-height: 100%; 
     float: right;
+}
+
+/* Features */
+.Featuresjobs {
+  margin-top: 50px ;
+  display:flex; 
+  padding : 0 124px 72px 124px ;
+}
+.Featuresjobs .tittle h2 {
+    font-family: Clash Display Variable;
+    font-size: 4.8rem;
+    font-weight: 600;
+    line-height: 1.1;
+    color: #f8f8fd;
+    float: left ;
+    text-align: center;
+}
+.Featuresjobs .tittle span {
+  color: #26a4ff;
+}
+.Featuresjobs .tittle a {
+  text-align: center;
+  color: #4640de;
+  text-align:right;
+  float:right;
+}
+.Featuresjobs .list ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  display: flex;
+}
+.Featuresjobs .row1 li,
+.Featuresjobs .row2 li {
+  flex: 1 1 0; 
+  margin-right: 32px; 
+  padding: 32px;
+  border: 1px solid pink;
+  background-color: white;
 }
