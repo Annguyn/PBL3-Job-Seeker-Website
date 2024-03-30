@@ -41,6 +41,7 @@
   align-items: flex-start;
   justify-content: flex-start;
   gap: var(--gap-5xs);
+  cursor: pointer;
 }
 .frame-item {
   width: 165px;

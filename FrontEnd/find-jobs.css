@@ -18,6 +18,10 @@
   overflow: hidden;
   flex-shrink: 0;
 }
+.logo-24 {
+  cursor: pointer;
+}
+
 .logo-1-inner1 {
   height: 34px;
   display: flex;

@@ -3,6 +3,9 @@
   position: relative;
   display: none;
 }
+.frame-child24 , .jobhuntly4 {
+  cursor: pointer;
+}
 .rectangle2 {
   align-self: stretch;
   width: 634px;
