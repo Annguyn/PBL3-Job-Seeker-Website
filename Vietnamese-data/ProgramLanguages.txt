@@ -28,3 +28,10 @@ Fortran
 Lisp
 Scheme
 Prolog
+C#
+HTML
+CSS
+Shell
+Assembly
+.NET
+IOS
