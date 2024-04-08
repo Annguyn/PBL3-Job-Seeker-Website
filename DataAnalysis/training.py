@@ -104,8 +104,8 @@ print("\nPredictions using Logistic Regression:")
 print("Training set:", y_pred_logistic_train)
 print("Validation set:", y_pred_logistic_valid)
 
-combined_y_pred_train = 0.4 * y_pred_linear_train + 0.6 * y_pred_logistic_train
-combined_y_pred_valid = 0.4 * y_pred_linear_valid + 0.6 * y_pred_logistic_valid
+combined_y_pred_train = 0.6 * y_pred_linear_train + 0.4 * y_pred_logistic_train
+combined_y_pred_valid = 0.6 * y_pred_linear_valid + 0.4 * y_pred_logistic_valid
 
 # In ra kết quả dự đoán
 print("Combined Predictions:")
@@ -131,7 +131,9 @@ plt.grid(True)
 plt.show()
 
 
-df = pd.DataFrame({'Lương thực tế': y_valid, 'Lương dự đoán': combined_y_pred_valid.round(), 'Sai số': y_valid - combined_y_pred_valid.round()})
+df = pd.DataFrame({'Lương thực tế': y_valid, 'Lương dự đoán': combined_y_pred_valid.round(-6), 'Sai số': y_valid - combined_y_pred_valid.round(-6)})
 print(df)
 # Hàm Excel 
 # =IF(AND(I2=0,J2<>0),H2*10,I2)
+# =IF(AND(H2<10000000, I2<10000000), LEFT(H2, 1) & LEFT(I2, 1) * 1000000, IF(AND(I2=0, J2<>0), H2*10, I2))
+
