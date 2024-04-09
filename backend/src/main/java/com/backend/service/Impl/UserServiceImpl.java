@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 import com.backend.dto.UserDto;
 import com.backend.entity.Profile;
 import com.backend.entity.User;
-import com.backend.reponsitory.ProfileReponsitory;
-import com.backend.reponsitory.UserReponsitory;
+import com.backend.repository.ProfileRepository;
+import com.backend.repository.UserRepository;
 import com.backend.service.UserService;
 
 import java.time.LocalDateTime;
@@ -16,10 +16,10 @@ import java.time.format.DateTimeFormatter;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserReponsitory userReponsitory;
+    private UserRepository userRepository;
 
     @Autowired
-    private ProfileReponsitory profileReponsitory;
+    private ProfileRepository profileRepository;
 
     @Override
     public void save(UserDto userDto) {
@@ -28,11 +28,11 @@ public class UserServiceImpl implements UserService {
         String creationDate = Date.format(formatter);
         User user = new User(userDto.getEmail(),
                 userDto.getUserDisplayName(),
-                ".",
-                0,
-                0,
+                // ".",
+                // 0,
+                // 0,
                 userDto.getPassword(),
-                creationDate,
+                // creationDate,
                 "ROLE_USER"
         );
         Profile profile=new Profile(
@@ -44,26 +44,26 @@ public class UserServiceImpl implements UserService {
                 "Adress",
                 user
         );
-        userReponsitory.save(user);
-        profileReponsitory.save(profile);
+        userRepository.save(user);
+        profileRepository.save(profile);
     }
 
     @Override
     public Boolean checkPasswordUser(String email, String password) {
-        User user = userReponsitory.findUserByEmail(email);
+        User user = userRepository.findUserByEmail(email);
         if (user.getPassword().equals(password)) return true;
         return false;
     }
 
     @Override
     public Boolean checkUserbyEmail(String email) {
-        User user = userReponsitory.findUserByEmail(email);
+        User user = userRepository.findUserByEmail(email);
         if(user==null) return false;
         return true;
     }
 
     @Override
     public User getUserbyEmail(String email) {
-        return userReponsitory.getUserByEmail(email);
+        return userRepository.getUserByEmail(email);
     }
 }

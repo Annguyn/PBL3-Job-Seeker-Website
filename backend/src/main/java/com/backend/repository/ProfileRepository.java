@@ -1,4 +1,4 @@
-package com.backend.reponsitory;
+package com.backend.repository;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,7 +10,7 @@ import com.backend.entity.User;
 
 @Repository
 @EnableJpaRepositories
-public interface ProfileReponsitory extends JpaRepository<Profile,Integer> {
+public interface ProfileRepository extends JpaRepository<Profile,Integer> {
     Profile findProfileByUser(User user);
     Profile findProfileById(int id);
 }

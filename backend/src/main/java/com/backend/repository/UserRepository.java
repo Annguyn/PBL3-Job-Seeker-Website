@@ -1,4 +1,4 @@
-package com.backend.reponsitory;
+package com.backend.repository;
 
 
 
@@ -14,7 +14,7 @@ import java.util.List;
 
 @Repository
 @EnableJpaRepositories
-public interface UserReponsitory extends JpaRepository<User,Integer> {
+public interface UserRepository extends JpaRepository<User,Integer> {
     User getUserByEmail(String email);
     User findUserByEmail(String email);
     @Query(
