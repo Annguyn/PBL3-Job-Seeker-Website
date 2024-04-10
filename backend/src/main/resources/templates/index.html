@@ -5,8 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
 
-    <link rel="stylesheet" href="../static/css/global.css" />
-    <link rel="stylesheet" href="../static/css/index.css" />
+    <link rel="stylesheet" th:href="@{/css/global.css}" />
+    <link rel="stylesheet" th:href= "@/css/index.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Red Hat Display:wght@700&display=swap"
@@ -37,7 +37,7 @@
           <img
             class="design-b3dcb2a2-23f6-41f0-b740-icon"
             alt=""
-            src="./../static/images/designb3dcb2a223f641f0b740595184e6d3e9-1@2x.png"
+            th:src="@{/images/designb3dcb2a223f641f0b740595184e6d3e9-1@2x.png}"
           />
 
           <img class="pic-child" alt="" />
@@ -45,7 +45,7 @@
         <img
           class="confident-man-with-hand-chin-l-icon"
           alt=""
-          src="./../static/images/confidentmanwithhandchinlookingcameraremovebgpreview-1@2x.png"
+          th:src="@{/images/confidentmanwithhandchinlookingcameraremovebgpreview-1@2x.png}"
         />
 
         <header class="top-nav">
@@ -57,7 +57,7 @@
                     <img
                       class="assignment-operator-child"
                       alt=""
-                      src="./../static/images/frame-3.svg"
+                      th:src="@{/images/frame-3.svg}"
                     />
                   </div>
                   <h3 class="jobhuntly">JobHuntly</h3>
@@ -67,7 +67,7 @@
                     <img
                       class="assignment-operator-item"
                       alt=""
-                      src="./../static/images/frame-3-1.svg"
+                      th:src="@{/images/frame-3-1.svg}"
                     />
                   </div>
                   <h3 class="jobhuntly1">JobHuntly</h3>
@@ -108,7 +108,7 @@
                 class="group-icon"
                 loading="lazy"
                 alt=""
-                src="./../static/images/group.svg"
+                th:src="@{/images/group.svg}"
               />
             </div>
             <div class="great-platform-for">
@@ -119,7 +119,7 @@
               <form class="search-bar">
                 <div class="job-title">
                   <div class="icon-wrapper">
-                    <img class="icon" alt="" src="./../static/images/icon.svg" />
+                    <img class="icon" alt="" src="@{/images/icon.svg}" />
                   </div>
                   <div class="company-info">
                     <input
@@ -133,13 +133,13 @@
                 </div>
                 <div class="location">
                   <div class="icon-container">
-                    <img class="icon1" alt="" src="./../static/images/icon-1.svg" />
+                    <img class="icon1" alt="" th:src="@{/images/icon-1.svg}" />
                   </div>
                   <div class="frame-parent">
                     <div class="florence-italy-parent">
                       <div class="florence-italy">Florence, Italy</div>
                       <div class="icon-frame">
-                        <img class="icon2" alt="" src="./../static/images/icon-2.svg" />
+                        <img class="icon2" alt="" th:src="@{/images/icon-2.svg}" />
                       </div>
                     </div>
                     <div class="frame-child"></div>
@@ -168,25 +168,25 @@
             class="vodafone-2017-logo-icon"
             loading="lazy"
             alt=""
-            src="./../static/images/vodafone2017logo.svg"
+            th:src="@{/images/vodafone2017logo.svg}"
           />
 
           <img
             class="intel-3-icon"
             loading="lazy"
             alt=""
-            src="./../static/images/intel3.svg"
+            th:src="@{/images/intel3.svg}"
           />
 
           <div class="tesla-9-1">
             <div class="tesla">
-              <img class="group-icon1" alt="" src="./../static/images/group-1.svg" />
+              <img class="group-icon1" alt="" th:src="@{/images/group-1.svg}" />
 
               <img
                 class="vector-icon"
                 loading="lazy"
                 alt=""
-                src="./../static/images/vector.svg"
+                th:src="@{/images/vector.svg}"
               />
             </div>
           </div>
@@ -194,14 +194,14 @@
             class="amd-logo-1-icon"
             loading="lazy"
             alt=""
-            src="./../static/images/amdlogo1.svg"
+            th:src="@{/images/amdlogo1.svg}"
           />
 
           <img
             class="talkit-1-icon"
             loading="lazy"
             alt=""
-            src="./../static/images/talkit-1.svg"
+            th:src="@{/images/talkit-1.svg}"
           />
 
           <img class="billboard-vector-logo-1-icon" alt="" />
@@ -217,7 +217,7 @@
             <div class="button3">
               <div class="show-all-jobs">Show all jobs</div>
               <div class="frame-div">
-                <img class="icon3" alt="" src="./../static/images/icon-3.svg" />
+                <img class="icon3" alt="" th:src="@{/images/icon-3.svg}" />
               </div>
             </div>
           </div>
@@ -225,92 +225,92 @@
         <div class="content">
           <div class="row-1">
             <div class="job-category">
-              <img class="icon4" alt="" src="./../static/images/icon-4.svg" />
+              <img class="icon4" alt="" th:src="@{/images/icon-4.svg}" />
 
               <div class="category-name">
                 <h3 class="design">Design</h3>
                 <div class="jobs-available">
                   <div class="jobs-available1">235 jobs available</div>
-                  <img class="icon5" alt="" src="./../static/images/icon-5.svg" />
+                  <img class="icon5" alt="" th:src="@{/images/icon-5.svg}" />
                 </div>
               </div>
             </div>
             <div class="job-category1">
-              <img class="icon6" alt="" src="./../static/images/icon-6.svg" />
+              <img class="icon6" alt="" th:src="@{/images/icon-6.svg}" />
 
               <div class="category-name1">
                 <h3 class="design1">Sales</h3>
                 <div class="jobs-available2">
                   <div class="jobs-available3">756 jobs available</div>
-                  <img class="icon7" alt="" src="./../static/images/icon-5.svg" />
+                  <img class="icon7" alt="" th:src="@{/images/icon-5.svg}" />
                 </div>
               </div>
             </div>
             <div class="job-category2">
-              <img class="icon8" alt="" src="./../static/images/icon-8.svg" />
+              <img class="icon8" alt="" th:src="@{/images/icon-8.svg}" />
 
               <div class="category-name2">
                 <h3 class="marketing">Marketing</h3>
                 <div class="jobs-available4">
                   <div class="jobs-available5">140 jobs available</div>
-                  <img class="icon9" alt="" src="./../static/images/icon-9.svg" />
+                  <img class="icon9" alt="" th:src="@{/images/icon-9.svg}" />
                 </div>
               </div>
             </div>
             <div class="job-category3">
-              <img class="icon10" alt="" src="./../static/images/icon-10.svg" />
+              <img class="icon10" alt="" th:src="@{/images/icon-10.svg}" />
 
               <div class="category-name3">
                 <h3 class="design2">Finance</h3>
                 <div class="jobs-available6">
                   <div class="jobs-available7">325 jobs available</div>
-                  <img class="icon11" alt="" src="./../static/images/icon-5.svg" />
+                  <img class="icon11" alt="" th:src="@{/images/icon-5.svg}" />
                 </div>
               </div>
             </div>
           </div>
           <div class="row-2">
             <div class="job-category4">
-              <img class="icon12" alt="" src="./../static/images/icon-12.svg" />
+              <img class="icon12" alt="" th:src="@{/images/icon-12.svg}" />
 
               <div class="category-name4">
                 <h3 class="design3">Technology</h3>
                 <div class="jobs-available8">
                   <div class="jobs-available9">436 jobs available</div>
-                  <img class="icon13" alt="" src="./../static/images/icon-5.svg" />
+                  <img class="icon13" alt="" th:src="@{/images/icon-5.svg}" />
                 </div>
               </div>
             </div>
             <div class="job-category5">
-              <img class="icon14" alt="" src="./../static/images/icon-14.svg" />
+              <img class="icon14" alt="" th:src="@{/images/icon-14.svg}" />
 
               <div class="category-name5">
                 <h3 class="design4">Engineering</h3>
                 <div class="jobs-available10">
                   <div class="jobs-available11">542 jobs available</div>
-                  <img class="icon15" alt="" src="./../static/images/icon-5.svg" />
+                  <img class="icon15" alt="" th:src="@{/images/icon-5.svg}" />
                 </div>
               </div>
             </div>
             <div class="job-category6">
-              <img class="icon16" alt="" src="./../static/images/icon-16.svg" />
+              <img class="icon16" alt="" th:src="@{/images/icon-16.svg}" />
 
               <div class="category-name6">
                 <h3 class="design5">Business</h3>
                 <div class="jobs-available12">
                   <div class="jobs-available13">211 jobs available</div>
-                  <img class="icon17" alt="" src="./../static/images/icon-5.svg" />
+                  <img class="icon17" alt="" th:src="@{/images/icon-5.svg}" />
                 </div>
               </div>
             </div>
             <div class="job-category7">
-              <img class="icon18" alt="" src="./../static/images/icon-18.svg" />
+              <img class="icon18" alt="" th:src="@{/images/icon-18.svg}" />
 
               <div class="category-name7">
                 <h3 class="design6">Human Resource</h3>
                 <div class="jobs-available14">
                   <div class="jobs-available15">346 jobs available</div>
-                  <img class="icon19" alt="" src="./../static/images/icon-5.svg" />
+                  <img class="icon19" alt="" th:src="@{/images/icon-5.svg}" />
                 </div>
               </div>
             </div>
@@ -322,7 +322,7 @@
           <img
             class="cta-section-child"
             alt=""
-            src="./../static/images/rectangle-2742.svg"
+            th:src="@{/images/rectangle-2742.svg}"
           />
 
           <div class="text-wrapper">
@@ -345,7 +345,7 @@
                     <img
                       class="label-icon"
                       alt=""
-                      src="./../static/images/frame-3-2.svg"
+                      th:src="@{/images/frame-3-2.svg}"
                     />
 
                     <b class="jobhuntly2">JobHuntly</b>
@@ -357,11 +357,11 @@
                     <img
                       class="vector-icon1"
                       alt=""
-                      src="./../static/images/vector-1.svg"
+                      th:src="@{/images/vector-1.svg}"
                     />
 
                     <div class="dashboard">
-                      <img class="icon20" alt="" src="./../static/images/icon-20.svg" />
+                      <img class="icon20" alt="" th:src="@{/images/icon-20.svg}" />
 
                       <div class="dashboard1">Dashboard</div>
                     </div>
@@ -369,22 +369,22 @@
                   <div class="variable-holder">
                     <div class="menu3">
                       <div class="messages">
-                        <img class="icon21" alt="" src="./../static/images/icon-21.svg" />
+                        <img class="icon21" alt="" th:src="@{/images/icon-21.svg}" />
 
                         <div class="messages1">Messages</div>
                       </div>
                       <div class="company-profile">
-                        <img class="icon22" alt="" src="./../static/images/icon-22.svg" />
+                        <img class="icon22" alt="" th:src="@{/images/icon-22.svg}" />
 
                         <div class="company-profile1">Company Profile</div>
                       </div>
                       <div class="all-applicants">
-                        <img class="icon23" alt="" src="./../static/images/icon-23.svg" />
+                        <img class="icon23" alt="" th:src="@{/images/icon-23.svg}" />
 
                         <div class="all-applicants1">All Applicants</div>
                       </div>
                       <div class="job-listing">
-                        <img class="icon24" alt="" src="./../static/images/icon-24.svg" />
+                        <img class="icon24" alt="" th:src="@{/images/icon-24.svg}" />
 
                         <div class="job-listing1">Job Listing</div>
                       </div>
@@ -399,7 +399,7 @@
                           <img
                             class="icon25"
                             alt=""
-                            src="./../static/images/icon-25.svg"
+                            th:src="@{/images/icon-25.svg}"
                           />
 
                           <div class="settings3">Settings</div>
@@ -408,7 +408,7 @@
                           <img
                             class="icon26"
                             alt=""
-                            src="./../static/images/icon-26.svg"
+                            th:src="@{/images/icon-26.svg}"
                           />
 
                           <div class="help1">Help</div>
@@ -426,7 +426,7 @@
                       <img
                         class="mask-group-icon"
                         alt=""
-                        src="./../static/images/mask-group@2x.png"
+                        th:src="@{/images/mask-group@2x.png}"
                       />
 
                       <img class="company-logo-icon" alt="" />
@@ -446,13 +446,13 @@
                 <img
                   class="notification-icon"
                   alt=""
-                  src="./../static/images/notification.svg"
+                  th:src="@{/images/notification.svg}"
                 />
 
                 <div class="contact-us-label"></div>
                 <button class="button5">
                   <div class="icon-wrapper1">
-                    <img class="icon27" alt="" src="./../static/images/icon-27.svg" />
+                    <img class="icon27" alt="" th:src="@{/images/icon-27.svg}" />
                   </div>
                   <b class="caption6">Post a job</b>
                 </button>
@@ -471,7 +471,7 @@
                       <img
                         class="icon-calendar"
                         alt=""
-                        src="./../static/images/icon--calendar.svg"
+                        th:src="@{/images/icon--calendar.svg}"
                       />
 
                       <div class="jul-19-">Jul 19 - Jul 25</div>
@@ -503,7 +503,7 @@
                           <img
                             class="frame-item"
                             alt=""
-                            src="./../static/images/polygon-1.svg"
+                            th:src="@{/images/polygon-1.svg}"
                           />
                         </div>
                       </div>
@@ -541,7 +541,7 @@
                             <img
                               class="icon28"
                               alt=""
-                              src="./../static/images/icon-28.svg"
+                              th:src="@{/images/icon-28.svg}"
                             />
                           </div>
                         </div>
@@ -612,7 +612,7 @@
                               class="avatar-icon"
                               loading="lazy"
                               alt=""
-                              src="./../static/images/avatar@2x.png"
+                              th:src="@{/images/avatar@2x.png}"
                             />
 
                             <div class="name-role">
@@ -642,7 +642,7 @@
                             <img
                               class="avatar-icon1"
                               alt=""
-                              src="./../static/images/avatar@2x.png"
+                              th:src="@{/images/avatar@2x.png}"
                             />
 
                             <div class="name-role1">
@@ -721,7 +721,7 @@
             <div class="button8">
               <div class="show-all-jobs1">Show all jobs</div>
               <div class="icon-wrapper3">
-                <img class="icon33" alt="" src="./../static/images/icon-33.svg" />
+                <img class="icon33" alt="" th:src="@{/images/icon-33.svg}" />
               </div>
             </div>
           </div>
@@ -733,7 +733,7 @@
                 <img
                   class="company-logo-icon1"
                   alt=""
-                  src="./../static/images/company-logo-1@2x.png"
+                  th:src="@{/images/company-logo-1@2x.png}"
                 />
 
                 <button class="tag">
@@ -767,7 +767,7 @@
                 <img
                   class="company-logo-icon2"
                   alt=""
-                  src="./../static/images/company-logo-2.svg"
+                  th:src="@{/images/company-logo-2.svg}"
                 />
 
                 <button class="tag1">
@@ -802,7 +802,7 @@
                 <img
                   class="company-logo-icon3"
                   alt=""
-                  src="./../static/images/company-logo-3@2x.png"
+                  th:src="@{/images/company-logo-3@2x.png}"
                 />
 
                 <button class="tag2">
@@ -836,7 +836,7 @@
                 <img
                   class="company-logo-icon4"
                   alt=""
-                  src="./../static/images/company-logo-4@2x.png"
+                  th:src="@{/images/company-logo-4@2x.png}"
                 />
 
                 <button class="tag3">
@@ -872,7 +872,7 @@
                 <img
                   class="company-logo-icon5"
                   alt=""
-                  src="./../static/images/company-logo-5@2x.png"
+                  th:src="@{/images/company-logo-5@2x.png}"
                 />
 
                 <button class="tag4">
@@ -908,7 +908,7 @@
                   <img
                     class="v-6ghzad-400x400-icon"
                     alt=""
-                    src="./../static/images/v6ghzad-400x400@2x.png"
+                    th:src="@{/images/v6ghzad-400x400@2x.png}"
                   />
                 </button>
                 <button class="tag5">
@@ -943,7 +943,7 @@
                 <img
                   class="company-logo-icon6"
                   alt=""
-                  src="./../static/images/company-logo-6@2x.png"
+                  th:src="@{/images/company-logo-6@2x.png}"
                 />
 
                 <button class="tag6">
@@ -977,7 +977,7 @@
                 <img
                   class="company-logo-icon7"
                   alt=""
-                  src="./../static/images/company-logo-7@2x.png"
+                  th:src="@{/images/company-logo-7@2x.png}"
                 />
 
                 <button class="tag7">
@@ -1026,7 +1026,7 @@
               <div class="button9">
                 <div class="show-all-jobs2">Show all jobs</div>
                 <div class="icon-wrapper4">
-                  <img class="icon34" alt="" src="./../static/images/icon-33.svg" />
+                  <img class="icon34" alt="" th:src="@{/images/icon-33.svg}" />
                 </div>
               </div>
             </div>
@@ -1037,7 +1037,7 @@
                 <img
                   class="company-logo-icon8"
                   alt=""
-                  src="./../static/images/company-logo-8.svg"
+                  th:src="@{/images/company-logo-8.svg}"
                 />
 
                 <div class="job-title1">
@@ -1071,7 +1071,7 @@
                 <img
                   class="company-logo-icon9"
                   alt=""
-                  src="./../static/images/company-logo-9.svg"
+                  th:src="@{/images/company-logo-9.svg}"
                 />
 
                 <div class="job-title2">
@@ -1103,7 +1103,7 @@
                 <img
                   class="company-logo-icon10"
                   alt=""
-                  src="./../static/images/company-logo-10.svg"
+                  th:src="@{/images/company-logo-10.svg}"
                 />
 
                 <div class="job-title3">
@@ -1137,7 +1137,7 @@
                 <img
                   class="company-logo-icon11"
                   alt=""
-                  src="./../static/images/company-logo-11.svg"
+                  th:src="@{/images/company-logo-11.svg}"
                 />
 
                 <div class="job-title4">
@@ -1171,7 +1171,7 @@
                 <img
                   class="company-logo-icon12"
                   alt=""
-                  src="./../static/images/company-logo-12@2x.png"
+                  th:src="@{/images/company-logo-12@2x.png}"
                 />
 
                 <div class="job-title5">
@@ -1205,7 +1205,7 @@
                 <img
                   class="company-logo-icon13"
                   alt=""
-                  src="./../static/images/company-logo-13@2x.png"
+                  th:src="@{/images/company-logo-13@2x.png}"
                 />
 
                 <div class="job-title6">
@@ -1237,7 +1237,7 @@
                 <img
                   class="company-logo-icon14"
                   alt=""
-                  src="./../static/images/company-logo-14@2x.png"
+                  th:src="@{/images/company-logo-14@2x.png}"
                 />
 
                 <div class="job-title7">
@@ -1271,7 +1271,7 @@
                 <img
                   class="company-logo-icon15"
                   alt=""
-                  src="./../static/images/company-logo-15@2x.png"
+                  th:src="@{/images/company-logo-15@2x.png}"
                 />
 
                 <div class="job-title8">
@@ -1312,7 +1312,7 @@
                   <img
                     class="input-button-icon"
                     alt=""
-                    src="./../static/images/frame-3-3.svg"
+                    th:src="@{/images/frame-3-3.svg}"
                   />
                 </div>
                 <h3 class="jobhuntly3">JobHuntly</h3>
@@ -1370,7 +1370,7 @@
           </div>
         </div>
         <div class="lock-release">
-          <img class="divider-icon" alt="" src="./../static/images/divider.svg" />
+          <img class="divider-icon" alt="" th:src="@{/images/divider.svg}" />
 
           <div class="futures">
             <div class="promises">
@@ -1385,26 +1385,26 @@
                 class="facebook-icon"
                 loading="lazy"
                 alt=""
-                src="./../static/images/facebook.svg"
+                th:src="@{/images/facebook.svg}"
               />
 
               <img
                 class="instagram-icon"
                 loading="lazy"
                 alt=""
-                src="./../static/images/instagram.svg"
+                th:src="@{/images/instagram.svg}"
               />
 
               <img
                 class="dribbble-icon"
                 loading="lazy"
                 alt=""
-                src="./../static/images/dribbble.svg"
+                th:src="@{/images/dribbble.svg}"
               />
 
-              <img class="linkedin-icon" alt="" src="./../static/images/linkedin.svg" />
+              <img class="linkedin-icon" alt="" th:src="@{/images/linkedin.svg}" />
 
-              <img class="twitter-icon" alt="" src="./../static/images/twitter.svg" />
+              <img class="twitter-icon" alt="" th:src="@{/images/twitter.svg}" />
             </div>
           </div>
         </div>

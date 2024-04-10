@@ -1,4 +1,5 @@
 package com.backend.service.Impl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,12 +29,8 @@ public class UserServiceImpl implements UserService {
         String creationDate = Date.format(formatter);
         User user = new User(userDto.getEmail(),
                 userDto.getUserDisplayName(),
-                // ".",
-                // 0,
-                // 0,
                 userDto.getPassword(),
-                // creationDate,
-                "ROLE_USER"
+                "user"
         );
         Profile profile=new Profile(
                 "First Name",
@@ -51,19 +48,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public Boolean checkPasswordUser(String email, String password) {
         User user = userRepository.findUserByEmail(email);
-        if (user.getPassword().equals(password)) return true;
-        return false;
+        return user != null && user.getPassword().equals(password);
     }
 
     @Override
     public Boolean checkUserbyEmail(String email) {
-        User user = userRepository.findUserByEmail(email);
-        if(user==null) return false;
-        return true;
+        return userRepository.findUserByEmail(email) != null;
     }
 
     @Override
     public User getUserbyEmail(String email) {
         return userRepository.getUserByEmail(email);
     }
+
+    
 }

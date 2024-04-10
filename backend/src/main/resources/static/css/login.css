@@ -484,6 +484,7 @@
 }
 .label89,
 .this-is-placeholder8 {
+  width: 700px;
   font-family: var(--body-normal-regular);
   font-size: var(--body-normal-regular-size);
   position: relative;
@@ -532,6 +533,9 @@
   position: relative;
   text-align: left;
   display: inline-block;
+}
+.this-is-placeholder9 , .this-is-placeholder8 {
+  width: 700px ;
 }
 .label90 {
   width: 98px;

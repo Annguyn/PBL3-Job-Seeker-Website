@@ -3,6 +3,7 @@ package com.backend.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 @Configuration
@@ -13,20 +14,18 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             // Các cấu hình cho form login
-            .formLogin(form -> form
-                .loginPage("/login")
-                .defaultSuccessUrl("/", true)
-                .failureUrl("/login?error=true")
-                .permitAll()
-            )
+            // .formLogin(form -> form
+            //     .loginPage("/login")
+            //     .permitAll()
+            // )
             // Cấu hình cho phép tất cả yêu cầu đến các tài nguyên tĩnh
             .authorizeHttpRequests(authz -> authz
                 .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()  // Cho phép truy cập vào thư mục css, js, và images
-                .requestMatchers("/login", "/error").permitAll()
+                .requestMatchers("/login", "/registration", "/home").permitAll()
                 .anyRequest().authenticated()
             );
-            // Cấu hình khác...
-
+            
         return http.build();
     }
+    
 }
