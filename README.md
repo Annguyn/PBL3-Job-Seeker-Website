@@ -1,4 +1,5 @@
 ﻿# PBL3 Applying AI to analyze recruitment information on Facebook
+![image](https://github.com/Annguyn/PBL3-Applying-AI-to-analyze-recruitment-information-on-Facebook/assets/109308662/76aa2427-188d-42d8-84f5-443013c6e7a2)
 
 # CRAWL DATA 
 ### 1. Cài đặt
