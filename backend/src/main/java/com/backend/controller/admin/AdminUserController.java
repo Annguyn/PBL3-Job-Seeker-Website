@@ -1,34 +1,42 @@
 package com.backend.controller.admin;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.backend.dto.CategoryDto;
+import com.backend.dto.LevelDto;
+import com.backend.dto.LocationDto;
 import com.backend.dto.UserDto;
-import com.backend.entity.User;
+import com.backend.entity.Location;
+import com.backend.repository.LocationRepository;
 import com.backend.repository.UserRepository;
 
 @Controller
 @SessionAttributes("userdto")
 public class AdminUserController {
 
-    // @Autowired
-    // private UserRepository userRepository;
-
     @ModelAttribute("userdto")
     public UserDto userDto() {
         return new UserDto();
     }
 
-    // @GetMapping("/Users")
-    // public String showUserControl(@ModelAttribute("userdto") UserDto userDto, Model model) {
-    //     List<User> users = userRepository.getAllUser();
-    //     model.addAttribute("users", users);
-    //     return "table_user";
-    // }
+    @ModelAttribute("location")
+    public LocationDto locationDto() {
+        return new LocationDto();
+    }
+    @ModelAttribute("level")
+    public LevelDto levelDto() {
+        return new LevelDto();
+    }
+
+    @ModelAttribute("category")
+    public CategoryDto categoryDto() {
+        return new CategoryDto();
+    }
+    
 }

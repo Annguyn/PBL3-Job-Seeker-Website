@@ -22,7 +22,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(authz -> authz
                 .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()  // Cho phép truy cập vào thư mục css, js, và images
                 .requestMatchers("/login", "/registration", "/home").permitAll()
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
             );
             
         return http.build();

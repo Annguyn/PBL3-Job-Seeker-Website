@@ -1,6 +1,8 @@
 package com.backend.service;
 
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.backend.dto.UserDto;
@@ -12,4 +14,5 @@ public interface UserService {
     Boolean checkPasswordUser(String email,String password);
     Boolean checkUserbyEmail(String email);
     User getUserbyEmail(String email);
+    List<User> getAllUsers();
 }

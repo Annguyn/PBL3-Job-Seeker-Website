@@ -186,6 +186,7 @@
   color: var(--brands-primary);
   text-align: center;
   min-width: 44px;
+  text-decoration: unset;
 }
 .button {
   cursor: pointer;
@@ -217,6 +218,7 @@
 }
 .caption3 {
   width: 60px;
+  text-decoration: unset;
   position: relative;
   font-size: var(--body-normal-regular-size);
   line-height: 26px;
@@ -271,7 +273,6 @@
 .discover-more-than-container {
   margin: 0;
   align-self: stretch;
-  height: 237px;
   position: relative;
   font-size: inherit;
   line-height: 110%;
@@ -404,6 +405,33 @@
   position: relative;
   background-color: var(--neutrals-20);
 }
+/* Style cho phần chọn */
+.select-location {
+  width: 200px; /* Độ rộng của menu dropdown */
+  padding: 10px; /* Khoảng cách giữa nội dung và viền */
+  border: 1px solid #ccc; /* Viền */
+  border-radius: 5px; /* Bo góc */
+  appearance: none; /* Loại bỏ kiểu mặc định của menu dropdown */
+  -webkit-appearance: none; /* Cho Safari */
+  -moz-appearance: none; /* Cho Firefox */
+  background: url('path/to/arrow-icon.svg') no-repeat; /* Hình ảnh mũi tên chỉ xuất hiện ở cuối menu dropdown */
+  background-position: right 10px center; /* Vị trí của hình ảnh mũi tên */
+}
+
+/* Style cho mỗi tùy chọn */
+.select-location option {
+  padding: 10px; /* Khoảng cách giữa nội dung và viền */
+  background-color: #f8f8f8; /* Màu nền của mỗi tùy chọn */
+}
+
+/* Style cho hình ảnh trong mỗi tùy chọn */
+.select-location option img {
+  width: 20px; /* Độ rộng của hình ảnh */
+  height: 20px; /* Chiều cao của hình ảnh */
+  margin-right: 10px; /* Khoảng cách giữa hình ảnh và văn bản */
+  vertical-align: middle; /* Canh lề dọc của hình ảnh */
+}
+
 .frame-parent,
 .location {
   display: flex;
@@ -512,7 +540,8 @@
   flex-direction: column;
   justify-content: flex-start;
   padding: 0 0 103.4px;
-  gap: 82px;
+  gap: 50px;
+  padding:  0 ;
   text-align: left;
   font-size: var(--heading-h1-size);
   color: var(--color-gray-300);
@@ -598,7 +627,7 @@
   overflow: hidden;
   flex-direction: column;
   justify-content: flex-start;
-  padding: var(--padding-29xl) 122px var(--padding-29xl) var(--padding-105xl);
+  padding:0 var(--padding-29xl) 0 ; 
   gap: var(--gap-13xl);
   text-align: left;
   font-size: var(--body-large-regular-size);
