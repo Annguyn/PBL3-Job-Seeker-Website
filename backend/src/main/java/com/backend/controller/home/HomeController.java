@@ -41,6 +41,7 @@ public class HomeController {
         model.addAttribute("locations", locations); 
         model.addAttribute("categories", categories);
         model.addAttribute("levels", levels) ;
+        System.out.println("UserDto: " + userDto.getEmail());
         return "index";
     }
     

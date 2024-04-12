@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 </html>
 <html>
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="initial-scale=1, width=device-width" />
-
+  
   <link rel="stylesheet" th:href="@{/css/global.css}" />
   <link rel="stylesheet" th:href="@{/css/index.css}" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red Hat Display:wght@700&display=swap" />
@@ -60,7 +59,7 @@
             </div>
           </div>
         </div>
-        <div class="buttons">
+        <div class="buttons" th:if="${userdto.userDisplayName == null}" >
           <button class="button">
             <a class="caption2" th:href="@{login}">Login</a>
           </button>
@@ -71,12 +70,20 @@
             <a class="caption3" th:href="@{/registration}">Sign Up</a>
           </button>
         </div>
+        <div class="buttons" th:if="${userdto.userDisplayName != null}" >
+          <div class="divider-wrapper">
+            <div class="divider"></div>
+          </div>
+          <button class="button1">
+            <a class="caption3" th:href="@{/registration}">Log out</a>
+          </button>
+        </div>
       </header>
       <div class="title-wrapper">
         <div class="title">
           <div class="title1">
             <!-- Nếu chưa đăng nhập -->
-            <div th:unless="${userdto}">
+            <div th:if="${userdto.userDisplayName == null}">
               <h1 class="discover-more-than-container">
                 <span>Discover more than </span>
                 <span class="jobs">5000+ Jobs</span>
@@ -84,7 +91,7 @@
             </div>
 
             <!-- Nếu đã đăng nhập -->
-            <div class="after-login"th:if="${userdto}">
+            <div class="after-login"th:if="${userdto.userDisplayName != null}">
               <div>
                 <p>Good Afternoon, <span class="jobs" th:text="${userdto.userDisplayName}"></span></p>
               </div>
