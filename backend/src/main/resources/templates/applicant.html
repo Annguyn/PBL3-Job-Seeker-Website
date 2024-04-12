@@ -1,523 +1,709 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"></html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
 
-    <link rel="stylesheet" href="../static/css/global.css" />
-    <link rel="stylesheet" href="../static/css/dashboard-applicant.css" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Red Hat Display:wght@700&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Clash Display Variable:wght@600&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Helvetica:wght@700&display=swap"
-    />
-  </head>
-  <body>
-    <div class="dashboard-applicant">
-      <div class="side-bar-dashboard-applica4">
-        <div class="menu31">
-          <div class="control-flow">
-            <div class="logo-213">
-              <div class="output-generator">
-                <img
-                  class="condition-checker-icon"
-                  loading="lazy"
-                  alt=""
-                  src="./../static/images/frame-36.svg"
-                />
-              </div>
-              <h3 class="jobhuntly19">JobHuntly</h3>
-            </div>
-          </div>
-          <div class="main-menu4">
-            <div class="menu32">
-              <div class="sidebar-menu32">
-                <div class="data-expander">
-                  <img
-                    class="indicator-icon4"
-                    loading="lazy"
-                    alt=""
-                    src="./../static/images/indicator.svg"
-                  />
+        <link rel="stylesheet" th:href="../static/css/global.css" />
+        <link
+            rel="stylesheet"
+            th:href="../static/css/dashboard-applicant.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Red Hat Display:wght@700&display=swap"
+        />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700&display=swap"
+        />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Clash Display Variable:wght@600&display=swap"
+        />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Helvetica:wght@700&display=swap"
+        />
+    </head>
+    <body>
+        <div class="dashboard-applicant">
+            <div class="side-bar-dashboard-applica4">
+                <div class="menu31">
+                    <div class="control-flow">
+                        <div class="logo-213">
+                            <div class="output-generator">
+                                <img
+                                    class="condition-checker-icon"
+                                    loading="lazy"
+                                    alt=""
+                                    th:src="@{./../static/images/frame-36.svg}"
+                                />
+                            </div>
+                            <h3 class="jobhuntly19">JobHuntly</h3>
+                        </div>
+                    </div>
+                    <div class="main-menu4">
+                        <div class="menu32">
+                            <div class="sidebar-menu32">
+                                <div class="data-expander">
+                                    <img
+                                        class="indicator-icon4"
+                                        loading="lazy"
+                                        alt=""
+                                        th:src="@{./../static/images/indicator.svg}"
+                                    />
+                                </div>
+                                <div class="menu33">
+                                    <img
+                                        class="icon204"
+                                        loading="lazy"
+                                        alt=""
+                                        th:src="@{./../static/images/icon.svg}"
+                                    />
+
+                                    <div class="caption299">Dashboard</div>
+                                </div>
+                            </div>
+                            <div class="sidebar-menu33">
+                                <div class="nested-logic">
+                                    <img
+                                        class="icon205"
+                                        alt=""
+                                        th:src="@{./../static/images/icon-115.svg}"
+                                    />
+
+                                    <div class="caption300">Messages</div>
+                                </div>
+                                <div class="badge4">
+                                    <div class="event-dispatcher"></div>
+                                    <div class="data-filter">
+                                        <div class="data-normalizer1">1</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sidebar-menu34">
+                                <div class="icon206">
+                                    <img
+                                        class="vector-stroke-icon4"
+                                        loading="lazy"
+                                        alt=""
+                                        th:src="@{./../static/images/vector-stroke.svg}"
+                                    />
+
+                                    <div class="data-transformer"></div>
+                                    <div class="data-transformer1"></div>
+                                </div>
+                                <div class="caption301">My Applications</div>
+                            </div>
+                            <div class="sidebar-menu35">
+                                <img
+                                    class="icon207"
+                                    alt=""
+                                    th:src="@{./../static/images/icon-216.svg}"
+                                />
+
+                                <div class="caption302">Find Jobs</div>
+                            </div>
+                            <div class="sidebar-menu36">
+                                <img
+                                    class="icon208"
+                                    alt=""
+                                    th:src="@{./../static/images/icon-32.svg}"
+                                />
+
+                                <div class="caption303">Browse Companies</div>
+                            </div>
+                            <div class="sidebar-menu37">
+                                <img
+                                    class="icon209"
+                                    alt=""
+                                    th:src="@{./../static/images/icon-41.svg}"
+                                />
+
+                                <div class="caption304">
+                                    My ../static/images Profile
+                                </div>
+                            </div>
+                        </div>
+                        <div class="data-replacer"></div>
+                        <div class="settings12">
+                            <div class="data-scaler">
+                                <div class="settings13">SETTINGS</div>
+                            </div>
+                            <div class="menu34">
+                                <div class="sidebar-menu38">
+                                    <img
+                                        class="icon210"
+                                        alt=""
+                                        th:src="@{./../static/images/icon-51.svg}"
+                                    />
+
+                                    <div class="caption305">Settings</div>
+                                </div>
+                                <div class="sidebar-menu39">
+                                    <img
+                                        class="icon211"
+                                        alt=""
+                                        th:src="@{./../static/images/icon-61.svg}"
+                                    />
+
+                                    <div class="caption306">Help Center</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="menu33">
-                  <img
-                    class="icon204"
-                    loading="lazy"
-                    alt=""
-                    src="./../static/images/icon.svg"
-                  />
-
-                  <div class="caption299">Dashboard</div>
-                </div>
-              </div>
-              <div class="sidebar-menu33">
-                <div class="nested-logic">
-                  <img class="icon205" alt="" src="./../static/images/icon-115.svg" />
-
-                  <div class="caption300">Messages</div>
-                </div>
-                <div class="badge4">
-                  <div class="event-dispatcher"></div>
-                  <div class="data-filter">
-                    <div class="data-normalizer1">1</div>
-                  </div>
-                </div>
-              </div>
-              <div class="sidebar-menu34">
-                <div class="icon206">
-                  <img
-                    class="vector-stroke-icon4"
-                    loading="lazy"
-                    alt=""
-                    src="./../static/images/vector-stroke.svg"
-                  />
-
-                  <div class="data-transformer"></div>
-                  <div class="data-transformer1"></div>
-                </div>
-                <div class="caption301">My Applications</div>
-              </div>
-              <div class="sidebar-menu35">
-                <img class="icon207" alt="" src="./../static/images/icon-216.svg" />
-
-                <div class="caption302">Find Jobs</div>
-              </div>
-              <div class="sidebar-menu36">
-                <img class="icon208" alt="" src="./../static/images/icon-32.svg" />
-
-                <div class="caption303">Browse Companies</div>
-              </div>
-              <div class="sidebar-menu37">
-                <img class="icon209" alt="" src="./../static/images/icon-41.svg" />
-
-                <div class="caption304">My ../static/images Profile</div>
-              </div>
-            </div>
-            <div class="data-replacer"></div>
-            <div class="settings12">
-              <div class="data-scaler">
-                <div class="settings13">SETTINGS</div>
-              </div>
-              <div class="menu34">
-                <div class="sidebar-menu38">
-                  <img class="icon210" alt="" src="./../static/images/icon-51.svg" />
-
-                  <div class="caption305">Settings</div>
-                </div>
-                <div class="sidebar-menu39">
-                  <img class="icon211" alt="" src="./../static/images/icon-61.svg" />
-
-                  <div class="caption306">Help Center</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="wrapper-pattern3">
-          <img
-            class="pattern-icon20"
-            loading="lazy"
-            alt=""
-            src="./../static/images/pattern.svg"
-          />
-        </div>
-        <div class="profile9">
-          <div class="data-comparator-bank"></div>
-          <div class="data-transformer-chain">
-            <div class="profile10">
-              <img
-                class="avatar-icon6"
-                loading="lazy"
-                alt=""
-                src="./../static/images/avatar1@2x.png"
-              />
-
-              <div class="name-email4">
-                <div class="data-canvas">
-                  <div class="jake-gyll8">Jake Gyll</div>
-                </div>
-                <div class="jakegyllemailcom8">jakegyll@email.com</div>
-              </div>
-            </div>
-          </div>
-          <div class="profile-menu4">
-            <div class="rounded-rectangle4"></div>
-            <div class="frame5">
-              <div class="logout8">
-                <div class="logout9">Logout</div>
-                <img class="icon212" alt="" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <main class="frame-main">
-        <header class="top-nav8">
-          <img class="pattern-icon21" alt="" />
-
-          <div class="data-mesh">
-            <h1 class="dashboard6">Dashboard</h1>
-          </div>
-          <div class="action4">
-            <button class="button65">
-              <b class="caption307">Back to homepage</b>
-            </button>
-            <div class="data-torus">
-              <img
-                class="notification-icon5"
-                loading="lazy"
-                alt=""
-                src="./../static/images/notification2.svg"
-              />
-            </div>
-          </div>
-        </header>
-        <section class="applicant-dashboard-greeting1">
-          <div class="greeting1">
-            <h3 class="good-morning-jake1">Good morning, Jake</h3>
-            <div class="here-is-whats2">
-              Here is what’s happening with your job search applications from
-              July 19 - July 25.
-            </div>
-          </div>
-          <div class="function-call">
-            <div class="dropdown1">
-              <div class="this-is-placeholder16">Jul 19 - Jul 25</div>
-              <div class="nested-structure">
-                <img class="icon213" alt="" src="./../static/images/icon-86.svg" />
-              </div>
-            </div>
-          </div>
-        </section>
-        <section class="parallel-container">
-          <div class="matrix-manipulator">
-            <div class="string-editor">
-              <div class="number-cruncher1">
-                <div class="card-dashboard2">
-                  <div class="icon214">
+                <div class="wrapper-pattern3">
                     <img
-                      class="vector-stroke-icon5"
-                      alt=""
-                      src="./../static/images/vector-stroke-1.svg"
-                    />
-
-                    <div class="network-manager"></div>
-                    <div class="timer-controller"></div>
-                  </div>
-                  <div class="randomizer">
-                    <div class="total-jobs-applied">Total Jobs Applied</div>
-                    <div class="user-interface">45</div>
-                  </div>
-                </div>
-                <div class="card-dashboard3">
-                  <div class="interviewed">Interviewed</div>
-                  <div class="parent1">
-                    <div class="div34">18</div>
-                    <div class="icon-wrapper18">
-                      <img class="icon215" alt="" src="./../static/images/icon-94.svg" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card-dashboard4">
-                <div class="jobs-applied-status">Jobs Applied Status</div>
-                <div class="main-content18">
-                  <div class="wrapper-graph">
-                    <img
-                      class="graph-icon"
-                      loading="lazy"
-                      alt=""
-                      src="./../static/images/graph.svg"
-                    />
-                  </div>
-                  <div class="machine-learning-model">
-                    <div class="stats">
-                      <div class="sensor-reader">
-                        <div class="actuator-controller">
-                          <div class="serial-communication"></div>
-                        </div>
-                        <div class="parallel-processing">
-                          <b class="distributed-system">60%</b>
-                          <div class="unsuitable">Unsuitable</div>
-                        </div>
-                      </div>
-                      <div class="sensor-reader1">
-                        <div class="sensor-reader-inner">
-                          <div class="frame-child106"></div>
-                        </div>
-                        <div class="parent2">
-                          <b class="b">40%</b>
-                          <div class="interviewed1">Interviewed</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="button66">
-                  <div class="view-all-applications">View All Applications</div>
-                  <div class="graphic-user-interface">
-                    <img class="icon216" alt="" src="./../static/images/icon-104.svg" />
-                  </div>
-                </div>
-              </div>
-              <div class="card-dashboard5">
-                <div class="time">
-                  <div class="swarm-intelligence">
-                    <div class="am">9:30 AM</div>
-                    <div class="physics-engine">
-                      <div class="finite-state-machine"></div>
-                    </div>
-                  </div>
-                  <div class="swarm-intelligence1">
-                    <div class="am1">10:00 AM</div>
-                    <div class="swarm-intelligence-inner">
-                      <div class="line-div"></div>
-                    </div>
-                  </div>
-                  <div class="swarm-intelligence2">
-                    <div class="am2">10:30 AM</div>
-                    <div class="swarm-intelligence-child">
-                      <div class="frame-child107"></div>
-                    </div>
-                  </div>
-                  <div class="swarm-intelligence3">
-                    <div class="am3">11:00 AM</div>
-                    <div class="swarm-intelligence-inner1">
-                      <div class="frame-child108"></div>
-                    </div>
-                  </div>
-                  <div class="schedule">
-                    <div class="graph-algorithms"></div>
-                    <img
-                      class="mask-group-icon1"
-                      alt=""
-                      src="./../static/images/mask-group@2x.png"
-                    />
-
-                    <div class="joe-bartmann-parent">
-                      <div class="joe-bartmann">Joe Bartmann</div>
-                      <div class="hr-manager-at">HR Manager at Divvy</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="upcomming-interviews">
-                  <div class="rounded-rectangle5"></div>
-                  <div class="upcomming-interviews-wrapper">
-                    <div class="upcomming-interviews1">
-                      Upcomming Interviews
-                    </div>
-                  </div>
-                  <div class="link-list">
-                    <div class="form-field"></div>
-                    <div class="dropdown-menu">
-                      <div class="today">
-                        <div class="today-26-november-container">
-                          <span class="today1">Today, </span>
-                          <span class="november">26 November</span>
-                        </div>
-                        <div class="slider-control">
-                          <div class="icon-parent30">
-                            <img
-                              class="icon217"
-                              alt=""
-                              src="./../static/images/icon-116.svg"
-                            />
-
-                            <img
-                              class="icon218"
-                              alt=""
-                              src="./../static/images/icon-123.svg"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <form class="applicant-dashboard-recent-a">
-              <div class="base2"></div>
-              <div class="tree-view">
-                <input
-                  class="calendar-picker"
-                  placeholder="Recent Applications History"
-                  type="text"
-                />
-
-                <div class="line22"></div>
-              </div>
-              <div class="data-wrapper">
-                <div class="data3">
-                  <div class="recent-applications-row">
-                    <div class="title19">
-                      <img
-                        class="company-logo-icon53"
+                        class="pattern-icon20"
                         loading="lazy"
                         alt=""
-                        src="./../static/images/company-logo6.svg"
-                      />
-
-                      <div class="alert-message">
-                        <div class="job-title45">
-                          <b class="social-media-assistant49"
-                            >Social Media Assistant</b
-                          >
-                          <div class="company-name-location-job43">
-                            <div class="nomad47">Nomad</div>
-                            <div class="stepper-control">
-                              <div class="star-rating"></div>
-                            </div>
-                            <div class="paris-france43">Paris, France</div>
-                            <div class="info-box">
-                              <div class="table-row"></div>
-                            </div>
-                            <div class="full-time9">Full-Time</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="date-applied-wrapper">
-                      <div class="date-applied7">
-                        <div class="date-applied8">Date Applied</div>
-                        <div class="july-20215">24 July 2021</div>
-                      </div>
-                    </div>
-                    <div class="banner-wrapper">
-                      <div class="banner">
-                        <div class="label192">
-                          <div class="label-child114"></div>
-                          <div class="caption308">In Review</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="time-picker">
-                      <img class="icon219" alt="" src="./../static/images/icon-131.svg" />
-                    </div>
-                  </div>
-                  <div class="recent-applications-row1">
-                    <div class="title20">
-                      <img
-                        class="company-logo-icon54"
-                        alt=""
-                        src="./../static/images/company-logo-14@2x.png"
-                      />
-
-                      <div class="job-title-wrapper1">
-                        <div class="job-title46">
-                          <b class="social-media-assistant50"
-                            >Social Media Assistant</b
-                          >
-                          <div class="company-name-location-job44">
-                            <div class="nomad48">Udacity</div>
-                            <div class="company-name-location-job-inner37">
-                              <div class="frame-child109"></div>
-                            </div>
-                            <div class="paris-france44">New York, USA</div>
-                            <div class="company-name-location-job-inner38">
-                              <div class="frame-child110"></div>
-                            </div>
-                            <div class="full-time10">Full-Time</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="date-applied-container">
-                      <div class="date-applied9">
-                        <div class="date-applied10">Date Applied</div>
-                        <div class="july-20216">23 July 2021</div>
-                      </div>
-                    </div>
-                    <div class="recent-applications-row-inner">
-                      <div class="label-wrapper4">
-                        <button class="label193">
-                          <div class="label-child115"></div>
-                          <div class="caption309">Shortlisted</div>
-                        </button>
-                      </div>
-                    </div>
-                    <div class="icon-wrapper19">
-                      <img class="icon220" alt="" src="./../static/images/icon-131.svg" />
-                    </div>
-                  </div>
-                  <div class="recent-applications-row2">
-                    <div class="title21">
-                      <img
-                        class="company-logo-icon55"
-                        alt=""
-                        src="./../static/images/company-logo-26.svg"
-                      />
-
-                      <div class="job-title-wrapper2">
-                        <div class="job-title47">
-                          <b class="social-media-assistant51"
-                            >Social Media Assistant</b
-                          >
-                          <div class="company-name-location-job45">
-                            <div class="nomad49">Packer</div>
-                            <div class="company-name-location-job-inner39">
-                              <div class="frame-child111"></div>
-                            </div>
-                            <div class="paris-france45">Madrid, Spain</div>
-                            <div class="company-name-location-job-inner40">
-                              <div class="frame-child112"></div>
-                            </div>
-                            <div class="full-time11">Full-Time</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="date-applied-frame">
-                      <div class="date-applied11">
-                        <div class="date-applied12">Date Applied</div>
-                        <div class="july-20217">22 July 2021</div>
-                      </div>
-                    </div>
-                    <div class="recent-applications-row-child">
-                      <div class="label-wrapper5">
-                        <button class="label194">
-                          <div class="label-child116"></div>
-                          <div class="caption310">Declined</div>
-                        </button>
-                      </div>
-                    </div>
-                    <div class="icon-wrapper20">
-                      <img class="icon221" alt="" src="./../static/images/icon-131.svg" />
-                    </div>
-                  </div>
+                        th:src="@{./../static/images/pattern.svg}"
+                    />
                 </div>
-              </div>
-              <footer class="tabbed-pane">
-                <div class="nav2">
-                  <div class="view-all-applications1">
-                    View all applications history
-                  </div>
-                  <div class="tool-panel">
-                    <img class="icon222" alt="" src="./../static/images/icon-163.svg" />
-                  </div>
+                <div class="profile9">
+                    <div class="data-comparator-bank"></div>
+                    <div class="data-transformer-chain">
+                        <div class="profile10">
+                            <img
+                                class="avatar-icon6"
+                                loading="lazy"
+                                alt=""
+                                th:src="@{./../static/images/avatar1@2x.png}"
+                            />
+
+                            <div class="name-email4">
+                                <div class="data-canvas">
+                                    <div class="jake-gyll8">Jake Gyll</div>
+                                </div>
+                                <div class="jakegyllemailcom8">
+                                    jakegyll@email.com
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-menu4">
+                        <div class="rounded-rectangle4"></div>
+                        <div class="frame5">
+                            <div class="logout8">
+                                <div class="logout9">Logout</div>
+                                <img class="icon212" alt="" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </footer>
-            </form>
-          </div>
-        </section>
-      </main>
-    </div>
-  </body>
+            </div>
+            <main class="frame-main">
+                <header class="top-nav8">
+                    <img class="pattern-icon21" alt="" />
+
+                    <div class="data-mesh">
+                        <h1 class="dashboard6">Dashboard</h1>
+                    </div>
+                    <div class="action4">
+                        <button class="button65">
+                            <b class="caption307">Back to homepage</b>
+                        </button>
+                        <div class="data-torus">
+                            <img
+                                class="notification-icon5"
+                                loading="lazy"
+                                alt=""
+                                th:src="@{./../static/images/notification2.svg}"
+                            />
+                        </div>
+                    </div>
+                </header>
+                <section class="applicant-dashboard-greeting1">
+                    <div class="greeting1">
+                        <h3 class="good-morning-jake1">Good morning, Jake</h3>
+                        <div class="here-is-whats2">
+                            Here is what’s happening with your job search
+                            applications from July 19 - July 25.
+                        </div>
+                    </div>
+                    <div class="function-call">
+                        <div class="dropdown1">
+                            <div class="this-is-placeholder16">
+                                Jul 19 - Jul 25
+                            </div>
+                            <div class="nested-structure">
+                                <img
+                                    class="icon213"
+                                    alt=""
+                                    th:src="@{./../static/images/icon-86.svg}"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="parallel-container">
+                    <div class="matrix-manipulator">
+                        <div class="string-editor">
+                            <div class="number-cruncher1">
+                                <div class="card-dashboard2">
+                                    <div class="icon214">
+                                        <img
+                                            class="vector-stroke-icon5"
+                                            alt=""
+                                            th:src="@{./../static/images/vector-stroke-1.svg}"
+                                        />
+
+                                        <div class="network-manager"></div>
+                                        <div class="timer-controller"></div>
+                                    </div>
+                                    <div class="randomizer">
+                                        <div class="total-jobs-applied">
+                                            Total Jobs Applied
+                                        </div>
+                                        <div class="user-interface">45</div>
+                                    </div>
+                                </div>
+                                <div class="card-dashboard3">
+                                    <div class="interviewed">Interviewed</div>
+                                    <div class="parent1">
+                                        <div class="div34">18</div>
+                                        <div class="icon-wrapper18">
+                                            <img
+                                                class="icon215"
+                                                alt=""
+                                                th:src="@{./../static/images/icon-94.svg}"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-dashboard4">
+                                <div class="jobs-applied-status">
+                                    Jobs Applied Status
+                                </div>
+                                <div class="main-content18">
+                                    <div class="wrapper-graph">
+                                        <img
+                                            class="graph-icon"
+                                            loading="lazy"
+                                            alt=""
+                                            th:src="@{./../static/images/graph.svg}"
+                                        />
+                                    </div>
+                                    <div class="machine-learning-model">
+                                        <div class="stats">
+                                            <div class="sensor-reader">
+                                                <div
+                                                    class="actuator-controller"
+                                                >
+                                                    <div
+                                                        class="serial-communication"
+                                                    ></div>
+                                                </div>
+                                                <div
+                                                    class="parallel-processing"
+                                                >
+                                                    <b
+                                                        class="distributed-system"
+                                                        >60%</b
+                                                    >
+                                                    <div class="unsuitable">
+                                                        Unsuitable
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="sensor-reader1">
+                                                <div
+                                                    class="sensor-reader-inner"
+                                                >
+                                                    <div
+                                                        class="frame-child106"
+                                                    ></div>
+                                                </div>
+                                                <div class="parent2">
+                                                    <b class="b">40%</b>
+                                                    <div class="interviewed1">
+                                                        Interviewed
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="button66">
+                                    <div class="view-all-applications">
+                                        View All Applications
+                                    </div>
+                                    <div class="graphic-user-interface">
+                                        <img
+                                            class="icon216"
+                                            alt=""
+                                            th:src="@{./../static/images/icon-104.svg}"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-dashboard5">
+                                <div class="time">
+                                    <div class="swarm-intelligence">
+                                        <div class="am">9:30 AM</div>
+                                        <div class="physics-engine">
+                                            <div
+                                                class="finite-state-machine"
+                                            ></div>
+                                        </div>
+                                    </div>
+                                    <div class="swarm-intelligence1">
+                                        <div class="am1">10:00 AM</div>
+                                        <div class="swarm-intelligence-inner">
+                                            <div class="line-div"></div>
+                                        </div>
+                                    </div>
+                                    <div class="swarm-intelligence2">
+                                        <div class="am2">10:30 AM</div>
+                                        <div class="swarm-intelligence-child">
+                                            <div class="frame-child107"></div>
+                                        </div>
+                                    </div>
+                                    <div class="swarm-intelligence3">
+                                        <div class="am3">11:00 AM</div>
+                                        <div class="swarm-intelligence-inner1">
+                                            <div class="frame-child108"></div>
+                                        </div>
+                                    </div>
+                                    <div class="schedule">
+                                        <div class="graph-algorithms"></div>
+                                        <img
+                                            class="mask-group-icon1"
+                                            alt=""
+                                            th:src="@{./../static/images/mask-group@2x.png}"
+                                        />
+
+                                        <div class="joe-bartmann-parent">
+                                            <div class="joe-bartmann">
+                                                Joe Bartmann
+                                            </div>
+                                            <div class="hr-manager-at">
+                                                HR Manager at Divvy
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="upcomming-interviews">
+                                    <div class="rounded-rectangle5"></div>
+                                    <div class="upcomming-interviews-wrapper">
+                                        <div class="upcomming-interviews1">
+                                            Upcomming Interviews
+                                        </div>
+                                    </div>
+                                    <div class="link-list">
+                                        <div class="form-field"></div>
+                                        <div class="dropdown-menu">
+                                            <div class="today">
+                                                <div
+                                                    class="today-26-november-container"
+                                                >
+                                                    <span class="today1"
+                                                        >Today,
+                                                    </span>
+                                                    <span class="november"
+                                                        >26 November</span
+                                                    >
+                                                </div>
+                                                <div class="slider-control">
+                                                    <div class="icon-parent30">
+                                                        <img
+                                                            class="icon217"
+                                                            alt=""
+                                                            th:src="@{./../static/images/icon-116.svg}"
+                                                        />
+
+                                                        <img
+                                                            class="icon218"
+                                                            alt=""
+                                                            th:src="@{./../static/images/icon-123.svg}"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <form class="applicant-dashboard-recent-a">
+                            <div class="base2"></div>
+                            <div class="tree-view">
+                                <input
+                                    class="calendar-picker"
+                                    placeholder="Recent Applications History"
+                                    type="text"
+                                />
+
+                                <div class="line22"></div>
+                            </div>
+                            <div class="data-wrapper">
+                                <div class="data3">
+                                    <div class="recent-applications-row">
+                                        <div class="title19">
+                                            <img
+                                                class="company-logo-icon53"
+                                                loading="lazy"
+                                                alt=""
+                                                th:src="@{./../static/images/company-logo6.svg}"
+                                            />
+
+                                            <div class="alert-message">
+                                                <div class="job-title45">
+                                                    <b
+                                                        class="social-media-assistant49"
+                                                        >Social Media
+                                                        Assistant</b
+                                                    >
+                                                    <div
+                                                        class="company-name-location-job43"
+                                                    >
+                                                        <div class="nomad47">
+                                                            Nomad
+                                                        </div>
+                                                        <div
+                                                            class="stepper-control"
+                                                        >
+                                                            <div
+                                                                class="star-rating"
+                                                            ></div>
+                                                        </div>
+                                                        <div
+                                                            class="paris-france43"
+                                                        >
+                                                            Paris, France
+                                                        </div>
+                                                        <div class="info-box">
+                                                            <div
+                                                                class="table-row"
+                                                            ></div>
+                                                        </div>
+                                                        <div class="full-time9">
+                                                            Full-Time
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="date-applied-wrapper">
+                                            <div class="date-applied7">
+                                                <div class="date-applied8">
+                                                    Date Applied
+                                                </div>
+                                                <div class="july-20215">
+                                                    24 July 2021
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="banner-wrapper">
+                                            <div class="banner">
+                                                <div class="label192">
+                                                    <div
+                                                        class="label-child114"
+                                                    ></div>
+                                                    <div class="caption308">
+                                                        In Review
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="time-picker">
+                                            <img
+                                                class="icon219"
+                                                alt=""
+                                                th:src="@{./../static/images/icon-131.svg}"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="recent-applications-row1">
+                                        <div class="title20">
+                                            <img
+                                                class="company-logo-icon54"
+                                                alt=""
+                                                th:src="@{./../static/images/company-logo-14@2x.png}"
+                                            />
+
+                                            <div class="job-title-wrapper1">
+                                                <div class="job-title46">
+                                                    <b
+                                                        class="social-media-assistant50"
+                                                        >Social Media
+                                                        Assistant</b
+                                                    >
+                                                    <div
+                                                        class="company-name-location-job44"
+                                                    >
+                                                        <div class="nomad48">
+                                                            Udacity
+                                                        </div>
+                                                        <div
+                                                            class="company-name-location-job-inner37"
+                                                        >
+                                                            <div
+                                                                class="frame-child109"
+                                                            ></div>
+                                                        </div>
+                                                        <div
+                                                            class="paris-france44"
+                                                        >
+                                                            New York, USA
+                                                        </div>
+                                                        <div
+                                                            class="company-name-location-job-inner38"
+                                                        >
+                                                            <div
+                                                                class="frame-child110"
+                                                            ></div>
+                                                        </div>
+                                                        <div
+                                                            class="full-time10"
+                                                        >
+                                                            Full-Time
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="date-applied-container">
+                                            <div class="date-applied9">
+                                                <div class="date-applied10">
+                                                    Date Applied
+                                                </div>
+                                                <div class="july-20216">
+                                                    23 July 2021
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="recent-applications-row-inner"
+                                        >
+                                            <div class="label-wrapper4">
+                                                <button class="label193">
+                                                    <div
+                                                        class="label-child115"
+                                                    ></div>
+                                                    <div class="caption309">
+                                                        Shortlisted
+                                                    </div>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="icon-wrapper19">
+                                            <img
+                                                class="icon220"
+                                                alt=""
+                                                th:src="@{./../static/images/icon-131.svg}"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="recent-applications-row2">
+                                        <div class="title21">
+                                            <img
+                                                class="company-logo-icon55"
+                                                alt=""
+                                                th:src="@{./../static/images/company-logo-26.svg}"
+                                            />
+
+                                            <div class="job-title-wrapper2">
+                                                <div class="job-title47">
+                                                    <b
+                                                        class="social-media-assistant51"
+                                                        >Social Media
+                                                        Assistant</b
+                                                    >
+                                                    <div
+                                                        class="company-name-location-job45"
+                                                    >
+                                                        <div class="nomad49">
+                                                            Packer
+                                                        </div>
+                                                        <div
+                                                            class="company-name-location-job-inner39"
+                                                        >
+                                                            <div
+                                                                class="frame-child111"
+                                                            ></div>
+                                                        </div>
+                                                        <div
+                                                            class="paris-france45"
+                                                        >
+                                                            Madrid, Spain
+                                                        </div>
+                                                        <div
+                                                            class="company-name-location-job-inner40"
+                                                        >
+                                                            <div
+                                                                class="frame-child112"
+                                                            ></div>
+                                                        </div>
+                                                        <div
+                                                            class="full-time11"
+                                                        >
+                                                            Full-Time
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="date-applied-frame">
+                                            <div class="date-applied11">
+                                                <div class="date-applied12">
+                                                    Date Applied
+                                                </div>
+                                                <div class="july-20217">
+                                                    22 July 2021
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="recent-applications-row-child"
+                                        >
+                                            <div class="label-wrapper5">
+                                                <button class="label194">
+                                                    <div
+                                                        class="label-child116"
+                                                    ></div>
+                                                    <div class="caption310">
+                                                        Declined
+                                                    </div>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="icon-wrapper20">
+                                            <img
+                                                class="icon221"
+                                                alt=""
+                                                th:src="@{./../static/images/icon-131.svg}"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="tabbed-pane">
+                                <div class="nav2">
+                                    <div class="view-all-applications1">
+                                        View all applications history
+                                    </div>
+                                    <div class="tool-panel">
+                                        <img
+                                            class="icon222"
+                                            alt=""
+                                            th:src="@{./../static/images/icon-163.svg}"
+                                        />
+                                    </div>
+                                </div>
+                            </footer>
+                        </form>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </body>
 </html>
