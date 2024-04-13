@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
         User user = new User(userDto.getEmail(),
                 userDto.getUserDisplayName(),
                 userDto.getPassword(),
-                "user"
+                userDto.getRole()
         );
         Profile profile=new Profile(
                 "First Name",

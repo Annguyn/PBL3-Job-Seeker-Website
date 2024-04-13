@@ -12,7 +12,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "location")
+@Table(name = "job_location")
 @Data
 @NoArgsConstructor
 public class Location implements Serializable  {
@@ -24,12 +24,8 @@ public class Location implements Serializable  {
     @Column(name = "name",nullable = false)
     private String name;
 
-    @Column(name = "quantity",nullable = false)
-    private int quantity;
-
-    public Location(int iD, String Name, int Quantity){
+    public Location(int iD, String Name){
         id = iD ;
         name = Name;
-        quantity = Quantity;
     }
 }

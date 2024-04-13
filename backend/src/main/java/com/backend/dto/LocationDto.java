@@ -10,5 +10,4 @@ import lombok.NoArgsConstructor;
 public class LocationDto {
     private int Id ;
     private String Name;
-    private int quantity;
 }

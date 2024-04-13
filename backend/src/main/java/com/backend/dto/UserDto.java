@@ -13,10 +13,11 @@ public class UserDto implements Serializable {
     private String UserDisplayName;
     private String Password;
     private String CheckPass;
-
-    public UserDto(String email, String userDisplayName, String password) {
+    private String Role ;
+    public UserDto(String email, String userDisplayName, String password , String role) {
         Email = email;
         UserDisplayName = userDisplayName;
         Password = password;
+        Role =role ;
     }
 }
