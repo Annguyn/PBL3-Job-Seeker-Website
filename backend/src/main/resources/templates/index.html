@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 </html>
 <html>
 
@@ -72,13 +73,13 @@
         </div>
         <div class="buttons" th:if="${userdto.userDisplayName != null}">
           <button class="button">
-            <a class="caption2" >Sign out</a>
+            <a class="caption2">Sign out</a>
           </button>
           <div class="divider-wrapper">
             <div class="divider"></div>
           </div>
           <button class="button1">
-            <a class="caption3" >Dashboard</a>
+            <a class="caption3">Dashboard</a>
           </button>
         </div>
       </header>
@@ -659,7 +660,7 @@
             </div>
             <div class="right-column">
               <button class="label">
-                <div class="caption10">Marketing</div>
+                <div class="caption10" th:text="${posts[0].categories[0].name}"></div>
               </button>
               <button class="label1">
                 <div class="caption11">Design</div>
@@ -720,7 +721,6 @@
             </div>
             <button class="label-group">
               <button class="label4">
-                <div class="caption14">Marketing</div>
               </button>
               <div class="label5">
                 <div class="caption15">Tech</div>
@@ -1117,7 +1117,6 @@
             </div>
             <div class="job-list15">
               <img class="company-logo-icon15" alt="" th:src="@{/images/company-logo-15@2x.png}" />
-
               <div class="job-title8">
                 <div class="social-media-assistant7">HR Manager</div>
                 <div class="company-name-location-job7">

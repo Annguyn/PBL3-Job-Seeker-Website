@@ -1,5 +1,8 @@
 package com.backend.entity;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 import org.aspectj.lang.annotation.control.CodeGenerationHint;
 
 import jakarta.persistence.Column;
@@ -7,6 +10,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,49 +28,57 @@ public class Post {
     private int id;
 
     @Column(name ="company_id")
-    private int company_id;
+    private int companyId;
 
     @Column(name ="max_salary")
-    private int maxSalary;
+    private BigDecimal maxSalary;
 
     @Column(name ="min_salary")
-    private int minSalary;
+    private BigDecimal minSalary;
 
     @Column(name ="phone_number")
-    private String phone_number;
+    private String phoneNumber;
 
     @Column(name ="email")
     private String email;
 
-    @Column(name ="content")
+    @Column(name ="content", columnDefinition="TEXT")
     private String content;
 
-    @Column(name ="images")
+    @Column(name ="images", columnDefinition="TEXT")
     private String images;
 
     @Column(name ="experience")
-    private int experience;
+    private String experience;
 
     @Column(name ="location_id")
-    private int location_id;
+    private int locationId;
 
     @Column(name ="level_id")
-    private int level_id;
+    private int levelId;
 
     @Column(name ="languages_id")
-    private int languages_id;
+    private int languagesId;
 
-    public Post(int Company_id, int MaxSalary, int MinSalary, String PhoneNumber, String Email, String Content, String Images, int Experience, int Location_id, int Level_id, int Languages_id){
-        company_id = Company_id;
-        maxSalary = MaxSalary;
-        minSalary = MinSalary;
-        phone_number = PhoneNumber;
-        email = Email;
-        content = Content;
-        images = Images;
-        experience = Experience;
-        location_id = Location_id;
-        level_id = Level_id;
-        languages_id = Languages_id;
+    @OneToMany
+    @JoinTable(
+        name = "post_category",
+        joinColumns = @JoinColumn(name = "post_id"),
+        inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    private List<Category> categories;
+    // constructor and other methods...
+    public Post( int CompanyId ,BigDecimal maxSalary, BigDecimal minSalary, String phoneNumber, String email, String content, String images, String experience, int locationId, int levelId, int languagesId) {
+        this.companyId = CompanyId;
+        this.maxSalary = maxSalary;
+        this.minSalary = minSalary;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.content = content;
+        this.images = images;
+        this.experience = experience;
+        this.locationId = locationId;
+        this.levelId = levelId;
+        this.languagesId = languagesId;
     }
 }

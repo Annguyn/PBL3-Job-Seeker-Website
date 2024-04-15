@@ -31,8 +31,8 @@ public class PostCategoryServiceImpl implements PostCategoryService {
     }
 
     @Override
-    public void removeCategoryFromPost(Post post, Category category) {
-        postCategoryRepository.delete(post.getId(), category.getId());
+    public void removeCategoryFromPost() {
+        postCategoryRepository.delete(postCategory);
     }
 
 }

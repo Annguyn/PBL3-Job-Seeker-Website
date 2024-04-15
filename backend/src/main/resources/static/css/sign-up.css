@@ -493,7 +493,7 @@
   padding-right: var(--padding-xl);
 }
 .this-is-placeholder11 {
-  width: 177px;
+  width: -webkit-fill-available;
   border: 0;
   outline: 0;
   background-color: transparent;
@@ -537,7 +537,7 @@
   padding-right: var(--padding-xl);
 }
 .this-is-placeholder12 {
-  width: 143px;
+  width: -webkit-fill-available;
   border: 0;
   outline: 0;
   background-color: transparent;

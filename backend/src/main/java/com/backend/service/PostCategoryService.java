@@ -7,5 +7,5 @@ import java.util.List;
 public interface PostCategoryService {
     List<Category> getCategoriesOfPost(Post post);
     void addCategoryToPost(Post post, Category category);
-    void removeCategoryFromPost(Post post, Category category);
+    void removeCategoryFromPost();
 }

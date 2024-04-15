@@ -5,9 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.backend.dto.UserDto;
-import com.backend.entity.Profile;
 import com.backend.entity.User;
-import com.backend.repository.ProfileRepository;
 import com.backend.repository.UserRepository;
 import com.backend.service.UserService;
 
@@ -20,8 +18,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private ProfileRepository profileRepository;
 
     @Override
     public void save(UserDto userDto) {
@@ -33,17 +29,8 @@ public class UserServiceImpl implements UserService {
                 userDto.getPassword(),
                 userDto.getRole()
         );
-        Profile profile=new Profile(
-                "First Name",
-                "Last Name",
-                creationDate,
-                "null",
-                "Gender",
-                "Adress",
-                user
-        );
+       
         userRepository.save(user);
-        profileRepository.save(profile);
     }
 
     @Override
@@ -66,5 +53,4 @@ public class UserServiceImpl implements UserService {
     public java.util.List<User> getAllUsers() {
         return userRepository.getAllUser();
     }
-    
 }

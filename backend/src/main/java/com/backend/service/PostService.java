@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.backend.dto.PostDto;
+import com.backend.entity.Category;
 import com.backend.entity.Post;
 
 @Service
@@ -13,5 +14,5 @@ public interface PostService {
     // Post getPostById(Long id);
     List<Post> getAllPosts();
     void deletePost(Long id);
-    // Add more methods as needed
+    // List<Category> getCategoryByPostId(int id);
 }

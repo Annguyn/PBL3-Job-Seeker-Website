@@ -28,20 +28,23 @@ public class UserRegistrationController {
     }
 
     @PostMapping("/registration")
-    @ResponseBody
-    public String registerUserAccount(@ModelAttribute("userdto") UserDto userDto, @RequestParam(required = false) String type) {
-        if (userService.checkUserbyEmail(userDto.getEmail())) {
-            return "redirect:/registration?emailexist";
-        }
+    public String registerUserAccount(@ModelAttribute("userdto") UserDto userDto,
+            @RequestParam(required = false) String type) {
+
         if ("company".equals(type)) {
             userDto.setRole("company");
-            System.out.println("User : company");
+            if (userService.checkUserbyEmail(userDto.getEmail())) {
+                return "redirect:/registration?type=comapny&emailexist";
+            }
+            userService.save(userDto);
+            return "redirect:/registration?type=company&success";
         } else {
             userDto.setRole("user");
-            System.out.println("User : user");
+            if (userService.checkUserbyEmail(userDto.getEmail())) {
+                return "redirect:/registration?emailexist";
+            }
+            userService.save(userDto);
         }
-        System.out.println("User " +type);
-        userService.save(userDto);
-        return "redirect:/login";
+        return "redirect:/registration?success";
     }
 }

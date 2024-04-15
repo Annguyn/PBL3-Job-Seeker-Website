@@ -4,20 +4,22 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class PostDto {
     private int id;
-    private int company_id;
-    private int maxSalary;
-    private int minSalary;
-    private String phone_number;
+    private int companyId;
+    private BigDecimal maxSalary;
+    private BigDecimal minSalary;
+    private String phoneNumber;
     private String email;
     private String content;
     private String images;
-    private int experience;
-    private int location_id;
-    private int level_id;
-    private int languages_id;
+    private String experience;
+    private int locationId;
+    private int levelId;
+    private int languagesId;
 }
