@@ -27,10 +27,7 @@ public void createPost(PostDto postDto) {
             postDto.getEmail(),
             postDto.getContent(),
             postDto.getImages(),
-            postDto.getExperience(),
-            postDto.getLocationId(),
-            postDto.getLevelId(),
-            postDto.getLanguagesId()
+            postDto.getExperience()
     );
     postRepository.save(post);
 }

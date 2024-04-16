@@ -3,8 +3,6 @@ package com.backend.entity;
 import java.math.BigDecimal;
 import java.util.List;
 
-import org.aspectj.lang.annotation.control.CodeGenerationHint;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,7 +10,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -51,24 +50,38 @@ public class Post {
     @Column(name ="experience")
     private String experience;
 
-    @Column(name ="location_id")
-    private int locationId;
+    // @Column(name ="location_id")
+    // private int locationId;
 
-    @Column(name ="level_id")
-    private int levelId;
+    @OneToOne
+    @JoinColumn(name = "level_id")
+    private Level level;
 
-    @Column(name ="languages_id")
-    private int languagesId;
+    @OneToOne
+    @JoinColumn(name = "languages_id")
+    private Language language;
 
-    @OneToMany
+    @OneToOne
+    @JoinColumn(name = "location_id")
+    private Location location;
+
+    @ManyToMany
     @JoinTable(
-        name = "post_category",
-        joinColumns = @JoinColumn(name = "post_id"),
-        inverseJoinColumns = @JoinColumn(name = "category_id")
-    )
+    name = "post_category",
+    joinColumns = @JoinColumn(name = "post_id"),
+    inverseJoinColumns = @JoinColumn(name = "category_id"))
     private List<Category> categories;
-    // constructor and other methods...
-    public Post( int CompanyId ,BigDecimal maxSalary, BigDecimal minSalary, String phoneNumber, String email, String content, String images, String experience, int locationId, int levelId, int languagesId) {
+
+    @ManyToMany
+    @JoinTable(
+    name = "post_programming_languages",
+    joinColumns = @JoinColumn(name = "post_id"),
+    inverseJoinColumns = @JoinColumn(name = "programming_languages_id"))
+    private List<ProgramingLanguage> programingLanguages;
+
+
+    
+    public Post( int CompanyId ,BigDecimal maxSalary, BigDecimal minSalary, String phoneNumber, String email, String content, String images, String experience) {
         this.companyId = CompanyId;
         this.maxSalary = maxSalary;
         this.minSalary = minSalary;
@@ -77,8 +90,6 @@ public class Post {
         this.content = content;
         this.images = images;
         this.experience = experience;
-        this.locationId = locationId;
-        this.levelId = levelId;
-        this.languagesId = languagesId;
+        // this.locationId = locationId;
     }
 }

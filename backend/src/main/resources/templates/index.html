@@ -642,28 +642,27 @@
               <img class="company-logo-icon1" alt="" th:src="@{/images/company-logo-1@2x.png}" />
 
               <button class="tag">
-                <div class="jobs2">Full Time</div>
+                <div class="jobs2" th:text="${posts[0].level.name}"></div>
               </button>
             </div>
             <div class="title5">
-              <div class="email-marketing">Email Marketing</div>
+              <div class="email-marketing" th:text="${posts[0].categories[0].name}"></div>
               <div class="job-title-label">
                 <div class="revolut">Revolut</div>
                 <div class="company-logo-wrapper">
                   <div class="company-logo"></div>
                 </div>
-                <div class="madrid-spain">Madrid, Spain</div>
+                <div class="madrid-spain" th:text="${posts[0].location.name}"></div>
               </div>
             </div>
-            <div class="revolut-is-looking">
-              Revolut is looking for Email Marketing to help team ma ...
+            <div class="revolut-is-looking" th:text="${#strings.abbreviate(posts[0].content, 50)}">
             </div>
             <div class="right-column">
               <button class="label">
                 <div class="caption10" th:text="${posts[0].categories[0].name}"></div>
               </button>
               <button class="label1">
-                <div class="caption11">Design</div>
+                <div class="caption11" th:text="${posts[0].programingLanguages[0].name}" ></div>
               </button>
             </div>
           </div>
@@ -672,29 +671,28 @@
               <img class="company-logo-icon2" alt="" th:src="@{/images/company-logo-2.svg}" />
 
               <button class="tag1">
-                <div class="jobs3">Full Time</div>
+                <div class="jobs3" th:text="${posts[1].level.name}"></div>
               </button>
             </div>
             <div class="title6">
-              <div class="email-marketing1">Brand Designer</div>
+              <div class="email-marketing1" th:text="${posts[1].categories[0].name}"></div>
               <div class="revolut-parent">
                 <div class="revolut1">Dropbox</div>
                 <div class="left-column-wrapper">
                   <div class="left-column"></div>
                 </div>
-                <div class="madrid-spain1">San Fransisco, US</div>
+                <div class="madrid-spain1" th:text="${posts[1].location.name}"></div>
               </div>
             </div>
-            <div class="revolut-is-looking1">
-              Dropbox is looking for Brand Designer to help the team t ...
+            <div class="revolut-is-looking1"  th:text="${#strings.abbreviate(posts[1].content, 50)}">
             </div>
             <div class="label-parent">
               <button class="label2">
-                <div class="caption12">Design</div>
+                <div class="caption12" th:text="${posts[1].categories[0].name}"></div>
               </button>
               <button class="label3">
                 <div class="label-child"></div>
-                <div class="caption13">Business</div>
+                <div class="caption13" th:text="${posts[1].programingLanguages[0].name}"></div>
               </button>
             </div>
           </div>
@@ -703,27 +701,27 @@
               <img class="company-logo-icon3" alt="" th:src="@{/images/company-logo-3@2x.png}" />
 
               <button class="tag2">
-                <div class="jobs4">Full Time</div>
+                <div class="jobs4" th:text="${posts[2].level.name}"></div>
               </button>
             </div>
             <div class="title7">
-              <div class="email-marketing2">Email Marketing</div>
+              <div class="email-marketing2" th:text="${posts[2].categories[0].name}"></div>
               <div class="revolut-group">
                 <div class="revolut2">Pitch</div>
                 <div class="ellipse-wrapper">
                   <div class="ellipse-div"></div>
                 </div>
-                <div class="madrid-spain2">Berlin, Germany</div>
+                <div class="madrid-spain2" th:text="${posts[2].location.name}"></div>
               </div>
             </div>
-            <div class="revolut-is-looking2">
-              Pitch is looking for Customer Manager to join marketing t ...
+            <div class="revolut-is-looking2" th:text="${#strings.abbreviate(posts[2].content, 50)}">
             </div>
             <button class="label-group">
               <button class="label4">
+                <div class="caption14" th:text="${posts[2].categories[0].name}"></div>
               </button>
               <div class="label5">
-                <div class="caption15">Tech</div>
+                <div class="caption15" th:text="${posts[2].programingLanguages[0].name}"></div>
               </div>
             </button>
           </div>
@@ -732,28 +730,27 @@
               <img class="company-logo-icon4" alt="" th:src="@{/images/company-logo-4@2x.png}" />
 
               <button class="tag3">
-                <div class="jobs5">Full Time</div>
+                <div class="jobs5" th:text="${posts[3].level.name}"></div>
               </button>
             </div>
             <div class="title8">
-              <div class="email-marketing3">Visual Designer</div>
+              <div class="email-marketing3" th:text="${posts[3].categories[0].name}"></div>
               <div class="revolut-container">
                 <div class="revolut3">Blinklist</div>
                 <div class="ellipse-container">
                   <div class="frame-child4"></div>
                 </div>
-                <div class="madrid-spain3">Granada, Spain</div>
+                <div class="madrid-spain3" th:text="${posts[3].location.name}"></div>
               </div>
             </div>
-            <div class="revolut-is-looking3">
-              Blinkist is looking for Visual Designer to help team desi ...
+            <div class="revolut-is-looking3" th:text="${#strings.abbreviate(posts[3].content, 50)}" >
             </div>
             <button class="label-container">
               <div class="label6">
-                <div class="caption16">Marketing</div>
+                <div class="caption16" th:text="${posts[3].categories[0].name}"></div>
               </div>
               <button class="label7">
-                <div class="caption17">Design</div>
+                <div class="caption17" th:text="${posts[3].programingLanguages[0].name}"></div>
               </button>
             </button>
           </div>
@@ -764,28 +761,27 @@
               <img class="company-logo-icon5" alt="" th:src="@{/images/company-logo-5@2x.png}" />
 
               <button class="tag4">
-                <div class="jobs6">Full Time</div>
+                <div class="jobs6" th:text="${posts[4].level.name}"></div>
               </button>
             </div>
             <div class="title9">
-              <div class="email-marketing4">Product Designer</div>
+              <div class="email-marketing4" th:text="${posts[4].categories[0].name}"></div>
               <div class="revolut-parent1">
                 <div class="revolut4">ClassPass</div>
                 <div class="ellipse-frame">
                   <div class="frame-child5"></div>
                 </div>
-                <div class="madrid-spain4">Manchester, UK</div>
+                <div class="madrid-spain4" th:text="${posts[4].location.name}"></div>
               </div>
             </div>
-            <div class="revolut-is-looking4">
-              ClassPass is looking for Product Designer to help us...
+            <div class="revolut-is-looking4" th:text="${#strings.abbreviate(posts[4].content, 50)}">
             </div>
             <div class="divider3">
               <button class="label8">
-                <div class="caption18">Marketing</div>
+                <div class="caption18" th:text="${posts[4].categories[0].name}"></div>
               </button>
               <button class="label9">
-                <div class="caption19">Design</div>
+                <div class="caption19" th:text="${posts[4].programingLanguages[0].name}"></div>
               </button>
             </div>
           </div>
@@ -796,29 +792,28 @@
                 <img class="v-6ghzad-400x400-icon" alt="" th:src="@{/images/v6ghzad-400x400@2x.png}" />
               </button>
               <button class="tag5">
-                <div class="jobs7">Full Time</div>
+                <div class="jobs7" th:text="${posts[5].level.name}"></div>
               </button>
             </div>
             <div class="title10">
-              <div class="email-marketing5">Lead Designer</div>
+              <div class="email-marketing5" th:text="${posts[5].categories[0].name}"></div>
               <div class="revolut-parent2">
                 <div class="revolut5">Canva</div>
                 <div class="ellipse-wrapper1">
                   <div class="frame-child6"></div>
                 </div>
-                <div class="madrid-spain5">Ontario, Canada</div>
+                <div class="madrid-spain5" th:text="${posts[5].location.name}"></div>
               </div>
             </div>
-            <div class="revolut-is-looking5">
-              Canva is looking for Lead Engineer to help develop n ...
+            <div class="revolut-is-looking5" th:text="${#strings.abbreviate(posts[5].content, 50)}">
             </div>
             <div class="label-parent1">
               <button class="label10">
-                <div class="caption20">Design</div>
+                <div class="caption20" th:text="${posts[5].categories[0].name}"></div>
               </button>
               <button class="label11">
                 <div class="label-item"></div>
-                <div class="caption21">Business</div>
+                <div class="caption21" th:text="${posts[5].programingLanguages[0].name}"></div>
               </button>
             </div>
           </div>
@@ -827,28 +822,27 @@
               <img class="company-logo-icon6" alt="" th:src="@{/images/company-logo-6@2x.png}" />
 
               <button class="tag6">
-                <div class="jobs8">Full Time</div>
+                <div class="jobs8" th:text="${posts[6].level.name}"></div>
               </button>
             </div>
             <div class="title11">
-              <div class="email-marketing6">Brand Strategist</div>
+              <div class="email-marketing6" th:text="${posts[6].categories[0].name}"></div>
               <div class="revolut-parent3">
                 <div class="revolut6">GoDaddy</div>
                 <div class="ellipse-wrapper2">
                   <div class="frame-child7"></div>
                 </div>
-                <div class="madrid-spain6">Marseille, France</div>
+                <div class="madrid-spain6" th:text="${posts[6].location.name}"></div>
               </div>
             </div>
-            <div class="revolut-is-looking6">
-              GoDaddy is looking for Brand Strategist to join the team...
+            <div class="revolut-is-looking6" th:text="${#strings.abbreviate(posts[6].content, 50)}">
             </div>
             <button class="frame-button">
               <div class="label12">
-                <div class="caption22">Marketing</div>
+                <div class="caption22" th:text="${posts[6].categories[0].name}"></div>
               </div>
               <div class="label13">
-                <div class="caption23">Tech</div>
+                <div class="caption23" th:text="${posts[6].programingLanguages[0].name}"></div>
               </div>
             </button>
           </div>
@@ -857,29 +851,28 @@
               <img class="company-logo-icon7" alt="" th:src="@{/images/company-logo-7@2x.png}" />
 
               <button class="tag7">
-                <div class="jobs9">Full Time</div>
+                <div class="jobs9" th:text="${posts[7].level.name}"></div>
               </button>
             </div>
             <div class="title12">
-              <div class="email-marketing7">Data Analyst</div>
+              <div class="email-marketing7" th:text="${posts[7].categories[0].name}"></div>
               <div class="revolut-parent4">
                 <div class="revolut7">Twitter</div>
                 <div class="ellipse-wrapper3">
                   <div class="frame-child8"></div>
                 </div>
-                <div class="madrid-spain7">San Diego, US</div>
+                <div class="madrid-spain7" th:text="${posts[7].location.name}"></div>
               </div>
             </div>
-            <div class="revolut-is-looking7">
-              Twitter is looking for Data Analyst to help team desi ...
+            <div class="revolut-is-looking7"  th:text="${#strings.abbreviate(posts[7].content, 50)}" >
             </div>
             <button class="label-parent2">
               <div class="label14">
-                <div class="caption24">Marketing</div>
+                <div class="caption24" th:text="${posts[7].categories[0].name}"></div>
               </div>
               <div class="label15">
                 <div class="label-inner"></div>
-                <div class="caption25">Technology</div>
+                <div class="caption25" th:text="${posts[7].programingLanguages[0].name}"></div>
               </div>
             </button>
           </div>
