@@ -1,7 +1,0 @@
-*.css linguist-detectable=false linguist-language=CSS
-*.html linguist-detectable=false linguist-language=HTML
-*.ipynb linguist-detectable=false linguist-language=Jupyter Notebook
-*.py linguist-detectable=false linguist-language=Python
-*.java linguist-detectable=true linguist-language=Java
-*.js linguist-detectable=false linguist-language=JavaScript
-
