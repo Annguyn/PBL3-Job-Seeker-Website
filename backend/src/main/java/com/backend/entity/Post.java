@@ -1,6 +1,7 @@
 package com.backend.entity;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -26,32 +27,35 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name ="company_id")
+    @Column(name = "company_id")
     private int companyId;
 
-    @Column(name ="max_salary")
+    @Column(name = "max_salary")
     private BigDecimal maxSalary;
 
-    @Column(name ="min_salary")
+    @Column(name = "min_salary")
     private BigDecimal minSalary;
 
-    @Column(name ="phone_number")
+    @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(name ="email")
+    @Column(name = "email")
     private String email;
 
-    @Column(name ="content", columnDefinition="TEXT")
+    @Column(name = "content", columnDefinition = "TEXT")
     private String content;
 
-    @Column(name ="images", columnDefinition="TEXT")
+    @Column(name = "images", columnDefinition = "TEXT")
     private String images;
 
-    @Column(name ="experience")
+    @Column(name = "experience")
     private String experience;
 
     // @Column(name ="location_id")
     // private int locationId;
+
+    @Column(name = "date_posted")
+    private LocalDateTime datePosted;
 
     @OneToOne
     @JoinColumn(name = "level_id")
@@ -66,22 +70,15 @@ public class Post {
     private Location location;
 
     @ManyToMany
-    @JoinTable(
-    name = "post_category",
-    joinColumns = @JoinColumn(name = "post_id"),
-    inverseJoinColumns = @JoinColumn(name = "category_id"))
+    @JoinTable(name = "post_category", joinColumns = @JoinColumn(name = "post_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private List<Category> categories;
 
     @ManyToMany
-    @JoinTable(
-    name = "post_programming_languages",
-    joinColumns = @JoinColumn(name = "post_id"),
-    inverseJoinColumns = @JoinColumn(name = "programming_languages_id"))
+    @JoinTable(name = "post_programming_languages", joinColumns = @JoinColumn(name = "post_id"), inverseJoinColumns = @JoinColumn(name = "programming_languages_id"))
     private List<ProgramingLanguage> programingLanguages;
 
-
-    
-    public Post( int CompanyId ,BigDecimal maxSalary, BigDecimal minSalary, String phoneNumber, String email, String content, String images, String experience) {
+    public Post(int CompanyId, BigDecimal maxSalary, BigDecimal minSalary, String phoneNumber, String email,
+            String content, String images, String experience) {
         this.companyId = CompanyId;
         this.maxSalary = maxSalary;
         this.minSalary = minSalary;
@@ -90,6 +87,5 @@ public class Post {
         this.content = content;
         this.images = images;
         this.experience = experience;
-        // this.locationId = locationId;
     }
 }

@@ -39,10 +39,12 @@ public class HomeController {
         List<Level> levels = levelService.getAllLevel();
         List<Category> categories = categoryService.getAllCategories();
         List<Post> posts= postService.getAllPosts();
+        List<Post> posts_newest = postService.getAllPostsOrderByDatetime();
         model.addAttribute("posts", posts);
         model.addAttribute("locations", locations);
         model.addAttribute("categories", categories);
         model.addAttribute("levels", levels);
+        model.addAttribute("posts_newest", posts_newest) ;
         return "index";
     }
 }

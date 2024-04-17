@@ -14,5 +14,6 @@ public interface PostService {
     // Post getPostById(Long id);
     List<Post> getAllPosts();
     void deletePost(Long id);
+    List<Post> getAllPostsOrderByDatetime();
     // List<Category> getCategoryByPostId(int id);
 }

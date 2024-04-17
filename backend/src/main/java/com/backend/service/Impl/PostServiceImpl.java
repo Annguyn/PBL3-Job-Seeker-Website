@@ -46,7 +46,10 @@ public void createPost(PostDto postDto) {
     // public List<Category> getCategoryByPostId(int id) {
     //     return postRepository.getCategoryByPostId(id);
     // }
-
+    @Override
+    public List<Post> getAllPostsOrderByDatetime() {
+        return postRepository.findAllByOrderByDatePostedDesc();
+    }
     @Override
     public void deletePost(Long id) {
         // TODO Auto-generated method stub

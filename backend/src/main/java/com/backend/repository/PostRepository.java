@@ -17,7 +17,7 @@ public interface PostRepository extends JpaRepository<Post, Integer>{
             nativeQuery = true)
     List<Post> getAllPost();
 
- 
+    List<Post> findAllByOrderByDatePostedDesc();
     // @Query(value = "SELECT c.id, c.name, c.quantity FROM category c JOIN post_category pc ON pc.category_id = c.id WHERE pc.post_id = :id", nativeQuery = true)
     // List<Category> getCategoryByPostId(@Param("id") Integer id);
 
