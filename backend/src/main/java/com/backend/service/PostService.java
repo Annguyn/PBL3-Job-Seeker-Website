@@ -2,10 +2,11 @@ package com.backend.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.backend.dto.PostDto;
-import com.backend.entity.Category;
 import com.backend.entity.Post;
 
 @Service
@@ -15,5 +16,6 @@ public interface PostService {
     List<Post> getAllPosts();
     void deletePost(Long id);
     List<Post> getAllPostsOrderByDatetime();
+    Page<Post> getAllPosts(Pageable pageable) ;
     // List<Category> getCategoryByPostId(int id);
 }

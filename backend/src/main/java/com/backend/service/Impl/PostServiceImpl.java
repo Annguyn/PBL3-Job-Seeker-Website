@@ -3,6 +3,8 @@ package com.backend.service.Impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.backend.dto.PostDto;
@@ -55,4 +57,9 @@ public void createPost(PostDto postDto) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'deletePost'");
     }  
+
+    @Override
+    public Page<Post> getAllPosts(Pageable pageable) {
+        return postRepository.findAll(pageable);
+    }
 }

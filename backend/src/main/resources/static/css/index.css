@@ -6752,3 +6752,7 @@
     gap: var(--gap-xl);
   }
 }
+.caption{
+  text-decoration: none;
+  color: #f8f8f8;
+}
