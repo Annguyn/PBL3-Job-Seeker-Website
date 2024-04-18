@@ -234,22 +234,17 @@
                             <div class="filter1">
                                 <div class="filter-sort-wrapper">
                                     <div class="filter-sort">
-                                        <div class="sort-by">Sort by:</div>
-                                        <div class="most-relevant-parent">
-                                            <div class="most-relevant">
-                                                Most relevant
-                                            </div>
-                                            <div
-                                                class="iconlylightarrow-down-2-wrapper"
-                                            >
-                                                <img
-                                                    class="iconlylightarrow-down-2"
-                                                    alt=""
-                                                    th:src="@{/images/iconlylightarrow--down-2.svg}"
-                                                />
+                                        <span class="sort-by">Sort by:</span>
+                                        <div class="sort-options" onclick="toggleOptions()">
+                                            <span id="defaultOption">Most relevant</span>
+                                            <div id="otherOptions" style="display: none;">
+                                                <a class="sort-option" th:href="@{/findjobs(page=${page.number + 1}, sort='most-relevant')}">Most relevant</a>
+                                                <a class="sort-option" th:href="@{/findjobs(page=${page.number + 1}, sort='time')}">Time</a>
+                                                <a class="sort-option" th:href="@{/findjobs(page=${page.number + 1}, sort='salary')}">Salary</a>
                                             </div>
                                         </div>
                                     </div>
+                                    
                                 </div>
                                 <div class="divider-wrapper1">
                                     <div class="divider12"></div>
@@ -324,56 +319,19 @@
                                     <!-- Capacity will be inserted here -->
                                   </span>
                               </div>
+                              <div class="maxSalary">Salary up to: <span th:text="${(post.maxSalary / 1000000)  + 'M VND'}"></span></div>
                             </div>
                           </div>
                         </div>
                       </div>
                       <div class="pagination">
-                        <a th:if="${jobs.hasPrevious()}" th:href="@{/display(page=${jobs.number - 1})}">Previous</a>
-                        <span th:each="i : ${#numbers.sequence(0, jobs.totalPages)}">
-                          <a th:href="@{/display(page=${i})}" th:text="${i + 1}">Page number</a>
+                        <a th:if="${page.hasPrevious()}" th:href="@{/findjobs(page=${page.number}, sort=${param.sort[0]})}">Previous</a>
+                        <span th:each="i : ${#numbers.sequence(0, page.totalPages)}" th:if="${i >= page.number - 2 and i <= page.number + 2}">
+                            <a th:href="@{/findjobs(page=${i}, sort=${param.sort[0]})}" th:class="${i == page.number ? 'active' : ''}" th:text="${i + 1}">Page number</a>
                         </span>
-                        <a th:if="${jobs.hasNext()}" th:href="@{/display(page=${jobs.number + 1})}">Next</a>
-                      </div>
-                      </div>
-                    <div class="pagination-wrapper">
-                        <div class="pagination">
-                            <img
-                                class="icon99"
-                                alt=""
-                                th:src="@{/images/icon-7.svg}"
-                            />
-
-                            <div class="pagination-parent">
-                                <div class="pagination1">
-                                    <div class="div3">1</div>
-                                </div>
-                                <div class="pagination2">
-                                    <div class="div4">2</div>
-                                </div>
-                                <div class="pagination3">
-                                    <div class="div5">3</div>
-                                </div>
-                                <div class="pagination4">
-                                    <div class="div6">4</div>
-                                </div>
-                                <div class="pagination5">
-                                    <div class="div7">5</div>
-                                </div>
-                                <div class="pagination6">
-                                    <div class="div8">...</div>
-                                </div>
-                                <div class="pagination7">
-                                    <div class="div9">33</div>
-                                </div>
-                            </div>
-                            <img
-                                class="icon100"
-                                alt=""
-                                th:src="@{/images/icon-81.svg}"
-                            />
-                        </div>
+                        <a th:if="${page.hasNext()}" th:href="@{/findjobs(page=${page.number + 2}, sort=${param.sort[0]})}">Next</a>
                     </div>
+                      </div>
                 </div>
             </section>
             <footer class="footer3">

@@ -3902,3 +3902,71 @@
     gap: var(--gap-xl);
   }
 }
+.pagination a {
+  color: #008CBA; /* Change the color to a shade of blue */
+  font-size: 0.8em; /* Make the font size smaller */
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+
+.pagination a:hover {
+  background-color: #ddd;
+}
+
+.pagination a.active {
+  background-color: #4640DE;
+  color: white;
+}
+
+.pagination span {
+  color: #008CBA; /* Change the color to a shade of blue */
+  font-size: 0.8em; /* Make the font size smaller */
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+
+.pagination span:hover {
+  background-color: #ddd;
+}
+.maxSalary {
+  font-size: 1em;
+  color: #333;
+}
+
+.maxSalary span {
+  font-size: 1.2em;
+  color: #008CBA; /* Sky blue color */
+  font-weight: bold;
+}
+.filter-sort {
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.sort-by {
+  font-weight: bold;
+  width: fit-content;
+}
+
+.sort-options {
+  margin-top: 10px;
+}
+
+.sort-option {
+  display: block;
+  margin-bottom: 5px;
+  color: #008CBA;
+  text-decoration: none;
+}
+
+.sort-option:hover {
+  text-decoration: underline;
+}
+
+#otherOptions.show {
+  display: block;
+  border: 1px solid #ccc;
+  padding: 10px;
+}

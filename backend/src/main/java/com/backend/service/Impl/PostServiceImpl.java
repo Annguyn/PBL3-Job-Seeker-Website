@@ -62,4 +62,14 @@ public void createPost(PostDto postDto) {
     public Page<Post> getAllPosts(Pageable pageable) {
         return postRepository.findAll(pageable);
     }
+
+    @Override
+    public List<Post> getAllPostsOrderBySalaryDes() {
+        return postRepository.findAllByOrderByMaxSalaryDesc();
+    }
+
+    @Override
+    public List<Post> getAllPostsOrderBySalaryAsc() {
+       return postRepository.findAllByOrderByMaxSalaryAsc();
+    }
 }

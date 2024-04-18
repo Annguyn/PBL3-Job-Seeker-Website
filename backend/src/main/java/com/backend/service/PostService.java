@@ -18,4 +18,7 @@ public interface PostService {
     List<Post> getAllPostsOrderByDatetime();
     Page<Post> getAllPosts(Pageable pageable) ;
     // List<Category> getCategoryByPostId(int id);
+    List<Post> getAllPostsOrderBySalaryDes();
+
+    List<Post> getAllPostsOrderBySalaryAsc();
 }

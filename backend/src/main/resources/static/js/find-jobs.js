@@ -28,3 +28,13 @@ window.onload = function() {
         }
     });
 };
+function toggleOptions() {
+    var otherOptions = document.getElementById("otherOptions");
+    if (otherOptions.style.display === "none") {
+        otherOptions.style.display = "block";
+        otherOptions.classList.add("show");
+    } else {
+        otherOptions.style.display = "none";
+        otherOptions.classList.remove("show");
+    }
+}
