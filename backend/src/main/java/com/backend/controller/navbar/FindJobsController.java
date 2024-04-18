@@ -39,10 +39,11 @@ public class FindJobsController {
     }
 
     @GetMapping("/findjobs")
-    public String showRegistrationForm(Model model, @RequestParam(defaultValue = "1") int page) {
+public String showRegistrationForm(Model model, @RequestParam(defaultValue = "1") int page) {
+    try {
         Pageable pageable = PageRequest.of(page - 1, 6, Sort.by("datePosted").descending());
         Page<Post> postPage = postService.getAllPosts(pageable);
-        List<Level> levels = levelService.getAllLevel() ;
+        List<Level> levels = levelService.getAllLevel();
         List<Category> categories = categoryService.getAllCategories();
         List<Location> locations = locationService.getAllLocations();
         model.addAttribute("categories", categories);
@@ -50,5 +51,9 @@ public class FindJobsController {
         model.addAttribute("locations", locations);
         model.addAttribute("levels", levels);
         return "find-jobs";
+    } catch (Exception e) {
+        model.addAttribute("errorMessage", e.getMessage());
+        return "error";
     }
+}
 }
