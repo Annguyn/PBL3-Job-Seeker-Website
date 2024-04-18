@@ -2416,3 +2416,128 @@
     gap: var(--gap-base);
   }
 }
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* Additional styles */
+.input-splitter,
+.landing-page-submit-applicat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.landing-page-submit-applicat {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  padding: 20px; /* Adjust padding as needed */
+}
+
+.input-splitter {
+  align-items: center;
+}
+
+.job-title10 {
+  margin: 10px 0;
+}
+
+.submit-your-application1 {
+  font-size: 18px; /* Adjust font size as needed */
+}
+
+.the-following-is {
+  color: #666; /* Adjust color as needed */
+}
+
+.textfield {
+  margin-bottom: 20px; /* Adjust margin as needed */
+}
+
+.label50,
+.label51,
+.label52,
+.label53,
+.label54,
+.label55,
+.label56 {
+  margin-right: 10px; /* Adjust margin as needed */
+}
+
+.this-is-placeholder1,
+.this-is-placeholder2,
+.this-is-placeholder3,
+.this-is-placeholder4,
+.this-is-placeholder5,
+.this-is-placeholder6 {
+  width: 100%; /* Make inputs fill their container */
+  max-width: 300px; /* Adjust max-width as needed */
+}
+
+.icon57 {
+  padding: 10px;
+  border: 1px solid #ddd; /* Adjust border as needed */
+  border-radius: 5px; /* Adjust border radius as needed */
+  margin-bottom: 20px; /* Adjust margin as needed */
+}
+
+.content3 {
+  position: relative;
+}
+
+.helper-text {
+  margin-top: 10px; /* Adjust margin as needed */
+}
+
+.form {
+  width: 100%;
+  max-width: 100%;
+}
+
+.form-attach {
+  align-items: center;
+}
+
+.button14 {
+  margin-top: 20px; /* Adjust margin as needed */
+}
+
+.by-sending-the-container {
+  margin-top: 20px; /* Adjust margin as needed */
+}
+
+.links,
+.privacy-policy1,
+.terms-of-service {
+  color: #007bff; /* Adjust color as needed */
+  cursor: pointer;
+}
+
+.divider5,
+.divider6,
+.divider7,
+.divider8 {
+  width: 100%;
+  border-top: 1px solid #ccc; /* Adjust border color as needed */
+  margin: 20px 0; /* Adjust margin as needed */
+}

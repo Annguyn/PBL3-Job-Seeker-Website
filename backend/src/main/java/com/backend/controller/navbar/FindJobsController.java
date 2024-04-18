@@ -70,19 +70,19 @@ public class FindJobsController {
     }
 
     @GetMapping("/jobdetails")
-public String JobDetailsForm(Model model, @RequestParam(required = false) Integer id) {
-    if (id == null) {
-        // handle case when id is not provided
-        // for example, you can redirect to an error page or the home page
-        return "job-descriptions";
+    public String JobDetailsForm(Model model, @RequestParam(required = false) Integer id) {
+        if (id == null) {
+            // handle case when id is not provided
+            // for example, you can redirect to an error page or the home page
+            return "job-descriptions";
+        }
+        try {
+            Post post = postService.getPostById(id);
+            model.addAttribute("post", post);
+            return "job-descriptions";
+        } catch (Exception e) {
+            model.addAttribute("errorMessage", e.getMessage());
+            return "error";
+        }
     }
-    try {
-        Post post = postService.getPostById(id);
-        model.addAttribute("post", post);
-        return "job-descriptions";
-    } catch (Exception e) {
-        model.addAttribute("errorMessage", e.getMessage());
-        return "error";
-    }
-}
 }
