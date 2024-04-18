@@ -1,7 +1,8 @@
 ﻿# PBL3 Applying AI to analyze recruitment information on Facebook
-![image](https://github.com/Annguyn/PBL3-Applying-AI-to-analyze-recruitment-information-on-Facebook/assets/109308662/76aa2427-188d-42d8-84f5-443013c6e7a2)
+![image](https://github.com/Annguyn/PBL3-Applying-AI-to-analyze-recruitment-information-on-Facebook/assets/109308662/31309c1f-fd36-4ef0-86da-e5ba42644715)
 
 # CRAWL DATA 
+https://github.com/Annguyn/PBL3-Applying-AI-to-analyze-recruitment-information-on-Facebook/assets/109308662/3b8ecaf4-d1db-4bae-8d59-e4de30bdf3cb
 ### 1. Cài đặt
 1. Mở CMD trên máy gõ :
 ```python
