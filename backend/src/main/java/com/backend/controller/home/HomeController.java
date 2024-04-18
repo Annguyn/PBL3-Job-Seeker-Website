@@ -33,6 +33,11 @@ public class HomeController {
     public UserDto userDto() {
         return new UserDto();
     }
+
+    @GetMapping("/error")
+    public String showErrorPage() {
+        return "error";
+    }
     @GetMapping("/home")
     public String showHomeForm(@ModelAttribute("userdto") UserDto userDto, Model model) {
         List<Location> locations = locationService.getAllLocations();
