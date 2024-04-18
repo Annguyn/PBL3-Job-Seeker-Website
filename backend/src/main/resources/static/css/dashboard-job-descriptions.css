@@ -1468,6 +1468,7 @@
   font-size: var(--body-normal-regular-size);
   color: var(--neutrals-80);
   font-family: var(--body-normal-regular);
+  width: max-content;
 }
 .line17 {
   align-self: stretch;

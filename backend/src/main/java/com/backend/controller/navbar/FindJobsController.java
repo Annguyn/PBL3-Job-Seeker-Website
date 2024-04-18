@@ -35,14 +35,16 @@ public class FindJobsController {
     private CategoryService categoryService;
     private LocationService locationService;
     private LevelService levelService;
+
     @ModelAttribute("userdto")
     public UserDto userResgistrationDto() {
         return new UserDto();
     }
+
     @GetMapping("/findjobs")
-    public String showFindJobsForm(Model model, 
-                                   @RequestParam(defaultValue = "1") int page,
-                                   @RequestParam(required = false) String sort) {
+    public String showFindJobsForm(Model model,
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(required = false) String sort) {
         try {
             Pageable pageable;
             if ("salary".equals(sort)) {
@@ -66,4 +68,21 @@ public class FindJobsController {
             return "error";
         }
     }
+
+    @GetMapping("/jobdetails")
+public String JobDetailsForm(Model model, @RequestParam(required = false) Integer id) {
+    if (id == null) {
+        // handle case when id is not provided
+        // for example, you can redirect to an error page or the home page
+        return "job-descriptions";
+    }
+    try {
+        Post post = postService.getPostById(id);
+        model.addAttribute("post", post);
+        return "job-descriptions";
+    } catch (Exception e) {
+        model.addAttribute("errorMessage", e.getMessage());
+        return "error";
+    }
+}
 }

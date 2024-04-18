@@ -21,4 +21,5 @@ public interface PostService {
     List<Post> getAllPostsOrderBySalaryDes();
 
     List<Post> getAllPostsOrderBySalaryAsc();
+    Post getPostById(int id);
 }

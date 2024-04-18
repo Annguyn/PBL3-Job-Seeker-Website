@@ -23,4 +23,5 @@ public interface PostRepository extends JpaRepository<Post, Integer>{
     List<Post> findAllByOrderByMaxSalaryDesc();
 
     List<Post> findAllByOrderByMaxSalaryAsc();
+    Post findPostById(int id);
 }

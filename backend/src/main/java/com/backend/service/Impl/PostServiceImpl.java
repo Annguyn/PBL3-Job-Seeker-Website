@@ -72,4 +72,9 @@ public void createPost(PostDto postDto) {
     public List<Post> getAllPostsOrderBySalaryAsc() {
        return postRepository.findAllByOrderByMaxSalaryAsc();
     }
+
+    @Override
+    public Post getPostById(int id) {
+       return postRepository.findPostById(id);
+    }
 }
