@@ -13,15 +13,9 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            // Các cấu hình cho form login
-            // .formLogin(form -> form
-            //     .loginPage("/login")
-            //     .permitAll()
-            // )
-            // Cấu hình cho phép tất cả yêu cầu đến các tài nguyên tĩnh
             .authorizeHttpRequests(authz -> authz
                 .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()  // Cho phép truy cập vào thư mục css, js, và images
-                .requestMatchers("/login", "/registration", "/home").permitAll()
+                .requestMatchers("/login", "/registration", "/home" ).permitAll()
                 .anyRequest().permitAll()
             );
             

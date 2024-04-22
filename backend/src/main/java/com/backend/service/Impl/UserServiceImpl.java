@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.backend.dto.UserDto;
+import com.backend.entity.Company;
 import com.backend.entity.User;
+import com.backend.repository.CompanyRepository;
 import com.backend.repository.UserRepository;
 import com.backend.service.UserService;
 
@@ -17,7 +19,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
-
+    @Autowired
+    private CompanyRepository companyRepository;
 
     @Override
     public void save(UserDto userDto) {
@@ -27,10 +30,16 @@ public class UserServiceImpl implements UserService {
         User user = new User(userDto.getEmail(),
                 userDto.getUserDisplayName(),
                 userDto.getPassword(),
-                userDto.getRole()
-        );
-       
-        userRepository.save(user);
+                userDto.getRole());
+        userRepository.save(user);        
+        if ("company".equals(userDto.getRole())) {
+            Company company = new Company();
+
+            company.setUser(user);
+            user.setCompany(company);
+            companyRepository.save(company);
+        }
+        
     }
 
     @Override
@@ -48,7 +57,7 @@ public class UserServiceImpl implements UserService {
     public User getUserbyEmail(String email) {
         return userRepository.getUserByEmail(email);
     }
-  
+
     @Override
     public java.util.List<User> getAllUsers() {
         return userRepository.getAllUser();

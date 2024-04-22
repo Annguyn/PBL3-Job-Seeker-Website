@@ -15,11 +15,14 @@ import com.backend.entity.Category;
 import com.backend.entity.Level;
 import com.backend.entity.Location;
 import com.backend.entity.Post;
+import com.backend.entity.User;
 import com.backend.repository.PostRepository;
 import com.backend.service.CategoryService;
 import com.backend.service.LevelService;
 import com.backend.service.LocationService;
 import com.backend.service.PostService;
+import com.backend.service.UserService;
+
 import lombok.AllArgsConstructor;
 @Controller
 @AllArgsConstructor
@@ -29,6 +32,7 @@ public class HomeController {
     private final LevelService levelService;
     private final CategoryService categoryService;
     private final PostService postService;
+    private final UserService userService;
     @ModelAttribute("userdto")
     public UserDto userDto() {
         return new UserDto();
@@ -51,5 +55,15 @@ public class HomeController {
         model.addAttribute("levels", levels);
         model.addAttribute("posts_newest", posts_newest) ;
         return "index";
+    }
+
+    @GetMapping("/dashboard")
+    public String showDashboard(@ModelAttribute("userdto") UserDto userDto, Model model) {
+        User user = userService.getUserbyEmail(userDto.getEmail());
+        if(user.getRole().equals("company"))
+        {
+            return "Company/index";
+        }
+        return "applicant";
     }
 }

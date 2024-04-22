@@ -10,6 +10,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,7 +21,6 @@ import jakarta.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User implements Serializable {
-    //Tài khoản đăng nhập kết nối với database
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,6 +40,9 @@ public class User implements Serializable {
     @Column(name = "role",nullable = false)
     private String Role;
 
+    @OneToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
 
     public User(String Email, String userDisplayName,  String password,  String role) {
         email = Email;

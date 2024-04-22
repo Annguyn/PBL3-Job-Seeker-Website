@@ -105,7 +105,7 @@
                         <div class="label89">Email Address</div>
                         <div class="input8">
                             <input class="this-is-placeholder8" placeholder="Enter email address" type="text"
-                                th:field="*{email}" required autofocus="autofocus" />
+                                id="email" name="email" th:field="*{email}" required autofocus="autofocus" />
                         </div>
                         <div th:if="${param.emailwrong}">
                             <div class="alert alert-info"> Your email is not correct</div>
@@ -114,8 +114,8 @@
                     <div class="textfield9">
                         <div class="label90">Password</div>
                         <div class="input9">
-                            <input class="this-is-placeholder9" placeholder="Enter password" type="text"
-                                th:field="*{password}" required />
+                            <input class="this-is-placeholder9" placeholder="Enter password" type="password"
+                                id="password" name="password" th:field="*{password}" required />
                         </div>
                         <div th:if="${param.passwordwrong}">
                             <div class="alert alert-info"> Your password is not correct</div>

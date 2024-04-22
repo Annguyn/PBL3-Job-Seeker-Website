@@ -7,7 +7,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.backend.dto.CompanyDto;
 import com.backend.dto.UserDto;
+import com.backend.entity.Company;
+import com.backend.service.CompanyService;
 import com.backend.service.UserService;
 
 import lombok.AllArgsConstructor;
@@ -16,7 +19,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class UserRegistrationController {
     private UserService userService;
-
+    private CompanyService companyService ;
     @ModelAttribute("userdto")
     public UserDto userResgistrationDto() {
         return new UserDto();
@@ -28,23 +31,27 @@ public class UserRegistrationController {
     }
 
     @PostMapping("/registration")
-    public String registerUserAccount(@ModelAttribute("userdto") UserDto userDto,
-            @RequestParam(required = false) String type) {
+public String registerUserAccount(@ModelAttribute("userdto") UserDto userDto,
+        @RequestParam(required = false) String type) {
 
-        if ("company".equals(type)) {
-            userDto.setRole("company");
-            if (userService.checkUserbyEmail(userDto.getEmail())) {
-                return "redirect:/registration?type=comapny&emailexist";
-            }
-            userService.save(userDto);
-            return "redirect:/registration?type=company&success";
-        } else {
-            userDto.setRole("user");
-            if (userService.checkUserbyEmail(userDto.getEmail())) {
-                return "redirect:/registration?emailexist";
-            }
-            userService.save(userDto);
+    if ("company".equals(type)) {
+        userDto.setRole("company");
+        if (userService.checkUserbyEmail(userDto.getEmail())) {
+            return "redirect:/registration?type=comapny&emailexist";
         }
-        return "redirect:/registration?success";
+        userService.save(userDto);
+        // Create a new company
+        Company company = new Company();
+        // Set the company's properties here
+        companyService.saveCompany(company);
+        return "redirect:/registration?type=company&success";
+    } else {
+        userDto.setRole("user");
+        if (userService.checkUserbyEmail(userDto.getEmail())) {
+            return "redirect:/registration?emailexist";
+        }
+        userService.save(userDto);
     }
+    return "redirect:/registration?success";
+}
 }
