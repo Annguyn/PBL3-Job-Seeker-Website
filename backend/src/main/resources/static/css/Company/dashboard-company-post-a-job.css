@@ -5,6 +5,12 @@
   overflow: hidden;
   flex-shrink: 0;
 }
+.align-left {
+  text-align: left;
+}
+.categories2 {
+  text-align: left;
+}
 .divider12 {
   display: flex;
   flex-direction: column;
@@ -1248,7 +1254,7 @@
   padding: var(--padding-12xs) 0 0;
 }
 .div69 {
-  width: 43px;
+  width: fit-content;
   position: relative;
   line-height: 26px;
   font-weight: 600;
@@ -1343,7 +1349,7 @@
   padding: var(--padding-12xs) 0 0;
 }
 .div71 {
-  width: 53px;
+  width: fit-content;
   position: relative;
   line-height: 26px;
   font-weight: 600;

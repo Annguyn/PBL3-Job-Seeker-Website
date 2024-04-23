@@ -1,248 +1,199 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+</html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="initial-scale=1, width=device-width" />
 
-    <link rel="stylesheet" href="./global.css" />
-    <link rel="stylesheet" href="./dashboard-company-post-a-job.css" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Red Hat Display:wght@700&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Clash Display Variable:wght@600&display=swap"
-    />
-  </head>
-  <body>
-    <div class="dashboard-company-post-a-job2">
-      <div class="side-bar-dashboard-company11">
-        <div class="menu44">
-          <div class="input-field">
-            <div class="logo-211">
-              <div class="divider12">
-                <img
-                  class="divider-child"
-                  loading="lazy"
-                  alt=""
-                  src="./public/frame-311.svg"
-                />
-              </div>
-              <h3 class="jobhuntly11">JobHuntly</h3>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1, width=device-width" />
+  <script th:src="@{./js/Company/dashboard-company-post-a-job.js}"></script>
+  <link rel="stylesheet" th:href="@{./css/Company/global.css}" />
+  <link rel="stylesheet" th:href="@{./css/Company/dashboard-company-post-a-job.css}" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red Hat Display:wght@700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Clash Display Variable:wght@600&display=swap" />
+</head>
+
+<body>
+  <div class="dashboard-company-post-a-job2">
+    <div class="side-bar-dashboard-company11">
+      <div class="menu44">
+        <div class="input-field">
+          <div class="logo-211">
+            <div class="divider12">
+              <img class="divider-child" loading="lazy" alt="" th:src="@{./images/Company/frame-311.svg}" />
             </div>
-          </div>
-          <div class="main-menu11">
-            <div class="menu45">
-              <div class="sidebar-menu99">
-                <img
-                  class="icon347"
-                  loading="lazy"
-                  alt=""
-                  src="./public/icon1.svg"
-                />
-
-                <div class="caption269">Dashboard</div>
-              </div>
-              <div class="sidebar-menu100">
-                <div class="icon-parent36">
-                  <img class="icon348" alt="" src="./public/icon-14.svg" />
-
-                  <div class="caption270">Messages</div>
-                </div>
-                <div class="badge11">
-                  <div class="stepper6"></div>
-                  <div class="search-bar">
-                    <div class="toggle-switch">1</div>
-                  </div>
-                </div>
-              </div>
-              <div class="sidebar-menu101">
-                <img class="icon349" alt="" src="./public/icon-2.svg" />
-
-                <div class="caption271">Company Profile</div>
-              </div>
-              <button class="sidebar-menu102">
-                <div class="indicator-wrapper7">
-                  <img
-                    class="indicator-icon11"
-                    alt=""
-                    src="./public/indicator.svg"
-                  />
-                </div>
-                <div class="menu46">
-                  <img class="icon350" alt="" src="./public/icon-35.svg" />
-
-                  <div class="caption272">All Applicants</div>
-                </div>
-              </button>
-              <div class="sidebar-menu103">
-                <img class="icon351" alt="" src="./public/icon-4.svg" />
-
-                <div class="caption273">Job Listing</div>
-              </div>
-              <div class="sidebar-menu104">
-                <img class="icon352" alt="" src="./public/icon-5.svg" />
-
-                <div class="caption274">My Schedule</div>
-              </div>
-              <div class="sidebar-menu105">
-                <img class="icon353" alt="" />
-
-                <div class="caption275">Employee</div>
-              </div>
-            </div>
-            <div class="main-menu-child6"></div>
-            <div class="settings25">
-              <div class="tab-container">
-                <div class="settings26">SETTINGS</div>
-              </div>
-              <div class="menu47">
-                <div class="sidebar-menu106">
-                  <img class="icon354" alt="" src="./public/icon-7.svg" />
-
-                  <div class="caption276">Settings</div>
-                </div>
-                <div class="sidebar-menu107">
-                  <img class="icon355" alt="" src="./public/icon-8.svg" />
-
-                  <div class="caption277">Help Center</div>
-                </div>
-              </div>
-            </div>
+            <h3 class="jobhuntly11">JobHuntly</h3>
           </div>
         </div>
-        <img class="pattern-icon11" alt="" />
+        <div class="main-menu11">
+          <div class="menu45">
+            <div class="sidebar-menu99">
+              <img class="icon347" loading="lazy" alt="" th:src="@{./images/Company/icon1.svg}" />
 
-        <div class="profile23">
-          <div class="color-picker"></div>
-          <div class="profile-wrapper4">
-            <div class="profile24">
-              <div class="alert-message">
-                <img
-                  class="avatar-icon35"
-                  loading="lazy"
-                  alt=""
-                  src="./public/avatar1@2x.png"
-                />
+              <div class="caption269">Dashboard</div>
+            </div>
+            <div class="sidebar-menu100">
+              <div class="icon-parent36">
+                <img class="icon348" alt="" th:src="@{./images/Company/icon-14.svg}" />
+
+                <div class="caption270">Messages</div>
               </div>
-              <div class="name-email11">
-                <div class="maria-kelly11">Maria Kelly</div>
-                <div class="mariakllyemailcom11">MariaKlly@email.com</div>
+              <div class="badge11">
+                <div class="stepper6"></div>
+                <div class="search-bar">
+                  <div class="toggle-switch">1</div>
+                </div>
               </div>
             </div>
+            <div class="sidebar-menu101">
+              <img class="icon349" alt="" th:src="@{./images/Company/icon-2.svg}" />
+
+              <div class="caption271">Company Profile</div>
+            </div>
+            <button class="sidebar-menu102">
+              <div class="indicator-wrapper7">
+                <img class="indicator-icon11" alt="" th:src="@{./images/Company/indicator.svg}" />
+              </div>
+              <div class="menu46">
+                <img class="icon350" alt="" th:src="@{./images/Company/icon-35.svg}" />
+
+                <div class="caption272">All Applicants</div>
+              </div>
+            </button>
+            <div class="sidebar-menu103">
+              <img class="icon351" alt="" th:src="@{./images/Company/icon-4.svg}" />
+
+              <div class="caption273">Job Listing</div>
+            </div>
+            <div class="sidebar-menu104">
+              <img class="icon352" alt="" th:src="@{./images/Company/icon-5.svg}" />
+
+              <div class="caption274">My Schedule</div>
+            </div>
+            <div class="sidebar-menu105">
+              <img class="icon353" alt="" />
+
+              <div class="caption275">Employee</div>
+            </div>
           </div>
-          <div class="profile-menu11">
-            <div class="rounded-rectangle11"></div>
-            <div class="frame11">
-              <div class="logout22">
-                <div class="logout23">Logout</div>
-                <img class="icon356" alt="" />
+          <div class="main-menu-child6"></div>
+          <div class="settings25">
+            <div class="tab-container">
+              <div class="settings26">SETTINGS</div>
+            </div>
+            <div class="menu47">
+              <div class="sidebar-menu106">
+                <img class="icon354" alt="" th:src="@{./images/Company/icon-7.svg}" />
+
+                <div class="caption276">Settings</div>
+              </div>
+              <div class="sidebar-menu107">
+                <img class="icon355" alt="" th:src="@{./images/Company/icon-8.svg}" />
+
+                <div class="caption277">Help Center</div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <main class="breadcrumbs">
-        <header class="top-nav16">
-          <div class="job-list19">
-            <img
-              class="company-logo-icon21"
-              alt=""
-              src="./public/company-logo.svg"
-            />
+      <img class="pattern-icon11" alt="" />
 
-            <div class="job-title19">
-              <div class="company11">Company</div>
-              <div class="steps">
-                <div class="nomad20">Nomad</div>
-                <img class="icon357" alt="" src="./public/icon-10.svg" />
-              </div>
+      <div class="profile23">
+        <div class="color-picker"></div>
+        <div class="profile-wrapper4">
+          <div class="profile24">
+            <div class="alert-message">
+              <img class="avatar-icon35" loading="lazy" alt="" th:src="@{./images/Company/avatar1@2x.png}" />
+            </div>
+            <div class="name-email11">
+              <div class="maria-kelly11">Maria Kelly</div>
+              <div class="mariakllyemailcom11">MariaKlly@email.com</div>
             </div>
           </div>
-          <div class="action14">
-            <img
-              class="notification-icon11"
-              loading="lazy"
-              alt=""
-              src="./public/notification1.svg"
-            />
-
-            <button class="button45">
-              <img class="icon358" alt="" src="./public/icon-11.svg" />
-
-              <b class="caption278">Post a job</b>
-            </button>
-          </div>
-        </header>
-        <section class="top-nav17">
-          <img class="icon359" alt="" src="./public/icon-128.svg" />
-
-          <div class="data-aggregator3">
-            <h1 class="post-a-job2">Post a Job</h1>
-          </div>
-        </section>
-        <section class="string-manipulator">
-          <div class="steppers2">
-            <div class="stepper7">
-              <img
-                class="stepper-icon6"
-                loading="lazy"
-                alt=""
-                src="./public/stepper-icon1@2x.png"
-              />
-
-              <div class="step-1312">
-                <div class="step-1313">Step 1/3</div>
-                <div class="job-information6">Job Information</div>
-              </div>
-            </div>
-            <div class="list-manager1">
-              <div class="divider13"></div>
-            </div>
-            <div class="stepper8">
-              <img
-                class="stepper-icon7"
-                alt=""
-                src="./public/stepper-icon-11@2x.png"
-              />
-
-              <div class="step-1314">
-                <div class="step-1315">Step 2/3</div>
-                <div class="job-information7">Job Description</div>
-              </div>
-            </div>
-            <div class="list-manager2">
-              <div class="divider14"></div>
-            </div>
-            <div class="stepper9">
-              <img
-                class="stepper-icon8"
-                alt=""
-                src="./public/stepper-icon-21@2x.png"
-              />
-
-              <div class="step-1316">
-                <div class="step-1317">Step 3/3</div>
-                <div class="job-information8">Perks & Benefit</div>
-              </div>
+        </div>
+        <div class="profile-menu11">
+          <div class="rounded-rectangle11"></div>
+          <div class="frame11">
+            <div class="logout22">
+              <div class="logout23">Logout</div>
+              <img class="icon356" alt="" />
             </div>
           </div>
-        </section>
-        <section class="step-2">
+        </div>
+      </div>
+    </div>
+    <main class="breadcrumbs">
+      <header class="top-nav16">
+        <div class="job-list19">
+          <img class="company-logo-icon21" alt="" th:src="@{./images/Company/company-logo.svg}" />
+
+          <div class="job-title19">
+            <div class="company11">Company</div>
+            <div class="steps">
+              <div class="nomad20">Nomad</div>
+              <img class="icon357" alt="" th:src="@{./images/Company/icon-10.svg}" />
+            </div>
+          </div>
+        </div>
+        <div class="action14">
+          <img class="notification-icon11" loading="lazy" alt="" th:src="@{./images/Company/notification1.svg}" />
+
+          <button class="button45">
+            <img class="icon358" alt="" th:src="@{./images/Company/icon-11.svg}" />
+
+            <b class="caption278">Post a job</b>
+          </button>
+        </div>
+      </header>
+      <section class="top-nav17">
+        <img class="icon359" alt="" th:src="@{./images/Company/icon-128.svg}" />
+
+        <div class="data-aggregator3">
+          <h1 class="post-a-job2">Post a Job</h1>
+        </div>
+      </section>
+      <section class="string-manipulator">
+        <div class="steppers2">
+          <div class="stepper7">
+            <img class="stepper-icon6" loading="lazy" alt="" th:src="@{./images/Company/stepper-icon1@2x.png}" />
+
+            <div class="step-1312">
+              <div class="step-1313">Step 1/3</div>
+              <div class="job-information6">Job Information</div>
+            </div>
+          </div>
+          <div class="list-manager1">
+            <div class="divider13"></div>
+          </div>
+          <div class="stepper8">
+            <img class="stepper-icon7" alt="" th:src="@{./images/Company/stepper-icon-11@2x.png}" />
+
+            <div class="step-1314">
+              <div class="step-1315">Step 2/3</div>
+              <div class="job-information7">Job Description</div>
+            </div>
+          </div>
+          <div class="list-manager2">
+            <div class="divider14"></div>
+          </div>
+          <div class="stepper9">
+            <img class="stepper-icon8" alt="" th:src="@{./images/Company/stepper-icon-21@2x.png}" />
+
+            <div class="step-1316">
+              <div class="step-1317">Step 3/3</div>
+              <div class="job-information8">Perks & Benefit</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="step-2">
+        <form action="/postjobs" method="post">
           <div class="basic-information4">
             <div class="basic-information5">Basic Information</div>
-            <div class="this-information-will">
-              This information will be displayed publicly
-            </div>
+            <input type="text" class="this-information-will" value="This information will be displayed publicly">
           </div>
           <div class="line21"></div>
           <div class="job-title20">
@@ -254,11 +205,7 @@
             </div>
             <div class="textfield18">
               <div class="input9">
-                <input
-                  class="this-is-placeholder16"
-                  placeholder="e.g. Software Engineer"
-                  type="text"
-                />
+                <input class="this-is-placeholder16" placeholder="e.g. Software Engineer" type="text" />
               </div>
               <div class="this-is-helper">At least 80 characters</div>
             </div>
@@ -272,44 +219,15 @@
               </div>
             </div>
             <div class="type-of-employment3">
-              <div class="full-time4">
-                <div class="checkbox22">
-                  <div class="checkboxfalse-wrapper">
-                    <input class="checkboxfalse1" type="checkbox" />
+              <!-- TO DO:  -->
+              <div th:each="level : ${levels}">
+                <div class="full-time4">
+                  <div class="checkbox22">
+                    <div class="checkboxfalse-wrapper">
+                      <input class="checkboxfalse1" type="checkbox" />
+                    </div>
+                    <div class="caption279" th:text="${level.name}"></div>
                   </div>
-                  <div class="caption279">Full-Time</div>
-                </div>
-              </div>
-              <div class="full-time5">
-                <div class="checkbox23">
-                  <div class="checkboxfalse-container">
-                    <input class="checkboxfalse2" type="checkbox" />
-                  </div>
-                  <div class="caption280">Part-Time</div>
-                </div>
-              </div>
-              <div class="full-time6">
-                <div class="checkbox24">
-                  <div class="checkboxfalse-frame">
-                    <input class="checkboxfalse3" type="checkbox" />
-                  </div>
-                  <div class="caption281">Remote</div>
-                </div>
-              </div>
-              <div class="full-time7">
-                <div class="checkbox25">
-                  <div class="checkboxfalse-wrapper1">
-                    <input class="checkboxfalse4" type="checkbox" />
-                  </div>
-                  <div class="caption282">Internship</div>
-                </div>
-              </div>
-              <div class="full-time8">
-                <div class="checkbox26">
-                  <div class="checkboxfalse-wrapper2">
-                    <input class="checkboxfalse5" type="checkbox" />
-                  </div>
-                  <div class="caption283">Contract</div>
                 </div>
               </div>
             </div>
@@ -327,96 +245,72 @@
               <div class="range-wrapper">
                 <div class="range">
                   <div class="textfield19">
-                    <div class="dollar-wrapper">
-                      <div class="dollar">
-                        <img class="vector-icon" loading="lazy" alt="" />
 
-                        <div class="div68">$</div>
-                      </div>
-                    </div>
                     <div class="divider-wrapper4">
                       <div class="divider15"></div>
                     </div>
-                    <div class="div69">5,000</div>
+                    <input class="div69" placeholder="Min Salary"></input>
                   </div>
+
                   <div class="to-wrapper">
                     <div class="to">to</div>
                   </div>
                   <div class="textfield20">
-                    <div class="dollar-container">
-                      <div class="dollar1">
-                        <img class="vector-icon1" alt="" />
-
-                        <div class="div70">$</div>
-                      </div>
-                    </div>
                     <div class="divider-wrapper5">
                       <div class="divider16"></div>
                     </div>
-                    <div class="div71">22,000</div>
+                    <input class="div71" placeholder="Max Salary"></input>
                   </div>
                 </div>
               </div>
-              <img
-                class="slider-icon"
-                loading="lazy"
-                alt=""
-                src="./public/slider.svg"
-              />
-            </div>
-          </div>
-          <div class="line24"></div>
-          <div class="categories2">
-            <div class="categories3">
-              <div class="categories4">Categories</div>
-              <div class="you-can-select1">
-                You can select multiple job categories
+              <div class="line24"></div>
+              <div class="categories2">
+                <div class="categories3">
+                  <div class="categories4"></div>
+                  <div class="you-can-select1">
+                  </div>
+                </div>
+                <div class="textfield21">
+                  <div class="label102">Select Job Categories</div>
+                  <select id="categoryDropdown" class="dropdown7">
+                    <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}">
+                    </option>
+                  </select>
+                  <button class="button46" onclick="addCategoryTag(event)">
+                    <b class="caption284">Add Category</b>
+                  </button>
+                  <div id="categoryTags"></div>
+                </div>
               </div>
-            </div>
-            <div class="textfield21">
-              <div class="label102">Select Job Categories</div>
-              <div class="dropdown7">
-                <div class="this-is-placeholder17">Select Job Categories</div>
-                <img class="icon360" alt="" src="./public/icon-138.svg" />
-              </div>
-            </div>
-          </div>
-          <div class="line25"></div>
-          <div class="required-skills2">
-            <div class="required-skills3">
-              <div class="required-skills4">Required Skills</div>
-              <div class="add-required-skills">
-                Add required skills for the job
-              </div>
-            </div>
-            <div class="add-skills">
-              <button class="button46">
-                <img class="icon361" alt="" src="./public/icon-146.svg" />
+              <div class="line25"></div>
+              <div class="required-skills2">
+                <div class="required-skills3">
+                  <div class="required-skills4">Required Skills</div>
+                  <div class="add-required-skills">
+                    Add required programing languages for the job
+                  </div>
+                </div>
+                <div class="add-skills">
+                  <button class="button46" onclick="addLanguageTag(event)">
+                    <img class="icon361" alt="" th:src="@{./images/Company/icon-146.svg}" />
+                    <b class="caption284">Add Programing Languages</b>
+                  </button>
+                  <select id="languageDropdown" class="layout-manager">
+                    <option th:each="programingLanguage : ${programingLanguages}" th:value="${programingLanguage.id}"
+                      th:text="${programingLanguage.name}"></option>
+                  </select>
+                  <div id="languageTags"></div>
+                </div>
 
-                <b class="caption284">Add Skills</b>
-              </button>
-              <div class="layout-manager">
-                <button class="tag14">
-                  <div class="caption285">Graphic Design</div>
-                  <img class="icon362" alt="" src="./public/icon-156.svg" />
-                </button>
-                <button class="tag15">
-                  <div class="caption286">Communication</div>
-                  <img class="icon363" alt="" src="./public/icon-156.svg" />
-                </button>
-                <button class="tag16">
-                  <div class="caption287">Illustrator</div>
-                  <img class="icon364" alt="" src="./public/icon-156.svg" />
-                </button>
               </div>
-            </div>
-          </div>
-          <div class="line26"></div>
-          <button class="button47">
-            <b class="caption288">Next Step</b>
-          </button>
-        </section>
-      </main>
-    </div>
-  </body>
+              <div class="line26"></div>
+              <button class="button47">
+                <b class="caption288">Next Step</b>
+              </button>
+      </section>
+      </form>
+    </main>
+  </div>
+</body>
+
 </html>

@@ -77,4 +77,9 @@ public void createPost(PostDto postDto) {
     public Post getPostById(int id) {
        return postRepository.findPostById(id);
     }
+
+    @Override
+    public void save(Post post) {
+        postRepository.save(post);
+    }
 }

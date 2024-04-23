@@ -12,6 +12,7 @@ import com.backend.entity.Post;
 @Service
 public interface PostService {
     void createPost(PostDto postDto);
+    
     // Post getPostById(Long id);
     List<Post> getAllPosts();
     void deletePost(Long id);
@@ -22,4 +23,5 @@ public interface PostService {
 
     List<Post> getAllPostsOrderBySalaryAsc();
     Post getPostById(int id);
+    void save(Post post); 
 }

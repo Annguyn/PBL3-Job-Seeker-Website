@@ -17,6 +17,7 @@ import com.backend.entity.Category;
 import com.backend.entity.Level;
 import com.backend.entity.Location;
 import com.backend.entity.Post;
+import com.backend.entity.ProgramingLanguage;
 import com.backend.service.CategoryService;
 import com.backend.service.LevelService;
 import com.backend.service.LocationService;
@@ -72,8 +73,6 @@ public class FindJobsController {
     @GetMapping("/jobdetails")
     public String JobDetailsForm(Model model, @RequestParam(required = false) Integer id) {
         if (id == null) {
-            // handle case when id is not provided
-            // for example, you can redirect to an error page or the home page
             return "job-descriptions";
         }
         try {

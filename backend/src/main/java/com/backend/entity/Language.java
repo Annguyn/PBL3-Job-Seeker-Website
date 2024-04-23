@@ -14,16 +14,16 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class Language {
- @Id
+    @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "name",nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
-    public Language(int iD, String Name){
-        id = iD ;
+    public Language(int iD, String Name) {
+        id = iD;
         name = Name;
     }
 }
