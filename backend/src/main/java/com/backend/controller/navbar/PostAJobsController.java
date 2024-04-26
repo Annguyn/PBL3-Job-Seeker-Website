@@ -2,6 +2,7 @@ package com.backend.controller.navbar;
 
 import java.util.List;
 
+import org.springframework.boot.actuate.autoconfigure.metrics.SystemMetricsAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,11 +27,22 @@ import com.backend.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @AllArgsConstructor
 public class PostAJobsController {
+    private final SystemMetricsAutoConfiguration systemMetricsAutoConfiguration;
+
+    @ModelAttribute("userdto")
+    public UserDto userDto() {
+        return new UserDto();
+    }
+    @ModelAttribute("postdto")
+    public PostDto postDto() {
+        return new PostDto();
+    }
     private UserService userService;
     private PostService postService;
     private CategoryService categoryService;
@@ -39,28 +51,29 @@ public class PostAJobsController {
     private ProgrammingLanguageService programingLanguageService ;
 
     @GetMapping("/postjobs")
-    public String getPostJobsForm(@ModelAttribute("userDto") UserDto userDto , Model model) {
+    public String getPostJobsForm(@ModelAttribute("userdto") UserDto userDto , Model model) {
         List<Level> levels = levelService.getAllLevel();
         List<Category> categories = categoryService.getAllCategories();
         List<Location> locations = locationService.getAllLocations();
         List<ProgramingLanguage> programingLanguages = programingLanguageService.getAllProgramingLanguages() ;
         User user = userService.getUserbyEmail(userDto.getEmail()) ;
+        System.out.println("User is logging : " + user.getEmail());
+        model.addAttribute("postdto",new PostDto()) ;
         model.addAttribute("userUsing" , user )  ;
         model.addAttribute("locations", locations);
         model.addAttribute("levels", levels);
         model.addAttribute("categories", categories);
         model.addAttribute("programingLanguages" , programingLanguages) ;
-        return "Company/dashboard-company-post-a-job";
+        return "Company/post-a-job";
+}
+    @GetMapping("/postjobs/step2")
+    public String getPostJobsStep2Form(@ModelAttribute("userdto") UserDto userDto , @ModelAttribute("postdto") PostDto postDto ,  Model model){
+        
+        return "Company/post-a-job-job-description" ;
     }
-
     @PostMapping("/postjobs")
-    public String postJobs(@ModelAttribute("postDto") PostDto postDto, @ModelAttribute("userDto") UserDto userDto,
-            BindingResult result, RedirectAttributes redirectAttributes) {
-
-        if (result.hasErrors()) {
-            return "Company/dashboard-company-post-a-job";
-        }
-
+    public String postJobs(@ModelAttribute("postdto") PostDto postDto, @ModelAttribute("userdto") UserDto userDto,
+                           BindingResult result, RedirectAttributes redirectAttributes, Model model) {
         User user = userService.getUserbyEmail(userDto.getEmail());
         try {
             Post post = new Post(
@@ -72,12 +85,16 @@ public class PostAJobsController {
                     postDto.getContent(),
                     postDto.getImages(),
                     postDto.getExperience());
+            post.setProgramingLanguages(programingLanguageService.getProgramingLanguageByIds(postDto.getProgrammingLanguageIds()));
+            post.setCategories(categoryService.getCategoriesByIds(postDto.getCategoryIds()));
+            post.setContent(postDto.getContent());
             postService.save(post);
-            redirectAttributes.addFlashAttribute("successMessage", "Job posted successfully");
-            return "redirect:/dashboard";
+            System.out.println("Post saved : " + post.getMinSalary());
+            model.addAttribute("successMessage", "Job posted successfully");
+            return "Company/post-a-job"; // return the current view
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while posting the job");
-            return "redirect:/postjobs";
+            model.addAttribute("errorMessage", "An error occurred while posting the job");
+            return "Company/post-a-job"; // return the current view
         }
     }
 }

@@ -62,4 +62,5 @@ public class UserServiceImpl implements UserService {
     public java.util.List<User> getAllUsers() {
         return userRepository.getAllUser();
     }
+
 }

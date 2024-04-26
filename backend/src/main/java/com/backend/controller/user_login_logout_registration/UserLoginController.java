@@ -3,6 +3,9 @@ package com.backend.controller.user_login_logout_registration;
 import lombok.AllArgsConstructor;
 
 import org.springframework.boot.actuate.web.exchanges.HttpExchange.Principal;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +35,7 @@ public class UserLoginController {
 
     @PostMapping("/login")
     public String Login(@ModelAttribute("userdto") UserDto loginDto, Model model, Principal principal) {
-    if (userService.checkUserbyEmail(loginDto.getEmail()) == false) {
+        if (!userService.checkUserbyEmail(loginDto.getEmail())) {
             return "redirect:/login?emailwrong";
         }
         User user = userService.getUserbyEmail(loginDto.getEmail());
@@ -53,4 +56,5 @@ public class UserLoginController {
         userDto.setPassword(user.getPassword());
         return userDto;
     }
+
 }

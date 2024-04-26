@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,6 +52,11 @@ public class HomeController {
         List<Category> categories = categoryService.getAllCategories();
         List<Post> posts= postService.getAllPosts();
         List<Post> posts_newest = postService.getAllPostsOrderByDatetime();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof UserDetails userDetails) {
+            User userLoggedIn = userService.getUserbyEmail(userDetails.getUsername());
+            model.addAttribute("userLoggedIn", userLoggedIn);
+        }
         model.addAttribute("posts", posts);
         model.addAttribute("locations", locations);
         model.addAttribute("categories", categories);

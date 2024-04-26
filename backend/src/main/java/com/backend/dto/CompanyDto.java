@@ -13,5 +13,4 @@ public class CompanyDto {
     private String profileDescription;
     private String companyWebsite;
     private String avatar;
-    
 }

@@ -33,21 +33,10 @@ public void createPost(PostDto postDto) {
     );
     postRepository.save(post);
 }
-
-    // @Override
-    // public void deletePost(Long id) {
-    //     postRepository.deleteById(id);
-    // }
-
     @Override
     public List<Post> getAllPosts() {
         return postRepository.getAllPost();
     }
-
-    // @Override
-    // public List<Category> getCategoryByPostId(int id) {
-    //     return postRepository.getCategoryByPostId(id);
-    // }
     @Override
     public List<Post> getAllPostsOrderByDatetime() {
         return postRepository.findAllByOrderByDatePostedDesc();

@@ -60,7 +60,7 @@
             </div>
           </div>
         </div>
-        <div class="buttons" th:if="${userdto.userDisplayName == null}">
+        <div class="buttons" th:if="${userLoggedIn == null}">
           <button class="button">
             <a class="caption2" th:href="@{login}">Login</a>
           </button>
@@ -71,7 +71,7 @@
             <a class="caption3" th:href="@{/registration}">Sign Up</a>
           </button>
         </div>
-        <div class="buttons" th:if="${userdto.userDisplayName != null}">
+        <div class="buttons" th:if="${userLoggedIn != null}">
           <button class="button">
             <a class="caption2">Sign out</a>
           </button>
@@ -87,16 +87,16 @@
         <div class="title">
           <div class="title1">
             <!-- Nếu chưa đăng nhập -->
-            <div th:if="${userdto.userDisplayName == null}">
+            <div th:if="${userLoggedIn == null}">
               <h1 class="discover-more-than-container">
                 <span>Discover more than </span>
                 <span class="jobs">5000+ Jobs</span>
               </h1>
             </div>
             <!-- Nếu đã đăng nhập -->
-            <div class="after-login" th:if="${userdto.userDisplayName != null}">
+            <div class="after-login" th:if="${userLoggedIn != null}">
               <div>
-                <p>Good Afternoon, <span class="jobs" th:text="${userdto.userDisplayName}"></span></p>
+                <p>Good Afternoon, <span class="jobs" th:text="${userLoggedIn.getUserDisplayName()}"></span></p>
               </div>
             </div>
             <img class="group-icon" loading="lazy" alt="" th:src="@{/images/group.svg}" />

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 </html>
 <html>
 
@@ -190,10 +189,10 @@
         </div>
       </section>
       <section class="step-2">
-        <form action="/postjobs" method="post">
+        <form th:action="@{/postjobs}" method="post" th:object="${postdto}" >
           <div class="basic-information4">
             <div class="basic-information5">Basic Information</div>
-            <input type="text" class="this-information-will" value="This information will be displayed publicly">
+            <input type="text" class="this-information-will" value="This information will be displayed publicly" th:field="*{content}"  >
           </div>
           <div class="line21"></div>
           <div class="job-title20">
@@ -219,7 +218,6 @@
               </div>
             </div>
             <div class="type-of-employment3">
-              <!-- TO DO:  -->
               <div th:each="level : ${levels}">
                 <div class="full-time4">
                   <div class="checkbox22">
@@ -249,9 +247,8 @@
                     <div class="divider-wrapper4">
                       <div class="divider15"></div>
                     </div>
-                    <input class="div69" placeholder="Min Salary"></input>
+                    <input class="div69" placeholder="5" th:field="*{minSalary}"></input>
                   </div>
-
                   <div class="to-wrapper">
                     <div class="to">to</div>
                   </div>
@@ -259,7 +256,7 @@
                     <div class="divider-wrapper5">
                       <div class="divider16"></div>
                     </div>
-                    <input class="div71" placeholder="Max Salary"></input>
+                    <input class="div71" placeholder="10" th:field="*{maxSalary}"></input>
                   </div>
                 </div>
               </div>
@@ -272,7 +269,7 @@
                 </div>
                 <div class="textfield21">
                   <div class="label102">Select Job Categories</div>
-                  <select id="categoryDropdown" class="dropdown7">
+                  <select id="categoryDropdown" class="dropdown7" th:field="*{categoryIds}">
                     <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}">
                     </option>
                   </select>
@@ -295,22 +292,40 @@
                     <img class="icon361" alt="" th:src="@{./images/Company/icon-146.svg}" />
                     <b class="caption284">Add Programing Languages</b>
                   </button>
-                  <select id="languageDropdown" class="layout-manager">
+                  <select id="languageDropdown" class="layout-manager" th:field="*{programmingLanguageIds}">
                     <option th:each="programingLanguage : ${programingLanguages}" th:value="${programingLanguage.id}"
                       th:text="${programingLanguage.name}"></option>
-                  </select>
+                </select>
                   <div id="languageTags"></div>
                 </div>
+                <div class="add-skills">
+                  <div class="required-skills4">Select Job Location</div>
+                  <select id="locationDropdown" class="dropdown" th:field="*{locationId}">
+                    <option th:each="location : ${locations}" th:value="${location.id}" th:text="${location.name}">
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <!--Input phoneNumber and Email-->
+              <div class="phone-number">
+                <div class="label">Phone Number</div>
+                <input type="tel" class="phone-input" placeholder="Enter phone number" th:field="*{phoneNumber}" />
+              </div>
 
+              <!-- Input for email -->
+              <div class="email">
+                <div class="label">Email</div>
+                <input type="email" class="email-input" placeholder="Enter email" th:field="*{email}" />
               </div>
               <div class="line26"></div>
-              <button class="button47">
-                <b class="caption288">Next Step</b>
+              <button type="submit" class="button47">
+                <b  class="caption288">Next Step</b>
               </button>
+            </div>
+            </div>
+        </form>
       </section>
-      </form>
     </main>
   </div>
 </body>
-
 </html>
