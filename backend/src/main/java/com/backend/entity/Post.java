@@ -77,6 +77,10 @@ public class Post {
     @JoinTable(name = "post_programming_languages", joinColumns = @JoinColumn(name = "post_id"), inverseJoinColumns = @JoinColumn(name = "programming_languages_id"))
     private List<ProgramingLanguage> programingLanguages;
 
+    @ManyToMany
+    @JoinTable(name = "job_nice_to_haves", joinColumns = @JoinColumn(name = "post_id"), inverseJoinColumns = @JoinColumn(name = "nth_id"))
+    private List<NiceToHaves> niceToHaves;
+
     public Post(int CompanyId, BigDecimal maxSalary, BigDecimal minSalary, String phoneNumber, String email,
             String content, String images, String experience) {
         this.companyId = CompanyId;

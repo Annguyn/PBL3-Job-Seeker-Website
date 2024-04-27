@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-</html>
+
 <html>
 
 <head>
@@ -73,7 +73,7 @@
               <div class="caption274">My Schedule</div>
             </div>
             <div class="sidebar-menu105">
-              <img class="icon353" alt="" />
+              <img class="icon353" alt=""  src=""/>
 
               <div class="caption275">Employee</div>
             </div>
@@ -105,7 +105,7 @@
         <div class="profile-wrapper4">
           <div class="profile24">
             <div class="alert-message">
-              <img class="avatar-icon35" loading="lazy" alt="" th:src="@{./images/Company/avatar1@2x.png}" />
+              <img class="avatar-icon35" loading="lazy" alt="" th:src="@{./images/Company/avatar12x.png}" />
             </div>
             <div class="name-email11">
               <div class="maria-kelly11">Maria Kelly</div>
@@ -157,42 +157,24 @@
       <section class="string-manipulator">
         <div class="steppers2">
           <div class="stepper7">
-            <img class="stepper-icon6" loading="lazy" alt="" th:src="@{./images/Company/stepper-icon1@2x.png}" />
+            <img class="stepper-icon6" loading="lazy" alt="" th:src="@{./images/Company/stepper-icon12x.png}" />
 
             <div class="step-1312">
-              <div class="step-1313">Step 1/3</div>
               <div class="job-information6">Job Information</div>
             </div>
           </div>
           <div class="list-manager1">
             <div class="divider13"></div>
           </div>
-          <div class="stepper8">
-            <img class="stepper-icon7" alt="" th:src="@{./images/Company/stepper-icon-11@2x.png}" />
-
-            <div class="step-1314">
-              <div class="step-1315">Step 2/3</div>
-              <div class="job-information7">Job Description</div>
-            </div>
-          </div>
-          <div class="list-manager2">
-            <div class="divider14"></div>
-          </div>
-          <div class="stepper9">
-            <img class="stepper-icon8" alt="" th:src="@{./images/Company/stepper-icon-21@2x.png}" />
-
-            <div class="step-1316">
-              <div class="step-1317">Step 3/3</div>
-              <div class="job-information8">Perks & Benefit</div>
-            </div>
-          </div>
         </div>
       </section>
       <section class="step-2">
-        <form th:action="@{/postjobs}" method="post" th:object="${postdto}" >
+        <form action="/postjobs" method="post" th:object="${postdto}">
           <div class="basic-information4">
             <div class="basic-information5">Basic Information</div>
-            <input type="text" class="this-information-will" value="This information will be displayed publicly" th:field="*{content}"  >
+            <label>
+              <input type="text" class="this-information-will" value="This information will be displayed publicly" th:field="*{content}">
+            </label>
           </div>
           <div class="line21"></div>
           <div class="job-title20">
@@ -214,20 +196,13 @@
             <div class="type-of-employment1">
               <div class="type-of-employment2">Type of Employment</div>
               <div class="you-can-select">
-                You can select multiple type of employment
+                You can select one type of employment
               </div>
             </div>
             <div class="type-of-employment3">
-              <div th:each="level : ${levels}">
-                <div class="full-time4">
-                  <div class="checkbox22">
-                    <div class="checkboxfalse-wrapper">
-                      <input class="checkboxfalse1" type="checkbox" />
-                    </div>
-                    <div class="caption279" th:text="${level.name}"></div>
-                  </div>
-                </div>
-              </div>
+              <label for="employmentTypeDropdown"></label><select id="employmentTypeDropdown" class="dropdown7" th:field="*{levelId}">
+                <option th:each="level : ${levels}" th:value="${level.id}" th:text="${level.name}"></option>
+              </select>
             </div>
           </div>
           <div class="line23"></div>
@@ -247,8 +222,11 @@
                     <div class="divider-wrapper4">
                       <div class="divider15"></div>
                     </div>
-                    <input class="div69" placeholder="5" th:field="*{minSalary}"></input>
+                    <label>
+                      <input class="div69" placeholder="Min Salary" th:field="*{minSalary}"></input>
+                    </label>
                   </div>
+
                   <div class="to-wrapper">
                     <div class="to">to</div>
                   </div>
@@ -256,7 +234,9 @@
                     <div class="divider-wrapper5">
                       <div class="divider16"></div>
                     </div>
-                    <input class="div71" placeholder="10" th:field="*{maxSalary}"></input>
+                    <label>
+                      <input class="div71" placeholder="Max Salary" th:field="*{maxSalary}"></input>
+                    </label>
                   </div>
                 </div>
               </div>
@@ -267,65 +247,109 @@
                   <div class="you-can-select1">
                   </div>
                 </div>
-                <div class="textfield21">
-                  <div class="label102">Select Job Categories</div>
-                  <select id="categoryDropdown" class="dropdown7" th:field="*{categoryIds}">
-                    <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}">
-                    </option>
-                  </select>
-                  <button class="button46" onclick="addCategoryTag(event)">
-                    <b class="caption284">Add Category</b>
-                  </button>
-                  <div id="categoryTags"></div>
-                </div>
               </div>
-              <div class="line25"></div>
-              <div class="required-skills2">
-                <div class="required-skills3">
-                  <div class="required-skills4">Required Skills</div>
-                  <div class="add-required-skills">
-                    Add required programing languages for the job
-                  </div>
-                </div>
-                <div class="add-skills">
-                  <button class="button46" onclick="addLanguageTag(event)">
-                    <img class="icon361" alt="" th:src="@{./images/Company/icon-146.svg}" />
-                    <b class="caption284">Add Programing Languages</b>
-                  </button>
-                  <select id="languageDropdown" class="layout-manager" th:field="*{programmingLanguageIds}">
-                    <option th:each="programingLanguage : ${programingLanguages}" th:value="${programingLanguage.id}"
-                      th:text="${programingLanguage.name}"></option>
-                </select>
-                  <div id="languageTags"></div>
-                </div>
-                <div class="add-skills">
-                  <div class="required-skills4">Select Job Location</div>
-                  <select id="locationDropdown" class="dropdown" th:field="*{locationId}">
-                    <option th:each="location : ${locations}" th:value="${location.id}" th:text="${location.name}">
-                    </option>
-                  </select>
-                </div>
-              </div>
-              <!--Input phoneNumber and Email-->
-              <div class="phone-number">
-                <div class="label">Phone Number</div>
-                <input type="tel" class="phone-input" placeholder="Enter phone number" th:field="*{phoneNumber}" />
-              </div>
+            </div>
+          </div>
+          <div class="required-skills2">
+            <div class="basic-information5">Select Job Categories</div>
+            <label for="categoryDropdown"></label>
+            <select id="categoryDropdown" class="dropdown7">
+              <!-- Iterate over categories and populate options -->
+              <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+            </select>
+            <button class="button46" onclick="addCategoryTag(event)">
+              <b class="caption284">Add Category</b>
+            </button>
+            <div id="categoryTags"></div>
+            <!-- Hidden input to store selected category IDs -->
+            <input type="hidden" id="selectedCategoryIds" name="categoriesID" />
+          </div>
 
-              <!-- Input for email -->
-              <div class="email">
-                <div class="label">Email</div>
-                <input type="email" class="email-input" placeholder="Enter email" th:field="*{email}" />
-              </div>
-              <div class="line26"></div>
-              <button type="submit" class="button47">
-                <b  class="caption288">Next Step</b>
-              </button>
-            </div>
-            </div>
+          <div class="line25"></div>
+          <div class="required-skills2">
+            <div class="basic-information5">Programming Languages</div>
+            <label for="programingLanguagesDropdown"></label>
+            <select id="programingLanguagesDropdown" class="dropdown7">
+              <option th:each="programingLanguage : ${programingLanguages}" th:value="${programingLanguage.id}" th:text="${programingLanguage.name}"></option>
+            </select>
+            <button class="button46" onclick="addProgrammingLanguageTag(event)">
+              <b class="caption284">Add Programming Languages</b>
+            </button>
+            <div id="requiredProgramingLanguagesTags"></div>
+            <input type="hidden" id="selectedProgrammingLanguagesIds" name="programmingLanguagesID" />
+          </div>
+          <div class="line26"></div>
+
+<!--          Nice to haves-->
+          <div class="line25"></div>
+          <div class="required-skills2">
+            <div class="basic-information5">Nice-to-haves</div>
+            <label for="niceToHavesDropdown"></label>
+            <select id="niceToHavesDropdown" class="dropdown7">
+              <option th:each="niceToHave : ${niceToHaves}" th:value="${niceToHave.id}" th:text="${niceToHave.name}"></option>
+            </select>
+            <button class="button46" onclick="addNiceToHaveTag(event)">
+              <b class="caption284">Add Nice-to-have</b>
+            </button>
+            <div id="niceToHavesTags"></div>
+            <input type="hidden" id="selectedNiceToHavesIds" name="niceToHavesID" />
+          </div>
+
+          <div class="line26"></div>
+
+<!--          ---------------------Phone number-->
+          <div class="line25"></div>
+          <div class="required-skills2">
+            <div class="basic-information5">Phone number</div>
+            <label>
+              <input for="phoneNumber" class="button46" placeholder="Phone number" th:field="*{phoneNumber}">
+              </input>
+            </label>
+          </div>
+          <div class="line26"></div>
+<!--          Email -->
+          <div class="line25"></div>
+          <div class="required-skills2">
+            <div class="basic-information5">Email</div>
+            <label>
+              <input  for="email" class="button46" placeholder="Email" th:field="*{email}">
+              </input>
+            </label>
+          </div>
+          <div class="line26"></div>
+          <div class="required-skills2">
+            <div class="basic-information5">Experience Required</div>
+            <label>
+              <input  for="experience" class="button46" placeholder="Experience (E.g :1 (Stand for atleast 1 year experience)" th:field="*{experience}">
+              </input>
+            </label>
+          </div>
+          <div class="line26"></div>
+<!--          Location-->
+          <div class="line25"></div>
+          <div class="required-skills2">
+            <div class="basic-information5">Location</div>
+            <label for="locationDropdown"></label><select id="locationDropdown" class="dropdown7" th:field="*{locationId}">
+              <option th:each="location : ${locations}" th:value="${location.id}" th:text="${location.name}" ></option>
+            </select>
+          </div>
+          <div class="line26"></div>
+
+          <div class="required-skills2">
+            <div class="basic-information5">Attach Images</div>
+            <label>
+              <input type="file" class="button46" id="imageUpload" multiple onchange="displaySelectedImage(event)">
+            </label>
+            <img id="selectedImage" src="" alt="Selected image" style="width: 100px; height: 100px;">
+          </div>
+          <div class="line25"></div>
+          <button  type="submit"  class="button47">
+            <b class="caption288">Post job</b>
+          </button>
         </form>
       </section>
     </main>
   </div>
 </body>
+
 </html>

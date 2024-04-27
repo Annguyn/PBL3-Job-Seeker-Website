@@ -12,4 +12,5 @@ import com.backend.entity.Level;
 public interface LevelRepository extends JpaRepository<Level, Integer> {
     @Query(value = "select * from level", nativeQuery = true)
     List<Level> getAllLevel();
+    Level getLevelById(int id);
 }

@@ -21,5 +21,4 @@ public class ProgramingLanguageServiceImpl implements ProgrammingLanguageService
     public List<ProgramingLanguage> getProgramingLanguageByIds(List<Integer> ids) {
         return programingLanguageRepository.findByIdsList(ids);
     }
-    
 }

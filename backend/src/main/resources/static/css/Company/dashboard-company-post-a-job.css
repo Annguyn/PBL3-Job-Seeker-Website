@@ -156,7 +156,7 @@
   align-items: flex-start;
   justify-content: flex-start;
   padding: var(--padding-xs) var(--padding-base) var(--padding-xs)
-    var(--padding-13xl);
+  var(--padding-13xl);
   gap: var(--gap-base);
 }
 .indicator-icon11 {
@@ -232,7 +232,7 @@
   align-items: flex-start;
   justify-content: flex-start;
   padding: var(--padding-xs) var(--padding-base) var(--padding-xs)
-    var(--padding-13xl);
+  var(--padding-13xl);
   gap: var(--gap-base);
 }
 .icon352 {
@@ -256,7 +256,7 @@
   align-items: flex-start;
   justify-content: flex-start;
   padding: var(--padding-xs) var(--padding-base) var(--padding-xs)
-    var(--padding-13xl);
+  var(--padding-13xl);
   gap: var(--gap-base);
 }
 .caption275,
@@ -286,7 +286,7 @@
   flex-direction: row;
   align-items: center;
   padding: var(--padding-xs) var(--padding-base) var(--padding-xs)
-    var(--padding-13xl);
+  var(--padding-13xl);
   gap: var(--gap-base);
 }
 .menu45 {
@@ -363,7 +363,7 @@
   flex-direction: row;
   align-items: center;
   padding: var(--padding-xs) var(--padding-base) var(--padding-xs)
-    var(--padding-13xl);
+  var(--padding-13xl);
   gap: var(--gap-base);
 }
 .menu47,
@@ -838,7 +838,7 @@
   border: 1px solid var(--lights-border);
   justify-content: space-between;
   padding: var(--padding-sm) var(--padding-6xl) var(--padding-sm)
-    var(--padding-4xl);
+  var(--padding-4xl);
   gap: var(--gap-xl);
 }
 .string-manipulator {
@@ -1583,7 +1583,7 @@
   cursor: pointer;
   border: 0;
   padding: var(--padding-9xs) var(--padding-9xs) var(--padding-9xs)
-    var(--padding-xs);
+  var(--padding-xs);
   background-color: var(--neutrals-10i);
   flex: 1;
   display: flex;
@@ -1621,7 +1621,7 @@
   cursor: pointer;
   border: 0;
   padding: var(--padding-9xs) var(--padding-9xs) var(--padding-9xs)
-    var(--padding-xs);
+  var(--padding-xs);
   background-color: var(--neutrals-10i);
   flex: 1;
   display: flex;
@@ -1653,7 +1653,7 @@
   cursor: pointer;
   border: 0;
   padding: var(--padding-9xs) var(--padding-9xs) var(--padding-9xs)
-    var(--padding-xs);
+  var(--padding-xs);
   background-color: var(--neutrals-10i);
   display: flex;
   flex-direction: row;
@@ -1731,7 +1731,7 @@
   flex-direction: column;
   align-items: flex-end;
   padding: var(--padding-13xl) var(--padding-12xl) var(--padding-13xl)
-    var(--padding-13xl);
+  var(--padding-13xl);
   box-sizing: border-box;
   gap: var(--gap-4xl-5);
   max-width: 100%;
@@ -1739,6 +1739,11 @@
   font-size: var(--body-normal-regular-size);
   color: var(--neutrals-100);
   font-family: var(--body-small-semibold);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+
 }
 .breadcrumbs,
 .dashboard-company-post-a-job2 {
@@ -1886,4 +1891,26 @@
     padding-right: var(--padding-xl);
     box-sizing: border-box;
   }
+}
+
+.basic-information {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.basic-information-heading {
+  font-size: 1.2em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.information-input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100%;
+  font-size: 1em;
+  color: #333;
 }

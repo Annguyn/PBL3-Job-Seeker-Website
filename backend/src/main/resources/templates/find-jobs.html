@@ -320,6 +320,7 @@
                                   <span>
                                     <!-- Capacity will be inserted here -->
                                   </span>
+                                </span>
                               </div>
                               <div class="maxSalary">Salary up to: <span th:text="${(post.maxSalary / 1000000)  + 'M VND'}"></span></div>
                             </div>
@@ -333,7 +334,6 @@
                         </span>
                         <a th:if="${page.hasNext()}" th:href="@{/findjobs(page=${page.number + 2}, sort=${param.sort[0]})}">Next</a>
                     </div>
-                      </div>
                 </div>
             </section>
             <footer class="footer3">
