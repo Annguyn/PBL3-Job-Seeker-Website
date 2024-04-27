@@ -59,11 +59,6 @@ public class PostAJobsController {
         model.addAttribute("programingLanguages" , programingLanguages) ;
         return "Company/post-a-job";
 }
-    @GetMapping("/postjobs/step2")
-    public String getPostJobsStep2Form(@ModelAttribute("userdto") UserDto userDto , @ModelAttribute("postdto") PostDto postDto ,  Model model){
-        
-        return "Company/post-a-job-job-description" ;
-    }
     @PostMapping("/postjobs")
     public String postJobs(@ModelAttribute("postdto") PostDto postDto,
                            @RequestParam("categoriesID") List<Integer> categoriesID,
@@ -79,7 +74,7 @@ public class PostAJobsController {
         }
         if (userLoggedIn == null || userLoggedIn.getCompany() == null) {
             model.addAttribute("errorMessage", "An error occurred while posting the job");
-            return "Company/post-a-job"; // return the current view
+            return "Company/post-a-job";
         }
 
         try {
@@ -92,6 +87,7 @@ public class PostAJobsController {
                     postDto.getContent(),
                     postDto.getImages(),
                     postDto.getExperience());
+            post.setDatePosted(java.time.LocalDateTime.now());
             post.setLevel(levelService.getLevelById(postDto.getLevelId()));
             List<Category> categoriesSelected = categoryService.getCategoriesByIds(categoriesID);
             post.setCategories(categoriesSelected);

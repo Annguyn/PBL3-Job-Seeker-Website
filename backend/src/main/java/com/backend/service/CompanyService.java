@@ -8,7 +8,7 @@ import com.backend.entity.Company;
 
 @Service
 public interface CompanyService {
-      Company saveCompany(Company company);
+    void saveCompany(Company company);
     List<Company> getAllCompanies();
     Company getCompanyById(int id);
     Company updateCompany(Company company);

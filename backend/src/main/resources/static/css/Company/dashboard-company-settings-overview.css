@@ -5,6 +5,9 @@
   overflow: hidden;
   flex-shrink: 0;
 }
+#profileDescription.form {
+  width: 45rem;
+}
 .logo-2-inner5 {
   display: flex;
   flex-direction: column;

@@ -2,13 +2,7 @@ package com.backend.entity;
 
 import java.io.Serializable;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,11 +27,10 @@ public class Company implements Serializable{
     @Column(name="company_website",nullable = true)
     private String companyWebsite;
 
+    @Lob
     @Column(name="avatar" ,nullable = true , columnDefinition = "TEXT")
-    private String avatar;
+    private byte[] avatar;
+
     @OneToOne(mappedBy = "company")
     private User user;
-    public void setUser(User user) {
-        this.user = user;
-    }
 }

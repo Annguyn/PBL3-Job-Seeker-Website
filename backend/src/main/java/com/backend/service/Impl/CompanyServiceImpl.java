@@ -11,12 +11,12 @@ import com.backend.service.CompanyService;
 
 @Service
 public class CompanyServiceImpl implements CompanyService {
-      @Autowired
+    @Autowired
     private CompanyRepository companyRepository;
 
     @Override
-    public Company saveCompany(Company company) {
-        return companyRepository.save(company);
+    public void saveCompany(Company company) {
+        companyRepository.save(company);
     }
 
     @Override
