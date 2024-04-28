@@ -28,7 +28,7 @@ public class Company implements Serializable{
     private String companyWebsite;
 
     @Lob
-    @Column(name="avatar" ,nullable = true , columnDefinition = "TEXT")
+    @Column(name = "avatar", nullable = true)
     private byte[] avatar;
 
     @OneToOne(mappedBy = "company")

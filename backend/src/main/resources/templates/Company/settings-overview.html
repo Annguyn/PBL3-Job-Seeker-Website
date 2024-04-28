@@ -170,7 +170,7 @@
               <div class="company8">Company</div>
               <div class="nomad-parent2">
                 <div class="nomad17" th:if="${companyLoggedIn.name}" th:text="${companyLoggedIn.name}"></div>
-                <img class="icon263" alt="" th:if="${companyLoggedIn.avatar}" th:src="${companyLoggedIn.avatar}" />
+                <img class="icon263" th:if="${companyLoggedIn.avatar}" th:src="@{/image/{id}(id=${companyLoggedIn.id})}" alt="Company Avatar" />
               </div>
             </div>
           </div>
@@ -224,7 +224,7 @@
               <img
                       class="company-logo-icon18"
                       th:if="${companyLoggedIn.avatar}"
-                      th:src="@{${companyLoggedIn.avatar}}" alt="Company Avatar"
+                      th:src="@{/image/{id}(id=${companyLoggedIn.id})}" alt="Company Avatar"
               />
 
               <div class="textfield5">
@@ -242,8 +242,7 @@
                     <div class="svg-png-jpg">
                       SVG, PNG, JPG or GIF (max. 400 x 400px)
                     </div>
-                    <input type="file" accept=".svg, .png, .jpg, .gif"  th:field="*{companyLoggedIn.avatar}"/>
-                  </div>
+                    <input type="file" accept=".svg, .png, .jpg, .gif" name="avatarFile" />                  </div>
                 </div>
               </div>
             </div>

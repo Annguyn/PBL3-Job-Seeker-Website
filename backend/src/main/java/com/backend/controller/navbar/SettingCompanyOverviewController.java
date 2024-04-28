@@ -39,10 +39,8 @@ public class SettingCompanyOverviewController {
         model.addAttribute("companyLoggedIn", userLoggedIn.getCompany());
 
         return "Company/settings-overview";
-    }
-
-    @PostMapping("/settings")
-    public String postSettingCompanyOverview(@ModelAttribute("companyLoggedIn") Company formCompany, @RequestParam("avatarFile") MultipartFile avatarFile, Model model) {
+    }@PostMapping("/settings")
+    public String postSettingCompanyOverview(@ModelAttribute("companyLoggedIn") Company formCompany, @RequestParam("avatarFile") MultipartFile avatarFile, Model model) throws IOException {
         // Fetch the existing company from the database
         User userLoggedIn = null;
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -53,20 +51,19 @@ public class SettingCompanyOverviewController {
 
         Company existingCompany = userLoggedIn.getCompany();
         existingCompany.setCompanyWebsite(formCompany.getCompanyWebsite());
-        existingCompany.setAvatar(formCompany.getAvatar());
         existingCompany.setName(formCompany.getName());
         existingCompany.setProfileDescription(formCompany.getProfileDescription());
+
+        // Convert MultipartFile to byte[] and set it to the avatar field
         if (!avatarFile.isEmpty()) {
-            try {
-                existingCompany.setAvatar(avatarFile.getBytes());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            existingCompany.setAvatar(avatarFile.getBytes());
         }
+
         companyService.saveCompany(existingCompany);
 
         model.addAttribute("successMessage", "Settings saved successfully");
 
         return "redirect:/home";
     }
+
 }
