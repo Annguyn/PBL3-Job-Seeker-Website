@@ -4,16 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -29,6 +20,13 @@ public class Post {
 
     @Column(name = "company_id")
     private int companyId;
+
+    @Column(name = "title")
+    private String title;
+
+    @ManyToOne
+    @JoinColumn(name = "company_id", insertable = false, updatable = false)
+    private Company company;
 
     @Column(name = "max_salary")
     private BigDecimal maxSalary;
@@ -51,9 +49,6 @@ public class Post {
     @Column(name = "experience")
     private String experience;
 
-    // @Column(name ="location_id")
-    // private int locationId;
-
     @Column(name = "date_posted")
     private LocalDateTime datePosted;
 
@@ -68,6 +63,16 @@ public class Post {
     @OneToOne
     @JoinColumn(name = "location_id")
     private Location location;
+
+    @Column(name = "is_live")
+    private boolean isLive;
+
+    @ManyToMany
+    @JoinTable(
+            name = "job_applicants",
+            joinColumns = @JoinColumn(name = "post_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private List<User> applicants;
 
     @ManyToMany
     @JoinTable(name = "post_category", joinColumns = @JoinColumn(name = "post_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))

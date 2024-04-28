@@ -157,9 +157,7 @@
           <div class="job-list16">
             <img
               class="company-logo-icon17"
-              alt=""
-              th:if="${companyLoggedIn.avatar}"
-              th:src="${companyLoggedIn.avatar}"
+              th:src="@{/image/{id}(id=${companyLoggedIn.id})}" alt="Company Avatar"
             />
             <img class="company-logo-icon17"
                  alt=""

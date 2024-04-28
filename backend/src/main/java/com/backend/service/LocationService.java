@@ -16,6 +16,8 @@ public class LocationService {
     public List<Location> getAllLocations() {
         return locationRepository.findAll();
     }
-
+    public Location getLocationById(int id) {
+        return locationRepository.findById(id).orElse(null);
+    }
     // Các phương thức khác như thêm mới, cập nhật, xóa, tìm kiếm, ...
 }

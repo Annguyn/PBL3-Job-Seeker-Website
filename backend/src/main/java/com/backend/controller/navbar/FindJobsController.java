@@ -51,8 +51,6 @@ public class FindJobsController {
             if ("salary".equals(sort)) {
                 pageable = PageRequest.of(page - 1, 6, Sort.by("maxSalary").descending());
             } else {
-                // handle case when sort parameter is not "maxSalary"
-                // for example, you can default to sorting by datePosted
                 pageable = PageRequest.of(page - 1, 6, Sort.by("datePosted").descending());
             }
             Page<Post> postPage = postService.getAllPosts(pageable);

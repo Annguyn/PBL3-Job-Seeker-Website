@@ -1,6 +1,7 @@
 package com.backend.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -33,4 +34,7 @@ public class Company implements Serializable{
 
     @OneToOne(mappedBy = "company")
     private User user;
+
+    @OneToMany(mappedBy = "company")
+    private List<Post> posts;
 }

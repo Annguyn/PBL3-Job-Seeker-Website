@@ -13,6 +13,7 @@ import java.util.List;
 public class PostDto {
     private int id; 
     private int companyId;
+    private String title ;
     private BigDecimal maxSalary;
     private BigDecimal minSalary;
     private String phoneNumber;

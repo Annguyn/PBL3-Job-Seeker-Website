@@ -186,7 +186,7 @@
             </div>
             <div class="textfield18">
               <div class="input9">
-                <input class="this-is-placeholder16" placeholder="e.g. Software Engineer" type="text" />
+                <input class="this-is-placeholder16" placeholder="e.g. Software Engineer" type="text"  th:field="*{title}"/>
               </div>
               <div class="this-is-helper">At least 80 characters</div>
             </div>
@@ -279,7 +279,6 @@
             <input type="hidden" id="selectedProgrammingLanguagesIds" name="programmingLanguagesID" />
           </div>
           <div class="line26"></div>
-
 <!--          Nice to haves-->
           <div class="line25"></div>
           <div class="required-skills2">
@@ -328,7 +327,6 @@
 <!--          Location-->
           <div class="line25"></div>
           <div class="required-skills2">
-            <div class="basic-information5">Location</div>
             <label for="locationDropdown"></label><select id="locationDropdown" class="dropdown7" th:field="*{locationId}">
               <option th:each="location : ${locations}" th:value="${location.id}" th:text="${location.name}" ></option>
             </select>

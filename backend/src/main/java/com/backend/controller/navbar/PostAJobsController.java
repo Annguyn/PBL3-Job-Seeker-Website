@@ -87,7 +87,9 @@ public class PostAJobsController {
                     postDto.getContent(),
                     postDto.getImages(),
                     postDto.getExperience());
+            post.setLocation(locationService.getLocationById(postDto.getLocationId()));
             post.setDatePosted(java.time.LocalDateTime.now());
+            post.setTitle(postDto.getTitle());
             post.setLevel(levelService.getLevelById(postDto.getLevelId()));
             List<Category> categoriesSelected = categoryService.getCategoriesByIds(categoriesID);
             post.setCategories(categoriesSelected);

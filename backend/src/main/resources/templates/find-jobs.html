@@ -269,15 +269,14 @@
                     <div class="lists">
                         <div th:each="post : ${page}" class="job-list35">
                           <div class="main-content">
-                            <img class="company-logo-icon33" loading="lazy" alt="" th:src="@{/images/company-logo2.svg}" />
-              
+                            <img class="company-logo-icon33" loading="lazy" th:src="@{/image/{id}(id=${post.getCompany().getId()})}" alt="Company Avatar" />
+
                             <div class="job-title29">
                               <div class="social-media-assistant29" th:text="${post.categories[0].name+' Engineer'}">
                                 <!-- Job title will be inserted here -->
                               </div>
                               <div class="company-name-location-job26">
-                                <div class="nomad27">
-                                  Company Name
+                                <div class="nomad27" th:text="${post.getCompany().name}">
                                 </div>
                                 <div class="paris-france28" th:text="${post.location.name}">
                                   <!-- Job location will be inserted here -->
@@ -328,12 +327,11 @@
                         </div>
                       </div>
                       <div class="pagination">
-                        <a th:if="${page.hasPrevious()}" th:href="@{/findjobs(page=${page.number}, sort=${param.sort[0]})}">Previous</a>
-                        <span th:each="i : ${#numbers.sequence(0, page.totalPages)}" th:if="${i >= page.number - 2 and i <= page.number + 2}">
-                            <a th:href="@{/findjobs(page=${i}, sort=${param.sort[0]})}" th:class="${i == page.number ? 'active' : ''}" th:text="${i + 1}">Page number</a>
-                        </span>
-                        <a th:if="${page.hasNext()}" th:href="@{/findjobs(page=${page.number + 2}, sort=${param.sort[0]})}">Next</a>
-                    </div>
+                          <a th:if="${page.hasPrevious()}" th:href="@{/findjobs(page=${page.number}, sort=${param.sort != null ? param.sort[0] : 'default'})}">Previous</a>
+                          <span th:each="i : ${#numbers.sequence(0, page.totalPages)}" th:if="${i >= page.number - 2 and i <= page.number + 2}">
+                              <a th:href="@{/findjobs(page=${i}, sort=${param.sort != null ? param.sort[0] : 'default'})}" th:class="${i == page.number ? 'active' : ''}" th:text="${i + 1}">Page number</a>
+                            </span>
+                          <a th:if="${page.hasNext()}" th:href="@{/findjobs(page=${page.number + 2}, sort=${param.sort != null ? param.sort[0] : 'default'})}">Next</a></div>
                 </div>
             </section>
             <footer class="footer3">

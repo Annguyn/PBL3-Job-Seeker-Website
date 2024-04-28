@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"></html>
 <html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
 
-    <link rel="stylesheet" href="./global.css" />
-    <link rel="stylesheet" href="./dashboard-company-job-listing.css" />
+    <link rel="stylesheet" th:href="@{./css/Company/global.css}" />
+    <link rel="stylesheet" th:href="@{./css/Company/dashboard-company-job-listing.css}" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Red Hat Display:wght@700&display=swap"
@@ -34,7 +35,7 @@
                   class="frame-child11"
                   loading="lazy"
                   alt=""
-                  src="./public/frame-33.svg"
+                 th:src="@{./images/Company/frame-33.svg}"
                 />
               </div>
               <h3 class="jobhuntly3">JobHuntly</h3>
@@ -47,14 +48,14 @@
                   class="icon100"
                   loading="lazy"
                   alt=""
-                  src="./public/icon1.svg"
+                 th:src="@{./images/Company/icon1.svg}"
                 />
 
                 <div class="caption98">Dashboard</div>
               </div>
               <div class="sidebar-menu28">
                 <div class="icon-parent16">
-                  <img class="icon101" alt="" src="./public/icon-111.svg" />
+                  <img class="icon101" alt=""th:src="@{./images/Company/icon-111.svg}" />
 
                   <div class="caption99">Messages</div>
                 </div>
@@ -66,12 +67,12 @@
                 </div>
               </div>
               <div class="sidebar-menu29">
-                <img class="icon102" alt="" src="./public/icon-2.svg" />
+                <img class="icon102" alt=""th:src="@{./images/Company/icon-2.svg}" />
 
                 <div class="caption100">Company Profile</div>
               </div>
               <div class="sidebar-menu30">
-                <img class="icon103" alt="" src="./public/icon-3.svg" />
+                <img class="icon103" alt=""th:src="@{./images/Company/icon-3.svg}" />
 
                 <div class="caption101">All Applicants</div>
               </div>
@@ -80,17 +81,17 @@
                   <img
                     class="indicator-icon3"
                     alt=""
-                    src="./public/indicator.svg"
+                   th:src="@{./images/Company/indicator.svg}"
                   />
                 </div>
                 <div class="menu14">
-                  <img class="icon104" alt="" src="./public/icon-41.svg" />
+                  <img class="icon104" alt=""th:src="@{./images/Company/icon-41.svg}" />
 
                   <div class="caption102">Job Listing</div>
                 </div>
               </button>
               <div class="sidebar-menu32">
-                <img class="icon105" alt="" src="./public/icon-5.svg" />
+                <img class="icon105" alt=""th:src="@{./images/Company/icon-5.svg}" />
 
                 <div class="caption103">My Schedule</div>
               </div>
@@ -107,12 +108,12 @@
               </div>
               <div class="menu15">
                 <div class="sidebar-menu34">
-                  <img class="icon107" alt="" src="./public/icon-7.svg" />
+                  <img class="icon107" alt=""th:src="@{./images/Company/icon-7.svg}" />
 
                   <div class="caption105">Settings</div>
                 </div>
                 <div class="sidebar-menu35">
-                  <img class="icon108" alt="" src="./public/icon-8.svg" />
+                  <img class="icon108" alt=""th:src="@{./images/Company/icon-8.svg}" />
 
                   <div class="caption106">Help Center</div>
                 </div>
@@ -131,7 +132,7 @@
                   class="avatar-icon13"
                   loading="lazy"
                   alt=""
-                  src="./public/avatar@2x.png"
+                 th:src="@{./images/Company/avatar2x.png}"
                 />
               </div>
               <div class="name-email3">
@@ -157,14 +158,14 @@
             <img
               class="company-logo-icon7"
               alt=""
-              src="./public/company-logo.svg"
+             th:src="@{./images/Company/company-logo.svg}"
             />
 
             <div class="job-title7">
               <div class="company3">Company</div>
               <div class="page-viewssize">
                 <div class="nomad7">Nomad</div>
-                <img class="icon110" alt="" src="./public/icon-411.svg" />
+                <img class="icon110" alt=""th:src="@{./images/Company/icon-411.svg}" />
               </div>
             </div>
           </div>
@@ -173,11 +174,11 @@
               class="notification-icon3"
               loading="lazy"
               alt=""
-              src="./public/notification3.svg"
+             th:src="@{./images/Company/notification3.svg}"
             />
 
             <button class="button7">
-              <img class="icon111" alt="" src="./public/icon-112.svg" />
+              <img class="icon111" alt=""th:src="@{./images/Company/icon-112.svg}" />
 
               <b class="caption107">Post a job</b>
             </button>
@@ -194,7 +195,7 @@
             <div class="dropdown1">
               <div class="this-is-placeholder2">Jul 19 - Jul 25</div>
               <div class="filter-sort-icon1">
-                <img class="icon112" alt="" src="./public/icon-123.svg" />
+                <img class="icon112" alt="" th:src="@{./images/Company/icon-123.svg}" />
               </div>
             </div>
           </div>
@@ -209,7 +210,7 @@
                   </div>
                   <button class="filter-sort2">
                     <div class="views-icon">
-                      <img class="icon113" alt="" src="./public/icon-15.svg" />
+                      <img class="icon113" alt="" th:src="@{./images/Company/icon-15.svg}" />
                     </div>
                     <div class="caption108">Filters</div>
                   </button>
@@ -219,203 +220,31 @@
             </div>
             <div class="pagination-icon">
               <div class="table-header">
-                <div class="roles">Roles</div>
+                <div class="roles">Title</div>
                 <div class="status">Status</div>
                 <div class="date-posted">Date Posted</div>
-                <div class="due-date">Due Date</div>
+                <div class="due-date">Experience</div>
                 <div class="job-type2">Job Type</div>
                 <div class="applicants1">Applicants</div>
                 <div class="needs">Needs</div>
               </div>
             </div>
-            <div class="list">
+            <div class="list" th:each="post : ${company.getPosts()}">
               <div class="row1">
-                <div class="social-media-assistant7">
-                  Social Media Assistant
-                </div>
+                <div class="social-media-assistant7" th:text="${post.title}"></div>
                 <button class="label34">
                   <div class="label-child16"></div>
-                  <div class="caption109">Live</div>
+                  <div class="caption109" th:if="${post.isLive()}" th:text="Active"></div>
+                  <div class="caption109" th:unless="${post.isLive()}" th:text="Inactive"></div>
                 </button>
-                <div class="may-2020">20 May 2020</div>
-                <div class="may-20201">24 May 2020</div>
+                <div class="may-2020" th:text="${#temporals.format(post.datePosted, 'dd MMM yyyy')}"></div>
+                <div class="may-20201" th:text="${post.experience}"></div>
                 <button class="label35">
                   <div class="label-child17"></div>
-                  <div class="caption110">Fulltime</div>
+                  <div class="caption110" th:text="${post.level.name}"></div>
                 </button>
-                <div class="div22">19</div>
-                <div class="views">
-                  <div class="page-size-options-container">
-                    <span>4 </span>
-                    <span class="span9">/ 11</span>
-                  </div>
-                </div>
-                <img class="icon114" alt="" src="./public/icon-22.svg" />
-              </div>
-              <div class="row2">
-                <div class="social-media-assistant8">Senior Designer</div>
-                <button class="label36">
-                  <div class="label-child18"></div>
-                  <div class="caption111">Live</div>
-                </button>
-                <div class="may-20202">16 May 2020</div>
-                <div class="may-20203">24 May 2020</div>
-                <button class="label37">
-                  <div class="label-child19"></div>
-                  <div class="caption112">Fulltime</div>
-                </button>
-                <div class="div23">1,234</div>
-                <div class="views1">
-                  <div class="div24">
-                    <span>0 </span>
-                    <span class="span10">/ 20</span>
-                  </div>
-                </div>
-                <img class="icon115" alt="" src="./public/icon-22.svg" />
-              </div>
-              <div class="row3">
-                <div class="social-media-assistant9">Visual Designer</div>
-                <button class="label38">
-                  <div class="label-child20"></div>
-                  <div class="caption113">Live</div>
-                </button>
-                <div class="may-20204">15 May 2020</div>
-                <div class="may-20205">24 May 2020</div>
-                <button class="label39">
-                  <div class="label-child21"></div>
-                  <div class="caption114">Freelance</div>
-                </button>
-                <div class="div25">2,435</div>
-                <div class="views2">
-                  <div class="div26">
-                    <span>1 </span>
-                    <span class="span11">/ 5</span>
-                  </div>
-                </div>
-                <img class="icon116" alt="" src="./public/icon-22.svg" />
-              </div>
-              <div class="row4">
-                <div class="social-media-assistant10">Data Sience</div>
-                <button class="label40">
-                  <div class="label-child22"></div>
-                  <div class="caption115">Closed</div>
-                </button>
-                <div class="may-20206">13 May 2020</div>
-                <div class="may-20207">24 May 2020</div>
-                <button class="label41">
-                  <div class="label-child23"></div>
-                  <div class="caption116">Freelance</div>
-                </button>
-                <div class="div27">6,234</div>
-                <div class="views3">
-                  <div class="div28">
-                    <span>10 </span>
-                    <span class="span12">/ 10</span>
-                  </div>
-                </div>
-                <img class="icon117" alt="" src="./public/icon-22.svg" />
-              </div>
-              <div class="row5">
-                <div class="social-media-assistant11">Kotlin Developer</div>
-                <button class="label42">
-                  <div class="label-child24"></div>
-                  <div class="caption117">Closed</div>
-                </button>
-                <div class="may-20208">12 May 2020</div>
-                <div class="may-20209">24 May 2020</div>
-                <button class="label43">
-                  <div class="label-child25"></div>
-                  <div class="caption118">Fulltime</div>
-                </button>
-                <div class="div29">12</div>
-                <div class="views4">
-                  <div class="div30">
-                    <span>20 </span>
-                    <span class="span13">/ 20</span>
-                  </div>
-                </div>
-                <img class="icon118" alt="" src="./public/icon-22.svg" />
-              </div>
-              <div class="row6">
-                <div class="social-media-assistant12">React Developer</div>
-                <button class="label44">
-                  <div class="label-child26"></div>
-                  <div class="caption119">Closed</div>
-                </button>
-                <div class="may-202010">11 May 2020</div>
-                <div class="may-202011">24 May 2020</div>
-                <button class="label45">
-                  <div class="label-child27"></div>
-                  <div class="caption120">Fulltime</div>
-                </button>
-                <div class="div31">14</div>
-                <div class="views5">
-                  <div class="div32">
-                    <span>10 </span>
-                    <span class="span14">/ 10</span>
-                  </div>
-                </div>
-                <img class="icon119" alt="" src="./public/icon-22.svg" />
-              </div>
-              <div class="row7">
-                <div class="social-media-assistant13">Kotlin Developer</div>
-                <button class="label46">
-                  <div class="label-child28"></div>
-                  <div class="caption121">Closed</div>
-                </button>
-                <div class="may-202012">12 May 2020</div>
-                <div class="may-202013">24 May 2020</div>
-                <button class="label47">
-                  <div class="label-child29"></div>
-                  <div class="caption122">Fulltime</div>
-                </button>
-                <div class="div33">12</div>
-                <div class="views6">
-                  <div class="div34">
-                    <span>20 </span>
-                    <span class="span15">/ 20</span>
-                  </div>
-                </div>
-                <img class="icon120" alt="" src="./public/icon-22.svg" />
-              </div>
-            </div>
-            <div class="selector1">
-              <div class="page-views1">
-                <div class="view1">View</div>
-                <div class="filter-sort3">
-                  <img class="icon121" alt="" src="./public/icon-411.svg" />
-
-                  <div class="caption123">10</div>
-                </div>
-                <div class="applicants-per-page1">Applicants per page</div>
-              </div>
-              <div class="pagination8">
-                <img class="icon122" alt="" src="./public/icon-42.svg" />
-
-                <div class="pagination-parent">
-                  <div class="pagination9">
-                    <div class="div35">1</div>
-                  </div>
-                  <div class="pagination10">
-                    <div class="div36">2</div>
-                  </div>
-                  <div class="pagination11">
-                    <div class="div37">3</div>
-                  </div>
-                  <div class="pagination12">
-                    <div class="div38">4</div>
-                  </div>
-                  <div class="pagination13">
-                    <div class="div39">5</div>
-                  </div>
-                  <div class="pagination14">
-                    <div class="div40">...</div>
-                  </div>
-                  <div class="pagination15">
-                    <div class="div41">33</div>
-                  </div>
-                </div>
-                <img class="icon123" alt="" src="./public/icon-43.svg" />
+                <div class="div22" th:text="${post.applicants.size()}"></div>
+                <img class="icon114" alt="" th:src="@{./images/Company/icon-22.svg}" />
               </div>
             </div>
           </div>
