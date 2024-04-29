@@ -79,7 +79,7 @@
             <div class="divider"></div>
           </div>
           <button class="button1">
-            <a class="caption3">Dashboard</a>
+            <a th:href="@{/dashboard}" class="caption3">Dashboard</a>
           </button>
         </div>
       </header>
@@ -562,7 +562,7 @@
               <img class="company-logo-icon8" alt="" th:src="@{/images/company-logo-8.svg}" />
 
               <div class="job-title1">
-                <div class="social-media-assistant" th:text="${posts_newest[0].categories[0].name + ' Engineer'}"></div>
+                <div class="social-media-assistant"  th:text="${posts_newest[0].categories[0].name + ' Engineer'}"></div>
                 <div class="company-name-location-job">
                   <div class="nomad">Nomad</div>
                   <div class="logo-wrapper">
@@ -581,7 +581,7 @@
                   </button>
                   <button class="label19">
                     <div class="label-child2"></div>
-                    <div class="caption28" th:text="${posts_newest[0].programingLanguages[0].name}"></div>
+                    <div  class="caption28" th:text="${posts_newest[0].programingLanguages[0].name}"></div>
                   </button>
                 </div>
               </div>
@@ -609,7 +609,7 @@
                   </button>
                   <button class="label23">
                     <div class="label-child4"></div>
-                    <div class="caption31" th:text="${posts_newest[1].programingLanguages[0].name}"></div>
+                    <div class="caption31"  th:text="${posts_newest[1].programingLanguages[0].name}"></div>
                   </button>
                 </div>
               </div>
@@ -633,7 +633,7 @@
                   <div class="label-child5"></div>
                   <button class="label26">
                     <div class="label-child6"></div>
-                    <div class="caption33" th:text="${posts_newest[2].categories[0].name}"></div> 
+                    <div class="caption33" th:text="${posts_newest[2].categories[0].name}"></div>
                   </button>
                   <button class="label27">
                     <div class="label-child7"></div>

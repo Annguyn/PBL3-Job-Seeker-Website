@@ -74,6 +74,9 @@ public class Post {
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private List<User> applicants;
 
+    @OneToMany(mappedBy = "post")
+    private List<Application> applications;
+
     @ManyToMany
     @JoinTable(name = "post_category", joinColumns = @JoinColumn(name = "post_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private List<Category> categories;

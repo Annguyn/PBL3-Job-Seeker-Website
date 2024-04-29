@@ -278,7 +278,7 @@
                               <div class="company-name-location-job26">
                                 <div class="nomad27" th:text="${post.getCompany().name}">
                                 </div>
-                                <div class="paris-france28" th:text="${post.location.name}">
+                                <div class="paris-france28" th:if="${post.location.name}" th:text="${post.location.name}">
                                   <!-- Job location will be inserted here -->
                                 </div>
                               </div>

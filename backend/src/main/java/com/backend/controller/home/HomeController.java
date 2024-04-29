@@ -57,6 +57,33 @@ public class HomeController {
             User userLoggedIn = userService.getUserbyEmail(userDetails.getUsername());
             model.addAttribute("userLoggedIn", userLoggedIn);
         }
+        for (Post post : posts) {
+            if(post.getCategories().isEmpty()){
+                Category category1 = new Category();
+                category1.setName("N/A");
+                post.getCategories().add(category1);
+
+                Category category2 = new Category();
+                category2.setName("N/A");
+                post.getCategories().add(category2);
+            }
+            else if(post.getCategories().size() == 1){
+                Category category = post.getCategories().get(0);
+                if(category.getName() == null){
+                    category.setName("N/A");
+                }
+
+                Category category2 = new Category();
+                category2.setName("N/A");
+                post.getCategories().add(category2);
+            }
+            if (post.getLocation() == null) {
+                post.setLocation(new Location());
+            }
+            if (post.getLocation().getName() == null) {
+                post.getLocation().setName("N/A");  // Set the name to "N/A" if it's null
+            }
+        }
         model.addAttribute("posts", posts);
         model.addAttribute("locations", locations);
         model.addAttribute("categories", categories);

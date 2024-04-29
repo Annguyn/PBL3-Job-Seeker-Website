@@ -5,6 +5,10 @@
   overflow: hidden;
   flex-shrink: 0;
 }
+.company-logo-icon16 {
+  width: 80px;
+  height: 80px;
+}
 .logo-2-inner4 {
   display: flex;
   flex-direction: column;

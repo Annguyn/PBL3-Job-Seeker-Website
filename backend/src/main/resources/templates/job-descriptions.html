@@ -111,11 +111,10 @@
                         <img class="avatar-icon3" loading="lazy" alt="" th:src="@{/images/avatar1@2x.png}" />
 
                         <div class="name-email1">
-                            <div class="jake-gyll-container">
-                                <div class="jake-gyll5">Jake Gyll</div>
+                            <div th:if="${userLoggedIn != null}" class="jake-gyll-container">
+                                <div class="jake-gyll5" th:if="${userLoggedIn.getUserDisplayName() != null}" th:text="${userLoggedIn.getUserDisplayName()}"></div>
                             </div>
-                            <div class="jakegyllemailcom5">
-                                jakegyll@email.com
+                            <div th:if="${userLoggedIn != null}"  class="jakegyllemailcom5" th:text="${userLoggedIn.getEmail()}">
                             </div>
                         </div>
                     </div>
@@ -161,13 +160,13 @@
                     <img class="pattern-icon14" alt="" />
 
                     <img class="pattern-icon15" alt="" />
-
                     <div class="job-list42">
                         <div class="logic-branch">
                             <div class="company-logo7">
                                 <div class="output-container"></div>
-                                <img class="stripe-logo-dp4f5yykm-1-icon4" loading="lazy" alt=""
-                                    th:src="@{/images/stripe-logo-dp4f5yykm-1@2x.png}" />
+                                <img class="stripe-logo-dp4f5yykm-1-icon4" loading="lazy"
+                                     th:if="${post.getCompany().avatar}"
+                                     th:src="@{/image/{id}(id=${post.getCompany().id})}" alt="Company Avatar" />
                             </div>
                             <div class="sequential-flow">
                                 <div class="job-title36">
@@ -175,7 +174,7 @@
                                         th:text="${post.categories[0].name + ' Engineer'}">
                                     </h1>
                                     <div class="company-name-location-job35">
-                                        <div class="nomad34">Stripe</div>
+                                        <div class="nomad34" th:text="${post.getCompany().name}"></div>
                                         <div class="iteration-loop">
                                             <div class="function-caller1"></div>
                                         </div>
@@ -264,8 +263,7 @@
                         <h3 class="about-this-role2">About this role</h3>
                         <div class="progress-bar11">
                             <div class="applied-of-10-container9">
-                                <span class="applied9">5 applied </span>
-                                <span class="of-10-capacity8">of 10 capacity</span>
+                                <span class="applied9" th:text="${post.getApplicants().size() } + 'Applied'"> </span>
                             </div>
                             <div class="progress-bar12">
                                 <div class="progress-bar-child34"></div>
@@ -364,31 +362,29 @@
         <!-- Modal content -->
         <div class="modal-content">
             <!-- Your form goes here -->
-            <div id="applicationForm" class="landing-page-submit-applicat">
+            <form id="applicationForm" class="landing-page-submit-applicat" action="#" th:action="@{/jobdetails}" method="post" enctype="multipart/form-data" >
                 <div class="landing-page-submit-applicat">
                     <div class="base1"></div>
                     <img class="icon56" loading="lazy" alt="" th:src="@{/images/icon-211.svg}" />
-
+                    <input type="hidden" name="id" th:value="${post.id}" />
                     <div class="input-splitter">
                         <div class="input-fields">
                             <div class="role">
-                                <img class="company-logo-icon16" loading="lazy" alt=""
-                                    th:src="@{/images/company-logo.svg}" />
+                                <img class="company-logo-icon16" loading="lazy"
+                                     th:src="@{/image/{id}(id=${post.getCompany().getId()})}" alt="Company Avatar"
+                                />
 
                                 <div class="job-title-container">
                                     <div class="job-title10">
-                                        <h3 class="social-media-assistant10">
-                                            Social Media Assistant
+                                        <h3 class="social-media-assistant10" th:text="${post.getTitle()}">
                                         </h3>
                                         <div class="frame">
-                                            <div class="nomad9">Nomad</div>
+                                            <div class="nomad9" th:text="${post.getCompany().name}"></div>
                                             <div class="error-handler1"></div>
-                                            <div class="paris-france10">
-                                                Paris, France
+                                            <div class="paris-france10" th:text="${post.getLocation().name}">
                                             </div>
                                             <div class="error-handler2"></div>
-                                            <div class="full-time2">
-                                                Full-Time
+                                            <div class="full-time2" th:text="${post.getLevel().name}">
                                             </div>
                                         </div>
                                     </div>
@@ -399,29 +395,26 @@
                                 <h3 class="submit-your-application1">
                                     Submit your application
                                 </h3>
-                                <div class="the-following-is">
-                                    The following is required and will only be
-                                    shared with Nomad
-                                </div>
+                                <div class="the-following-is" th:text="${'The following is required and will only be shared with ' + post.getCompany().name}"></div>                                </div>
                             </div>
                             <div class="textfield">
                                 <div class="label50">Full name</div>
                                 <div class="input1">
-                                    <input class="this-is-placeholder1" placeholder="Enter your fullname" type="text" />
+                                    <input class="this-is-placeholder1" placeholder="Enter your fullname" name="fullName" type="text" />
                                 </div>
                             </div>
                             <div class="textfield1">
                                 <div class="label51">Email address</div>
                                 <div class="input2">
                                     <input class="this-is-placeholder2" placeholder="Enter your email address"
-                                        type="text" />
+                                         name="emailAddress" type="text" />
                                 </div>
                             </div>
                             <div class="textfield2">
                                 <div class="label52">Phone number</div>
                                 <div class="input3">
                                     <input class="this-is-placeholder3" placeholder="Enter your phone number"
-                                        type="text" />
+                                        name="phoneNumber" type="text" />
                                 </div>
                             </div>
                             <div class="textfield3">
@@ -430,7 +423,7 @@
                                 </div>
                                 <div class="input4">
                                     <input class="this-is-placeholder4"
-                                        placeholder="What’s your current or previous job title?" type="text" />
+                                        name="JobTitle" placeholder="What’s your current or previous job title?" type="text" />
                                 </div>
                             </div>
                             <div class="divider6"></div>
@@ -439,14 +432,14 @@
                                 <div class="label54">LinkedIn URL</div>
                                 <div class="input5">
                                     <input class="this-is-placeholder5" placeholder="Link to your LinkedIn URL"
-                                        type="text" />
+                                        name="linkedInUrl" type="text" />
                                 </div>
                             </div>
                             <div class="textfield5">
                                 <div class="label55">Portfolio URL</div>
                                 <div class="input6">
                                     <input class="this-is-placeholder6" placeholder="Link to your portfolio URL"
-                                        type="text" />
+                                        name="portfolioUrl" type="text" />
                                 </div>
                             </div>
                             <div class="divider7"></div>
@@ -457,7 +450,7 @@
                                 <div class="content3">
                                     <textarea class="form"
                                         placeholder="Add a cover letter or anything else you want to share" rows="{8}"
-                                        cols="{29}">
+                                        cols="{29}" name="additionalInformation">
                                 </textarea>
                                     <div class="icon57">
                                         <img class="icon58" loading="lazy" alt="" th:src="@{/images/icon-221.svg}" />
@@ -480,23 +473,24 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="textfield7">
-                                <div class="attach-your-resume-wrapper">
-                                    <div class="attach-your-resume">
-                                        Attach your resume
-                                    </div>
+                        <div class="textfield7">
+                            <div class="attach-your-resume-wrapper">
+                                <div class="attach-your-resume">
+                                    Attach your resume
                                 </div>
-                                <button class="form-attach">
-                                    <div class="icon-wrapper6">
-                                        <img class="icon64" alt="" th:src="@{/images/icon-281.svg}" />
-                                    </div>
-                                    <div class="attach-resumecv">
-                                        Attach Resume/CV
-                                    </div>
-                                </button>
                             </div>
+                            <div class="form-attach">
+                                <div class="icon-wrapper6">
+                                    <img class="icon64" alt="" th:src="@{/images/icon-281.svg}" />
+                                </div>
+                                <div class="attach-resumecv">
+                                    <input type="file" name="resume" />
+                                    Attach Resume/CV
+                                </div>
+                            </div>
+                        </div>
                             <div class="divider8"></div>
-                            <button class="button14">
+                            <button type="submit" class="button14">
                                 <b class="caption63">Submit Application</b>
                             </button>
                             <div class="by-sending-the-container">
@@ -509,10 +503,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
-    </div>
 </body>
 
 </html>
