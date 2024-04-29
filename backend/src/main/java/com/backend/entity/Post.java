@@ -47,7 +47,7 @@ public class Post {
     private String images;
 
     @Column(name = "experience")
-    private String experience;
+    private int experience;
 
     @Column(name = "date_posted")
     private LocalDateTime datePosted;
@@ -90,7 +90,7 @@ public class Post {
     private List<NiceToHaves> niceToHaves;
 
     public Post(int CompanyId, BigDecimal maxSalary, BigDecimal minSalary, String phoneNumber, String email,
-            String content, String images, String experience) {
+            String content, String images, int experience) {
         this.companyId = CompanyId;
         this.maxSalary = maxSalary;
         this.minSalary = minSalary;
