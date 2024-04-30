@@ -37,10 +37,9 @@
 		<!-- https://mvnrepository.com/artifact/org.python/jython -->
 		<dependency>
 			<groupId>org.python</groupId>
-			<artifactId>jython</artifactId>
-			<version>2.7.4b1</version>
+			<artifactId>jython-standalone</artifactId>
+			<version>2.7.1</version>
 		</dependency>
-
 		 <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-devtools</artifactId>

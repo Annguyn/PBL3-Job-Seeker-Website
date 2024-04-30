@@ -1,10 +1,7 @@
 package com.backend.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @AllArgsConstructor
@@ -65,9 +62,7 @@ public class PredictionForm {
     private Integer comtor;
     private int locationNumber;
 
-    private Post post;
-
-    public PredictionForm() {
+    public PredictionForm(Post post) {
             this.experience = 0;
             this.levelNumber = 0;
             this.python = 0;
@@ -121,11 +116,11 @@ public class PredictionForm {
             this.tester = 0;
             this.comtor = 0;
             this.locationNumber = 0;
-        this.experience = this.post.getExperience();
-        this.levelNumber = this.post.getLevel().getId();
-        this.locationNumber = this.post.getLocation().getId();
+        this.experience = post.getExperience();
+        this.levelNumber = post.getLevel().getId();
+        this.locationNumber = post.getLocation().getId();
 
-        for(ProgramingLanguage language : this.post.getProgramingLanguages()){
+        for(ProgramingLanguage language : post.getProgramingLanguages()){
             switch (language.getName()) {
                 case "Python":
                     this.python = 1;
@@ -200,7 +195,7 @@ public class PredictionForm {
                     break;
             }
         }
-        for(Category category : this.post.getCategories()) {
+        for(Category category : post.getCategories()) {
             switch (category.getName()) {
                 case "Web":
                     this.web = 1;

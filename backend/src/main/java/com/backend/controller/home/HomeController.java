@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.backend.entity.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,11 +15,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.backend.dto.UserDto;
-import com.backend.entity.Category;
-import com.backend.entity.Level;
-import com.backend.entity.Location;
-import com.backend.entity.Post;
-import com.backend.entity.User;
 import com.backend.repository.PostRepository;
 import com.backend.service.CategoryService;
 import com.backend.service.LevelService;

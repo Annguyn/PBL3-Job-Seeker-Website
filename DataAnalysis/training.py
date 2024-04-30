@@ -2,6 +2,26 @@ import pandas as pd
 import re
 import matplotlib.pyplot as plt
 import re
+import os
+from sklearn.base import BaseEstimator
+
+class CombinedModel(BaseEstimator):
+    def __init__(self, model1, model2, weight1=0.6, weight2=0.4):
+        self.model1 = model1
+        self.model2 = model2
+        self.weight1 = weight1
+        self.weight2 = weight2
+
+    def fit(self, X, y):
+        # This assumes that model1 and model2 have already been fit
+        pass
+
+    def predict(self, X):
+        y_pred1 = self.model1.predict(X)
+        y_pred2 = self.model2.predict(X)
+        return self.weight1 * y_pred1 + self.weight2 * y_pred2
+
+
 data = pd.read_csv("analyzed_data.csv")
 data.columns
 
@@ -107,10 +127,25 @@ print("Validation set:", y_pred_logistic_valid)
 combined_y_pred_train = 0.6 * y_pred_linear_train + 0.4 * y_pred_logistic_train
 combined_y_pred_valid = 0.6 * y_pred_linear_valid + 0.4 * y_pred_logistic_valid
 
+
+import joblib
+
+# Create a dictionary that contains both models
+combined_model = {'logistic': logistic_model, 'linear': linear_model}
+
+# Save the combined model
+joblib.dump(combined_model, 'combined_model.pkl')
+
+
 # In ra kết quả dự đoán
 print("Combined Predictions:")
 print("Training set:", combined_y_pred_train)
 print("Validation set:", combined_y_pred_valid)
+combined_model = CombinedModel(linear_model, logistic_model)
+
+# Save the combined model
+joblib.dump(combined_model, 'combined_model.pkl')
+
 
 plt.figure(figsize=(10, 5))
 
