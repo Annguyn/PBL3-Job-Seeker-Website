@@ -1,7 +1,10 @@
 package com.backend.controller.admin;
 import com.backend.entity.PredictionForm;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.python.util.PythonInterpreter;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,7 +32,7 @@ public class PredictionController {
         data.put("Swift", predictionForm.getSwift());
         data.put("TypeScript", predictionForm.getTypeScript());
         data.put("Go", predictionForm.getGo());
-        data.put("Koltin", predictionForm.getKotlin());
+        data.put("Kotlin", predictionForm.getKotlin());
         data.put("Rust", predictionForm.getRust());
         data.put("Lua", predictionForm.getLua());
         data.put("Perl", predictionForm.getPerl());
@@ -37,7 +40,7 @@ public class PredictionController {
         data.put("HTML", predictionForm.getHtml());
         data.put("CSS", predictionForm.getCss());
         data.put("R", predictionForm.getR());
-        data.put("Matlab", predictionForm.getMatlab());
+        data.put("MATLAB", predictionForm.getMatlab());
         data.put("Shell", predictionForm.getShell());
         data.put("Assembly", predictionForm.getAssembly());
         data.put(".NET", predictionForm.getDotNet());
@@ -47,9 +50,9 @@ public class PredictionController {
 //        data.put("Tiếng Trung", predictionForm.getTiengTrung());
         data.put("Web", predictionForm.getWeb());
         data.put("Android", predictionForm.getAndroid());
-        data.put("iOS", predictionForm.getIos());
+        data.put("IOS", predictionForm.getIos());
         data.put("Backend", predictionForm.getBackend());
-        data.put("FrontEnd", predictionForm.getFrontend());
+        data.put("Frontend", predictionForm.getFrontend());
         data.put("Machine Learning", predictionForm.getMachineLearning());
         data.put("Data", predictionForm.getData());
         data.put("Game", predictionForm.getGame());
@@ -77,11 +80,37 @@ public class PredictionController {
             pyData.__setitem__(new PyString(entry.getKey()), PyJavaType.wrapJavaObject(entry.getValue()));
         }
 
-        try (PythonInterpreter pyInterp = new PythonInterpreter()) {
-            pyInterp.execfile("C:\\Users\\nguye\\OneDrive - The University of Technology\\GITHUB CLONE REPO\\PBL3-Applying-AI-to-analyze-recruitment-information-on-Facebook\\DataAnalysis\\script.py");
-            PyObject predictFunc = pyInterp.get("predict");
-            PyObject result = predictFunc.__call__(pyData);
-            return result.asDouble();
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            String jsonData = mapper.writeValueAsString(data); // Convert the data map to JSON string
+            jsonData = jsonData.replace("\"", "\\\""); // Escape the double quotes in the JSON string
+            ProcessBuilder pb = new ProcessBuilder("python","C:\\Users\\nguye\\OneDrive - The University of Technology\\GITHUB CLONE REPO\\PBL3-Applying-AI-to-analyze-recruitment-information-on-Facebook\\DataAnalysis\\training.py", jsonData);
+            Process p = pb.start();
+            System.out.println("Json Data " + jsonData);
+            BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+            System.out.println("Here is the standard output of the command:\n");
+            String s = null;
+            while ((s = stdInput.readLine()) != null) {
+                System.out.println(s);
+            }
+
+// read any errors from the attempted command
+            System.out.println("Here is the standard error of the command (if any):\n");
+            while ((s = stdError.readLine()) != null) {
+                System.out.println(s);
+            }
+            BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            String ret = in.readLine();
+            if (ret != null) {
+                return Double.parseDouble(ret);
+            } else {
+                System.out.println("Python script didn't return any output");
+                return null;
+            }
+        } catch(Exception e) {
+            System.out.println("Error is :  " + e);
+            return null;
         }
     }
 }

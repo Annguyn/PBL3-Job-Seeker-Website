@@ -99,7 +99,7 @@
                                     <div class="data-transformer"></div>
                                     <div class="data-transformer1"></div>
                                 </div>
-                                <div class="caption301">My Applications</div>
+                                <a th:href="@{/jobApplied}" class="caption301">My Applications</a>
                             </div>
                             <div class="sidebar-menu35">
                                 <img
@@ -108,7 +108,7 @@
                                     th:src="@{images/icon-216.svg}"
                                 />
 
-                                <div class="caption302">Find Jobs</div>
+                                <a  th:href="@{/findjobs}"class="caption302">Find Jobs</a>
                             </div>
                             <div class="sidebar-menu36">
                                 <img
@@ -126,9 +126,9 @@
                                     th:src="@{images/icon-41.svg}"
                                 />
 
-                                <div class="caption304">
-                                    My /images Profile
-                                </div>
+                                <a  th:href="@{/profile}" class="caption304">
+                                    My Profile
+                                </a>
                             </div>
                         </div>
                         <div class="data-replacer"></div>
@@ -144,7 +144,7 @@
                                         th:src="@{images/icon-51.svg}"
                                     />
 
-                                    <div class="caption305">Settings</div>
+                                    <a th:href="@{/profileSettingUser}"  class="caption305">Settings</a>
                                 </div>
                                 <div class="sidebar-menu39">
                                     <img
@@ -208,7 +208,7 @@
                     </div>
                     <div class="action4">
                         <button class="button65">
-                            <b class="caption307">Back to homepage</b>
+                            <a th:href="@{/home}" class="caption307">Back to homepage</a>
                         </button>
                         <div class="data-torus">
                             <img

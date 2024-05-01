@@ -15,4 +15,5 @@ Boolean checkPasswordUser(String email,String password);
     Boolean checkUserbyEmail(String email);
     User getUserbyEmail(String email);
     List<User> getAllUsers();
+    void save(User user);
 }

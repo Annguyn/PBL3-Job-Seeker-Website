@@ -75,23 +75,24 @@
                   </div>
                 </div>
               </div>
-              <div class="sidebar-menu2">
-                <img class="icon2" alt=""th:src="@{./images/Company/icon-2.svg}" />
-
+              <a  th:href="@{/profile}" class="sidebar-menu2">
+<!--                <a th:href="@{/profile}" class="fill-div">-->
+                <img class="icon2" alt="" th:src="@{./images/Company/icon-2.svg}" />
                 <div class="caption2">Company Profile</div>
-              </div>
+<!--                </a>-->
+              </a>
               <div class="sidebar-menu3">
                 <img class="icon3" alt=""th:src="@{./images/Company/icon-3.svg}" />
 
-                <div class="caption3">All Applicants</div>
+                <a th:href="@{/allApplicants}" class="caption3">All Applicants</a>
               </div>
               <div class="sidebar-menu4">
-                <img class="icon4" alt=""th:src="@{./images/Company/icon-4.svg}" />
+                <img class="icon4" alt="" th:src="@{./images/Company/icon-4.svg}" />
 
-                <div class="caption4">Job Listing</div>
+                <a class="caption4" th:href="@{/joblisting}">Job Listing</a>
               </div>
               <div class="sidebar-menu5">
-                <img class="icon5" alt=""th:src="@{./images/Company/icon-5.svg}" />
+                <img class="icon5" alt="" th:src="@{./images/Company/icon-5.svg}" />
 
                 <div class="caption5">My Schedule</div>
               </div>
@@ -110,10 +111,10 @@
                 <div class="sidebar-menu7">
                   <img class="icon7" alt=""th:src="@{./images/Company/icon-7.svg}" />
 
-                  <div class="caption7">Settings</div>
+                  <a class="caption7" th:href="@{/settings}">Settings</a>
                 </div>
                 <div class="sidebar-menu8">
-                  <img class="icon8" alt=""th:src="@{./images/Company/icon-8.svg}" />
+                  <img class="icon8" alt="" th:src="@{./images/Company/icon-8.svg}" />
 
                   <div class="caption8">Help Center</div>
                 </div>

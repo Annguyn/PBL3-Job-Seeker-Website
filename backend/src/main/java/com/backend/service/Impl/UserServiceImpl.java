@@ -62,5 +62,8 @@ public class UserServiceImpl implements UserService {
     public java.util.List<User> getAllUsers() {
         return userRepository.getAllUser();
     }
-
+    @Override
+    public void save(User user) {
+        userRepository.save(user);
+    }
 }

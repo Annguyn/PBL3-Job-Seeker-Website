@@ -1,7 +1,13 @@
 package com.backend.controller.admin;
 
+import com.backend.entity.Application;
 import com.backend.entity.Company;
+import com.backend.entity.Post;
+import com.backend.entity.User;
+import com.backend.repository.ApplicationRepository;
 import com.backend.repository.CompanyRepository;
+import com.backend.repository.PostRepository;
+import com.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -18,11 +24,19 @@ import java.util.List;
 public class ImageController {
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private PostRepository postRepository;
+
+    @Autowired
+    private ApplicationRepository applicationRepository;
+    @Autowired
     private CompanyRepository companyRepository;
 
-    @GetMapping("/image/{id}")
-    public ResponseEntity<byte[]> getImage(@PathVariable int id) {
-        Company company = companyRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid company Id:" + id));
+    @GetMapping("/company/image/{id}")
+    public ResponseEntity<byte[]> getCompanyImage(@PathVariable int id) {
+        Company company = companyRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
         byte[] image = company.getAvatar();
 
         HttpHeaders headers = new HttpHeaders();
@@ -32,6 +46,41 @@ public class ImageController {
         return new ResponseEntity<>(image, headers, HttpStatus.OK);
     }
 
+    @GetMapping("/user/image/{id}")
+    public ResponseEntity<byte[]> getUserImage(@PathVariable int id) {
+        User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        byte[] image = user.getPhoto();
+
+        HttpHeaders headers = new HttpHeaders();
+        MediaType mediaType = getImageMediaType(image);
+        headers.setContentType(mediaType);
+
+        return new ResponseEntity<>(image, headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/post/image/{id}")
+    public ResponseEntity<byte[]> getPostImage(@PathVariable int id) {
+        Post post = postRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid post Id:" + id));
+        byte[] image = post.getImages();
+
+        HttpHeaders headers = new HttpHeaders();
+        MediaType mediaType = getImageMediaType(image);
+        headers.setContentType(mediaType);
+
+        return new ResponseEntity<>(image, headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/application/resume/{id}")
+    public ResponseEntity<byte[]> getApplicationResume(@PathVariable int id) {
+        Application application = applicationRepository.findById(id) ;
+        byte[] resume = application.getResume();
+
+        HttpHeaders headers = new HttpHeaders();
+        MediaType mediaType = getImageMediaType(resume);
+        headers.setContentType(mediaType);
+
+        return new ResponseEntity<>(resume, headers, HttpStatus.OK);
+    }
     private MediaType getImageMediaType(byte[] image) {
         if (startsWith(image, new byte[]{(byte) 0x89, (byte) 0x50, (byte) 0x4E, (byte) 0x47})) {
             return MediaType.IMAGE_PNG;

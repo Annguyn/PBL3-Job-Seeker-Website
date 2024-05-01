@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"></html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"></html>
 <html>
     <head>
         <meta charset="utf-8" />
@@ -269,7 +269,7 @@
                     <div class="lists">
                         <div th:each="post : ${page}" class="job-list35">
                           <div class="main-content">
-                            <img class="company-logo-icon33" loading="lazy" th:src="@{/image/{id}(id=${post.getCompany().getId()})}" alt="Company Avatar" />
+                            <img class="company-logo-icon33" loading="lazy" th:src="@{/company/image/{id}(id=${post.getCompany().id})}" alt="Company Avatar" />
 
                             <div class="job-title29">
                               <div class="social-media-assistant29" th:text="${post.categories[0].name+' Engineer'}">
@@ -339,6 +339,7 @@
                     <div class="left-frame">
                         <div class="left3">
                             <div class="logo-28">
+                                <a class="fill-div" th:href="@{/home}">.
                                 <div class="logo-2-inner2">
                                     <img
                                         class="frame-child67"
@@ -347,6 +348,7 @@
                                     />
                                 </div>
                                 <h3 class="jobhuntly14">JobHuntly</h3>
+                                </a>
                             </div>
                             <div class="great-platform-for4">
                                 Great platform for the job seeker that

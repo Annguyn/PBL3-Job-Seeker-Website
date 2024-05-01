@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
 </html>
 <html>
 
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="initial-scale=1, width=device-width" />
 
+  <meta name="viewport" content="initial-scale=1, width=device-width" />
+  <script th:src="@{./js/index.js}"></script>
   <link rel="stylesheet" th:href="@{/css/global.css}" />
   <link rel="stylesheet" th:href="@{/css/index.css}" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red Hat Display:wght@700&display=swap" />
@@ -294,6 +295,7 @@
       <div class="list">
         <div class="row-11">
           <div class="job-list">
+            <a class="fill-div" th:href="@{/jobdetails(id=${posts[0].getId()})}">
             <div class="header1">
               <img class="company-logo-icon1" alt="" th:src="@{/images/company-logo-1@2x.png}" />
 
@@ -321,8 +323,10 @@
                 <div class="caption11" th:text="${posts[0].programingLanguages[0].name}" ></div>
               </button>
             </div>
+            </a>
           </div>
           <div class="job-list1">
+            <a class="fill-div" th:href="@{/jobdetails(id=${posts[1].getId()})}">
             <div class="header2">
               <img class="company-logo-icon2" alt="" th:src="@{/images/company-logo-2.svg}" />
 
@@ -351,8 +355,10 @@
                 <div class="caption13" th:text="${posts[1].programingLanguages[0].name}"></div>
               </button>
             </div>
+            </a>
           </div>
           <div class="job-list2">
+            <a class="fill-div" th:href="@{/jobdetails(id=${posts[2].getId()})}">
             <div class="header3">
               <img class="company-logo-icon3" alt="" th:src="@{/images/company-logo-3@2x.png}" />
 
@@ -380,8 +386,10 @@
                 <div class="caption15" th:text="${posts[2].programingLanguages[0].name}"></div>
               </div>
             </button>
+            </a>
           </div>
           <div class="job-list3">
+            <a class="fill-div" th:href="@{/jobdetails(id=${posts[3].getId()})}">
             <div class="header4">
               <img class="company-logo-icon4" alt="" th:src="@{/images/company-logo-4@2x.png}" />
 
@@ -409,10 +417,12 @@
                 <div class="caption17" th:text="${posts[3].programingLanguages[0].name}"></div>
               </button>
             </button>
+            </a>
           </div>
         </div>
         <div class="row-21">
           <div class="job-list4">
+            <a class="fill-div" th:href="@{/jobdetails(id=${posts[4].getId()})}">
             <div class="header5">
               <img class="company-logo-icon5" alt="" th:src="@{/images/company-logo-5@2x.png}" />
 
@@ -440,8 +450,10 @@
                 <div class="caption19" th:text="${posts[4].programingLanguages[0].name}"></div>
               </button>
             </div>
+            </a>
           </div>
           <div class="job-list5">
+            <a class="fill-div" th:href="@{/jobdetails(id=${posts[5].getId()})}">
             <div class="header6">
               <button class="company-logo1">
                 <div class="container-logo-title"></div>
@@ -472,8 +484,10 @@
                 <div class="caption21" th:text="${posts[5].programingLanguages[0].name}"></div>
               </button>
             </div>
+            </a>
           </div>
           <div class="job-list6">
+            <a class="fill-div" th:href="@{/jobdetails(id=${posts[6].getId()})}">
             <div class="header7">
               <img class="company-logo-icon6" alt="" th:src="@{/images/company-logo-6@2x.png}" />
 
@@ -501,8 +515,10 @@
                 <div class="caption23" th:text="${posts[6].programingLanguages[0].name}"></div>
               </div>
             </button>
+            </a>
           </div>
           <div class="job-list7">
+            <a class="fill-div" th:href="@{/jobdetails(id=${posts[7].getId()})}">
             <div class="header8">
               <img class="company-logo-icon7" alt="" th:src="@{/images/company-logo-7@2x.png}" />
 
@@ -531,6 +547,7 @@
                 <div class="caption25" th:text="${posts[7].programingLanguages[0].name}"></div>
               </div>
             </button>
+            </a>
           </div>
         </div>
       </div>
@@ -560,8 +577,8 @@
           <div class="col-1">
             <div class="job-list8">
               <img class="company-logo-icon8" alt="" th:src="@{/images/company-logo-8.svg}" />
-
-              <div class="job-title1">
+            <div class="job-title1">
+              <a class="fill-div" th:href="@{/jobdetails(id=${posts_newest[0].getId()})}">
                 <div class="social-media-assistant"  th:text="${posts_newest[0].categories[0].name + ' Engineer'}"></div>
                 <div class="company-name-location-job">
                   <div class="nomad">Nomad</div>
@@ -584,12 +601,15 @@
                     <div  class="caption28" th:text="${posts_newest[0].programingLanguages[0].name}"></div>
                   </button>
                 </div>
+              </a>
               </div>
             </div>
             <div class="job-list9">
               <img class="company-logo-icon9" alt="" th:src="@{/images/company-logo-9.svg}" />
 
               <div class="job-title2">
+                <a class="fill-div" th:href="@{/jobdetails(id=${posts_newest[1].getId()})}">
+
                 <div class="social-media-assistant1" th:text="${posts_newest[1].categories[1] + ' Engineer'}"></div>
                 <div class="company-name-location-job1">
                   <div class="nomad1">Dropbox</div>
@@ -612,12 +632,14 @@
                     <div class="caption31"  th:text="${posts_newest[1].programingLanguages[0].name}"></div>
                   </button>
                 </div>
+                </a>
               </div>
             </div>
             <div class="job-list10">
               <img class="company-logo-icon10" alt="" th:src="@{/images/company-logo-10.svg}" />
 
               <div class="job-title3">
+                <a class="fill-div" th:href="@{/jobdetails(id=${posts_newest[2].getId()})}">
                 <div class="social-media-assistant2" th:text="${posts_newest[2].categories[0].name + ' Engineer'}"></div>
                 <div class="company-name-location-job2">
                   <div class="nomad2">Terraform</div>
@@ -640,12 +662,14 @@
                     <div class="caption34" th:text="${posts[2].programingLanguages[0].name}"></div>
                   </button>
                 </div>
+                  </a>
               </div>
             </div>
             <div class="job-list11">
               <img class="company-logo-icon11" alt="" th:src="@{/images/company-logo-11.svg}" />
 
               <div class="job-title4">
+                <a class="fill-div" th:href="@{/jobdetails(id=${posts_newest[3].getId()})}">
                 <div class="social-media-assistant3" th:text="${posts_newest[3].categories[0].name + ' Engineer'}" ></div>
                 <div class="company-name-location-job3">
                   <div class="nomad3">Packer</div>
@@ -668,6 +692,7 @@
                     <div class="caption37" th:text="${posts_newest[3].programingLanguages[0].name}"></div>
                   </button>
                 </div>
+                </a>
               </div>
             </div>
           </div>
@@ -676,6 +701,7 @@
               <img class="company-logo-icon12" alt="" th:src="@{/images/company-logo-12@2x.png}" />
 
               <div class="job-title5">
+                <a class="fill-div" th:href="@{/jobdetails(id=${posts_newest[4].getId()})}">
                 <div class="social-media-assistant4" th:text="${posts_newest[4].categories[0].name + 'Engineer'}"></div>
                 <div class="company-name-location-job4">
                   <div class="nomad4">Netlify</div>
@@ -698,12 +724,14 @@
                     <div class="caption40" th:text="${posts_newest[4].programingLanguages[0].name}"></div>
                   </button>
                 </div>
+                </a>
               </div>
             </div>
             <div class="job-list13">
               <img class="company-logo-icon13" alt="" th:src="@{/images/company-logo-13@2x.png}" />
 
               <div class="job-title6">
+                <a class="fill-div" th:href="@{/jobdetails(id=${posts_newest[5].getId()})}">
                 <div class="social-media-assistant5" th:text="${posts_newest[5].categories[0].name + ' Engineer'}"></div>
                 <div class="company-name-location-job5">
                   <div class="nomad5">Maze</div>
@@ -726,12 +754,14 @@
                     <div class="caption43" th:text="${posts_newest[5].programingLanguages[0].name}"></div>
                   </button>
                 </div>
+                </a>
               </div>
             </div>
             <div class="job-list14">
               <img class="company-logo-icon14" alt="" th:src="@{/images/company-logo-14@2x.png}" />
 
               <div class="job-title7">
+                <a class="fill-div" th:href="@{/jobdetails(id=${posts_newest[6].getId()})}">
                 <div class="social-media-assistant6" th:text="${posts_newest[6].categories[0].name + ' Engineer'}">
                 </div>
                 <div class="company-name-location-job6">
@@ -755,11 +785,13 @@
                     <div class="caption46" th:text="${posts_newest[6].programingLanguages[0].name}"></div>
                   </button>
                 </div>
+                </a>
               </div>
             </div>
             <div class="job-list15">
               <img class="company-logo-icon15" alt="" th:src="@{/images/company-logo-15@2x.png}" />
               <div class="job-title8">
+                <a class="fill-div" th:href="@{/jobdetails(id=${posts_newest[7].getId()})}">
                 <div class="social-media-assistant7" th:text="${posts_newest[7].categories[0].name + ' Engineer'}"></div>
                 <div class="company-name-location-job7">
                   <div class="nomad7">Webflow</div>
@@ -782,6 +814,7 @@
                     <div class="caption49" th:text="${posts_newest[7].programingLanguages[0].name}"></div>
                   </button>
                 </div>
+                </a>
               </div>
             </div>
           </div>

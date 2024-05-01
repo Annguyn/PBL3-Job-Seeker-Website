@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"></html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"></html>
 <html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
 
-    <link rel="stylesheet" href="../static/css/global.css" />
-    <link rel="stylesheet" href="../static/css/dashboard-profile.css" />
+    <link rel="stylesheet" th:href="@{/css/global.css}" />
+    <link rel="stylesheet" th:href="@{/css/dashboard-profile.css}" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Red Hat Display:wght@700&display=swap"
@@ -35,15 +35,17 @@
           <div class="menu15">
             <div class="logic-gate2">
               <div class="logo-29">
+                <a class="fill-div" th:href="@{/home}">
                 <div class="logo-2-inner3">
                   <img
                     class="frame-child68"
                     loading="lazy"
                     alt=""
-                    src="./../static/images/frame-32.svg"
+                   th:src="@{/images/frame-32.svg}"
                   />
                 </div>
                 <h3 class="jobhuntly15">JobHuntly</h3>
+                </a>
               </div>
             </div>
             <div class="main-menu">
@@ -53,14 +55,14 @@
                     class="icon101"
                     loading="lazy"
                     alt=""
-                    src="./../static/images/icon2.svg"
+                   th:src="@{/images/icon2.svg}"
                   />
 
-                  <div class="caption191">Dashboard</div>
+                  <a th:href="@{/dashboard}" class="caption191">Dashboard</a>
                 </div>
                 <div class="sidebar-menu1">
                   <div class="icon-parent14">
-                    <img class="icon102" alt="" src="./../static/images/icon-111.svg" />
+                    <img class="icon102" alt=""th:src="@{/images/icon-111.svg}" />
 
                     <div class="caption192">Messages</div>
                   </div>
@@ -76,21 +78,21 @@
                     <img
                       class="vector-stroke-icon"
                       alt=""
-                      src="./../static/images/vector-stroke.svg"
+                     th:src="@{/images/vector-stroke.svg}"
                     />
 
                     <div class="icon-child"></div>
                     <div class="icon-item"></div>
                   </div>
-                  <div class="caption193">My Applications</div>
+                  <a th:href="@{/jobApplied}" class="caption193">My Applications</a>
                 </div>
                 <div class="sidebar-menu3">
-                  <img class="icon104" alt="" src="./../static/images/icon-210.svg" />
+                  <img class="icon104" alt=""th:src="@{/images/icon-210.svg}" />
 
-                  <div class="caption194">Find Jobs</div>
+                  <a th:href="@{/findjobs}" class="caption194">Find Jobs</a>
                 </div>
                 <div class="sidebar-menu4">
-                  <img class="icon105" alt="" src="./../static/images/icon-32.svg" />
+                  <img class="icon105" alt=""th:src="@{/images/icon-32.svg}" />
 
                   <div class="caption195">Browse Companies</div>
                 </div>
@@ -99,13 +101,13 @@
                     <img
                       class="indicator-icon"
                       alt=""
-                      src="./../static/images/indicator.svg"
+                     th:src="@{/images/indicator.svg}"
                     />
                   </div>
                   <div class="menu17">
-                    <img class="icon106" alt="" src="./../static/images/icon-41.svg" />
+                    <img class="icon106" alt=""th:src="@{/images/icon-41.svg}" />
 
-                    <div class="caption196">My ../static/images Profile</div>
+                    <div class="caption196">My Profile</div>
                   </div>
                 </button>
               </div>
@@ -116,12 +118,12 @@
                 </div>
                 <div class="menu18">
                   <div class="sidebar-menu6">
-                    <img class="icon107" alt="" src="./../static/images/icon-51.svg" />
+                    <img class="icon107" alt=""th:src="@{/images/icon-51.svg}" />
 
-                    <div class="caption197">Settings</div>
+                    <a th:href="@{/profileSettingUser}" class="caption197">Settings</a>
                   </div>
                   <div class="sidebar-menu7">
-                    <img class="icon108" alt="" src="./../static/images/icon-61.svg" />
+                    <img class="icon108" alt=""th:src="@{/images/icon-61.svg}" />
 
                     <div class="caption198">Help Center</div>
                   </div>
@@ -137,7 +139,7 @@
               <div class="frame1">
                 <div class="logout">
                   <div class="icon-wrapper14">
-                    <img class="icon109" alt="" src="./../static/images/icon-71.svg" />
+                    <img class="icon109" alt=""th:src="@{/images/icon-71.svg}" />
                   </div>
                   <div class="logout1">Logout</div>
                 </div>
@@ -150,14 +152,14 @@
                   class="avatar-icon2"
                   loading="lazy"
                   alt=""
-                  src="./../static/images/avatar1@2x.png"
+                 th:src="@{/images/avatar1@2x.png}"
                 />
 
                 <div class="name-email">
                   <div class="jake-gyll-wrapper">
-                    <div class="jake-gyll3">Jake Gyll</div>
+                    <div class="jake-gyll3" th:text="${user.getUserDisplayName()}"></div>
                   </div>
-                  <div class="jakegyllemailcom3">jakegyll@email.com</div>
+                  <div class="jakegyllemailcom3" th:text="${user.getEmail()}"></div>
                 </div>
               </div>
             </div>
@@ -172,14 +174,14 @@
             </div>
             <div class="action">
               <button class="button39">
-                <b class="caption199">Back to homepage</b>
+                <a th:href="@{/home}" class="caption199">Back to homepage</a>
               </button>
               <div class="notification-wrapper">
                 <img
                   class="notification-icon1"
                   loading="lazy"
                   alt=""
-                  src="./../static/images/notification.svg"
+                 th:src="@{/images/notification.svg}"
                 />
               </div>
             </div>
@@ -192,7 +194,7 @@
                     <img
                       class="header-photo-icon"
                       alt=""
-                      src="./../static/images/header-photo@2x.png"
+                     th:src="@{/images/header-photo@2x.png}"
                     />
 
                     <div class="wrapper-photo-wrapper">
@@ -200,39 +202,37 @@
                         <img
                           class="photo-icon"
                           loading="lazy"
-                          alt=""
-                          src="./../static/images/photo@2x.png"
+                          th:if="${user.getPhoto() != null}" th:src="@{/user/image/{id}(id=${user.getID()})}" alt="User Avatar"
                         />
                       </div>
                     </div>
                     <div class="edit">
-                      <img class="icon110" alt="" src="./../static/images/icon-82.svg" />
+                      <img class="icon110" alt="" th:src="@{/images/icon-82.svg}" />
                     </div>
                   </div>
                   <div class="content8">
                     <div class="name3">
-                      <h3 class="jake-gyll4">Jake Gyll</h3>
+                      <h3 class="jake-gyll4" th:text="${user.getUserDisplayName()}"></h3>
                       <div class="product-designer-at-container">
                         <span>
-                          <span>Product Designer at</span>
-                          <span class="span9"> </span>
+                          <span class="span9" th:text="${user.major}"> </span>
                         </span>
-                        <span class="twitter">Twitter</span>
+
                       </div>
                       <div class="location2">
                         <img
                           class="icon111"
                           alt=""
-                          src="./../static/images/icon-91.svg"
+                         th:src="@{/images/icon-91.svg}"
                         />
 
-                        <div class="manchester-uk">Manchester, UK</div>
+                        <div class="manchester-uk" th:text="${user.location.name}"></div>
                       </div>
                       <button class="open-for-opportunities">
                         <img
                           class="icon112"
                           alt=""
-                          src="./../static/images/icon-101.svg"
+                         th:src="@{/images/icon-101.svg}"
                         />
 
                         <div class="open-for-opportunities1">
@@ -241,7 +241,7 @@
                       </button>
                     </div>
                     <button class="button40">
-                      <b class="caption200">Edit Profile</b>
+                      <a th:href="@{/profileSettingUser}" class="caption200">Edit Profile</a>
                     </button>
                   </div>
                 </div>
@@ -252,17 +252,17 @@
                       <input class="icon113" type="checkbox" />
                     </div>
                   </div>
-                  <div class="im-a-product">
-                    I’m a product designer + filmmaker currently working
-                    remotely at Twitter from beautiful Manchester, United
-                    Kingdom. I’m passionate about designing digital products
-                    that have a positive impact on the world.
+                  <div class="im-a-product" th:text="${user.getBio()}">
                   </div>
-                  <div class="for-10-years">
-                    For 10 years, I’ve specialised in interface, experience &
-                    interaction design as well as working in user research and
-                    product strategy for product agencies, big tech companies &
-                    start-ups.
+                </div>
+                <div class="applicant-dashboard-about-me">
+                  <div class="about-me-parent">
+                    <div class="about-me">Additional Information</div>
+                    <div class="button41">
+                      <input class="icon113" type="checkbox" />
+                    </div>
+                  </div>
+                  <div class="im-a-product" th:text="${user.getBio()}">
                   </div>
                 </div>
                 <div class="applicant-dashboard-experien">
@@ -271,7 +271,7 @@
                       <div class="experiences">Experiences</div>
                     </div>
                     <div class="edit1">
-                      <img class="icon114" alt="" src="./../static/images/icon-121.svg" />
+                      <img class="icon114" alt=""th:src="@{/images/icon-121.svg}" />
                     </div>
                   </div>
                   <div class="experience-card">
@@ -279,7 +279,7 @@
                       class="company-logo-icon39"
                       loading="lazy"
                       alt=""
-                      src="./../static/images/company-logo3@2x.png"
+                     th:src="@{/images/company-logo3@2x.png}"
                     />
 
                     <div class="main-content7">
@@ -324,7 +324,7 @@
                     <img
                       class="company-logo-icon40"
                       alt=""
-                      src="./../static/images/company-logo-17@2x.png"
+                     th:src="@{/images/company-logo-17@2x.png}"
                     />
 
                     <div class="main-content8">
@@ -376,14 +376,14 @@
                       <div class="educations">Educations</div>
                     </div>
                     <div class="edit2">
-                      <img class="icon119" alt="" src="./../static/images/icon-121.svg" />
+                      <img class="icon119" alt=""th:src="@{/images/icon-121.svg}" />
                     </div>
                   </div>
                   <div class="education-card">
                     <img
                       class="company-logo-icon41"
                       alt=""
-                      src="./../static/images/company-logo-23@2x.png"
+                     th:src="@{/images/company-logo-23@2x.png}"
                     />
 
                     <div class="main-content9">
@@ -416,7 +416,7 @@
                     <img
                       class="company-logo-icon42"
                       alt=""
-                      src="./../static/images/company-logo-33@2x.png"
+                     th:src="@{/images/company-logo-33@2x.png}"
                     />
 
                     <div class="main-content10">
@@ -458,28 +458,20 @@
                     </div>
                   </div>
                   <div class="email6">
-                    <img class="icon123" alt="" src="./../static/images/icon-191.svg" />
+                    <img class="icon123" alt=""th:src="@{/images/icon-191.svg}" />
 
                     <div class="content9">
                       <div class="email7">Email</div>
-                      <div class="jakegyllemailcom4">jakegyll@email.com</div>
+                      <div class="jakegyllemailcom4" th:text="${user.email}"></div>
                     </div>
                   </div>
                   <div class="email8">
-                    <img class="icon124" alt="" src="./../static/images/icon-202.svg" />
-
-                    <div class="content10">
-                      <div class="phone">Phone</div>
-                      <div class="div13">+44 1245 572 135</div>
-                    </div>
+                    <img class="icon124" alt=""th:src="@{/images/icon-202.svg}" />
+                    <div class="jakegyllemailcom4" th:text="${user.contactNumber}"></div>
                   </div>
                   <div class="email9">
-                    <img class="icon125" alt="" src="./../static/images/icon-213.svg" />
-
-                    <div class="content11">
-                      <div class="languages">Languages</div>
-                      <div class="english-french">English, French</div>
-                    </div>
+                    <img class="icon125" alt=""th:src="@{/images/icon-213.svg}" />
+                    <div class="jakegyllemailcom4" th:text="${user.dob}"></div>
                   </div>
                 </div>
                 <div class="social-links">
@@ -490,29 +482,28 @@
                     </div>
                   </div>
                   <div class="email10">
-                    <img class="icon127" alt="" src="./../static/images/icon-232.svg" />
+                    <img class="icon127" alt=""th:src="@{/images/icon-232.svg}" />
 
                     <div class="content12">
-                      <div class="instagram">Instagram</div>
-                      <div class="instagramcomjakegyll">
-                        instagram.com/jakegyll
+                      <div class="instagram">Github</div>
+                      <div class="instagramcomjakegyll" th:text="${user.github}">
                       </div>
                     </div>
                   </div>
                   <div class="email11">
-                    <img class="icon128" alt="" src="./../static/images/icon-242.svg" />
+                    <img class="icon128" alt=""th:src="@{/images/icon-242.svg}" />
 
                     <div class="content13">
-                      <div class="twitter3">Twitter</div>
-                      <div class="twittercomjakegyll">twitter.com/jakegyll</div>
+                      <div class="twitter3">LinkedIn</div>
+                      <div class="twittercomjakegyll" th:text="${user.linkedin}"></div>
                     </div>
                   </div>
                   <div class="email12">
-                    <img class="icon129" alt="" src="./../static/images/icon-252.svg" />
+                    <img class="icon129" alt=""th:src="@{/images/icon-252.svg}" />
 
                     <div class="content14">
-                      <div class="website">Website</div>
-                      <div class="wwwjakegyllcom">www.jakegyll.com</div>
+                      <div class="website">Facebook</div>
+                      <div class="wwwjakegyllcom" th:text="${user.socialLink}"></div>
                     </div>
                   </div>
                 </div>
@@ -521,99 +512,6 @@
           </div>
         </section>
       </main>
-      <div class="number-set">
-        <div class="applicant-dashboard-skills">
-          <div class="image-processor1">
-            <div class="skills">Skills</div>
-            <div class="input-validator">
-              <div class="button48">
-                <img class="icon130" alt="" src="./../static/images/icon-262.svg" />
-              </div>
-              <div class="button49">
-                <input class="icon131" type="checkbox" />
-              </div>
-            </div>
-          </div>
-          <div class="tag-group">
-            <button class="tag18">
-              <div class="caption201">Communication</div>
-            </button>
-            <button class="tag19">
-              <div class="caption202">Analytics</div>
-            </button>
-            <button class="tag20">
-              <div class="caption203">Facebook Ads</div>
-            </button>
-            <button class="tag21">
-              <div class="caption204">Content Planning</div>
-            </button>
-          </div>
-          <button class="tag22">
-            <div class="caption205">Community Manager</div>
-          </button>
-        </div>
-      </div>
-      <div class="applicant-dashboard-portfoli-wrapper">
-        <div class="applicant-dashboard-portfoli">
-          <div class="frame-parent26">
-            <div class="portfolios-wrapper">
-              <div class="portfolios">Portfolios</div>
-            </div>
-            <div class="button50">
-              <img class="icon132" alt="" src="./../static/images/icon-282.svg" />
-            </div>
-          </div>
-          <div class="list3">
-            <div class="porrfolio-1">
-              <img
-                class="image-3-icon"
-                loading="lazy"
-                alt=""
-                src="./../static/images/image-3@2x.png"
-              />
-
-              <div class="clinically-clinic">
-                Clinically - clinic & health care website
-              </div>
-            </div>
-            <div class="porrfolio-2">
-              <img
-                class="image-3-icon1"
-                alt=""
-                src="./../static/images/image-3-1@2x.png"
-              />
-
-              <div class="growthly-saas">
-                Growthly - SaaS Analytics & Sales Website
-              </div>
-            </div>
-            <div class="porrfolio-3">
-              <img
-                class="image-3-icon2"
-                alt=""
-                src="./../static/images/image-3-2@2x.png"
-              />
-
-              <div class="planna-project">Planna - Project Management App</div>
-            </div>
-            <div class="porrfolio-4">
-              <img
-                class="image-3-icon3"
-                alt=""
-                src="./../static/images/image-3-3@2x.png"
-              />
-
-              <div class="funiro-landing">
-                Funiro - Landing Page for furniture shop
-              </div>
-            </div>
-          </div>
-          <div class="slider">
-            <div class="slider-child"></div>
-            <div class="slider-item"></div>
-          </div>
-        </div>
-      </div>
     </div>
   </body>
 </html>

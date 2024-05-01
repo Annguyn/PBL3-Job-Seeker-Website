@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> </html>
 <html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
 
-    <link rel="stylesheet" href="./global.css" />
-    <link rel="stylesheet" href="./dashboard-company-applicant-profile.css" />
+    <link rel="stylesheet" th:href="@{./css/Company/global.css}" />
+    <link rel="stylesheet" th:href="@{./css/Company/dashboard-company-applicant-profile.css}" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Red Hat Display:wght@700&display=swap"
@@ -34,7 +35,7 @@
                   class="frame-child12"
                   loading="lazy"
                   alt=""
-                  src="./public/frame-34.svg"
+                  th:src="@{./images/Company/frame-34.svg}"
                 />
               </div>
               <h3 class="jobhuntly4">JobHuntly</h3>
@@ -47,14 +48,14 @@
                   class="icon124"
                   loading="lazy"
                   alt=""
-                  src="./public/icon1.svg"
+                  th:src="@{./images/Company/icon1.svg}"
                 />
 
                 <div class="caption124">Dashboard</div>
               </div>
               <div class="sidebar-menu37">
                 <div class="icon-parent17">
-                  <img class="icon125" alt="" src="./public/icon-113.svg" />
+                  <img class="icon125" alt="" th:src="@{./images/Company/icon-113.svg}" />
 
                   <div class="caption125">Messages</div>
                 </div>
@@ -66,7 +67,7 @@
                 </div>
               </div>
               <div class="sidebar-menu38">
-                <img class="icon126" alt="" src="./public/icon-2.svg" />
+                <img class="icon126" alt="" th:src="@{./images/Company/icon-2.svg}" />
 
                 <div class="caption126">Company Profile</div>
               </div>
@@ -75,22 +76,22 @@
                   <img
                     class="indicator-icon4"
                     alt=""
-                    src="./public/indicator.svg"
+                    th:src="@{./images/Company/indicator.svg}"
                   />
                 </div>
                 <div class="menu18">
-                  <img class="icon127" alt="" src="./public/icon-35.svg" />
+                  <img class="icon127" alt="" th:src="@{./images/Company/icon-35.svg}" />
 
                   <div class="caption127">All Applicants</div>
                 </div>
               </button>
               <div class="sidebar-menu40">
-                <img class="icon128" alt="" src="./public/icon-4.svg" />
+                <img class="icon128" alt="" th:src="@{./images/Company/icon-4.svg}" />
 
                 <div class="caption128">Job Listing</div>
               </div>
               <div class="sidebar-menu41">
-                <img class="icon129" alt="" src="./public/icon-5.svg" />
+                <img class="icon129" alt="" th:src="@{./images/Company/icon-5.svg}" />
 
                 <div class="caption129">My Schedule</div>
               </div>
@@ -107,12 +108,12 @@
               </div>
               <div class="menu19">
                 <div class="sidebar-menu43">
-                  <img class="icon131" alt="" src="./public/icon-7.svg" />
+                  <img class="icon131" alt="" th:src="@{./images/Company/icon-7.svg}" />
 
                   <div class="caption131">Settings</div>
                 </div>
                 <div class="sidebar-menu44">
-                  <img class="icon132" alt="" src="./public/icon-8.svg" />
+                  <img class="icon132" alt="" th:src="@{./images/Company/icon-8.svg}" />
 
                   <div class="caption132">Help Center</div>
                 </div>
@@ -131,7 +132,7 @@
                   class="avatar-icon14"
                   loading="lazy"
                   alt=""
-                  src="./public/avatar@2x.png"
+                  th:src="@{./images/Company/avatar@2x.png}"
                 />
               </div>
               <div class="name-email4">
@@ -156,15 +157,15 @@
           <div class="job-list8">
             <img
               class="company-logo-icon8"
-              alt=""
-              src="./public/company-logo.svg"
+              th:if="${applyForm.getPost().getCompany().avatar}"
+              th:src="@{/company/image/{id}(id=${applyForm.getPost().getCompany().id})}" alt="Company Avatar"
             />
 
             <div class="job-title8">
               <div class="company4">Company</div>
               <div class="meta-tree">
-                <div class="nomad8">Nomad</div>
-                <img class="icon134" alt="" src="./public/icon-411.svg" />
+                <div class="nomad8" th:text="${applyForm.getPost().getCompany().getName()}"></div>
+                <img class="icon134" alt="" th:src="@{./images/Company/icon-411.svg}" />
               </div>
             </div>
           </div>
@@ -173,20 +174,20 @@
               class="notification-icon4"
               loading="lazy"
               alt=""
-              src="./public/notification4.svg"
+              th:src="@{./images/Company/notification4.svg}"
             />
 
             <button class="button8">
-              <img class="icon135" alt="" src="./public/icon-112.svg" />
+              <img class="icon135" alt="" th:src="@{./images/Company/icon-112.svg}" />
 
-              <b class="caption133">Post a job</b>
+              <a th:href="@{/postjobs}" class="caption133">Post a job</a>
             </button>
           </div>
         </header>
         <section class="top-nav7">
           <div class="data-aggregator-wrapper">
             <div class="data-aggregator2">
-              <img class="icon136" alt="" src="./public/icon-124.svg" />
+              <img class="icon136" alt="" th:src="@{./images/Company/icon-124.svg}" />
 
               <div class="branching-tree">
                 <h3 class="applicant-details">Applicant Details</h3>
@@ -195,41 +196,36 @@
           </div>
           <div class="button9">
             <div class="icon-wrapper2">
-              <img class="icon137" alt="" src="./public/icon-133.svg" />
+              <img class="icon137" alt="" th:src="@{./images/Company/icon-133.svg}" />
             </div>
             <b class="caption134">More Action</b>
           </div>
         </section>
-        <section class="binary-tree-leaf">
+        <section class="binary-tree-leaf" >
           <div class="binary-tree-internal">
             <div class="company-dashboard-applicant">
               <div class="header9">
                 <img
                   class="avatar-icon15"
-                  alt=""
-                  src="./public/avatar-11@2x.png"
+                  th:if="${applyForm.getUser().photo}"
+                  th:src="@{/user/image/{id}(id=${applyForm.getUser().getID()})}" alt="Company Avatar"
                 />
 
                 <div class="name10">
-                  <h3 class="jerome-bell">Jerome Bell</h3>
-                  <div class="product-designer">Product Designer</div>
-                  <div class="trie-edge">
-                    <img class="icon138" alt="" src="./public/icon-143.svg" />
-
-                    <div class="hash-table-key">4.0</div>
+                  <h3 class="jerome-bell" th:text="${applyForm.getFullName()}"></h3>
+                  <div class="product-designer" th:text="${applyForm.getCurrentPreviousJobTitle()}">-->
                   </div>
                 </div>
               </div>
               <div class="applied-jobs">
                 <div class="title5">
                   <div class="applied-jobs1">Applied Jobs</div>
-                  <div class="days-ago">2 days ago</div>
-                </div>
+                  <div class="days-ago" th:text="${applyForm.getDaysSinceApplied()} + ' days ago'"></div>                </div>
                 <div class="line4"></div>
                 <div class="jobs">
-                  <div class="product-development">Product Development</div>
+                  <div class="product-development" th:text="${applyForm.getPost().getTitle()}"></div>
                   <div class="company-name-location-job2">
-                    <div class="marketing">Marketing</div>
+                    <div class="marketing" th:text="${applyForm.getPost().getLocation()}"></div>
                     <div class="stack1">
                       <div class="tree-traversal"></div>
                     </div>
@@ -237,81 +233,48 @@
                   </div>
                 </div>
               </div>
-              <div class="applied-jobs2">
-                <div class="title6">
-                  <div class="stage1">Stage</div>
-                  <div class="hash-table-insertion">
-                    <div class="queue-pop">
-                      <div class="stack-push"></div>
-                    </div>
-                    <div class="interview">Interview</div>
-                  </div>
-                </div>
-                <div class="linked-list-remove">
-                  <div class="line5"></div>
-                  <div class="line6"></div>
-                  <div class="line7"></div>
-                  <div class="line8"></div>
-                </div>
-              </div>
-              <div class="buttons">
-                <button class="button10">
-                  <b class="caption135">Schedule Interview</b>
-                </button>
-                <button class="button11">
-                  <img class="icon139" alt="" src="./public/icon-152.svg" />
-                </button>
-              </div>
               <div class="line9"></div>
               <div class="social-links">
                 <div class="linked-list-merge">
                   <div class="contact">Contact</div>
                 </div>
                 <div class="email">
-                  <img class="icon140" alt="" src="./public/icon-162.svg" />
+                  <img class="icon140" alt="" th:src="@{./images/Company/icon-162.svg}" />
 
                   <div class="content5">
                     <div class="email1">Email</div>
-                    <div class="jeromebell45emailcom">
-                      jeromeBell45@email.com
+                    <div class="jeromebell45emailcom" th:text="${applyForm.getEmailAddress()}">
                     </div>
                   </div>
                 </div>
                 <div class="email2">
-                  <img class="icon141" alt="" src="./public/icon-171.svg" />
+                  <img class="icon141" alt="" th:src="@{./images/Company/icon-171.svg}" />
 
                   <div class="content6">
                     <div class="phone">Phone</div>
-                    <div class="div42">+44 1245 572 135</div>
+                    <div class="div42" th:text="${applyForm.getPhoneNumber()}"></div>
                   </div>
                 </div>
                 <div class="email3">
-                  <img class="icon142" alt="" src="./public/icon-181.svg" />
+                  <img class="icon142" alt="" th:src="@{./images/Company/icon-181.svg}" />
 
                   <div class="content7">
-                    <div class="instagram">Instagram</div>
-                    <div class="instagramcomjeromebell">
-                      instagram.com/jeromebell
+                    <div class="instagram">LinkedIn</div>
+                    <div class="instagramcomjeromebell" th:text="${applyForm.getLinkedinUrl()}">
                     </div>
                   </div>
                 </div>
                 <div class="email4">
-                  <img class="icon143" alt="" src="./public/icon-191.svg" />
+                  <img class="icon143" alt="" th:src="@{./images/Company/icon-191.svg}" />
 
                   <div class="content8">
-                    <div class="twitter">Twitter</div>
-                    <div class="twittercomjeromebell">
-                      twitter.com/jeromebell
+                    <div class="twitter">Github</div>
+                    <div class="twittercomjeromebell" th:text="${applyForm.getGithubUrl()}">
                     </div>
                   </div>
                 </div>
                 <div class="email5">
-                  <img class="icon144" alt="" src="./public/icon-201.svg" />
-
-                  <div class="content9">
-                    <div class="website">Website</div>
-                    <div class="wwwjeromebellcom">www.jeromebell.com</div>
-                  </div>
+                  <img class="icon144" alt="" th:src="@{./images/Company/icon-201.svg}" />
                 </div>
               </div>
             </div>
@@ -323,7 +286,7 @@
                     <img
                       class="rectangle-icon"
                       alt=""
-                      src="./public/rectangle-173.svg"
+                      th:src="@{./images/Company/rectangle-173.svg}"
                     />
                   </div>
                   <div class="tab-menu25">
@@ -351,12 +314,12 @@
                       <div class="col-1">
                         <div class="name11">
                           <div class="full-name2">Full Name</div>
-                          <div class="jerome-bell1">Jerome Bell</div>
+                          <div class="jerome-bell1" th:text="${applyForm.getFullName()}"></div>
                         </div>
                         <div class="dob">
                           <div class="date-of-birth">Date of Birth</div>
                           <div class="march-23-1995-container">
-                            <span>March 23, 1995 </span>
+                            <span ></span>
                             <span class="yo">(26 y.o)</span>
                             <span> </span>
                           </div>
@@ -365,20 +328,16 @@
                       <div class="col-2">
                         <div class="gender">
                           <div class="gender1">Gender</div>
-                          <div class="male">Male</div>
-                        </div>
-                        <div class="language">
-                          <div class="language1">Language</div>
-                          <div class="english-french-bahasa">
-                            English, French, Bahasa
-                          </div>
+                          <div class="male" th:if="${applyForm.getUser().getGender() == 1}" th:text="'Male'"> </div>
+                          <div class="male" th:if="${applyForm.getUser().getGender() != 1}" th:text="'Female'"> </div>
+                          <div class="language">
+                          <div class="language1"></div>
                         </div>
                       </div>
                     </div>
                     <div class="address">
                       <div class="address1">Address</div>
-                      <div class="washington-ave-manchester">
-                        4517 Washington Ave. Manchester, Kentucky 39495
+                      <div class="washington-ave-manchester"  th:if="${applyForm.getUser().getLocation() != null }" th:text="${applyForm.getUser().getLocation().name}" >
                       </div>
                     </div>
                   </div>
@@ -388,17 +347,7 @@
                     <div class="about-me">
                       <div class="about-me1">About Me</div>
                       <div class="about-me2">
-                        <div class="im-a-product">
-                          I’m a product designer + filmmaker currently working
-                          remotely at Twitter from beautiful Manchester, United
-                          Kingdom. I’m passionate about designing digital
-                          products that have a positive impact on the world.
-                        </div>
-                        <div class="for-10-years">
-                          For 10 years, I’ve specialised in interface,
-                          experience & interaction design as well as working in
-                          user research and product strategy for product
-                          agencies, big tech companies & start-ups.
+                        <div class="im-a-product" th:if="${applyForm.getUser().bio != null}" th:text="${applyForm.getUser().bio}">
                         </div>
                       </div>
                     </div>
@@ -422,25 +371,25 @@
                           <div class="experience-in-years1">
                             Experience in Years
                           </div>
-                          <div class="years">4 Years</div>
-                        </div>
-                        <div class="skill-set">
-                          <div class="skill-set1">Skill set</div>
-                          <div class="debugging-tools">
-                            <button class="tag5">
-                              <div class="caption142">Project Management</div>
-                            </button>
-                            <button class="tag6">
-                              <div class="caption143">Copywriting</div>
-                            </button>
-                            <button class="tag7">
-                              <div class="caption144">English</div>
-                            </button>
-                          </div>
+                          <div class="years" th:text="${applyForm.getUser().experienceInYears + ' years'}"></div>
                         </div>
                       </div>
                     </div>
                   </div>
+                    <div class="about-me">
+                      <div class="about-me1">Addition Information</div>
+                      <div class="about-me2">
+                        <div class="im-a-product" th:if="${applyForm.getUser().bio != null}" th:text="${applyForm.additionalInformation}">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="about-me">
+                      <div class="about-me1">Resume </div>
+                      <div class="about-me2">
+                        <div class="im-a-product" th:if="${applyForm.getUser().bio != null}" th:text="${applyForm.additionalInformation}">
+                        </div>
+                      </div>
+                    </div>
                 </div>
               </div>
             </div>

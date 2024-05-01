@@ -2,6 +2,7 @@ package com.backend.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -43,8 +44,8 @@ public class Post {
     @Column(name = "content", columnDefinition = "TEXT")
     private String content;
 
-    @Column(name = "images", columnDefinition = "TEXT")
-    private String images;
+    @Column(name = "images")
+    private byte[] images;
 
     @Column(name = "experience")
     private int experience;
@@ -72,10 +73,10 @@ public class Post {
             name = "job_applicants",
             joinColumns = @JoinColumn(name = "post_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private List<User> applicants;
+private List<User> applicants;
 
-    @OneToMany(mappedBy = "post")
-    private List<Application> applications;
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Application> applications = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(name = "post_category", joinColumns = @JoinColumn(name = "post_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
@@ -90,7 +91,7 @@ public class Post {
     private List<NiceToHaves> niceToHaves;
 
     public Post(int CompanyId, BigDecimal maxSalary, BigDecimal minSalary, String phoneNumber, String email,
-            String content, String images, int experience) {
+            String content, byte[] images, int experience) {
         this.companyId = CompanyId;
         this.maxSalary = maxSalary;
         this.minSalary = minSalary;

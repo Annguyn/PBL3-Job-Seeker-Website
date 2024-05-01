@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.backend.entity.*;
+import com.backend.service.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,17 +13,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.backend.dto.UserDto;
 import com.backend.repository.PostRepository;
-import com.backend.service.CategoryService;
-import com.backend.service.LevelService;
-import com.backend.service.LocationService;
-import com.backend.service.PostService;
-import com.backend.service.UserService;
 
 import lombok.AllArgsConstructor;
+import org.springframework.web.servlet.handler.AbstractUrlHandlerMapping;
+
 @Controller
 @AllArgsConstructor
 @SessionAttributes("userdto")
@@ -32,6 +31,8 @@ public class HomeController {
     private final CategoryService categoryService;
     private final PostService postService;
     private final UserService userService;
+    private final ApplicationService applicationService;
+
     @ModelAttribute("userdto")
     public UserDto userDto() {
         return new UserDto();
@@ -90,11 +91,41 @@ public class HomeController {
 
     @GetMapping("/dashboard")
     public String showDashboard(@ModelAttribute("userdto") UserDto userDto, Model model) {
-        User user = userService.getUserbyEmail(userDto.getEmail());
-        if(user.getRole().equals("company"))
+        Authentication authen = SecurityContextHolder.getContext().getAuthentication();
+        User userLoggedIn = null;
+        if (authen != null && authen.getPrincipal() instanceof UserDetails userDetails) {
+            userLoggedIn = userService.getUserbyEmail(userDetails.getUsername());
+        }
+        if (userLoggedIn == null) {
+            userLoggedIn = new User();
+        }
+        if(userLoggedIn.getRole().equals("company"))
         {
             return "Company/index";
         }
         return "applicant";
     }
+
+    @GetMapping("/profile")
+    public String showAboutPage(Authentication authentication, Model model) {
+        User user = userService.getUserbyEmail(authentication.getName());
+        model.addAttribute("user", user);
+        if(user.getRole().equals("company"))
+        {
+            return "Company/profile";
+        }
+
+        return "profile";
+    }
+
+    @GetMapping("/allApplicants")
+    public String showAllApplicants(Model model , Authentication auth) {
+        User user = userService.getUserbyEmail(auth.getName());
+        List<Application> applications = applicationService.findAllByPostCompany(user.getCompany().getId());
+        System.out.println("Applcation are : " + applications.size());
+        model.addAttribute("applications", applications);
+        model.addAttribute("user", user);
+        return "Company/all-applicants";
+    }
+
 }

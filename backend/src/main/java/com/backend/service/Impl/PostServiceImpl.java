@@ -2,14 +2,13 @@ package com.backend.service.Impl;
 
 import java.util.List;
 
+import com.backend.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.backend.dto.PostDto;
-import com.backend.entity.Category;
-import com.backend.entity.Post;
 import com.backend.repository.PostRepository;
 import com.backend.service.PostService;
 
@@ -19,20 +18,6 @@ public class PostServiceImpl implements PostService {
     @Autowired
     private PostRepository postRepository;
 
-    @Override
-public void createPost(PostDto postDto) {
-    Post post = new Post(
-            postDto.getCompanyId(),
-            postDto.getMaxSalary(),
-            postDto.getMinSalary(),
-            postDto.getPhoneNumber(),
-            postDto.getEmail(),
-            postDto.getContent(),
-            postDto.getImages(),
-            postDto.getExperience()
-    );
-    postRepository.save(post);
-}
     @Override
     public List<Post> getAllPosts() {
         return postRepository.getAllPost();
@@ -57,9 +42,14 @@ public void createPost(PostDto postDto) {
         return postRepository.findAllByOrderByMaxSalaryDesc();
     }
 
+
     @Override
     public List<Post> getAllPostsOrderBySalaryAsc() {
        return postRepository.findAllByOrderByMaxSalaryAsc();
+    }
+    @Override
+    public List<Post> getPostByCompany(Company company) {
+        return postRepository.findAllByCompany(company);
     }
 
     @Override

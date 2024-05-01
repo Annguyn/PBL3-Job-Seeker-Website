@@ -1,11 +1,13 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+</html>
 <html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
 
-    <link rel="stylesheet" href="./global.css" />
-    <link rel="stylesheet" href="./dashboard-company-company-profile.css" />
+    <link rel="stylesheet" th:href="@{./css/Company/global.css}" />
+    <link rel="stylesheet" th:href="@{./css/Company/dashboard-company-company-profile.css}" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Red Hat Display:wght@700&display=swap"
@@ -35,7 +37,7 @@
                     class="frame-child13"
                     loading="lazy"
                     alt=""
-                    src="./public/frame-36.svg"
+                   th:src="@{./images/Company/frame-36.svg}"
                   />
                 </div>
                 <h3 class="jobhuntly6">JobHuntly</h3>
@@ -44,13 +46,13 @@
             <div class="main-menu6">
               <div class="menu25">
                 <div class="sidebar-menu54">
-                  <img class="icon189" alt="" src="./public/icon1.svg" />
+                  <img class="icon189" alt=""th:src="@{./images/Company/icon1.svg}" />
 
                   <div class="caption181">Dashboard</div>
                 </div>
                 <div class="sidebar-menu55">
                   <div class="icon-parent28">
-                    <img class="icon190" alt="" src="./public/icon-113.svg" />
+                    <img class="icon190" alt=""th:src="@{./images/Company/icon-113.svg}" />
 
                     <div class="caption182">Messages</div>
                   </div>
@@ -66,27 +68,27 @@
                     <img
                       class="indicator-icon6"
                       alt=""
-                      src="./public/indicator.svg"
+                     th:src="@{./images/Company/indicator.svg}"
                     />
                   </div>
                   <div class="menu26">
-                    <img class="icon191" alt="" src="./public/icon-23.svg" />
+                    <img class="icon191" alt=""th:src="@{./images/Company/icon-23.svg}" />
 
                     <div class="caption183">Company Profile</div>
                   </div>
                 </button>
                 <div class="sidebar-menu57">
-                  <img class="icon192" alt="" src="./public/icon-3.svg" />
+                  <img class="icon192" alt=""th:src="@{./images/Company/icon-3.svg}" />
 
                   <div class="caption184">All Applicants</div>
                 </div>
                 <div class="sidebar-menu58">
-                  <img class="icon193" alt="" src="./public/icon-4.svg" />
+                  <img class="icon193" alt=""th:src="@{./images/Company/icon-4.svg}" />
 
                   <div class="caption185">Job Listing</div>
                 </div>
                 <div class="sidebar-menu59">
-                  <img class="icon194" alt="" src="./public/icon-5.svg" />
+                  <img class="icon194" alt=""th:src="@{./images/Company/icon-5.svg}" />
 
                   <div class="caption186">My Schedule</div>
                 </div>
@@ -103,12 +105,12 @@
                 </div>
                 <div class="menu27">
                   <div class="sidebar-menu61">
-                    <img class="icon196" alt="" src="./public/icon-7.svg" />
+                    <img class="icon196" alt=""th:src="@{./images/Company/icon-7.svg}" />
 
                     <div class="caption188">Settings</div>
                   </div>
                   <div class="sidebar-menu62">
-                    <img class="icon197" alt="" src="./public/icon-8.svg" />
+                    <img class="icon197" alt=""th:src="@{./images/Company/icon-8.svg}" />
 
                     <div class="caption189">Help Center</div>
                   </div>
@@ -127,7 +129,7 @@
                     class="avatar-icon27"
                     loading="lazy"
                     alt=""
-                    src="./public/avatar@2x.png"
+                   th:src="@{./images/Company/avatar@2x.png}"
                   />
                 </div>
                 <div class="name-email6">
@@ -152,15 +154,16 @@
             <div class="job-list10">
               <img
                 class="company-logo-icon10"
-                alt=""
-                src="./public/company-logo.svg"
+                th:if="${user.getCompany().avatar}"
+                th:src="@{/company/image/{id}(id=${user.getCompany().id})}" alt="Company Avatar"
               />
 
               <div class="job-title10">
                 <div class="company6">Company</div>
                 <div class="nomad-container">
-                  <div class="nomad10">Nomad</div>
-                  <img class="icon199" alt="" src="./public/icon-411.svg" />
+                  <div class="nomad10" th:tex="${user.getCompany().getName()}"></div>
+<!--                  <img class="icon199" th:if="${user.getCompany().avatar}"-->
+<!--                       th:src="@{/image/{id}(id=${user.getCompany().id})}" alt="Company Avatar" />-->
                 </div>
               </div>
             </div>
@@ -169,13 +172,13 @@
                 class="notification-icon6"
                 loading="lazy"
                 alt=""
-                src="./public/notification4.svg"
+               th:src="@{./images/Company/notification4.svg}"
               />
 
               <button class="button13">
-                <img class="icon200" alt="" src="./public/icon-112.svg" />
+                <img class="icon200" alt="" th:src="@{./images/Company/icon-112.svg}" />
 
-                <b class="caption190">Post a job</b>
+                <a class="caption190" th:href="@{/postjobs}">Post a job</a>
               </button>
             </div>
           </div>
@@ -184,8 +187,8 @@
               <div class="input-combiner">
                 <img
                   class="company-logo-icon11"
-                  alt=""
-                  src="./public/company-logo-11.svg"
+                  th:if="${user.getCompany().avatar}"
+                  th:src="@{/company/image/{id}(id=${user.getCompany().id})}" alt="Company Avatar"
                 />
 
                 <div class="button14">
@@ -196,13 +199,13 @@
                 <div class="content13">
                   <div class="title7">
                     <div class="parent-selector">
-                      <h1 class="nomad11">Nomad</h1>
+                      <h1 class="nomad11" th:text="${user.getCompany().name}"></h1>
                       <div class="button-group">
                         <div class="button15">
                           <img
                             class="icon202"
                             alt=""
-                            src="./public/icon-134.svg"
+                           th:src="@{./images/Company/icon-134.svg}"
                           />
 
                           <b class="caption191">Public View</b>
@@ -211,10 +214,10 @@
                           <img
                             class="icon203"
                             alt=""
-                            src="./public/icon-144.svg"
+                           th:src="@{./images/Company/icon-144.svg}"
                           />
 
-                          <b class="caption192">Profile Settings</b>
+                          <a th:href="@{/settings}" class="caption192">Profile Settings</a>
                         </button>
                       </div>
                     </div>
@@ -226,7 +229,7 @@
                         <img
                           class="icon204"
                           alt=""
-                          src="./public/icon-153.svg"
+                         th:src="@{./images/Company/icon-153.svg}"
                         />
                       </div>
                       <div class="founded1">
@@ -239,7 +242,7 @@
                         <img
                           class="icon205"
                           alt=""
-                          src="./public/icon-163.svg"
+                         th:src="@{./images/Company/icon-163.svg}"
                         />
                       </div>
                       <div class="founded3">
@@ -252,7 +255,7 @@
                         <img
                           class="icon206"
                           alt=""
-                          src="./public/icon-172.svg"
+                         th:src="@{./images/Company/icon-172.svg}"
                         />
                       </div>
                       <div class="founded4">
@@ -265,7 +268,7 @@
                         <img
                           class="icon207"
                           alt=""
-                          src="./public/icon-182.svg"
+                         th:src="@{./images/Company/icon-182.svg}"
                         />
                       </div>
                       <div class="founded5">
@@ -287,21 +290,7 @@
                         <input class="icon208" type="checkbox" />
                       </div>
                     </div>
-                    <div class="nomad-is-a">
-                      Nomad is a software platform for starting and running
-                      internet businesses. Millions of businesses rely on
-                      Stripe’s software tools to accept payments, expand
-                      globally, and manage their businesses online. Stripe has
-                      been at the forefront of expanding internet commerce,
-                      powering new business models, and supporting the latest
-                      platforms, from marketplaces to mobile commerce sites. We
-                      believe that growing the GDP of the internet is a problem
-                      rooted in code and design, not finance. Stripe is built
-                      for developers, makers, and creators. We work on solving
-                      the hard technical problems necessary to build global
-                      economic infrastructure—from designing highly reliable
-                      systems to developing advanced machine learning algorithms
-                      to prevent fraud.
+                    <div class="nomad-is-a" th:text="${user.getCompany().getProfileDescription()}">
                     </div>
                   </div>
                   <div class="divider3"></div>
@@ -313,7 +302,7 @@
                           <img
                             class="icon209"
                             alt=""
-                            src="./public/icon-203.svg"
+                           th:src="@{./images/Company/icon-203.svg}"
                           />
                         </div>
                         <div class="button19">
@@ -326,16 +315,16 @@
                         <img
                           class="icon211"
                           alt=""
-                          src="./public/icon-221.svg"
+                         th:src="@{./images/Company/icon-221.svg}"
                         />
 
-                        <div class="twittercomnomad">twitter.com/Nomad</div>
+                        <div class="twittercomnomad" th:text="${user.getCompany().getCompanyWebsite()}"></div>
                       </button>
                       <button class="twitter2">
                         <img
                           class="icon212"
                           alt=""
-                          src="./public/icon-231.svg"
+                         th:src="@{./images/Company/icon-231.svg}"
                         />
 
                         <div class="facebookcomnomadhq">
@@ -348,7 +337,7 @@
                         <img
                           class="icon213"
                           alt=""
-                          src="./public/icon-241.svg"
+                         th:src="@{./images/Company/icon-241.svg}"
                         />
 
                         <div class="linkedincomcompanynomad">
@@ -359,618 +348,28 @@
                         <img
                           class="icon214"
                           alt=""
-                          src="./public/icon-251.svg"
+                         th:src="@{./images/Company/icon-251.svg}"
                         />
-
                         <div class="nomadgmailcom">nomad@gmail.com</div>
                       </div>
                     </div>
                   </div>
                   <div class="divider4"></div>
-                  <div class="working-at-noimad">
-                    <div class="working-at-nomad-parent">
-                      <h3 class="working-at-nomad">Working at Nomad</h3>
-                      <div class="button-parent1">
-                        <div class="button20">
-                          <img
-                            class="icon215"
-                            alt=""
-                            src="./public/icon-203.svg"
-                          />
-                        </div>
-                        <div class="button21">
-                          <input class="icon216" type="checkbox" />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="image-filter">
-                      <img
-                        class="images-icon"
-                        loading="lazy"
-                        alt=""
-                        src="./public/images@2x.png"
-                      />
-
-                      <div class="color-adjustment">
-                        <img
-                          class="leon-6awftplgace-unsplash-icon"
-                          loading="lazy"
-                          alt=""
-                          src="./public/leon6awftplgaceunsplash@2x.png"
-                        />
-
-                        <img
-                          class="leon-bzqu01v-g54-unsplash-1-icon"
-                          loading="lazy"
-                          alt=""
-                          src="./public/leonbzqu01vg54unsplash-1@2x.png"
-                        />
-
-                        <img
-                          class="mask-group-icon"
-                          loading="lazy"
-                          alt=""
-                          src="./public/mask-group@2x.png"
-                        />
-                      </div>
-                    </div>
-                  </div>
                 </div>
-                <div class="list-creator">
-                  <div class="function-handler">
-                    <div class="condition-checker">
-                      <h3 class="tech-stack">Tech Stack</h3>
-                      <div class="data-merger">
-                        <div class="button22">
-                          <img
-                            class="icon217"
-                            alt=""
-                            src="./public/icon-282.svg"
-                          />
-                        </div>
-                        <div class="button23">
-                          <input class="icon218" type="checkbox" />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="data-filter">
-                      <div class="error-handler1">
-                        <img
-                          class="image-2-icon"
-                          loading="lazy"
-                          alt=""
-                          src="./public/image-2@2x.png"
-                        />
-
-                        <div class="html-5">HTML 5</div>
-                      </div>
-                      <div class="error-handler2">
-                        <img
-                          class="image-2-icon1"
-                          loading="lazy"
-                          alt=""
-                          src="./public/image-2-1@2x.png"
-                        />
-
-                        <div class="css-3">CSS 3</div>
-                      </div>
-                      <div class="error-handler3">
-                        <img
-                          class="image-2-icon2"
-                          loading="lazy"
-                          alt=""
-                          src="./public/image-2-2@2x.png"
-                        />
-
-                        <div class="javascript">JavaScript</div>
-                      </div>
-                      <div class="error-handler4">
-                        <img
-                          class="image-2-icon3"
-                          loading="lazy"
-                          alt=""
-                          src="./public/image-2-3@2x.png"
-                        />
-
-                        <div class="ruby">Ruby</div>
-                      </div>
-                      <div class="error-handler5">
-                        <img
-                          class="image-2-icon4"
-                          loading="lazy"
-                          alt=""
-                          src="./public/image-2-4@2x.png"
-                        />
-
-                        <div class="mixpanel">Mixpanel</div>
-                      </div>
-                      <div class="error-handler6">
-                        <img
-                          class="image-2-icon5"
-                          loading="lazy"
-                          alt=""
-                          src="./public/image-2-5@2x.png"
-                        />
-
-                        <div class="framer">Framer</div>
-                      </div>
-                      <div class="button24">
-                        <div class="button25">View tech stack</div>
-                        <img
-                          class="icon219"
-                          alt=""
-                          src="./public/icon-301.svg"
-                        />
-                      </div>
-                    </div>
-                    <div class="value-updater"></div>
-                  </div>
-                  <div class="locaton">
-                    <div class="data-queue-manager">
-                      <h3 class="office-locations">Office Locations</h3>
-                      <div class="data-priority-queue">
-                        <div class="button26">
-                          <img
-                            class="icon220"
-                            alt=""
-                            src="./public/icon-203.svg"
-                          />
-                        </div>
-                        <div class="button27">
-                          <input class="icon221" type="checkbox" />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="data-circular-buffer">
-                      <div class="data-lru-access-policy">
-                        <img
-                          class="flag-icon"
-                          alt=""
-                          src="./public/flag@2x.png"
-                        />
-
-                        <div class="united-states">United States</div>
-                        <div class="label68">
-                          <div class="label-child40"></div>
-                          <div class="caption193">Head Quarters</div>
-                        </div>
-                      </div>
-                      <div class="data-fifo">
-                        <img
-                          class="flag-icon1"
-                          loading="lazy"
-                          alt=""
-                          src="./public/flag-1@2x.png"
-                        />
-
-                        <div class="england">England</div>
-                      </div>
-                      <div class="data-fifo1">
-                        <img
-                          class="flag-icon2"
-                          loading="lazy"
-                          alt=""
-                          src="./public/flag-2.svg"
-                        />
-
-                        <div class="japan">Japan</div>
-                      </div>
-                      <div class="data-fifo2">
-                        <img
-                          class="flag-icon3"
-                          loading="lazy"
-                          alt=""
-                          src="./public/flag-3@2x.png"
-                        />
-
-                        <div class="australia">Australia</div>
-                      </div>
-                      <div class="data-fifo3">
-                        <img
-                          class="flag-icon4"
-                          loading="lazy"
-                          alt=""
-                          src="./public/flag-4@2x.png"
-                        />
-
-                        <div class="china">China</div>
-                      </div>
-                    </div>
-                    <div class="button28">
-                      <div class="button29">View countries</div>
-                      <img
-                        class="icon222"
-                        loading="lazy"
-                        alt=""
-                        src="./public/icon-301.svg"
-                      />
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
       </section>
       <div class="divider-container">
         <div class="divider5"></div>
       </div>
-      <section class="team-wrapper">
-        <div class="team">
-          <div class="data-database-manager">
-            <h3 class="team1">Team</h3>
-            <div class="data-record-manager">
-              <div class="button30">
-                <img class="icon223" alt="" src="./public/icon-203.svg" />
-              </div>
-              <div class="button31">
-                <input class="icon224" type="checkbox" />
-              </div>
-            </div>
-          </div>
-          <div class="team2">
-            <div class="team3">
-              <div class="data-dictionary-manager">
-                <img
-                  class="avatar-icon28"
-                  loading="lazy"
-                  alt=""
-                  src="./public/avatar-12@2x.png"
-                />
-              </div>
-              <div class="name-role">
-                <div class="clestin-gardinier">Célestin Gardinier</div>
-                <div class="conditional-processor">
-                  <div class="ceo-co-founder">CEO & Co-Founder</div>
-                </div>
-              </div>
-              <div class="output-generator2">
-                <div class="links">
-                  <img
-                    class="icon225"
-                    loading="lazy"
-                    alt=""
-                    src="./public/icon-36.svg"
-                  />
-
-                  <img class="icon226" alt="" src="./public/icon-37.svg" />
-                </div>
-              </div>
-            </div>
-            <div class="team4">
-              <div class="avatar-wrapper3">
-                <img
-                  class="avatar-icon29"
-                  loading="lazy"
-                  alt=""
-                  src="./public/avatar-21@2x.png"
-                />
-              </div>
-              <div class="name-role1">
-                <div class="clestin-gardinier1">Reynaud Colbert</div>
-                <div class="ceo-co-founder-wrapper">
-                  <div class="ceo-co-founder1">Co-Founder</div>
-                </div>
-              </div>
-              <div class="links-wrapper">
-                <div class="links1">
-                  <img class="icon227" alt="" src="./public/icon-38.svg" />
-
-                  <img class="icon228" alt="" src="./public/icon-39.svg" />
-                </div>
-              </div>
-            </div>
-            <div class="team5">
-              <div class="avatar-wrapper4">
-                <img
-                  class="avatar-icon30"
-                  loading="lazy"
-                  alt=""
-                  src="./public/avatar-32@2x.png"
-                />
-              </div>
-              <div class="name-role2">
-                <div class="clestin-gardinier-wrapper">
-                  <div class="clestin-gardinier2">Arienne Lyon</div>
-                </div>
-                <div class="ceo-co-founder2">Managing Director</div>
-              </div>
-              <div class="links-container">
-                <div class="links2">
-                  <img class="icon229" alt="" src="./public/icon-40.svg" />
-
-                  <img class="icon230" alt="" src="./public/icon-412.svg" />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="view-all-core-teams-parent">
-            <div class="view-all-core">View all core teams</div>
-            <div class="icon-wrapper8">
-              <img class="icon231" alt="" src="./public/icon-301.svg" />
-            </div>
-          </div>
-        </div>
-      </section>
       <div class="divider-frame">
         <div class="divider6"></div>
       </div>
-      <section class="benefits-wrapper">
-        <div class="benefits7">
-          <div class="benefit-parent">
-            <h3 class="benefit">Benefit</h3>
-            <div class="button-parent2">
-              <div class="button32">
-                <img class="icon232" alt="" src="./public/icon-203.svg" />
-              </div>
-              <div class="button33">
-                <input class="icon233" type="checkbox" />
-              </div>
-            </div>
-          </div>
-          <div class="row-11">
-            <div class="benefits8">
-              <img
-                class="icon234"
-                loading="lazy"
-                alt=""
-                src="./public/icon-45.svg"
-              />
-
-              <div class="text7">
-                <div class="full-healthcare7">Full Healthcare</div>
-                <div class="we-believe-in7">
-                  We believe in thriving communities and that starts with our
-                  team being happy and healthy.
-                </div>
-              </div>
-            </div>
-            <div class="benefits9">
-              <img
-                class="icon235"
-                loading="lazy"
-                alt=""
-                src="./public/icon-46.svg"
-              />
-
-              <div class="text8">
-                <div class="full-healthcare8">Unlimited Vacation</div>
-                <div class="we-believe-in8">
-                  We believe you should have a flexible schedule that makes
-                  space for family, wellness, and fun.
-                </div>
-              </div>
-            </div>
-            <div class="benefits10">
-              <img
-                class="icon236"
-                loading="lazy"
-                alt=""
-                src="./public/icon-47.svg"
-              />
-
-              <div class="text9">
-                <div class="full-healthcare9">Skill Development</div>
-                <div class="we-believe-in9">
-                  We believe in always learning and leveling up our skills.
-                  Whether it's a conference or online course.
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row-21">
-            <div class="benefits11">
-              <img
-                class="icon237"
-                loading="lazy"
-                alt=""
-                src="./public/icon-48.svg"
-              />
-
-              <div class="text10">
-                <div class="full-healthcare10">Team Summits</div>
-                <div class="we-believe-in10">
-                  Every 6 months we have a full team summit where we have fun,
-                  reflect, and plan for the upcoming quarter.
-                </div>
-              </div>
-            </div>
-            <div class="benefits12">
-              <img
-                class="icon238"
-                loading="lazy"
-                alt=""
-                src="./public/icon-49.svg"
-              />
-
-              <div class="text11">
-                <div class="full-healthcare11">Remote Working</div>
-                <div class="we-believe-in11">
-                  You know how you perform your best. Work from home, coffee
-                  shop or anywhere when you feel like it.
-                </div>
-              </div>
-            </div>
-            <div class="benefits13">
-              <img
-                class="icon239"
-                loading="lazy"
-                alt=""
-                src="./public/icon-50.svg"
-              />
-
-              <div class="text12">
-                <div class="full-healthcare12">Commuter Benefits</div>
-                <div class="we-believe-in12">
-                  We’re grateful for all the time and energy each team member
-                  puts into getting to work every day.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
       <div class="divider-wrapper1">
         <div class="divider7"></div>
       </div>
-      <section class="dashboard-company-company-pr-inner">
-        <div class="title-parent">
-          <div class="title8">
-            <h3 class="open-positions">Open Positions</h3>
-            <div class="title-inner">
-              <div class="button-parent3">
-                <div class="button34">Show all jobs</div>
-                <div class="icon-wrapper9">
-                  <img
-                    class="icon240"
-                    loading="lazy"
-                    alt=""
-                    src="./public/icon-301.svg"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-12">
-            <div class="job-list11">
-              <img
-                class="company-logo-icon12"
-                loading="lazy"
-                alt=""
-                src="./public/company-logo-21.svg"
-              />
-
-              <div class="job-title11">
-                <div class="social-media-assistant14">
-                  Social Media Assistant
-                </div>
-                <div class="company-name-location-job3">
-                  <div class="nomad12">Nomad</div>
-                  <div class="company-name-location-job-inner">
-                    <div class="frame-child14"></div>
-                  </div>
-                  <div class="paris-france4">Paris, France</div>
-                </div>
-                <div class="label69">
-                  <button class="label70">
-                    <div class="caption194">Full-Time</div>
-                  </button>
-                  <div class="label-child41"></div>
-                  <button class="label71">
-                    <div class="label-child42"></div>
-                    <div class="caption195">Marketing</div>
-                  </button>
-                  <button class="label72">
-                    <div class="label-child43"></div>
-                    <div class="caption196">Design</div>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="job-list12">
-              <img
-                class="company-logo-icon13"
-                loading="lazy"
-                alt=""
-                src="./public/company-logo-31.svg"
-              />
-
-              <div class="job-title12">
-                <div class="social-media-assistant15">Brand Designer</div>
-                <div class="company-name-location-job4">
-                  <div class="nomad13">Dropbox</div>
-                  <div class="company-name-location-job-child">
-                    <div class="frame-child15"></div>
-                  </div>
-                  <div class="paris-france5">San Fransisco, USA</div>
-                </div>
-                <div class="label73">
-                  <button class="label74">
-                    <div class="caption197">Full-Time</div>
-                  </button>
-                  <div class="label-child44"></div>
-                  <button class="label75">
-                    <div class="label-child45"></div>
-                    <div class="caption198">Marketing</div>
-                  </button>
-                  <button class="label76">
-                    <div class="label-child46"></div>
-                    <div class="caption199">Design</div>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="job-list13">
-              <img
-                class="company-logo-icon14"
-                loading="lazy"
-                alt=""
-                src="./public/company-logo-41.svg"
-              />
-
-              <div class="job-title13">
-                <div class="social-media-assistant16">
-                  Interactive Developer
-                </div>
-                <div class="company-name-location-job5">
-                  <div class="nomad14">Terraform</div>
-                  <div class="company-name-location-job-inner1">
-                    <div class="frame-child16"></div>
-                  </div>
-                  <div class="paris-france6">Hamburg, Germany</div>
-                </div>
-                <div class="label77">
-                  <button class="label78">
-                    <div class="caption200">Full-Time</div>
-                  </button>
-                  <div class="label-child47"></div>
-                  <button class="label79">
-                    <div class="label-child48"></div>
-                    <div class="caption201">Marketing</div>
-                  </button>
-                  <button class="label80">
-                    <div class="label-child49"></div>
-                    <div class="caption202">Design</div>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="job-list14">
-              <img
-                class="company-logo-icon15"
-                loading="lazy"
-                alt=""
-                src="./public/company-logo-5.svg"
-              />
-
-              <div class="job-title14">
-                <div class="social-media-assistant17">HR Manager</div>
-                <div class="company-name-location-job6">
-                  <div class="nomad15">Packer</div>
-                  <div class="company-name-location-job-inner2">
-                    <div class="frame-child17"></div>
-                  </div>
-                  <div class="paris-france7">Lucern, Switzerland</div>
-                </div>
-                <div class="label81">
-                  <button class="label82">
-                    <div class="caption203">Full-Time</div>
-                  </button>
-                  <div class="label-child50"></div>
-                  <button class="label83">
-                    <div class="label-child51"></div>
-                    <div class="caption204">Marketing</div>
-                  </button>
-                  <button class="label84">
-                    <div class="label-child52"></div>
-                    <div class="caption205">Design</div>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   </body>
 </html>

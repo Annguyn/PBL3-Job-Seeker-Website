@@ -5,7 +5,10 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -41,6 +44,41 @@ public class User implements Serializable {
 
     @ManyToMany(mappedBy = "applicants")
     private List<Post> appliedPosts;
+
+    @Column(name="dob")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date dob;
+
+    @Column(name = "gender" )
+    private Integer gender;
+
+    @OneToOne
+    @JoinColumn(name = "location")
+    private Location location ;
+
+    @Column(name = "bio" , length = 1000)
+    private String bio;
+
+    @Column(name = "photo")
+    private byte[] photo;
+
+    @Column(name= "social_links")
+    private String socialLink;
+
+    @Column(name= "experience_in_year")
+    private Integer experienceInYears;
+
+    @Column(name= "github")
+    private String github;
+
+    @Column(name= "linkedin")
+    private String linkedin;
+
+    @Column(name= "major")
+    private String major;
+
+    @Column(name= "contact_number")
+    private String contactNumber;
 
     public User(String Email, String userDisplayName,  String password,  String role) {
         email = Email;

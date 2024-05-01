@@ -19,7 +19,7 @@ public class PostDto {
     private String phoneNumber;
     private String email;
     private String content;
-    private String images;
+    private byte[] images;
     private int experience;
     private int locationId;
     private int levelId;

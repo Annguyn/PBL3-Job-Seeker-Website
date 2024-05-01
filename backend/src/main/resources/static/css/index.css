@@ -5,6 +5,7 @@
   display: none;
   max-width: 100%;
 }
+
 .after-login{
   width: 700px;
 }
@@ -6755,4 +6756,10 @@
 .caption{
   text-decoration: none;
   color: #f8f8f8;
+}
+a.fill-div {
+  display: block;
+  height: 100%;
+  width: 100%;
+  text-decoration: none;
 }

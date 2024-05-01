@@ -2,32 +2,35 @@ package com.backend.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 
 @Entity
 @Table(name = "applications")
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 public class Application {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_id")
-    private int userId;
-
-    @Column(name = "post_id")
-    private int postId;
-
     @ManyToOne
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    @JoinColumn(name = "user_id", insertable = false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "post_id", insertable = false, updatable = false)
+    @JoinColumn(name = "post_id", insertable = false)
     private Post post;
+
+    @Column(name = "time_applied")
+    private LocalDateTime timeApplied;
 
     @Column(name = "full_name")
     private String fullName;
@@ -54,6 +57,14 @@ public class Application {
     @Column(name = "resume")
     private byte[] resume;
 
+
+    public long getDaysSinceApplied() {
+        if (timeApplied == null) {
+            return 0;
+        }
+        return ChronoUnit.DAYS.between(timeApplied.toLocalDate(), LocalDate.now());
+    }
+
     public Application(User user , Post post, String fullName, String emailAddress, String phoneNumber, String currentPreviousJobTitle, String linkedinUrl, String githubUrl, String additionalInformation, byte[] resume) {
         this.user = user;
         this.post = post;
@@ -65,7 +76,6 @@ public class Application {
         this.githubUrl = githubUrl;
         this.additionalInformation = additionalInformation;
         this.resume = resume;
-        this.userId = user.getID();
-        this.postId= post.getId();
+        this.timeApplied = LocalDateTime.now();
     }
 }

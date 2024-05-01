@@ -12,6 +12,16 @@
   justify-content: flex-start;
   padding: var(--padding-11xs) 0 0;
 }
+.this-is-your{
+  max-width: 100%;
+  width: -webkit-fill-available;
+}
+.fill-div {
+  display: block;
+  height: 100%;
+  width: 100%;
+  text-decoration: none;
+}
 .jobhuntly20 {
   margin: 0;
   position: relative;
