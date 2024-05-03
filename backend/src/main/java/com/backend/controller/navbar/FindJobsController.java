@@ -28,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 @AllArgsConstructor
 public class FindJobsController {
     private final ApplicationService applicationService;
+    private final CompanyService companyService;
     private UserService userService;
     private PostService postService;
     private CategoryService categoryService;
@@ -136,5 +137,33 @@ public class FindJobsController {
         // Save the application
          applicationService.save(application);
         return "redirect:/home";
+    }
+
+    @GetMapping("/findCompany")
+    public String findCompany(Model model) {
+        try {
+            List<Company> companies = companyService.getAllCompanies();
+            model.addAttribute("companies", companies);
+            return "company-search";
+        } catch (Exception e) {
+            model.addAttribute("errorMessage", e.getMessage());
+            return "error";
+        }
+    }
+
+
+    @GetMapping("/aboutCompany")
+    public String aboutCompany(Model model , @RequestParam("id") Integer id ) {
+        if (id == null) {
+            return "find-jobs";
+        }
+        try {
+            Company company = companyService.getCompanyById(id);
+            model.addAttribute("company", company);
+            return "company-profile";
+        } catch (Exception e) {
+            model.addAttribute("errorMessage", e.getMessage());
+            return "error";
+        }
     }
 }

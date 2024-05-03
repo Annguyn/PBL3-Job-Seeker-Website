@@ -6,7 +6,8 @@
 
 <head>
   <meta charset="utf-8" />
-
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <meta name="viewport" content="initial-scale=1, width=device-width" />
   <script th:src="@{./js/index.js}"></script>
   <link rel="stylesheet" th:href="@{/css/global.css}" />
@@ -19,6 +20,9 @@
 </head>
 
 <body>
+
+
+
   <div class="landing-page">
     <section class="header-1-desktop">
       <img class="pattern-icon" alt="" />
@@ -56,7 +60,7 @@
               <div class="top-menu-child"></div>
             </div>
             <div class="top-menu1">
-              <div class="caption1">Browse Companies</div>
+              <a th:href="@{/findCompany}" class="caption1">Browse Companies</a>
               <div class="top-menu-item"></div>
             </div>
           </div>
@@ -107,40 +111,8 @@
             heights and passionate about startups.
           </div>
           <div class="search">
-            <form class="search-bar">
-              <div class="job-title">
-                <div class="icon-wrapper">
-                  <img class="icon" alt="" src="@{/images/icon.svg}" />
-                </div>
-                <div class="company-info">
-                  <input class="job-title-or" placeholder="Job title or keyword" type="text" />
-
-                  <div class="company-info-child"></div>
-                </div>
-              </div>
-              <div class="location">
-                <div class="icon-container">
-                  <img class="icon1" alt="" th:src="@{/images/icon-1.svg}" />
-                </div>
-                <div class="frame-parent">
-                  <select class="select-location" id="selectLocation" name="location">
-                    <option th:each="location : ${locations}" th:value="${location.id}" th:text="${location.name}">
-                      <img th:src="@{/images/icon-2.svg}" class="icon2" alt="" />
-                    </option>
-                  </select>
-                  <div class="frame-child"></div>
-                </div>
-
-              </div>
-              <button class="button2">
-                <b class="caption4">Search my job</b>
-              </button>
-            </form>
-            <div class="popular-ui-container">
-              <span class="popular-ui-container1">
-                <span>Popular : </span>
-                <span class="ui-designer-ux">UI Designer, UX Researcher, Android, Admin</span>
-              </span>
+            <div class="chart-container">
+              <div id="salaryChart"></div>
             </div>
           </div>
         </div>
@@ -174,11 +146,11 @@
           <span class="category">category</span>
         </h1>
         <div class="button-wrapper">
-          <a class="button3" th:href="@{findjobs}">
+          <a class="button3" th:href="@{/findjobs}">
             <div class="show-all-jobs">Show all jobs</div>
-            <di class="frame-div">
+            <div class="frame-div">
               <img class="icon3" alt="" th:src="@{/images/icon-3.svg}" />
-            </a>
+            </div>
           </a>
         </div>
       </div>

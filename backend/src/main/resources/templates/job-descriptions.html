@@ -325,31 +325,23 @@
                         <div class="more-about-company1">
                             <button class="company-logo8">
                                 <div class="padding"></div>
-                                <img class="stripe-logo-dp4f5yykm-1-icon5" alt=""
-                                    th:src="@{/images/stripe-logo-dp4f5yykm-1-1@2x.png}" />
+                                <img class="stripe-logo-dp4f5yykm-1-icon5" th:src="@{/company/image/{id}(id=${post.getCompany().id})}" alt="Company Avatar" />
                             </button>
                             <div class="box-shadow">
                                 <div class="company-name1">
-                                    <h1 class="stripe2">Stripe</h1>
+                                    <h1 class="stripe2" th:text="${post.getCompany().name}"></h1>
                                     <div class="buttonsmallicon-rightsmall5">
-                                        <div class="button53">
-                                            Read more about Stripe
-                                        </div>
+                                        <a th:href="@{/aboutCompany(id=${post.company.id})}" class="button53" th:text="${'Read more about '+ post.getCompany().name}">
+                                        </a>
                                         <div class="disabled-state">
-                                            <img class="icon164" loading="lazy" alt=""
+                                            <img class="icon164" loading="lazy" alt="Company Avatar"
                                                 th:src="@{/images/icon-30.svg}" />
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="stripe-is-a2">
-                            Stripe is a technology company that builds
-                            economic infrastructure for the internet.
-                            Businesses of every size—from new startups to
-                            ../static/images companies—use our software to
-                            accept payments and manage their businesses
-                            online.
+                        <div class="stripe-is-a2" th:text="${post.getCompany().profileDescription}">
                         </div>
                     </div>
                 </div>
