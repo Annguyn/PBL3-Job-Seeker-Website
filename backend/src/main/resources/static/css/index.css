@@ -6762,4 +6762,51 @@ a.fill-div {
   height: 100%;
   width: 100%;
   text-decoration: none;
+}div {
+   margin-bottom: 10px;
+ }
+
+label {
+  display: inline-block;
+  width: 70px;
+  text-align: right;
+  margin-right: 10px;
+}
+
+input[type="date"] {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+#type-selector, #from-date, #to-date  {
+  width: 150px; /* Adjust as needed */
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px; /* Adjust as needed */
+  color: #202430;
+}
+
+#filter-button {
+  padding: 5px 10px; /* Adjust as needed */
+  border: none;
+  border-radius: 4px;
+  background-color: #4640de; /* Adjust as needed */
+  color: white; /* Adjust as needed */
+  cursor: pointer;
+  font-size: 14px; /* Adjust as needed */
+}
+#from ,#to {
+  font-size: 14px;
+}
+.center-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Adjust this value as needed */
+  width: 100%; /* Ensure the div takes the full width */
+  padding:  0;
+  flex-basis: fit-content;
+
 }

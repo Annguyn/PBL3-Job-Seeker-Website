@@ -6,9 +6,18 @@
 
 <head>
   <meta charset="utf-8" />
+  <script th:inline="javascript">
+    /*<![CDATA[*/
+
+    var datePosted = /*[[${datePosted}]]*/ 'default';
+    var maxSalary = /*[[${maxSalary}]]*/ 'default';
+
+    /*]]>*/
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <meta name="viewport" content="initial-scale=1, width=device-width" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script th:src="@{./js/index.js}"></script>
   <link rel="stylesheet" th:href="@{/css/global.css}" />
   <link rel="stylesheet" th:href="@{/css/index.css}" />
@@ -17,12 +26,20 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Clash Display Variable:wght@600&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Helvetica:wght@700&display=swap" />
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet"
+        href="https://code.highcharts.com/css/highcharts.css" />
+  <script
+          src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script
+          src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 </head>
-
 <body>
-
-
-
   <div class="landing-page">
     <section class="header-1-desktop">
       <img class="pattern-icon" alt="" />
@@ -88,55 +105,57 @@
           </button>
         </div>
       </header>
-      <div class="title-wrapper">
-        <div class="title">
-          <div class="title1">
-            <!-- Nếu chưa đăng nhập -->
-            <div th:if="${userLoggedIn == null}">
-              <h1 class="discover-more-than-container">
-                <span>Discover more than </span>
-                <span class="jobs">5000+ Jobs</span>
-              </h1>
-            </div>
-            <!-- Nếu đã đăng nhập -->
-            <div class="after-login" th:if="${userLoggedIn != null}">
-              <div>
-                <p>Good Afternoon, <span class="jobs" th:text="${userLoggedIn.getUserDisplayName()}"></span></p>
-              </div>
-            </div>
-            <img class="group-icon" loading="lazy" alt="" th:src="@{/images/group.svg}" />
-          </div>
-          <div class="great-platform-for">
-            Great platform for the job seeker that searching for new career
-            heights and passionate about startups.
-          </div>
-          <div class="search">
-            <div class="chart-container">
-              <div id="salaryChart"></div>
-            </div>
-          </div>
+<!--      <div class="title-wrapper">-->
+<!--        <div class="title">-->
+<!--          <div class="title1">-->
+<!--            &lt;!&ndash; Nếu chưa đăng nhập &ndash;&gt;-->
+<!--            <div th:if="${userLoggedIn == null}">-->
+<!--              <h1 class="discover-more-than-container">-->
+<!--                <span>Discover more than </span>-->
+<!--                <span class="jobs">5000+ Jobs</span>-->
+<!--              </h1>-->
+<!--            </div>-->
+<!--            &lt;!&ndash; Nếu đã đăng nhập &ndash;&gt;-->
+<!--            <div class="after-login" th:if="${userLoggedIn != null}">-->
+<!--              <div>-->
+<!--                <p>Good Afternoon, <span class="jobs" th:text="${userLoggedIn.getUserDisplayName()}"></span></p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <img class="group-icon" loading="lazy" alt="" th:src="@{/images/group.svg}" />-->
+<!--          </div>-->
+<!--          <div class="great-platform-for">-->
+<!--            Great platform for the job seeker that searching for new career-->
+<!--            heights and passionate about startups.-->
+<!--          </div>-->
+<!--          <div class="search">-->
+<!--            <div class="chart-container">-->
+<!--              <div id="salaryChart"></div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+      <div class="center-div">
+        <div class="title-wrapper">
+        <div align="center">
+          <select id="type-selector">
+            <option value="category">Category</option>
+            <option value="location">Location</option>
+            <option value="language">Language</option>
+          </select>
         </div>
+        <div>
+          <label id="from" for="from-date">From:</label>
+          <input type="date" id="from-date">
+        </div>
+        <div>
+          <label id="to" for="to-date">To:</label>
+          <input type="date" id="to-date">
+        </div>
+        <button id="filter-button">Confirm Filter</button>
       </div>
-    </section>
-    <section class="landing-page-company-deskt">
-      <div class="companies-we-helped">Companies we helped grow</div>
-      <div class="featured-company">
-        <img class="vodafone-2017-logo-icon" loading="lazy" alt="" th:src="@{/images/vodafone2017logo.svg}" />
-
-        <img class="intel-3-icon" loading="lazy" alt="" th:src="@{/images/intel3.svg}" />
-
-        <div class="tesla-9-1">
-          <div class="tesla">
-            <img class="group-icon1" alt="" th:src="@{/images/group-1.svg}" />
-
-            <img class="vector-icon" loading="lazy" alt="" th:src="@{/images/vector.svg}" />
-          </div>
-        </div>
-        <img class="amd-logo-1-icon" loading="lazy" alt="" th:src="@{/images/amdlogo1.svg}" />
-
-        <img class="talkit-1-icon" loading="lazy" alt="" th:src="@{/images/talkit-1.svg}" />
-
-        <img class="billboard-vector-logo-1-icon" alt="" />
+      <figure class="highcharts-figure">
+        <div id="container-bar"></div>
+      </figure>
       </div>
     </section>
     <section class="landing-page-category-desk">

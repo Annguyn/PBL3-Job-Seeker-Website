@@ -150,7 +150,10 @@ public class FindJobsController {
             return "error";
         }
     }
-
+    @GetMapping("/")
+    public String getHighChart() {
+        return "chart";
+    }
 
     @GetMapping("/aboutCompany")
     public String aboutCompany(Model model , @RequestParam("id") Integer id ) {
