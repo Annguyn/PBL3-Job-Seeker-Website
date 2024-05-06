@@ -4,7 +4,20 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="initial-scale=1, width=device-width" />
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <link rel="stylesheet"
+              href="https://code.highcharts.com/css/highcharts.css" />
+        <script
+                src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script
+                src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
         <link rel="stylesheet" th:href="@{/css/global.css}" />
+        <script th:src="@{/js/applicant.js}"></script>
         <link
             rel="stylesheet"
             th:href="@{/css/dashboard-applicant.css}"
@@ -261,13 +274,13 @@
                                         <div class="total-jobs-applied">
                                             Total Jobs Applied
                                         </div>
-                                        <div class="user-interface">45</div>
+                                        <div class="user-interface" th:text="${userLoggedIn.getApplications().size()}"></div>
                                     </div>
                                 </div>
                                 <div class="card-dashboard3">
                                     <div class="interviewed">Interviewed</div>
                                     <div class="parent1">
-                                        <div class="div34">18</div>
+                                        <div class="div34" th:text="${numberInterview}"></div>
                                         <div class="icon-wrapper18">
                                             <img
                                                 class="icon215"
@@ -282,59 +295,13 @@
                                 <div class="jobs-applied-status">
                                     Jobs Applied Status
                                 </div>
-                                <div class="main-content18">
-                                    <div class="wrapper-graph">
-                                        <img
-                                            class="graph-icon"
-                                            loading="lazy"
-                                            alt=""
-                                            th:src="@{images/graph.svg}"
-                                        />
-                                    </div>
-                                    <div class="machine-learning-model">
-                                        <div class="stats">
-                                            <div class="sensor-reader">
-                                                <div
-                                                    class="actuator-controller"
-                                                >
-                                                    <div
-                                                        class="serial-communication"
-                                                    ></div>
-                                                </div>
-                                                <div
-                                                    class="parallel-processing"
-                                                >
-                                                    <b
-                                                        class="distributed-system"
-                                                        >60%</b
-                                                    >
-                                                    <div class="unsuitable">
-                                                        Unsuitable
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="sensor-reader1">
-                                                <div
-                                                    class="sensor-reader-inner"
-                                                >
-                                                    <div
-                                                        class="frame-child106"
-                                                    ></div>
-                                                </div>
-                                                <div class="parent2">
-                                                    <b class="b">40%</b>
-                                                    <div class="interviewed1">
-                                                        Interviewed
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <figure class="myChart">
+                                    <div id="myChart"></div>
+                                </figure>
                                 <div class="button66">
-                                    <div class="view-all-applications">
+                                    <a th:href="@{/jobApplied}" class="view-all-applications">
                                         View All Applications
-                                    </div>
+                                    </a>
                                     <div class="graphic-user-interface">
                                         <img
                                             class="icon216"
@@ -435,37 +402,30 @@
                         <form class="applicant-dashboard-recent-a">
                             <div class="base2"></div>
                             <div class="tree-view">
-                                <input
-                                    class="calendar-picker"
-                                    placeholder="Recent Applications History"
-                                    type="text"
-                                />
-
                                 <div class="line22"></div>
                             </div>
                             <div class="data-wrapper">
-                                <div class="data3">
+                                <div class="data3" >
+                                    <div th:each="applicant : ${userLoggedIn.getApplications()}">
                                     <div class="recent-applications-row">
                                         <div class="title19">
                                             <img
                                                 class="company-logo-icon53"
                                                 loading="lazy"
-                                                alt=""
-                                                th:src="@{images/company-logo6.svg}"
+                                                th:src="@{/company/image/{id}(id=${applicant.getPost().getCompany().id})}" alt="Company Avatar"
                                             />
 
                                             <div class="alert-message">
                                                 <div class="job-title45">
                                                     <b
                                                         class="social-media-assistant49"
-                                                        >Social Media
-                                                        Assistant</b
+                                                         th:text="${applicant.getPost().getTitle()}"></b
                                                     >
                                                     <div
                                                         class="company-name-location-job43"
                                                     >
-                                                        <div class="nomad47">
-                                                            Nomad
+                                                        <div class="nomad47" th:text="${applicant.getPost().getCompany().getName()}">
+
                                                         </div>
                                                         <div
                                                             class="stepper-control"
@@ -475,17 +435,15 @@
                                                             ></div>
                                                         </div>
                                                         <div
-                                                            class="paris-france43"
+                                                            class="paris-france43"  th:text="${applicant.getPost().getLocation().getName()}">
                                                         >
-                                                            Paris, France
                                                         </div>
                                                         <div class="info-box">
                                                             <div
                                                                 class="table-row"
                                                             ></div>
                                                         </div>
-                                                        <div class="full-time9">
-                                                            Full-Time
+                                                        <div class="full-time9" th:text="${applicant.getPost().getLevel().getName()}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -496,8 +454,7 @@
                                                 <div class="date-applied8">
                                                     Date Applied
                                                 </div>
-                                                <div class="july-20215">
-                                                    24 July 2021
+                                                <div class="july-20215" th:text="${applicant.getTimeApplied()}">
                                                 </div>
                                             </div>
                                         </div>
@@ -507,8 +464,7 @@
                                                     <div
                                                         class="label-child114"
                                                     ></div>
-                                                    <div class="caption308">
-                                                        In Review
+                                                    <div class="caption308" th:text="${applicant.getStatus()}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -521,175 +477,14 @@
                                             />
                                         </div>
                                     </div>
-                                    <div class="recent-applications-row1">
-                                        <div class="title20">
-                                            <img
-                                                class="company-logo-icon54"
-                                                alt=""
-                                                th:src="@{images/company-logo-14@2x.png}"
-                                            />
-
-                                            <div class="job-title-wrapper1">
-                                                <div class="job-title46">
-                                                    <b
-                                                        class="social-media-assistant50"
-                                                        >Social Media
-                                                        Assistant</b
-                                                    >
-                                                    <div
-                                                        class="company-name-location-job44"
-                                                    >
-                                                        <div class="nomad48">
-                                                            Udacity
-                                                        </div>
-                                                        <div
-                                                            class="company-name-location-job-inner37"
-                                                        >
-                                                            <div
-                                                                class="frame-child109"
-                                                            ></div>
-                                                        </div>
-                                                        <div
-                                                            class="paris-france44"
-                                                        >
-                                                            New York, USA
-                                                        </div>
-                                                        <div
-                                                            class="company-name-location-job-inner38"
-                                                        >
-                                                            <div
-                                                                class="frame-child110"
-                                                            ></div>
-                                                        </div>
-                                                        <div
-                                                            class="full-time10"
-                                                        >
-                                                            Full-Time
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="date-applied-container">
-                                            <div class="date-applied9">
-                                                <div class="date-applied10">
-                                                    Date Applied
-                                                </div>
-                                                <div class="july-20216">
-                                                    23 July 2021
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="recent-applications-row-inner"
-                                        >
-                                            <div class="label-wrapper4">
-                                                <button class="label193">
-                                                    <div
-                                                        class="label-child115"
-                                                    ></div>
-                                                    <div class="caption309">
-                                                        Shortlisted
-                                                    </div>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="icon-wrapper19">
-                                            <img
-                                                class="icon220"
-                                                alt=""
-                                                th:src="@{images/icon-131.svg}"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div class="recent-applications-row2">
-                                        <div class="title21">
-                                            <img
-                                                class="company-logo-icon55"
-                                                alt=""
-                                                th:src="@{images/company-logo-26.svg}"
-                                            />
-
-                                            <div class="job-title-wrapper2">
-                                                <div class="job-title47">
-                                                    <b
-                                                        class="social-media-assistant51"
-                                                        >Social Media
-                                                        Assistant</b
-                                                    >
-                                                    <div
-                                                        class="company-name-location-job45"
-                                                    >
-                                                        <div class="nomad49">
-                                                            Packer
-                                                        </div>
-                                                        <div
-                                                            class="company-name-location-job-inner39"
-                                                        >
-                                                            <div
-                                                                class="frame-child111"
-                                                            ></div>
-                                                        </div>
-                                                        <div
-                                                            class="paris-france45"
-                                                        >
-                                                            Madrid, Spain
-                                                        </div>
-                                                        <div
-                                                            class="company-name-location-job-inner40"
-                                                        >
-                                                            <div
-                                                                class="frame-child112"
-                                                            ></div>
-                                                        </div>
-                                                        <div
-                                                            class="full-time11"
-                                                        >
-                                                            Full-Time
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="date-applied-frame">
-                                            <div class="date-applied11">
-                                                <div class="date-applied12">
-                                                    Date Applied
-                                                </div>
-                                                <div class="july-20217">
-                                                    22 July 2021
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="recent-applications-row-child"
-                                        >
-                                            <div class="label-wrapper5">
-                                                <button class="label194">
-                                                    <div
-                                                        class="label-child116"
-                                                    ></div>
-                                                    <div class="caption310">
-                                                        Declined
-                                                    </div>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="icon-wrapper20">
-                                            <img
-                                                class="icon221"
-                                                alt=""
-                                                th:src="@{images/icon-131.svg}"
-                                            />
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <footer class="tabbed-pane">
                                 <div class="nav2">
-                                    <div class="view-all-applications1">
+                                    <a th:href="@{/jobApplied}" class="view-all-applications1">
                                         View all applications history
-                                    </div>
+                                    </a>
                                     <div class="tool-panel">
                                         <img
                                             class="icon222"

@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
-
+    <script th:src="@{./js/Company/job-listing.js}"></script>
     <link rel="stylesheet" th:href="@{./css/Company/global.css}" />
     <link rel="stylesheet" th:href="@{./css/Company/dashboard-company-job-listing.css}" />
     <link
@@ -244,7 +244,7 @@
                   <div class="caption110" th:text="${post.level.name}"></div>
                 </button>
                 <div class="div22" th:text="${post.applicants.size()}"></div>
-                <img class="icon114" alt="" th:src="@{./images/Company/icon-22.svg}" />
+                <img class="icon114" alt="" th:src="@{./images/Company/icon-22.svg}" th:data-id="${post.id}" onclick="confirmDelete(this)"/>
               </div>
             </div>
           </div>

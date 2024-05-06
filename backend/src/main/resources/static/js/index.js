@@ -1,91 +1,6 @@
 var datePosted = '03-10-2024'; // Replace 'default' with the actual initial value
-var maxSalary = '1000000'; // Replace 'default' with the actual initial value
-//
-// $(document).ready(
-//     function() {
-//         $('#type-selector').change(function() {
-//             var type = $(this).val();
-//             var fromDate = $('#from-date').val();
-//             var toDate = $('#to-date').val();
-//             $.ajax({
-//                 url : "/get-data?type=" + type + "&fromDate=" + fromDate + "&toDate=" + toDate,
-//                 success : function(result) {
-//                     var categories = Object.keys(result);
-//                     var seriesData = [];
-//
-//                     categories.forEach(function(category) {
-//                         console.log(typeof result[category]); // Add this line to check the type
-//                         var data = result[category].map(function(post) {
-//                             return {
-//                                 x: new Date(post.datePosted).getTime(), // Convert datePosted to timestamp
-//                                 y: post.maxSalary
-//                             };
-//                         });
-//
-//                         seriesData.push({
-//                             name: category,
-//                             data: data
-//                         });
-//                     });
-//
-//                     Highcharts.chart('container-bar', {
-//                         chart: {
-//                             type: 'column',
-//                             style: {
-//                                 color: '#FFFFFF'
-//                             },
-//                             height: 600,
-//                             width: 1000
-//                         },
-//                         title: {
-//                             text: 'Max Salary by Date Posted',
-//                             style: {
-//                                 color: '#FFFFFF' // Set title color to white
-//                             }
-//                         },
-//                         xAxis: {
-//                             type: 'datetime',
-//                             title: {
-//                                 text: 'Date Posted',
-//                                 style: {
-//                                     color: '#FFFFFF' // Set x-axis title color to white
-//                                 }
-//                             },
-//                             labels: {
-//                                 style: {
-//                                     color: '#FFFFFF' // Set x-axis labels color to white
-//                                 }
-//                             }
-//                         },
-//                         yAxis: {
-//                             title: {
-//                                 text: 'Max Salary',
-//                                 style: {
-//                                     color: '#FFFFFF' // Set y-axis title color to white
-//                                 }
-//                             },
-//                             labels: {
-//                                 style: {
-//                                     color: '#FFFFFF' // Set y-axis labels color to white
-//                                 }
-//                             }
-//                         },
-//                         legend: {
-//                             itemStyle: {
-//                                 color: '#FFFFFF' // Set legend text color to white
-//                             }
-//                         },
-//                         tooltip: {
-//                             style: {
-//                                 color: '#FFFFFF' // Set tooltip text color to white
-//                             }
-//                         },
-//                         series: seriesData
-//                     });
-//                 }
-//             });
-//         }).change(); // Trigger change event to load the chart initially
-//     });
+var maxSalary = '1000000'; // Replace 'default' with the actual initial valuelet date = new Date();
+
 function loadGraph(type, fromDate, toDate) {
     $.ajax({
         url : "/get-data?type=" + type + "&fromDate=" + fromDate + "&toDate=" + toDate,
@@ -171,7 +86,7 @@ $(document).ready(function() {
     // Set default toDate and fromDate
     var defaultToDate = new Date();
     var defaultFromDate = new Date();
-    defaultFromDate.setDate(defaultFromDate.getDate() - 10); // 10 days before today
+    defaultFromDate.setDate(defaultFromDate.getDate() - 31); // 10 days before today
 
     // Format dates to 'yyyy-mm-dd'
     var toDate = defaultToDate.toISOString().split('T')[0];

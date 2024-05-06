@@ -43,7 +43,10 @@ public class FindJobsController {
     @GetMapping("/findjobs")
     public String showFindJobsForm(Model model,
                                    @RequestParam(defaultValue = "1") int page,
-                                   @RequestParam(required = false) String sort) {
+                                   @RequestParam(name = "sort" ,required = false) String sort,
+                                   @RequestParam(name="categorySelected",required = false) List<Category> categories,
+                                   @RequestParam(name="levelsSelected", required = false) List<Level> levels,
+                                   @RequestParam(name="salaryRange", required = false) String salaryRange) {
         try {
             Pageable pageable;
             if ("salary".equals(sort)) {
@@ -60,17 +63,18 @@ public class FindJobsController {
                     post.getLocation().setName("N/A");  // Set the name to "N/A" if it's null
                 }
             }
-            List<Level> levels = levelService.getAllLevel();
-            List<Category> categories = categoryService.getAllCategories();
+
+            List<Level> allLevels = levelService.getAllLevel();
+            List<Category> allCategories = categoryService.getAllCategories();
             List<Location> locations = locationService.getAllLocations();
-            model.addAttribute("categories", categories);
+            model.addAttribute("categories", allCategories);
             model.addAttribute("page", postPage);
             model.addAttribute("locations", locations);
-            model.addAttribute("levels", levels);
+            model.addAttribute("levels", allLevels);
             return "find-jobs";
         } catch(Exception e) {
             model.addAttribute("errorMessage", e.getMessage());
-            return "error";
+            return "find-jobs";
         }
     }
     @GetMapping("/jobdetails")

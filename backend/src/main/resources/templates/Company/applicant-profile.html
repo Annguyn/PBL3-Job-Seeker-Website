@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" th:href="@{./css/Company/global.css}" />
     <link rel="stylesheet" th:href="@{./css/Company/dashboard-company-applicant-profile.css}" />
+    <script th:src="@{./js/Company/applicant-profile.js}"></script>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Red Hat Display:wght@700&display=swap"
@@ -198,7 +199,13 @@
             <div class="icon-wrapper2">
               <img class="icon137" alt="" th:src="@{./images/Company/icon-133.svg}" />
             </div>
-            <b class="caption134">More Action</b>
+            <b class="caption134" onclick="showDropdown()">More Action</b>
+            <select id="statusDropdown" style="display: none;" th:field="*{applyForm.status}">
+              <option value="unsuitable">Unsuitable</option>
+              <option value="interviewed">Interviewed</option>
+              <option value="live">Live</option>
+              <option value="accepted">Accepted</option>
+            </select>
           </div>
         </section>
         <section class="binary-tree-leaf" >
@@ -386,7 +393,10 @@
                     <div class="about-me">
                       <div class="about-me1">Resume </div>
                       <div class="about-me2">
-                        <div class="im-a-product" th:if="${applyForm.getUser().bio != null}" th:text="${applyForm.additionalInformation}">
+                        <img
+                                class="company-logo-icon17"
+                                th:src="@{/application/image/{id}(id=${applyForm.id})}" alt="Resume"
+                        />
                         </div>
                       </div>
                     </div>

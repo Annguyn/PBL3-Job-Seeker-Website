@@ -79,8 +79,14 @@ public class User implements Serializable {
 
     @Column(name= "contact_number")
     private String contactNumber;
+//
+//    private int age ;
+//
+//    public void setAge() {
+//        this.age = new Date().getYear() - dob.getYear();
+//    }
 
-    public User(String Email, String userDisplayName,  String password,  String role) {
+    public User(String Email, String userDisplayName, String password, String role) {
         email = Email;
         UserDisplayName = userDisplayName;
         Password = password;

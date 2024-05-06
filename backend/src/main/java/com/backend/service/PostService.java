@@ -23,5 +23,7 @@ public interface PostService {
     List<Post> getAllPostsOrderBySalaryAsc();
     Post getPostById(int id);
     List<Post> getPostByCompany(Company company);
-    void save(Post post); 
+    void save(Post post);
+    void delete(Post post);
+
 }

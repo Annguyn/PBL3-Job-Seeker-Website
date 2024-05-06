@@ -171,20 +171,20 @@
             </section>
             <section class="landing-page-job-list-desk">
                 <div class="filter">
-                  <div class="type-of-employment">
-                    <div class="transition-timer">
-                      <b class="type-of-employment1">Categories</b>
-                      <img class="icon95" alt="" th:src="@{/images/icon-31.svg}" id="showMoreButton" />
-                    </div>
-                    <div id="moreContent" style="display: none;">
-                      <div th:each="category : ${categories}">
-                        <div class="checkbox1">
-                          <input class="checkboxfalse1" type="checkbox1" />
-                          <div class="caption1" th:text="${category.name + ' (' + category.quantity + ')'}"></div>
+                    <div class="type-of-employment">
+                        <div class="transition-timer">
+                            <b class="type-of-employment1">Categories</b>
+                            <img class="icon95" alt="" th:src="@{/images/icon-31.svg}" id="showMoreButton" />
                         </div>
-                      </div>
+                        <div id="moreContent" style="display: none;">
+                            <div th:each="category : ${categories}">
+                                <div class="checkbox1">
+                                    <input class="checkboxfalse1" type="checkbox" name="categories" th:value="${category.name}" />
+                                    <div class="caption1" th:text="${category.name + ' (' + category.quantity + ')'}"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                   <div class="job-level">
                     <div class="job-level-parent">
                       <b class="job-level1">Job Level</b>

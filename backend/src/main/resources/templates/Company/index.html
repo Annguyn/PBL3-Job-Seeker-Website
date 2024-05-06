@@ -205,21 +205,21 @@
           <div class="action-parent">
             <div class="action1">
               <div class="new-candidates">
-                <div class="div1">76</div>
+                <div class="div1" th:text="${numberLiveCompany}"></div>
                 <div class="new-candidates-to">New candidates to review</div>
-                <img class="icon13" alt=""th:src="@{./images/Company/icon-13.svg}" />
+                <img class="icon13" alt="" th:src="@{./images/Company/icon-13.svg}" />
               </div>
               <div class="schedule">
                 <div class="shape-shift-parent">
-                  <div class="shape-shift">3</div>
-                  <div class="schedule-for-today">Schedule for today</div>
+                  <div class="shape-shift" th:text="${numberInterviewCompany}"></div>
+                  <div class="schedule-for-today">Interview Applicants</div>
                 </div>
                 <img class="icon14" alt=""th:src="@{./images/Company/icon-13.svg}" />
               </div>
               <div class="messages">
                 <div class="parent">
-                  <div class="div2">24</div>
-                  <div class="messages-received">Messages received</div>
+                  <div class="div2" th:text="${numberAcceptedCompany}"></div>
+                  <div class="messages-received">Accept applicant</div>
                 </div>
                 <img class="icon15" alt=""th:src="@{./images/Company/icon-13.svg}" />
               </div>

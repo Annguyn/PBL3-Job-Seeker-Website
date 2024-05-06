@@ -72,4 +72,9 @@ public class JobListingController {
         model.addAttribute("company", company);
         return "Company/applicant-profile";
     }
+    @PostMapping("/applicant")
+    public String postApplicant(@ModelAttribute("applyForm") Application application) {
+        applicationService.save(application);
+        return "redirect:/applicant?id=" + application.getId();
+    }
 }

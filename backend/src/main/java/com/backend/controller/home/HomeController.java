@@ -99,13 +99,66 @@ public class HomeController {
         if (userLoggedIn == null) {
             userLoggedIn = new User();
         }
-        if(userLoggedIn.getRole().equals("company"))
-        {
-            return "Company/index";
-        }
-        return "applicant";
-    }
 
+        int numberInterview = 0;
+        int numberUnsuitable = 0;
+        int numberLive = 0;
+        int numberAccepted = 0;
+        int numberInterviewCompany = 0;
+        int numberUnsuitableCompany = 0;
+        int numberLiveCompany = 0;
+        int numberAcceptedCompany = 0;
+
+
+        for (Application application : userLoggedIn.getApplications()) {
+            if ("interview".equals(application.getStatus())) {
+                numberInterview++;
+            } else if ("unsuitable".equals(application.getStatus())) {
+                numberUnsuitable++;
+            }
+            else if("live".equals(application.getStatus())){
+                numberLive++;
+            }
+            else if("accepted".equals(application.getStatus())){
+                numberAccepted++;
+            }
+        }
+        for (Post post : postService.getAllPosts()) {
+            if (post.getLocation() == null) {
+                post.setLocation(new Location());
+            }
+            if (post.getLocation().getName() == null) {
+                post.getLocation().setName("N/A");
+            }
+        }
+            model.addAttribute("numberAccepted", numberAccepted);
+            model.addAttribute("numberLive", numberLive);
+            model.addAttribute("numberInterview", numberInterview);
+            model.addAttribute("numberUnsuitable", numberUnsuitable);
+            model.addAttribute("userLoggedIn", userLoggedIn);
+            if (userLoggedIn.getRole().equals("company")) {
+
+                for (Application application : userLoggedIn.getApplications()) {
+                    if ("interview".equals(application.getStatus())) {
+                        numberInterviewCompany++;
+                    } else if ("unsuitable".equals(application.getStatus())) {
+                        numberUnsuitableCompany++;
+                    } else if ("live".equals(application.getStatus())) {
+                        numberLiveCompany++;
+                    } else if ("accepted".equals(application.getStatus())) {
+                        numberAcceptedCompany++;
+                    }
+                }
+                model.addAttribute("numberAcceptedCompany", numberAcceptedCompany);
+                model.addAttribute("numberLiveCompany", numberLiveCompany);
+                model.addAttribute("numberInterviewCompany", numberInterviewCompany);
+                model.addAttribute("numberUnsuitableCompany", numberUnsuitableCompany);
+
+                return "Company/index";
+            }
+
+            return "applicant";
+        }
     @GetMapping("/profile")
     public String showAboutPage(Authentication authentication, Model model) {
         User user = userService.getUserbyEmail(authentication.getName());

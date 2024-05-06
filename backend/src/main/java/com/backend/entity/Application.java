@@ -22,11 +22,11 @@ public class Application {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", insertable = false)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "post_id", insertable = false)
+    @JoinColumn(name = "post_id")
     private Post post;
 
     @Column(name = "time_applied")
@@ -54,9 +54,11 @@ public class Application {
     private String additionalInformation;
 
     @Lob
-    @Column(name = "resume")
+    @Column(name = "resume" , columnDefinition = "LONGBLOB")
     private byte[] resume;
 
+    @Column(name="status" , nullable = true)
+    private String status;
 
     public long getDaysSinceApplied() {
         if (timeApplied == null) {

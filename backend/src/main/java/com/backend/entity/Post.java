@@ -22,7 +22,7 @@ public class Post {
     @Column(name = "company_id")
     private int companyId;
 
-    @Column(name = "title")
+    @Column(name = "title" )
     private String title;
 
     @ManyToOne
