@@ -79,6 +79,15 @@ public class User implements Serializable {
 
     @Column(name= "contact_number")
     private String contactNumber;
+
+    @ManyToMany
+    @JoinTable(name = "user_nicetohaves", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "nicetohave_id"))
+    private List<NiceToHaves> niceToHaves;
+
+
+    @OneToMany(mappedBy = "user")
+    private List<Education> educationDetail;
+
 //
 //    private int age ;
 //

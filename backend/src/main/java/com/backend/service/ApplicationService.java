@@ -15,4 +15,5 @@ public interface ApplicationService {
     List<Application> findAllByUser(User user);
     List<Application> findAllByPostCompany(int companyId);
     void save(Application application);
+    String createStyledResume(String fullName, String emailAddress, String phoneNumber, String jobTitle, String additionalInformation);
 }

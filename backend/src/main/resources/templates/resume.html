@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> </html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" th:href="@{./css/global.css}" />
+    <link rel="stylesheet" th:href="@{./css/resume.css}" />
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Red Hat Display:wght@700&display=swap"
+    />
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700&display=swap"
+    />
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Clash Display Variable:wght@600&display=swap"
+    />
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Helvetica:wght@700&display=swap"
+    />
+</head>
+<body>
+<div class="div100">
+    <img class="child2" alt="" src="./public/group-19@2x.png" />
+
+    <div class="image-holder-parent">
+        <div class="image-holder">
+            <img
+                    class="image-265-icon"
+                    loading="lazy"
+                    th:src="@{/user/image/{id}(id=${app.getUser().getID()})}" alt="Avatar"
+            />
+        </div>
+        <div class="education-label">
+            <div class="experience">experience</div>
+        </div>
+        <div class="education">Education</div>
+        <div class="languages-parent">
+            <div class="languages1">Languages</div>
+            <div class="skills1">Skills</div>
+            <div class="links9">Links</div>
+        </div>
+    </div>
+    <div class="p-d-u-bber">
+        <div class="designer-info">
+            <div class="san-francisco-california" th:text="${app.getUser().getLocation().getName()}"></div>
+            <div class="university-info">
+                <div class="div101" th:text="${app.getUser().contactNumber}"></div>
+                <div class="ricktanggmailcom" th:text="${app.getUser().getEmail()}"></div>
+            </div>
+        </div>
+        <div class="english-italian-bg">
+            <h2 class="rick-tang-product" th:text="${app.getUser().getUserDisplayName() + ', ' + app.getUser().getMajor()}"></h2>
+            <h3 class="uxui-specialist-focused" th:text="${app.getUser().getBio()}">
+            </h3>
+        </div>
+        <div class="rider-safety-exp">
+            <div class="product-design">
+                <b class="product-designer-uber">Product Designer, Uber</b>
+                <div class="mar-2015-">Mar 2015 - Present</div>
+            </div>
+            <div class="designed-safety-focused-experi-container">
+                <ul class="designed-safety-focused-experi">
+                    <li class="designed-safety-focused-experi1">
+                        Designed safety-focused experiences for Riders and Drivers
+                    </li>
+                    <li class="physical-space-problem">
+                        Physical space problem solving and it’s interaction with the
+                        digital
+                    </li>
+                    <li>
+                        Navigated organization to achieve operational improvements
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="rider-safety-exp1">
+            <div class="product-designer-ifttt-parent">
+                <b class="product-designer-ifttt">Product Designer, IFTTT </b>
+                <div class="dec-2013-">Dec 2013 - Mar 2015</div>
+            </div>
+            <div class="product-and-system-container">
+                <ul class="product-and-system-design-for">
+                    <li class="product-and-system">
+                        Product and system design for a complex product
+                    </li>
+                    <li class="designed-both-consumer">
+                        Designed both consumer and developer products for IFTTT
+                    </li>
+                    <li>
+                        Responsible for maintaining design across iOS, Android, and web
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="rider-safety-exp2">
+            <div class="product-designer-facebook-parent">
+                <b class="product-designer-facebook">Product Designer, Facebook</b>
+                <div class="june-2013-">June 2013 - Sep 2013</div>
+            </div>
+            <div class="designer-and-prototyped-container">
+                <ul class="designer-and-prototyped-intern">
+                    <li class="designer-and-prototyped">
+                        Designer and prototyped internal tools
+                    </li>
+                    <li class="worked-with-privacy">
+                        Worked with Privacy team to build assets and features
+                    </li>
+                    <li>Redesigned Newsfeed curation experience for mobile</li>
+                </ul>
+            </div>
+        </div>
+        <div class="rider-safety-exp3">
+            <div class="uxui-design-intern-google-ma-parent">
+                <b class="uxui-design-intern">UX/UI Design Intern, Google Maps</b>
+                <div class="june-2012-">June 2012 - Sep 2013</div>
+            </div>
+            <div class="contributed-to-maps-container">
+                <ul class="contributed-to-maps-on-ios-wir">
+                    <li class="contributed-to-maps">
+                        Contributed to Maps on iOS wireframe ans user experience
+                    </li>
+                    <li class="designed-and-prototyped">
+                        Designed and prototyped onboarding experience
+                    </li>
+                    <li>Asset and feature design for Maps on Android</li>
+                </ul>
+            </div>
+        </div>
+        <div class="linked-in-dribbble-behance">
+            <b class="rhode-island-school">Rhode Island School of Design</b>
+            <div class="bfa-industrial-design">
+                BFA Industrial Design, Class of 2013
+            </div>
+        </div>
+        <div class="brown-university-parent">
+            <b class="brown-university">Brown University</b>
+            <div class="interdisciplinary-studies-sep">
+                Interdisciplinary studies, Sep 2010 - May 2013
+            </div>
+        </div>
+        <div class="english-c2-parent">
+            <div class="english-c2">English: C2</div>
+            <div class="wrapper9">
+                <img class="icon492" loading="lazy" alt="" src="./public/.svg" />
+            </div>
+            <div class="italian-b2">Italian: B2</div>
+        </div>
+        <div class="frame-parent42">
+            <div class="frame-parent43">
+                <div class="figma-parent">
+                    <div th:each="nice_to_have : ${app.getUser().getNiceToHaves()}" class="frame-parent44">
+                        <div class="parent9">
+                            <img
+                                    class="icon493"
+                                    loading="lazy"
+                                    alt=""
+                                    src="./public/-1.svg"
+                            />
+
+                            <div class="sketch" th:text="${nice_to_have.name}"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="linkedin-parent">
+                    <a th:href="${app.getUser().getLinkedin()}" class="linkedin">LinkedIn</a>
+                    <div class="wrapper10">
+                        <img
+                                class="icon498"
+                                loading="lazy"
+                                alt=""
+                                src="./public/-1.svg"
+                        />
+                    </div>
+                    <div th:href="${app.getUser().getGithub()}" class="dribbble">Github</div>
+                    <div class="wrapper11">
+                        <img
+                                class="icon499"
+                                loading="lazy"
+                                alt=""
+                                src="./public/-1.svg"
+                        />
+                    </div>
+                    <div th:href="${app.getUser().getSocialLink()}" class="behance">Facebook</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -192,9 +192,9 @@
                 th:src="@{/images/rectangle-1731.svg}"
               />
             </div>
-            <div class="tab-menu6">
-              <div class="caption322">Login Details</div>
-            </div>
+            <a class="tab-menu6" th:href="@{/settings?type=education}">
+              <div class="caption322">Education</div>
+            </a>
             <div class="tab-menu7">
               <div class="caption323">Notifications</div>
             </div>
@@ -209,14 +209,14 @@
             </div>
           </div>
         </div>
-        <form class="applicant-dashboard-my-profi" method="post" action="/profileSettingUser" enctype="multipart/form-data">
-        <div class="basic-information">
+        <form class="applicant-dashboard-my-profi" method="post" action="/settings" enctype="multipart/form-data">
+        <div th:unless="${param.type}" class="basic-information">
             <div class="basic-information1">Basic Information</div>
             <input class="this-is-your" placeholder="This is your personal information that you can update anytime." th:field="*{user.bio}">
             </input>
           </div>
           <div class="tab-menu-separator"></div>
-          <div class="profile-photo">
+          <div th:unless="${param.type}" class="profile-photo">
             <div class="profile-photo1">
               <div class="profile-photo2">Profile Photo</div>
               <div class="this-image-will">
@@ -248,7 +248,7 @@
             </div>
           </div>
           <div class="tab-menu-separator1"></div>
-          <div class="personal-details">
+          <div th:unless="${param.type}" class="personal-details">
             <div class="personal-details1">Personal Details</div>
             <div class="forms2">
               <div class="textfield14">
@@ -329,7 +329,7 @@
           </div>
           <div class="tab-menu-separator2"></div>
           <div class="tab-menu-separator1"></div>
-          <div class="personal-details">
+          <div th:unless="${param.type}"  class="personal-details">
             <div class="personal-details1">Additional Information</div>
             <div class="forms2">
               <div class="textfield14">
@@ -407,9 +407,54 @@
               </div>
             </div>
           </div>
+          <div th:if="${param.type}"  class="personal-details">
+            <div class="personal-details1">Education Information</div>
+            <div class="forms2">
+              <div class="textfield14">
+                <div class="label195">
+                  <span class="full-name">Certificate Degree Name</span>
+                  <span class="span19">*</span>
+                </div>
+                <select class="form-control" id="degreeName" name="degreeName">
+                  <option value="">Select Degree</option>
+                  <option value="Bachelor's">Bachelor's</option>
+                  <option value="Master's">Master's</option>
+                  <option value="PhD">PhD</option>
+                </select>
+              </div>
+              <div class="row-25">
+                <div class="textfield15">
+                  <div class="label196">
+                    <span class="phone-number">Major</span>
+                    <span class="span20">*</span>
+                  </div>
+                  <div class="input17">
+                    <input
+                            class="fill-div"
+                            placeholder="Information Technology(Japanese)"
+                            type="text"
+                            th:field="*{user.linkedin}"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row-3">
+                <div class="textfield18">
+                  <div class="label199">
+                    <span class="gender">University </span>
+                    <span class="span23">*</span>
+                  </div>
+                  <div class="dropdown3">
+                    <select th:field="*{UniversityId}">
+                      <option th:each="university : ${universities}" th:value="${university.id}" th:text="${university.name}"></option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="tab-menu-separator2"></div>
-          <div class="close-button">
-            <div class="account-type">
+          <div th:unless="${param.type}" class="close-button">            <div class="account-type">
               <div class="account-type1">Account Type</div>
               <div class="you-can-update">You can update your account type</div>
             </div>
