@@ -225,9 +225,9 @@
                           alt=""
                          th:src="@{/images/icon-91.svg}"
                         />
-
+<div th:if="${user.location != null}">
                         <div class="manchester-uk" th:text="${user.location.name}"></div>
-                      </div>
+                      </div>  </div>
                       <button class="open-for-opportunities">
                         <img
                           class="icon112"

@@ -90,6 +90,10 @@ private List<User> applicants;
     @JoinTable(name = "job_nice_to_haves", joinColumns = @JoinColumn(name = "post_id"), inverseJoinColumns = @JoinColumn(name = "nth_id"))
     private List<NiceToHaves> niceToHaves;
 
+
+    @OneToMany(mappedBy = "post")
+    private List<Comment> comments;
+
     public Post(int CompanyId, BigDecimal maxSalary, BigDecimal minSalary, String phoneNumber, String email,
             String content, byte[] images, int experience) {
         this.companyId = CompanyId;

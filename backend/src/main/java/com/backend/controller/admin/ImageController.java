@@ -45,6 +45,15 @@ public class ImageController {
 
         return new ResponseEntity<>(image, headers, HttpStatus.OK);
     }
+    @GetMapping("/image/{bytes}")
+    public ResponseEntity<byte[]> getCompanyImage(@PathVariable byte[] bytes) {
+
+        HttpHeaders headers = new HttpHeaders();
+        MediaType mediaType = getImageMediaType(bytes);
+        headers.setContentType(mediaType);
+
+        return new ResponseEntity<>(bytes, headers, HttpStatus.OK);
+    }
     @GetMapping("/application/image/{id}")
     public ResponseEntity<byte[]> getResumeImage(@PathVariable int id) {
         Application application = applicationRepository.findById(id);

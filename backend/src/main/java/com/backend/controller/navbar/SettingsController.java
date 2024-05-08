@@ -5,8 +5,6 @@ import com.backend.service.CompanyService;
 import com.backend.service.LocationService;
 import com.backend.service.UniversityService;
 import com.backend.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -53,13 +51,12 @@ import java.util.List;
                     return "settings-account-settings";
                 }
             }
-            return "redirect:/login"; // Redirect to login if user is not authenticated
+            return "redirect:/login";
         }
-
         @PostMapping("/settings")
         public String postSettings(@ModelAttribute("companyLoggedIn") Company formCompany, @ModelAttribute("user") User user,
                                    Authentication auth, @RequestParam("avatarFile") MultipartFile avatarFile, Model model,
-                                   @RequestAttribute("UniversityId") Integer UniversityId) throws IOException, IOException {
+                                   @RequestAttribute(value = "UniversityId" ,required = false) Integer UniversityId) throws IOException, IOException {
             User currentUser = userService.getUserbyEmail(auth.getName());
             if (currentUser.getRole().equals("company")) {
                 Company existingCompany = currentUser.getCompany();

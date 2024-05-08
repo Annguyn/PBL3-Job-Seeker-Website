@@ -10,6 +10,12 @@
     <script th:src="@{js/dashboard-job-descriptions.js}"></script>
     <link rel="stylesheet" th:href="@{/css/global.css}" />
     <link rel="stylesheet" th:href="@{/css/dashboard-job-descriptions.css}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Add the jQuery and Font Awesome links -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red Hat Display:wght@700&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700&display=swap" />
     <link rel="stylesheet"
@@ -317,6 +323,36 @@
                         </div>
                     </div>
                     <div class="line18"></div>
+                </div>
+            </section>
+            <section class="landing-page-company-deskt2">
+                <div class="container mt-5 mb-5">
+                    <div class="coment-bottom bg-white p-2 px-4">
+                        <form th:action="@{/addComment}" method="post">
+                            <div class="d-flex flex-row add-comment-section mt-4 mb-4">
+                                <img class="img-fluid img-responsive rounded-circle mr-2" th:src="@{/user/image/{id}(id=${userLoggedIn.getID()})}" width="38">
+                                <input type="text" name="content" class="form-control mr-3" placeholder="Add comment">
+                                <input type="hidden" name="postId" th:value="${post.id}" /> <!-- Add this line -->
+                                <button class="btn btn-primary" type="submit">Comment</button>
+                            </div>
+                        </form>
+                        <div th:each="comment : ${comments}" class="commented-section mt-2" style="border: 1px solid #000; padding: 10px; margin-bottom: 10px;">
+                            <div class="d-flex flex-row align-items-center commented-user">
+                                <img class="img-fluid img-responsive rounded-circle mr-2" th:src="@{/user/image/{id}(id=${comment.user.getID()})}" width="38">
+                                <h5 class="mr-2" th:text="${comment.getUser().getUserDisplayName()}"></h5>
+                                <span class="dot mb-1"></span>
+                            </div>
+                            <div class="comment-text-sm">
+                                <span th:text="${comment.content}"></span>
+                            </div>
+                            <div th:if="${userLoggedIn.getID() == comment.user.getID()}">
+                                <form th:action="@{/deleteComment}" method="post">
+                                    <input type="hidden" name="commentId" th:value="${comment.id}" />
+                                    <button type="submit">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
             <section class="landing-page-company-deskt2">

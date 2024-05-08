@@ -2,9 +2,11 @@ package com.backend.controller.navbar;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 import com.backend.entity.*;
 import com.backend.service.*;
+import jnr.ffi.Struct;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -29,6 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class FindJobsController {
     private final ApplicationService applicationService;
     private final CompanyService companyService;
+    private final CommentService commentService;
     private UserService userService;
     private PostService postService;
     private CategoryService categoryService;
@@ -90,6 +93,8 @@ public class FindJobsController {
         if (userLoggedIn == null) {
             userLoggedIn = new User();
         }
+        List<Comment> comments = postService.getPostById(id).getComments();
+        model.addAttribute("comments", comments);
         model.addAttribute("userLoggedIn", userLoggedIn);
         try {
             Post post = postService.getPostById(id);
@@ -106,7 +111,29 @@ public class FindJobsController {
             return "error";
         }
     }
+    @PostMapping("/addComment")
+    public String addComment(@RequestParam String content, @RequestParam Integer postId, Authentication authentication) {
+        User user = userService.getUserbyEmail(authentication.getName());
+        Post post = postService.getPostById(postId);
 
+        Comment comment = new Comment();
+        comment.setContent(content);
+        comment.setUser(user);
+        comment.setPost(post);
+
+        commentService.saveComment(comment);
+
+        return "redirect:/jobdetails?id=" + postId;
+    }
+    @PostMapping("/deleteComment")
+    public String deleteComment(@RequestParam Long commentId, Authentication authentication) {
+        User user = userService.getUserbyEmail(authentication.getName());
+        Comment comment = commentService.getCommentById(commentId);
+
+        commentService.deleteComment(comment);
+
+        return "redirect:/jobdetails?id=" + comment.getPost().getId();
+    }
     @PostMapping("/jobdetails")
     public String applyJob(
             @RequestParam("id") Integer postId,
