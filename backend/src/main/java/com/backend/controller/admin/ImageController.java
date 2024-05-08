@@ -1,13 +1,7 @@
 package com.backend.controller.admin;
 
-import com.backend.entity.Application;
-import com.backend.entity.Company;
-import com.backend.entity.Post;
-import com.backend.entity.User;
-import com.backend.repository.ApplicationRepository;
-import com.backend.repository.CompanyRepository;
-import com.backend.repository.PostRepository;
-import com.backend.repository.UserRepository;
+import com.backend.entity.*;
+import com.backend.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -33,6 +27,8 @@ public class ImageController {
     private ApplicationRepository applicationRepository;
     @Autowired
     private CompanyRepository companyRepository;
+    @Autowired
+    private UniversityRepository universityRepository;
 
     @GetMapping("/company/image/{id}")
     public ResponseEntity<byte[]> getCompanyImage(@PathVariable int id) {
@@ -89,7 +85,18 @@ public class ImageController {
 
         return new ResponseEntity<>(image, headers, HttpStatus.OK);
     }
+    @GetMapping("/university/image/{id}")
+    public ResponseEntity<byte[]> getUniversityImage(@PathVariable int id) {
+        University university = universityRepository
+                .findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid post Id:" + id));
+        byte[] image = university.getPhoto();
 
+        HttpHeaders headers = new HttpHeaders();
+        MediaType mediaType = getImageMediaType(image);
+        headers.setContentType(mediaType);
+
+        return new ResponseEntity<>(image, headers, HttpStatus.OK);
+    }
     @GetMapping("/application/resume/{id}")
     public ResponseEntity<byte[]> getApplicationResume(@PathVariable int id) {
         Application application = applicationRepository.findById(id) ;

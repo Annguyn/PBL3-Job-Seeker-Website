@@ -15,7 +15,7 @@ public class Education {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", insertable = true)
     private User user;
 
     @Column(name = "certificate_degree_name")

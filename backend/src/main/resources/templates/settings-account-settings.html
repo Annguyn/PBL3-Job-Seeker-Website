@@ -415,12 +415,44 @@
                   <span class="full-name">Certificate Degree Name</span>
                   <span class="span19">*</span>
                 </div>
-                <select class="form-control" id="degreeName" name="degreeName">
+                <select class="form-control" id="degreeName" name="Degree">
                   <option value="">Select Degree</option>
                   <option value="Bachelor's">Bachelor's</option>
                   <option value="Master's">Master's</option>
                   <option value="PhD">PhD</option>
                 </select>
+              </div>
+              <div class="row-25">
+                <div class="textfield15">
+                  <div class="label196">
+                    <span class="phone-number">Start year</span>
+                    <span class="span20">*</span>
+                  </div>
+                  <div class="input17">
+                    <input
+                            class="fill-div"
+                            placeholder="2022"
+                            type="text"
+                            name="startDate"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row-25">
+                <div class="textfield15">
+                  <div class="label196">
+                    <span class="phone-number">Graduate Year</span>
+                    <span class="span20">*</span>
+                  </div>
+                  <div class="input17">
+                    <input
+                            class="fill-div"
+                            placeholder="2026"
+                            type="text"
+                            name="endDate"
+                    />
+                  </div>
+                </div>
               </div>
               <div class="row-25">
                 <div class="textfield15">
@@ -433,7 +465,7 @@
                             class="fill-div"
                             placeholder="Information Technology(Japanese)"
                             type="text"
-                            th:field="*{user.linkedin}"
+                            name="MajorUni"
                     />
                   </div>
                 </div>
@@ -445,8 +477,8 @@
                     <span class="span23">*</span>
                   </div>
                   <div class="dropdown3">
-                    <select th:field="*{UniversityId}">
-                      <option th:each="university : ${universities}" th:value="${university.id}" th:text="${university.name}"></option>
+                    <select name="UniversityId">
+                      <option th:each="uni : ${universities}" th:value="${uni.getId()}" th:text="${uni.name}"></option>
                     </select>
                   </div>
                 </div>

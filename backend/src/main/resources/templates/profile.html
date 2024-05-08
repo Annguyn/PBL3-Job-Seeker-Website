@@ -241,7 +241,7 @@
                       </button>
                     </div>
                     <button class="button40">
-                      <a th:href="@{/profileSettingUser}" class="caption200">Edit Profile</a>
+                      <a th:href="@{/settings}" class="caption200">Edit Profile</a>
                     </button>
                   </div>
                 </div>
@@ -379,72 +379,36 @@
                       <img class="icon119" alt=""th:src="@{/images/icon-121.svg}" />
                     </div>
                   </div>
+                  <div th:each ="education : ${user.educationDetail}">
                   <div class="education-card">
                     <img
                       class="company-logo-icon41"
-                      alt=""
-                     th:src="@{/images/company-logo-23@2x.png}"
+                      th:src="@{/university/image/{id}(id=${education.getUniversity().getId()})}" alt="University Logo"
                     />
 
                     <div class="main-content9">
                       <div class="role-experience-detail2">
                         <div class="harvard-university-parent">
-                          <div class="harvard-university">
-                            Harvard University
+                          <div class="harvard-university" th:text="${education.getUniversity().name}">
                           </div>
                           <div class="button44">
                             <input class="icon120" type="checkbox" />
                           </div>
                         </div>
-                        <div class="bachelors-degree-applied">
-                          Postgraduate degree, Applied Psychology
+                        <div class="bachelors-degree-applied" th:text="${education.getCertificateDegreeName() + ', ' + education.getMajor()}">
                         </div>
-                        <div class="div11">2010 - 2012</div>
+                        <div class="div11" th:text="${education.getStartDate() + ' - ' +  education.getGradDate()}"></div>
                       </div>
                       <div class="as-an-applied">
-                        As an Applied Psychologist in the field of Consumer and
-                        Society, I am specialized in creating business
-                        opportunities by observing, analysing, researching and
-                        changing behaviour.
                       </div>
                     </div>
+                  </div>
                   </div>
                   <div class="applicant-dashboard-educatio-inner">
                     <div class="frame-child73"></div>
                   </div>
-                  <div class="education-card1">
-                    <img
-                      class="company-logo-icon42"
-                      alt=""
-                     th:src="@{/images/company-logo-33@2x.png}"
-                    />
-
-                    <div class="main-content10">
-                      <div class="role-experience-detail3">
-                        <div class="harvard-university-group">
-                          <div class="harvard-university1">
-                            University of Toronto
-                          </div>
-                          <div class="button45">
-                            <input class="icon121" type="checkbox" />
-                          </div>
-                        </div>
-                        <div class="bachelors-degree-applied1">
-                          Bachelor of Arts, Visual Communication
-                        </div>
-                        <div class="div12">2005 - 2009</div>
-                      </div>
-                      <div class="as-an-applied1">
-                        As an Applied Psychologist in the field of Consumer and
-                        Society, I am specialized in creating business
-                        opportunities by observing, analysing, researching and
-                        changing behaviour.
-                      </div>
-                    </div>
-                  </div>
                   <div class="nav-wrapper">
                     <div class="nav1">
-                      <div class="show-2-more">Show 2 more educations</div>
                     </div>
                   </div>
                 </div>

@@ -9,5 +9,5 @@ import java.util.Optional;
 @Service
 public interface UniversityService {
     List<University> getAllUniversities();
-    Optional<University> findById(int id);
+    University findById(int id);
 }

@@ -22,7 +22,7 @@ public class UniversityServiceImpl implements UniversityService {
     }
 
     @Override
-    public Optional<University> findById(int id) {
-        return universityRepository.findById(id) ;
+    public University findById(int id) {
+        return universityRepository.findUniversityById(id) ;
     }
 }
