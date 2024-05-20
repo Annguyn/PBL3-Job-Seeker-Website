@@ -117,7 +117,7 @@
                                     th:src="@{/images/icon-32.svg}"
                                 />
 
-                                <div class="caption287">Browse Companies</div>
+                                <a th:href="@{/findCompany}" class="caption287">Browse Companies</a>
                             </div>
                             <div class="sidebar-menu29">
                                 <img
@@ -300,9 +300,9 @@
                                 <div class="date-applied6">Date Applied</div>
                                 <div class="status">Status</div>
                             </div>
-                            <div th:each="app : ${user.getApplications()}">
+                            <div th:each="app, iterStat : ${user.getApplications()}">
                             <div class="application-history">
-                                <div class="div23">1</div>
+                                <div class="div23" th:text="${iterStat.count}"></div>
                                 <div class="company-logo-company-logo-comp">
                                     <img
                                         class="company-logo-icon49"

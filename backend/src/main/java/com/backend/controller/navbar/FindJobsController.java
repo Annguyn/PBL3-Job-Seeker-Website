@@ -1,6 +1,7 @@
 package com.backend.controller.navbar;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,13 +44,38 @@ public class FindJobsController {
         return new UserDto();
     }
 
+    @PostMapping("/findjobs")
+    public String showFindJobsForm(
+            @RequestParam("keySearch") String keySearch,
+            @RequestParam(name = "sort", required = false) String sort,
+            @RequestParam(name = "filterCategory", required = false) String filterCategory,
+            @RequestParam(defaultValue = "1") int page,
+            Model model) {
+
+        StringBuilder redirectUrl = new StringBuilder("redirect:/findjobs?keySearch=").append(keySearch);
+
+        if (sort != null) {
+            redirectUrl.append("&sort=").append(sort);
+        }
+        if (filterCategory != null) {
+            redirectUrl.append("&filterCategory=").append(filterCategory);
+        }
+        redirectUrl.append("&page=").append(page);
+
+        return redirectUrl.toString();
+    }
+
     @GetMapping("/findjobs")
     public String showFindJobsForm(Model model,
                                    @RequestParam(defaultValue = "1") int page,
                                    @RequestParam(name = "sort" ,required = false) String sort,
-                                   @RequestParam(name="categorySelected",required = false) List<Category> categories,
-                                   @RequestParam(name="levelsSelected", required = false) List<Level> levels,
-                                   @RequestParam(name="salaryRange", required = false) String salaryRange) {
+                                   @RequestParam(name="filterCategory" , required = false) String filterCategory,
+                                   @RequestParam(name="keySearch" , required = false) String keySearch) {
+
+        List<String> categories = null;
+        if (filterCategory != null && !filterCategory.isEmpty()) {
+            categories = Arrays.asList(filterCategory.split(","));
+        }
         try {
             Pageable pageable;
             if ("salary".equals(sort)) {
@@ -57,13 +83,18 @@ public class FindJobsController {
             } else {
                 pageable = PageRequest.of(page - 1, 6, Sort.by("datePosted").descending());
             }
-            Page<Post> postPage = postService.getAllPosts(pageable);
+            Page<Post> postPage = postService.getAllPosts(pageable, categories,keySearch);
+            int numberPost = postPage.getNumberOfElements();
+            if(categories != null) {
+                numberPost = postService.getAllPosts().size(); ;
+            }
+            model.addAttribute("numberPost", numberPost);
             for (Post post : postPage) {
                 if (post.getLocation() == null) {
                     post.setLocation(new Location());
                 }
                 if (post.getLocation().getName() == null) {
-                    post.getLocation().setName("N/A");  // Set the name to "N/A" if it's null
+                    post.getLocation().setName("N/A");
                 }
             }
 
@@ -80,6 +111,7 @@ public class FindJobsController {
             return "find-jobs";
         }
     }
+
     @GetMapping("/jobdetails")
     public String JobDetailsForm(Model model, @RequestParam("id") Integer id) {
         if (id == null) {

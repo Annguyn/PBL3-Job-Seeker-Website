@@ -195,18 +195,9 @@
             <a class="tab-menu6" th:href="@{/settings?type=education}">
               <div class="caption322">Education</div>
             </a>
-            <div class="tab-menu7">
-              <div class="caption323">Notifications</div>
-            </div>
-            <div class="tab-menu8">
-              <div class="caption324">Notifications</div>
-            </div>
-            <div class="tab-menu9">
-              <div class="caption325">Notifications</div>
-            </div>
-            <div class="tab-menu10">
-              <div class="caption326">Notifications</div>
-            </div>
+            <a  class="tab-menu7" th:href="@{/settings?type=experience}">
+              <div class="caption323">Experience</div>
+            </a>
           </div>
         </div>
         <form class="applicant-dashboard-my-profi" method="post" action="/settings" enctype="multipart/form-data">
@@ -327,7 +318,6 @@
               </div>
             </div>
           </div>
-          <div class="tab-menu-separator2"></div>
           <div class="tab-menu-separator1"></div>
           <div th:unless="${param.type}"  class="personal-details">
             <div class="personal-details1">Additional Information</div>
@@ -407,7 +397,7 @@
               </div>
             </div>
           </div>
-          <div th:if="${param.type}"  class="personal-details">
+          <div th:if="${param.type != null && param.type[0] == 'education'}" class="personal-details">
             <div class="personal-details1">Education Information</div>
             <div class="forms2">
               <div class="textfield14">
@@ -485,6 +475,53 @@
               </div>
             </div>
           </div>
+          <form th:object="${experience}" method="post" action="/settings" enctype="multipart/form-data">
+            <div th:if="${param.type != null && param.type[0] == 'experience'}" class="personal-details">
+              <div class="personal-details1">Experience Information</div>
+              <div class="forms2">
+                <div class="textfield14">
+                  <div class="label195">
+                    <span class="full-name">Job Title</span>
+                    <span class="span19">*</span>
+                  </div>
+                  <input class="fill-div" placeholder="Designer" type="text" th:field="*{title}" />
+                </div>
+                <div class="row-25">
+                  <div class="textfield15">
+                    <div class="label196">
+                      <span class="phone-number">Start year</span>
+                      <span class="span20">*</span>
+                    </div>
+                    <input class="fill-div" placeholder="2022" type="text" th:field="*{startDate}" />
+                  </div>
+                </div>
+                <div class="row-25">
+                  <div class="textfield15">
+                    <div class="label196">
+                      <span class="phone-number">End year</span>
+                      <span class="span20">*</span>
+                    </div>
+                    <input class="fill-div" placeholder="2026" type="text" th:field="*{endDate}" />
+                  </div>
+                </div>
+                <div class="row-3">
+                  <div class="textfield18">
+                    <div class="label199">
+                      <span class="gender">Company </span>
+                      <span class="span23">*</span>
+                    </div>
+                    <select th:field="*{companyId}">
+                      <option th:each="company : ${companies}" th:value="${company.id}" th:text="${company.name}"></option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+            <button type="submit" class="button68">
+              <b class="caption327">Save Experience</b>
+            </button>
+    </div>
+          </form>
           <div class="tab-menu-separator2"></div>
           <div th:unless="${param.type}" class="close-button">            <div class="account-type">
               <div class="account-type1">Account Type</div>

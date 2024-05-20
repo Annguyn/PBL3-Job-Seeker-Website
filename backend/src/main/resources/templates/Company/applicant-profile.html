@@ -393,10 +393,7 @@
                     <div class="about-me">
                       <div class="about-me1">Resume </div>
                       <div class="about-me2">
-                        <img
-                                class="company-logo-icon17"
-                                th:src="@{/application/image/{id}(id=${applyForm.id})}" alt="Resume"
-                        />
+                        <a th:href="@{/resume/pdf/{id}(id=${applyForm.user.getID()})}" target="_blank">View Resume</a>
                         </div>
                       </div>
                     </div>

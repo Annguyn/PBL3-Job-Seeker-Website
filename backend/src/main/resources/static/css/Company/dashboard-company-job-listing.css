@@ -449,6 +449,12 @@
   justify-content: flex-end;
   padding: 0 var(--padding-12xl) 0 var(--padding-13xl);
 }
+a.fill-div {
+  display: block;
+  height: 100%;
+  width: 100%;
+  text-decoration: none;
+}
 .rounded-rectangle3 {
   position: absolute;
   bottom: 0;

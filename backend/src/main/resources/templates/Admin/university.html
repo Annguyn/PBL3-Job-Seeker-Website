@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University CRUD</title>
+    <style> table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+
+.btn {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+img {
+    width: 50px;
+    height: 50px;
+}
+</style>
+</head>
+<body>
+<h1>University CRUD</h1>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Photo</th>
+        <th>Actions</th>
+    </tr>
+    <tr th:each="university : ${universities}">
+        <td>
+            <form th:action="@{/admin/universities/save/{id}(id=${university.id})}" th:object="${university}" method="post" enctype="multipart/form-data">
+                <input type="text" th:field="*{id}" disabled>
+                <input type="text" name="name" th:value="*{name}" >
+                <img th:src="@{/university/image/{id}(id=${university.id})}" alt="University Image">
+                <input type="file" name="image" accept="image/*">
+                <button type="submit" class="btn btn-save">Save</button>
+                <button type="reset" class="btn btn-cancel">Cancel</button>
+            </form>
+        </td>
+        <td class="action-buttons">
+            <a th:href="@{/admin/universities/edit/{id}(id=${university.id})}" class="btn btn-edit">Edit</a>
+            <a th:href="@{/admin/universities/delete/{id}(id=${university.id})}" class="btn btn-delete">Delete</a>
+        </td>
+    </tr>
+</table>
+<a href="/admin/companies" class="btn">Companies</a>
+<a href="/admin/users" class="btn">Users</a>
+<form th:action="@{/admin/universities/add}" method="post">
+    <button type="submit" class="btn">Add University</button>
+</form>
+<script>
+    document.querySelectorAll('.btn-edit').forEach(button => {
+        button.addEventListener('click', (event) => {
+            event.preventDefault();
+            const row = button.closest('tr');
+            row.querySelectorAll('input, select').forEach(input => input.removeAttribute('disabled'));
+            row.querySelector('.btn-save').style.display = 'inline-block';
+            row.querySelector('.btn-cancel').style.display = 'inline-block';
+            button.style.display = 'none';
+        });
+    });
+
+    document.querySelectorAll('.btn-save').forEach(button => {
+        button.addEventListener('click', () => {
+            const row = button.closest('tr');
+            row.querySelectorAll('input, select').forEach(input => input.setAttribute('disabled', 'true'));
+            row.querySelector('.btn-edit').style.display = 'inline-block';
+            row.querySelector('.btn-cancel').style.display = 'none';
+            button.style.display = 'none';
+        });
+    });
+
+    document.querySelectorAll('.btn-cancel').forEach(button => {
+        button.addEventListener('click', (event) => {
+            event.preventDefault();
+            const row = button.closest('tr');
+            row.querySelectorAll('input, select').forEach(input => input.setAttribute('disabled', 'true'));
+            row.querySelector('.btn-edit').style.display = 'inline-block';
+            row.querySelector('.btn-save').style.display = 'none';
+            button.style.display = 'none';
+        });
+    });
+
+    document.querySelectorAll('.btn-delete').forEach(button => {
+        button.addEventListener('click', (event) => {
+            event.preventDefault();
+            const row = button.closest('tr');
+            const universityId = row.querySelector('td:first-child').textContent;
+
+            fetch(`/admin/universities/delete/${universityId}`, {
+                method: 'POST',
+            }).then(() => {
+                row.remove();
+            });
+        });
+    });
+</script>
+</body>
+</html>

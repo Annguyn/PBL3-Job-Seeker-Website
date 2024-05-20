@@ -273,3 +273,11 @@ body {
   --y-border: 1px 0px 0px #d3d6db;
   --drop-shadow: -8px 8px 40px rgba(0, 0, 0, 0.08);
 }
+a {
+  text-underline: none;
+  text-decoration-color: #ffffff;
+}
+a :hover {
+  text-underline: none;
+  text-decoration-color: #ffffff;
+}

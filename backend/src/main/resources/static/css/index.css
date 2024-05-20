@@ -6810,3 +6810,7 @@ input[type="date"] {
   flex-basis: fit-content;
 
 }
+#from  , #to {
+  text-decoration-color :#ffffff ;
+  color: #ffffff;
+}

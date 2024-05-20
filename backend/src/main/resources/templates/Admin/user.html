@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .container {
+            overflow-x: auto;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 5px;
+        }
+        .btn {
+            padding: 5px 10px;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-edit {
+            background-color: #4CAF50;
+        }
+        .btn-delete {
+            background-color: #f44336;
+        }
+        .btn-save {
+            background-color: #2196F3;
+        }
+        .btn-cancel {
+            background-color: #ff9800;
+        }
+        input[type="text"], input[type="date"], input[type="email"], input[type="password"], select {
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+        img {
+            max-width: 50px;
+        }
+        .btn {
+            padding: 5px 10px;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Role</th>
+            <th>DOB</th>
+            <th>Gender</th>
+            <th>Photo</th>
+            <th>Bio</th>
+            <th>Location</th>
+            <th>GitHub</th>
+            <th>LinkedIn</th>
+            <th>Major</th>
+            <th>Contact Number</th>
+<!--            <th>SMS Notification</th>-->
+<!--            <th>Email Notification</th>-->
+<!--            <th>User Image</th>-->
+<!--            <th>Registration Date</th>-->
+            <th>Company ID</th>
+            <th>Experience (Years)</th>
+            <th>Social Links</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody id="userTableBody">
+        <tr th:each="user : ${users}" th:id="${'user' + user.getID()}">
+            <form th:action="@{/admin/users/edit/{id}(id=${user.getID()})}" th:method="post">
+            <td><input type="text" th:value="${user.getUserDisplayName()}"></td>
+            <td><input type="email" th:value="${user.email}"></td>
+            <td><input type="password" th:value="${user.password}"></td>
+            <td><input type="text" th:value="${user.role}"></td>
+            <td><input type="date" th:value="${#dates.format(user.dob, 'yyyy-MM-dd')}"></td>
+                <td th:text="${user.gender}"></td> <!-- Add this line -->
+
+                <td>
+                <select>
+                    <option value="Male" th:selected="${user.gender == 1}">Male</option>
+                    <option value="Female" th:selected="${user.gender == 0}">Female</option>
+                    <option value="Other" th:selected="${user.gender == -1}">Other</option>
+                </select>
+            </td>
+            <td><img th:src="@{/user/image/{id}(id=${user.getID()})}" alt="Avatar"></td>
+            <td><input type="text" th:value="${user.bio}"></td>
+            <td><input type="text" th:value="${user.location}"></td>
+            <td><input type="text" th:value="${user.getGithub()}"></td>
+            <td><input type="text" th:value="${user.linkedin}"></td>
+            <td><input type="text" th:value="${user.major}"></td>
+            <td><input type="text" th:value="${user.contactNumber}"></td>
+<!--            <td>-->
+<!--                <select>-->
+<!--                    <option value="Yes" th:selected="${user.not}">Yes</option>-->
+<!--                    <option value="No" th:selected="${!user.smsNotification}">No</option>-->
+<!--                </select>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <select>-->
+<!--                    <option value="Yes" th:selected="${user.emailNotification}">Yes</option>-->
+<!--                    <option value="No" th:selected="${!user.emailNotification}">No</option>-->
+<!--                </select>-->
+<!--            </td>-->
+<!--            <td><img th:src="${user.userImageUrl}" alt="User Image"></td>-->
+<!--            <td><input type="date" th:value="${#dates.format(user., 'yyyy-MM-dd')}"></td>-->
+            <td><input type="text" th:value="${user.getCompany()?.getName() ?: ''}"></td>            <td><input type="text" th:value="${user.experienceInYears}"></td>
+            <td><input type="text" th:value="${user.socialLink}"></td>
+                <td class="action-buttons">
+                    <button type="submit" class="btn btn-save">Save</button>
+                    <button type="reset" class="btn btn-cancel">Cancel</button>
+                </td>
+            </form>
+            <td class="action-buttons">
+                <a th:href="@{/admin/users/edit/{id}(id=${user.getID()})}" class="btn btn-edit">Edit</a>
+                <a th:href="@{/admin/users/delete/{id}(id=${user.getID()})}" class="btn btn-delete">Delete</a>
+            </td>
+        </tr>
+        <!-- Add this row to your table. It is initially hidden and will be cloned when the "New User" button is clicked -->
+        <tr id="new-user-row" style="display: none;">
+            <form th:action="@{/admin/users/add}" th:method="post" >
+                <td><input type="text" name="username"></td>
+                <td><input type="email" name="email"></td>
+                <td><input type="password" name="password"></td>
+                <td><input type="text" name="role"></td>
+                <td><input type="date" name="dob"></td>
+<!--                <td><img th:src="${user.getID() != null ? @{/user/image/{id}(id=${user.getID()})}}" alt="Avatar"></td>                <td>-->
+                    <select name="gender">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </td>
+                <td><input type="text" name="bio"></td>
+                <td><input type="text" name="location"></td>
+                <td><input type="text" name="github"></td>
+                <td><input type="text" name="linkedin"></td>
+                <td><input type="text" name="major"></td>
+                <td><input type="text" name="contactNumber"></td>
+                <td><input type="text" name="companyId"></td>
+                <td><input type="text" name="experienceInYears"></td>
+                <td><input type="text" name="socialLink"></td>
+                <td class="action-buttons">
+                    <button type="submit" class="btn btn-save">Save</button>
+                    <button type="reset" class="btn btn-cancel">Cancel</button>
+                </td>
+            </form>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/admin/companies" class="btn">Companies</a>
+    <a href="/admin/universities" class="btn">Universities</a>
+    <button id="btn-new-user" class="btn">New User</button>
+
+
+</div>
+
+<script>
+    document.querySelectorAll('.btn-edit').forEach(button => {
+        button.addEventListener('click', () => {
+            const row = button.closest('tr');
+            row.querySelectorAll('input, select').forEach(input => input.removeAttribute('disabled'));
+            row.querySelector('.btn-save').style.display = 'inline-block';
+            row.querySelector('.btn-cancel').style.display = 'inline-block';
+            button.style.display = 'none';
+        });
+    });
+
+    document.querySelectorAll('.btn-save').forEach(button => {
+        button.addEventListener('click', () => {
+            const row = button.closest('tr');
+            const userId = row.querySelector('td:first-child').textContent;
+            const userData = {}; // Collect user data from the input fields
+
+            row.querySelectorAll('input, select').forEach(input => {
+                userData[input.name] = input.value;
+                input.setAttribute('disabled', 'true');
+            });
+
+            // AJAX call to save the data to the server
+            fetch(`/admin/users/edit/${userId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userData),
+            });
+
+            row.querySelector('.btn-edit').style.display = 'inline-block';
+            row.querySelector('.btn-cancel').style.display = 'none';
+            button.style.display = 'none';
+        });
+    });
+
+    document.querySelectorAll('.btn-cancel').forEach(button => {
+        button.addEventListener('click', () => {
+            const row = button.closest('tr');
+            row.querySelectorAll('input, select').forEach(input => input.setAttribute('disabled', 'true'));
+            row.querySelector('.btn-edit').style.display = 'inline-block';
+            row.querySelector('.btn-save').style.display = 'none';
+            button.style.display = 'none';
+        });
+    });
+
+    document.querySelectorAll('.btn-delete').forEach(button => {
+        button.addEventListener('click', () => {
+            const row = button.closest('tr');
+            const userId = row.querySelector('td:first-child').textContent;
+
+            // AJAX call to delete the data from the server
+            fetch(`/admin/users/delete/${userId}`, {
+                method: 'GET',
+            }).then(() => {
+                row.remove();
+            });
+        });
+    });
+    // Add this to your JavaScript
+    document.getElementById('btn-new-user').addEventListener('click', () => {
+        const tableBody = document.getElementById('userTableBody');
+        const newRow = document.getElementById('new-user-row').cloneNode(true);
+
+        newRow.style.display = '';
+        newRow.id = '';
+        tableBody.appendChild(newRow);
+    });
+    document.querySelectorAll('.btn-save').forEach(button => {
+        button.addEventListener('click', () => {
+            const row = button.closest('tr');
+            const userId = row.querySelector('td:first-child').textContent;
+            const userData = {}; // Collect user data from the input fields
+
+            row.querySelectorAll('input, select').forEach(input => {
+                userData[input.name] = input.value;
+                input.setAttribute('disabled', 'true');
+            });
+
+            // AJAX call to save the data to the server
+            fetch(`/admin/users/edit/${userId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userData),
+            });
+
+            row.querySelector('.btn-edit').style.display = 'inline-block';
+            row.querySelector('.btn-cancel').style.display = 'none';
+            button.style.display = 'none';
+        });
+    });
+    document.getElementById('userTableBody').addEventListener('click', event => {
+        if (event.target.classList.contains('btn-save')) {
+            const button = event.target;
+            const row = button.closest('tr');
+            const userId = row.querySelector('td:first-child').textContent;
+            const userData = {}; // Collect user data from the input fields
+
+            row.querySelectorAll('input, select').forEach(input => {
+                userData[input.name] = input.value;
+                input.setAttribute('disabled', 'true');
+            });
+
+            // AJAX call to save the data to the server
+            fetch(`/admin/users/edit/${userId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userData),
+            });
+
+            row.querySelector('.btn-edit').style.display = 'inline-block';
+            row.querySelector('.btn-cancel').style.display = 'none';
+            button.style.display = 'none';
+        }
+    });
+    document.querySelectorAll('.btn-save').forEach(button => {
+        button.addEventListener('click', () => {
+            const row = button.closest('tr');
+            const userId = row.querySelector('td:first-child').textContent;
+            const userData = {}; // Collect user data from the input fields
+
+            row.querySelectorAll('input, select').forEach(input => {
+                userData[input.name] = input.value;
+                input.setAttribute('disabled', 'true');
+            });
+
+            // AJAX call to save the data to the server
+            fetch(`/admin/users/edit/${userId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userData),
+            });
+
+            row.querySelector('.btn-edit').style.display = 'inline-block';
+            row.querySelector('.btn-cancel').style.display = 'none';
+            button.style.display = 'none';
+        });
+    });
+</script>
+</body>
+</html>

@@ -58,7 +58,12 @@ public class Application {
     private byte[] resume;
 
     @Column(name="status" , nullable = true)
-    private String status;
+    private String status ;
+
+    @Column(name="interview_start_time" , nullable = true)
+    private LocalDateTime interviewStartTime;
+    @Column(name="interview_end_time" , nullable = true)
+    private LocalDateTime interviewEndTime;
 
     public long getDaysSinceApplied() {
         if (timeApplied == null) {

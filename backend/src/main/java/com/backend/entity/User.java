@@ -85,16 +85,12 @@ public class User implements Serializable {
     @JoinTable(name = "user_nicetohaves", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "nicetohave_id"))
     private List<NiceToHaves> niceToHaves;
 
+    @OneToMany(mappedBy = "user")
+    private List<Experience> experienceDetail;
+
 
     @OneToMany(mappedBy = "user")
     private List<Education> educationDetail;
-
-//
-//    private int age ;
-//
-//    public void setAge() {
-//        this.age = new Date().getYear() - dob.getYear();
-//    }
 
     public User(String Email, String userDisplayName, String password, String role) {
         email = Email;

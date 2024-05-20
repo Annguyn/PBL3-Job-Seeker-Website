@@ -4104,3 +4104,6 @@ body {
 .hit-voting {
   cursor: pointer;
 }
+.body-modal-open {
+  overflow: hidden;
+}

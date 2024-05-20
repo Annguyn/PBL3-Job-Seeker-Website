@@ -1,7 +1,9 @@
 package com.backend.controller.navbar;
 
+import com.backend.dto.ExperienceDto;
 import com.backend.entity.*;
 import com.backend.service.*;
+import com.backend.service.Impl.CompaniesService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,22 +25,25 @@ import java.util.List;
         private final CompanyService companyService;
         private final UniversityService universityService;
         private final EducationService educationService;
+        private final CompaniesService companiesService;
+        private final ExperienceService experienceService;
 
-        public SettingsController(UserService userService, LocationService locationService, CompanyService companyService, UniversityService universityService,  EducationService educationService) {
+        public SettingsController(UserService userService, LocationService locationService, CompanyService companyService, UniversityService universityService, EducationService educationService, CompaniesService companiesService, ExperienceService experienceService) {
             this.userService = userService;
             this.locationService = locationService;
             this.companyService = companyService;
             this.universityService = universityService;
             this.educationService = educationService;
+            this.companiesService = companiesService;
+            this.experienceService = experienceService;
         }
 
         @GetMapping("/settings")
-        public String getSettings(@RequestParam(name = "type", required = false) String type,
-                                  Model model) {
+        public String getSettings(Model model , @ModelAttribute("experience")ExperienceDto experienceDto){
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             List<University> universities = universityService.getAllUniversities();
-//            model.addAttribute("MajorUni", "Computer Science");
-//            model.addAttribute("Degree", "Bachelor's");
+            List<Companies> companies = companiesService.findAll();
+            model.addAttribute("companies", companies);
             model.addAttribute("UniversityId", universities.get(1).getId());
             if (authentication != null && authentication.getPrincipal() instanceof UserDetails userDetails) {
                 User userLoggedIn = userService.getUserbyEmail(userDetails.getUsername());
@@ -62,7 +67,8 @@ import java.util.List;
                                    @RequestParam(value = "MajorUni" ,required = false) String MajorUni,
                                    @RequestParam(value = "Degree" ,required = false) String Degree,
                                    @RequestParam(value = "startDate" ,required = false) String startDate,
-                                   @RequestParam(value = "endDate" ,required = false) String endDate) throws IOException, IOException {
+                                   @RequestParam(value = "endDate" ,required = false) String endDate,
+                                   @ModelAttribute("experience")ExperienceDto experienceDto) throws IOException, IOException {
             User currentUser = userService.getUserbyEmail(auth.getName());
             if (avatarFile != null && !avatarFile.isEmpty()) {
                 currentUser.setPhoto(avatarFile.getBytes());
@@ -133,10 +139,13 @@ import java.util.List;
                 if(user.getBio() != null) {
                     currentUser.setBio(user.getBio());
                 }
+                // Experience
+                experienceService.saveExperience(experienceDto, currentUser, companiesService);
                 userService.save(currentUser);
                 model.addAttribute("successMessage", "User settings saved successfully");
             }
-            return "redirect:/home";
+
+            return "redirect:/profile";
         }
     }
 

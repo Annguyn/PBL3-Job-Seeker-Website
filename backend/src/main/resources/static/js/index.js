@@ -83,21 +83,16 @@ function loadGraph(type, fromDate, toDate) {
 }
 
 $(document).ready(function() {
-    // Set default toDate and fromDate
     var defaultToDate = new Date();
     var defaultFromDate = new Date();
-    defaultFromDate.setDate(defaultFromDate.getDate() - 31); // 10 days before today
-
-    // Format dates to 'yyyy-mm-dd'
+    defaultFromDate.setDate(defaultFromDate.getDate() - 90);
     var toDate = defaultToDate.toISOString().split('T')[0];
     var fromDate = defaultFromDate.toISOString().split('T')[0];
 
-    // Set the values in the input fields
     $('#to-date').val(toDate);
     $('#from-date').val(fromDate);
 
-    // Call the AJAX request to load the graph
-    loadGraph('category', fromDate, toDate); // 'category' is the default type
+    loadGraph('category', fromDate, toDate);
 
     $('#filter-button').click(function() {
         var type = $('#type-selector').val();
@@ -107,7 +102,7 @@ $(document).ready(function() {
         // If fromDate is not selected, set it as 10 days before the current date
         if (!fromDate) {
             var date = new Date();
-            date.setDate(date.getDate() - 10);
+            date.setDate(date.getDate() - 90);
             fromDate = date.toISOString().split('T')[0]; // Format date as 'yyyy-mm-dd'
         }
 

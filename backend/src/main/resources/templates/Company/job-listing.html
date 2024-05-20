@@ -93,7 +93,7 @@
               <div class="sidebar-menu32">
                 <img class="icon105" alt=""th:src="@{./images/Company/icon-5.svg}" />
 
-                <div class="caption103">My Schedule</div>
+                <a href="#" class="caption103">My Schedule</a>
               </div>
               <div class="sidebar-menu33">
                 <img class="icon106" alt="" />
@@ -230,6 +230,7 @@
               </div>
             </div>
             <div class="list" th:each="post : ${company.getPosts()}">
+              <a th:href="@{/jobdetails(id=${post.getId()})}" class="fill-div">
               <div class="row1">
                 <div class="social-media-assistant7" th:text="${post.title}"></div>
                 <button class="label34">
@@ -246,6 +247,7 @@
                 <div class="div22" th:text="${post.applicants.size()}"></div>
                 <img class="icon114" alt="" th:src="@{./images/Company/icon-22.svg}" th:data-id="${post.id}" onclick="confirmDelete(this)"/>
               </div>
+              </a>
             </div>
           </div>
         </section>

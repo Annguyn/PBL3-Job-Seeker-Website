@@ -7,6 +7,8 @@ import com.backend.entity.Company;
 import com.backend.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import com.backend.dto.PostDto;
@@ -25,5 +27,6 @@ public interface PostService {
     List<Post> getPostByCompany(Company company);
     void save(Post post);
     void delete(Post post);
-
+    Page<Post> getAllPosts(Pageable pageable, List<String> filterCategory, String keySearch);
+    List<String> getPostDetailsContaining(String query);
 }

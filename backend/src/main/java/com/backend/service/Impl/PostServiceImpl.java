@@ -6,6 +6,7 @@ import com.backend.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.backend.dto.PostDto;
@@ -68,5 +69,21 @@ public class PostServiceImpl implements PostService {
         for (Application application : post.getApplications()) {
             application.setPost(null);
         }
+    }
+
+    @Override
+    public Page<Post> getAllPosts(Pageable pageable, List<String> filterCategory, String keySearch) {
+        if (keySearch != null && !keySearch.isEmpty()) {
+            Specification<Post> spec = (root, query, cb) -> cb.like(root.get("content"), "%" + keySearch + "%");
+            return postRepository.findAll(spec, pageable);
+        } else if (filterCategory != null && !filterCategory.isEmpty()) {
+            return postRepository.findAll(pageable, filterCategory);
+        } else {
+            return postRepository.findAll(pageable);
+        }
+    }
+    @Override
+    public List<String> getPostDetailsContaining(String query) {
+        return postRepository.findPostDetailsByQuery(query);
     }
 }

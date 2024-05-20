@@ -1,16 +1,24 @@
 package com.backend.controller.admin;
-
+import com.openhtmltopdf.pdfboxout.PdfRendererBuilder;
 import com.backend.entity.*;
 import com.backend.repository.*;
+import com.backend.service.Impl.CompaniesService;
+import freemarker.template.Template;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.ConcurrentModel;
+import org.springframework.ui.Model;
+import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,6 +37,10 @@ public class ImageController {
     private CompanyRepository companyRepository;
     @Autowired
     private UniversityRepository universityRepository;
+    @Autowired
+    private CompaniesService companiesService;
+    @Autowired
+    private FreeMarkerConfigurer freeMarkerConfigurer;
 
     @GetMapping("/company/image/{id}")
     public ResponseEntity<byte[]> getCompanyImage(@PathVariable int id) {
@@ -41,14 +53,62 @@ public class ImageController {
 
         return new ResponseEntity<>(image, headers, HttpStatus.OK);
     }
-    @GetMapping("/image/{bytes}")
-    public ResponseEntity<byte[]> getCompanyImage(@PathVariable byte[] bytes) {
+    @GetMapping("/resume/pdf/{id}")
+    public ResponseEntity<byte[]> getResumePdf(@PathVariable int id) {
+        try {
+            // Get the HTML content of the resume
+            String htmlContent = getResumeHtml(id);
+
+            // Convert the HTML content to a PDF
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            PdfRendererBuilder builder = new PdfRendererBuilder();
+            builder.withHtmlContent(htmlContent, "");
+            builder.toStream(outputStream);
+            builder.run();
+
+            // Return the PDF as a byte array
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_PDF);
+            headers.add("Content-Disposition", "inline; filename=resume.pdf");
+
+            return new ResponseEntity<>(outputStream.toByteArray(), headers, HttpStatus.OK);
+        } catch (IOException e) {
+            // Handle the exception
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    private String getResumeHtml(int id) {
+        try {
+            // Fetch the user's data from the database
+            User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+
+            // Create a model with the user's data
+            Model model = new ConcurrentModel();
+            model.addAttribute("user", user);
+
+            // Render the Thymeleaf template with the user's data
+            Template template = freeMarkerConfigurer.getConfiguration().getTemplate("resume.html");
+            String htmlContent = FreeMarkerTemplateUtils.processTemplateIntoString(template, model.asMap());
+
+            return htmlContent;
+        } catch (Exception e) {
+            // Handle the exception
+            e.printStackTrace();
+            return "";
+        }
+    }
+    @GetMapping("/companies/image/{id}")
+    public ResponseEntity<byte[]> getCompaniesImage(@PathVariable int id) {
+        Companies companies = companiesService.findById(id);
+        byte[] image = companies.getImage();
 
         HttpHeaders headers = new HttpHeaders();
-        MediaType mediaType = getImageMediaType(bytes);
+        MediaType mediaType = getImageMediaType(image);
         headers.setContentType(mediaType);
 
-        return new ResponseEntity<>(bytes, headers, HttpStatus.OK);
+        return new ResponseEntity<>(image, headers, HttpStatus.OK);
     }
     @GetMapping("/application/image/{id}")
     public ResponseEntity<byte[]> getResumeImage(@PathVariable int id) {
