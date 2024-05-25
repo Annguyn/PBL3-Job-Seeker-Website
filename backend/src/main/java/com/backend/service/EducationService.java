@@ -6,4 +6,5 @@ import org.springframework.stereotype.Service;
 @Service
 public interface EducationService {
     void save(Education education) ;
+    void delete(int id);
 }

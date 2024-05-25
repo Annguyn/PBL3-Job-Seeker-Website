@@ -49,6 +49,9 @@ public class FindJobsController {
             @RequestParam("keySearch") String keySearch,
             @RequestParam(name = "sort", required = false) String sort,
             @RequestParam(name = "filterCategory", required = false) String filterCategory,
+            @RequestParam(name = "filterLevel", required = false) String filterLevel,
+            @RequestParam(name = "filterSalary", required = false) String filterSalary,
+            @RequestParam(name = "location", required = false) String location,
             @RequestParam(defaultValue = "1") int page,
             Model model) {
 
@@ -60,21 +63,40 @@ public class FindJobsController {
         if (filterCategory != null) {
             redirectUrl.append("&filterCategory=").append(filterCategory);
         }
+        if (filterLevel != null) {
+            redirectUrl.append("&filterLevel=").append(filterLevel);
+        }
+        if (filterSalary != null) {
+            redirectUrl.append("&filterSalary=").append(filterSalary);
+        }
+        if (location != null) {
+            redirectUrl.append("&location=").append(location);
+        }
         redirectUrl.append("&page=").append(page);
 
         return redirectUrl.toString();
     }
-
     @GetMapping("/findjobs")
     public String showFindJobsForm(Model model,
                                    @RequestParam(defaultValue = "1") int page,
                                    @RequestParam(name = "sort" ,required = false) String sort,
                                    @RequestParam(name="filterCategory" , required = false) String filterCategory,
-                                   @RequestParam(name="keySearch" , required = false) String keySearch) {
+                                   @RequestParam(name="filterLevel" , required = false) String filterLevel,
+                                   @RequestParam(name="filterSalary" , required = false) String filterSalary,
+                                   @RequestParam(name="keySearch" , required = false) String keySearch,
+                                   @RequestParam(name="location" , required = false) String location) {
 
         List<String> categories = null;
+        List<String> levels = null;
+        List<String> salaries = null;
         if (filterCategory != null && !filterCategory.isEmpty()) {
             categories = Arrays.asList(filterCategory.split(","));
+        }
+        if (filterLevel != null && !filterLevel.isEmpty()) {
+            levels = Arrays.asList(filterLevel.split(","));
+        }
+        if (filterSalary != null && !filterSalary.isEmpty()) {
+            salaries = Arrays.asList(filterSalary.split(","));
         }
         try {
             Pageable pageable;
@@ -83,8 +105,7 @@ public class FindJobsController {
             } else {
                 pageable = PageRequest.of(page - 1, 6, Sort.by("datePosted").descending());
             }
-            Page<Post> postPage = postService.getAllPosts(pageable, categories,keySearch);
-            int numberPost = postPage.getNumberOfElements();
+            Page<Post> postPage = postService.getAllPosts(pageable, categories, levels, salaries, keySearch, location);            int numberPost = postPage.getNumberOfElements();
             if(categories != null) {
                 numberPost = postService.getAllPosts().size(); ;
             }
@@ -200,6 +221,12 @@ public class FindJobsController {
         // Save the application
          applicationService.save(application);
         return "redirect:/home";
+    }
+    @PostMapping("/findCompany")
+    public String searchCompany(@RequestParam(name ="query") String keySearch, Model model) {
+            List<Company> companies = companyService.searchCompany(keySearch);
+            model.addAttribute("companies", companies);
+            return "company-search";
     }
 
     @GetMapping("/findCompany")

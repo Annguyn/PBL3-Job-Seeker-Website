@@ -13,4 +13,5 @@ public interface CompanyService {
     Company getCompanyById(int id);
     Company updateCompany(Company company);
     void deleteCompany(int id);
+    List<Company> searchCompany(String keyword);
 }

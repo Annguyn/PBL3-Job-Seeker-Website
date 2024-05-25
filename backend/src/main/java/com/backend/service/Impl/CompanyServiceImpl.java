@@ -38,4 +38,11 @@ public class CompanyServiceImpl implements CompanyService {
     public void deleteCompany(int id) {
         companyRepository.deleteById(id);
     }
+
+    @Override
+    public List<Company> searchCompany(String keyword) {
+        return companyRepository.findAll((root, query, criteriaBuilder) ->
+                criteriaBuilder.like(criteriaBuilder.lower(root.get("name")), "%" + keyword.toLowerCase() + "%")
+        );
+    }
 }

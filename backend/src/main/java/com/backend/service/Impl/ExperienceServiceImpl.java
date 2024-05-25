@@ -38,4 +38,9 @@ public class ExperienceServiceImpl implements ExperienceService {
         Experience experience = dtoToExperience(experienceDto, currentUser, companiesService);
         experienceRepository.save(experience);
     }
+
+    @Override
+    public void deleteExperience(int id) {
+        experienceRepository.deleteById(id);
+    }
 }

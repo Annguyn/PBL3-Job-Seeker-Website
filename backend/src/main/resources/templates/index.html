@@ -60,7 +60,7 @@
               <div class="logo-1">
                 <div class="assignment-operator">
                   <img class="assignment-operator-child" alt="" th:src="@{/images/frame-3.svg}" />
-                </div>
+              </div>
                 <h3 class="jobhuntly">JobHuntly</h3>
               </div>
               <div class="logo-2">
@@ -95,7 +95,7 @@
         </div>
         <div class="buttons" th:if="${userLoggedIn != null}">
           <button class="button">
-            <a class="caption2">Sign out</a>
+            <a href="/logout" class="caption2">Sign out</a>
           </button>
           <div class="divider-wrapper">
             <div class="divider"></div>
@@ -105,35 +105,6 @@
           </button>
         </div>
       </header>
-<!--      <div class="title-wrapper">-->
-<!--        <div class="title">-->
-<!--          <div class="title1">-->
-<!--            &lt;!&ndash; Nếu chưa đăng nhập &ndash;&gt;-->
-<!--            <div th:if="${userLoggedIn == null}">-->
-<!--              <h1 class="discover-more-than-container">-->
-<!--                <span>Discover more than </span>-->
-<!--                <span class="jobs">5000+ Jobs</span>-->
-<!--              </h1>-->
-<!--            </div>-->
-<!--            &lt;!&ndash; Nếu đã đăng nhập &ndash;&gt;-->
-<!--            <div class="after-login" th:if="${userLoggedIn != null}">-->
-<!--              <div>-->
-<!--                <p>Good Afternoon, <span class="jobs" th:text="${userLoggedIn.getUserDisplayName()}"></span></p>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--            <img class="group-icon" loading="lazy" alt="" th:src="@{/images/group.svg}" />-->
-<!--          </div>-->
-<!--          <div class="great-platform-for">-->
-<!--            Great platform for the job seeker that searching for new career-->
-<!--            heights and passionate about startups.-->
-<!--          </div>-->
-<!--          <div class="search">-->
-<!--            <div class="chart-container">-->
-<!--              <div id="salaryChart"></div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
       <div class="center-div">
         <div class="title-wrapper">
         <div align="center">

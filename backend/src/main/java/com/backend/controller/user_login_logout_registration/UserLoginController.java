@@ -39,9 +39,6 @@ public class UserLoginController {
             return "redirect:/login?emailwrong";
         }
         User user = userService.getUserbyEmail(loginDto.getEmail());
-        if (user.getRole().equals("admin")) {
-            return "redirect:/admin_home";
-        }
         if (userService.checkPasswordUser(loginDto.getEmail(), loginDto.getPassword())) {
             UserDto loggedInUserDto = convertUserToUserDto(user);
             model.addAttribute("userdto", loggedInUserDto);

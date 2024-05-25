@@ -28,12 +28,20 @@ public class SecurityConfig {
                 .anyRequest().authenticated()
             )
                 .formLogin(httpSecurityFormLoginConfigurer -> httpSecurityFormLoginConfigurer
-                        .loginPage("/login").permitAll()
+                        .loginPage("/login")
                         .loginProcessingUrl("/login")
-                        .defaultSuccessUrl("/home", true)
+                        .successHandler(new CustomAuthenticationSuccessHandler())
                         .failureUrl("/login?error=true")
                         .permitAll()
+
+                )
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login")
+                        .invalidateHttpSession(true)
+                        .clearAuthentication(true)
                 );
+
         return http.build();
     }
 

@@ -10,5 +10,5 @@ public interface ExperienceService {
     void saveExperience(Experience experience) ;
     Experience dtoToExperience(ExperienceDto experienceDto, User currentUser, CompaniesService companiesService);
     void saveExperience(ExperienceDto experienceDto, User currentUser, CompaniesService companiesService);
-
+    void deleteExperience(int id);
 }

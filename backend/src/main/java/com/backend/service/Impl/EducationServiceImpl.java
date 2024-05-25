@@ -18,4 +18,9 @@ public class EducationServiceImpl  implements EducationService {
         educationRepository.save(education);
     }
 
+    @Override
+    public void delete(int id) {
+        educationRepository.deleteById(id);
+    }
+
 }

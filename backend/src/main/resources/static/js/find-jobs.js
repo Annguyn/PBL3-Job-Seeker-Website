@@ -39,6 +39,29 @@ function toggleOptions() {
     }
 }
 $(document).ready(function() {
+    // Level filter
+    $('input[name="filterLevel[]"]').change(function() {
+        var selectedLevels = [];
+        $('input[name="filterLevel[]"]:checked').each(function() {
+            selectedLevels.push($(this).val());
+        });
+        var url = new URL(window.location.href);
+        url.searchParams.set('filterLevel', selectedLevels.join(','));
+        window.location.href = url.toString();
+    });
+
+    // Salary filter
+    $('input[name="filterSalary[]"]').change(function() {
+        var selectedSalaries = [];
+        $('input[name="filterSalary[]"]:checked').each(function() {
+            selectedSalaries.push($(this).val());
+        });
+        var url = new URL(window.location.href);
+        url.searchParams.set('filterSalary', selectedSalaries.join(','));
+        window.location.href = url.toString();
+    });
+});
+$(document).ready(function() {
     $('input[name="filterCategory[]"]').change(function() {
         var selectedCategories = [];
         $('input[name="filterCategory[]"]:checked').each(function() {
@@ -66,16 +89,19 @@ document.querySelector('form').addEventListener('submit', function(event) {
     event.preventDefault(); // prevent the form from submitting normally
 
     var keySearch = document.querySelector('input[name="keySearch"]').value;
+    var location = document.querySelector('select[name="location"]').value;
 
     // create the URL with the form data
-    var url = '/findjobs?keySearch=' + keySearch;
+    var url = '/findjobs?keySearch=' + keySearch + '&location=' + location;
 
     // redirect to the URL
     window.location.href = url;
 });
 function submitForm() {
     var keySearch = document.getElementById("keySearchInput").value;
-    window.location.href = "/findjobs?keySearch=" + encodeURIComponent(keySearch);
+    var location = document.getElementById("locationInput").value;
+    var url = "/findjobs?keySearch=" + encodeURIComponent(keySearch) + "&location=" + encodeURIComponent(location);
+    window.location.href = url;
 }
 function getSearchRecommendations(query) {
     fetch('/search?query=' + encodeURIComponent(query))
@@ -104,4 +130,12 @@ document.getElementById('findJobsForm').addEventListener('submit', function(even
             // Display the recommendations
             // This will depend on how you want to display the recommendations in your front-end
         });
+});
+$(document).ready(function() {
+    $('#locationInput').change(function() {
+        var location = $(this).val();
+        var url = new URL(window.location.href);
+        url.searchParams.set('location', location);
+        window.location.href = url.toString();
+    });
 });

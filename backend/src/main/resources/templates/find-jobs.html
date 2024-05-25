@@ -129,13 +129,13 @@
                                             <img class="icon93" alt="" th:src="@{/images/icon-110.svg}" />
                                         </div>
                                         <div class="frame-parent20">
-                                            <div class="florence-italy-group">
-                                                <div class="florence-italy1">Florence, Italy</div>
-                                                <div class="transition-transactor">
-                                                    <img class="icon94" alt="" th:src="@{/images/icon-29.svg}" />
-                                                </div>
+                                            <select class="florence-italy1" id="locationInput" name="location">
+                                                <option value="">Select location</option>
+                                                <option th:each="location : ${locations}" th:value="${location.name}" th:text="${location.name}"></option>
+                                            </select>
+                                            <div class="transition-transactor">
+                                                <img class="icon94" alt="" th:src="@{/images/icon-29.svg}" />
                                             </div>
-                                            <div class="frame-child59"></div>
                                         </div>
                                     </div>
                                     <button class="button30" type="button" onclick="submitForm()">
@@ -176,10 +176,13 @@
                       <img id="toggleButton" class="icon97" alt="" th:src="@{/images/icon-31.svg}" />
                     </div>
                     <div id="levelsContainer" style="display: none;">
-                      <div th:each="level : ${levels}" class="checkbox1">
-                        <input class="checkboxfalse1" type="checkbox" name="filterLevel[]" th:value="${level.name}"/>
-                        <div class="caption1" th:text="${level.name + ' (' + level.quantity + ')'}"></div>
-                      </div>
+                        <div th:each="level : ${levels}" class="checkbox1">
+                            <input class="checkboxfalse1" type="checkbox"
+                                   name="filterLevel[]"
+                                   th:value="${level.name}"
+                                   th:checked="${param.filterLevel != null && #strings.listSplit(param.filterLevel, ',').contains(level.name)}"/>
+                            <div class="caption1" th:text="${level.name + ' (' + level.quantity + ')'}"></div>
+                        </div>
                     </div>
                   </div>
                   <div class="salary-range">
@@ -188,22 +191,34 @@
                       <img id="toggleButtonSalary" class="icon98" alt="" th:src="@{/images/icon-31.svg}" />
                     </div>
                     <div id="salaryContainer" style="display: none;">
-                      <div class="checkbox19">
-                        <input class="checkboxfalse15" type="checkbox" />
-                        <div class="caption158">5M -> 10M </div>
-                      </div>
-                      <div class="checkbox20">
-                        <input class="checkboxfalse16" type="checkbox" />
-                        <div class="caption159">10M -> 15M</div>
-                      </div>
-                      <div class="checkbox21">
-                        <input class="checkboxfalse17" type="checkbox" />
-                        <div class="caption160">15M -> 20M</div>
-                      </div>
-                      <div class="checkbox22">
-                        <input class="checkboxchecked34" type="checkbox" />
-                        <div class="caption161">20M or above</div>
-                      </div>
+                        <div class="checkbox19">
+                            <input class="checkboxfalse15" type="checkbox"
+                                   name="filterSalary[]"
+                                   value="5M-10M"
+                                   th:checked="${param.filterSalary != null && #strings.listSplit(param.filterSalary, ',').contains('5M-10M')}"/>
+                            <div class="caption158">5M -> 10M </div>
+                        </div>
+                        <div class="checkbox20">
+                            <input class="checkboxfalse16" type="checkbox"
+                                   name="filterSalary[]"
+                                   th:value="10M-15M"
+                                   th:checked="${param.filterSalary != null && #strings.listSplit(param.filterSalary, ',').contains('10M-15M')}"/>
+                            <div class="caption159">10M -> 15M</div>
+                        </div>
+                        <div class="checkbox21">
+                            <input class="checkboxfalse17" type="checkbox"
+                                   name="filterSalary[]"
+                                   th:value="15M-20M"
+                                   th:checked="${param.filterSalary != null && #strings.listSplit(param.filterSalary, ',').contains('15M-20M')}"/>
+                            <div class="caption160">15M -> 20M</div>
+                        </div>
+                        <div class="checkbox22">
+                            <input class="checkboxchecked34" type="checkbox"
+                                   name="filterSalary[]"
+                                   th:value="20M + 'or' + above"
+                                   th:checked="${param.filterSalary != null && #strings.listSplit(param.filterSalary, ',').contains('20M or above')}"/>
+                            <div class="caption161">20M or above</div>
+                        </div>
                     </div>
                   </div>
                 </div>
@@ -222,13 +237,12 @@
                                         <div class="sort-options" onclick="toggleOptions()">
                                             <span id="defaultOption">Most relevant</span>
                                             <div id="otherOptions" style="display: none;">
-                                                <a class="sort-option" th:href="@{/findjobs(page=${page.number + 1}, sort='most-relevant')}">Most relevant</a>
-                                                <a class="sort-option" th:href="@{/findjobs(page=${page.number + 1}, sort='time')}">Time</a>
-                                                <a class="sort-option" th:href="@{/findjobs(page=${page.number + 1}, sort='salary')}">Salary</a>
+                                                <a class="sort-option" th:href="@{/findjobs(page=${page != null ? page.number + 1 : 0}, sort='most-relevant', location=${param.location != null ? param.location[0] : ''})}">Most relevant</a>
+                                                <a class="sort-option" th:href="@{/findjobs(page=${page != null ? page.number + 1 : 0}, sort='time', location=${param.location != null ? param.location[0] : ''})}">Time</a>
+                                                <a class="sort-option" th:href="@{/findjobs(page=${page != null ? page.number + 1 : 0}, sort='salary', location=${param.location != null ? param.location[0] : ''})}">Salary</a>
                                             </div>
                                         </div>
                                     </div>
-                                    
                                 </div>
                                 <div class="divider-wrapper1">
                                     <div class="divider12"></div>
@@ -311,12 +325,23 @@
                         </div>
                       </div>
                     <div class="pagination">
-                        <a th:if="${page.hasPrevious()}" th:href="@{/findjobs(page=${page.number}, sort=${param.sort != null ? param.sort[0] : 'default'}, filterCategory=${param.filterCategory != null ? param.filterCategory[0] : ''})}">Previous</a>
-                        <span th:each="i : ${#numbers.sequence(0, page.totalPages)}" th:if="${i >= page.number - 2 and i <= page.number + 2}">
-        <a th:href="@{/findjobs(page=${i}, sort=${param.sort != null ? param.sort[0] : 'default'}, filterCategory=${param.filterCategory != null ? param.filterCategory[0] : ''})}" th:class="${i == page.number ? 'active' : ''}" th:text="${i + 1}">Page number</a>
+                        <a th:if="${page.hasPrevious()}"
+                           th:href="@{/findjobs(page=${page.number - 1}, sort=${param.sort != null ? param.sort[0] : 'default'}, filterCategory=${param.filterCategory != null ? param.filterCategory[0] : ''})}"
+                           class="prev-link">Previous</a>
+
+                        <span th:each="pageNumber : ${#numbers.sequence(1, page.totalPages)}"
+                              th:if="${(pageNumber >= page.number - 2) and (pageNumber <= page.number + 2)}">
+        <a th:href="@{/findjobs(page=${pageNumber - 1}, sort=${param.sort != null ? param.sort[0] : 'default'}, filterCategory=${param.filterCategory != null ? param.filterCategory[0] : ''})}"
+           th:class="${pageNumber == page.number + 1 ? 'active' : ''}"
+           th:text="${pageNumber}"></a>
     </span>
-                        <a th:if="${page.hasNext()}" th:href="@{/findjobs(page=${page.number + 2}, sort=${param.sort != null ? param.sort[0] : 'default'}, filterCategory=${param.filterCategory != null ? param.filterCategory[0] : ''})}">Next</a>
+
+                        <a th:if="${page.hasNext()}"
+                           th:href="@{/findjobs(page=${page.number + 1}, sort=${param.sort != null ? param.sort[0] : 'default'}, filterCategory=${param.filterCategory != null ? param.filterCategory[0] : ''})}"
+                           class="next-link">Next</a>
                     </div>
+
+                </div>
             </section>
             <footer class="footer3">
                 <div class="frame-parent21">
