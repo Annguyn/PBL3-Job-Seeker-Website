@@ -7,6 +7,9 @@
     <script th:src="@{./js/Company/job-listing.js}"></script>
     <link rel="stylesheet" th:href="@{./css/Company/global.css}" />
     <link rel="stylesheet" th:href="@{./css/Company/dashboard-company-job-listing.css}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Red Hat Display:wght@700&display=swap"
@@ -218,37 +221,38 @@
               </div>
               <div class="divider1"></div>
             </div>
-            <div class="pagination-icon">
-              <div class="table-header">
-                <div class="roles">Title</div>
-                <div class="status">Status</div>
-                <div class="date-posted">Date Posted</div>
-                <div class="due-date">Experience</div>
-                <div class="job-type2">Job Type</div>
-                <div class="applicants1">Applicants</div>
-                <div class="needs">Needs</div>
-              </div>
-            </div>
-            <div class="list" th:each="post : ${company.getPosts()}">
-              <a th:href="@{/jobdetails(id=${post.getId()})}" class="fill-div">
-              <div class="row1">
-                <div class="social-media-assistant7" th:text="${post.title}"></div>
-                <button class="label34">
-                  <div class="label-child16"></div>
-                  <div class="caption109" th:if="${post.isLive()}" th:text="Active"></div>
-                  <div class="caption109" th:unless="${post.isLive()}" th:text="Inactive"></div>
-                </button>
-                <div class="may-2020" th:text="${#temporals.format(post.datePosted, 'dd MMM yyyy')}"></div>
-                <div class="may-20201" th:text="${post.experience}"></div>
-                <button class="label35">
-                  <div class="label-child17"></div>
-                  <div class="caption110" th:text="${post.level.name}"></div>
-                </button>
-                <div class="div22" th:text="${post.applicants.size()}"></div>
-                <img class="icon114" alt="" th:src="@{./images/Company/icon-22.svg}" th:data-id="${post.id}" onclick="confirmDelete(this)"/>
-              </div>
-              </a>
-            </div>
+            <table class="job-postings-table">
+              <thead>
+              <tr>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Date Posted</th>
+                <th>Experience</th>
+                <th>Job Type</th>
+                <th>Applicants</th>
+                <th>Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="post : ${company.getPosts()}">
+                <td class="title-cell">
+                  <a th:href="@{/jobdetails(id=${post.getId()})}" th:text="${post.title}"></a>
+                </td>
+                <td class="status-cell">
+                  <span th:if="${post.isLive()}" th:text="Active"></span>
+                  <span th:unless="${post.isLive()}" th:text="Inactive"></span>
+                </td>
+                <td th:text="${#temporals.format(post.datePosted, 'dd MMM yyyy')}"></td>
+                <td th:text="${post.experience}"></td>
+                <td th:text="${post.level.name}"></td>
+                <td th:text="${post.applicants.size()}"></td>
+                <td>
+                  <img class="icon114 delete-icon" alt="Delete" th:src="@{./images/Company/icon-22.svg}" th:data-id="${post.id}" onclick="confirmDelete(this)"/>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+
           </div>
         </section>
       </main>

@@ -1,5 +1,8 @@
 package com.backend.controller.home;
 
+import java.time.DayOfWeek;
+import java.time.LocalDateTime;
+import java.time.temporal.TemporalAdjusters;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -111,17 +114,18 @@ public class HomeController {
 
 
         for (Application application : userLoggedIn.getApplications()) {
-            if ("interview".equals(application.getStatus())) {
+            if ("Interview".equals(application.getStatus())) {
                 numberInterview++;
-            } else if ("unsuitable".equals(application.getStatus())) {
+            } else if ("Unsuitable".equals(application.getStatus())) {
                 numberUnsuitable++;
             }
-            else if("live".equals(application.getStatus())){
+            else if("Live".equals(application.getStatus())){
                 numberLive++;
             }
-            else if("accepted".equals(application.getStatus())){
+            else if("Accepted".equals(application.getStatus())){
                 numberAccepted++;
             }
+
         }
         for (Post post : postService.getAllPosts()) {
             if (post.getLocation() == null) {
@@ -137,26 +141,47 @@ public class HomeController {
             model.addAttribute("numberUnsuitable", numberUnsuitable);
             model.addAttribute("userLoggedIn", userLoggedIn);
             if (userLoggedIn.getRole().equals("company")) {
+                List<Application> applications = applicationService.findAllByPostCompany(userLoggedIn.getCompany().getId());
 
-                for (Application application : userLoggedIn.getApplications()) {
-                    if ("interview".equals(application.getStatus())) {
+                for (Application application : applications) {
+                    if ("Interview".equals(application.getStatus())) {
                         numberInterviewCompany++;
-                    } else if ("unsuitable".equals(application.getStatus())) {
+                    } else if ("Unsuitable".equals(application.getStatus())) {
                         numberUnsuitableCompany++;
-                    } else if ("live".equals(application.getStatus())) {
+                    } else if ("Live".equals(application.getStatus())) {
                         numberLiveCompany++;
-                    } else if ("accepted".equals(application.getStatus())) {
+                    } else if ("Accepted".equals(application.getStatus())) {
                         numberAcceptedCompany++;
                     }
                 }
+                LocalDateTime now = LocalDateTime.now();
+                LocalDateTime startOfWeek = now.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
+                LocalDateTime endOfWeek = now.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
+                Map<String, Integer> weeklyStatistics = applicationService.getStatisticsByCompanyAndTimePeriod(userLoggedIn.getCompany().getId(), startOfWeek, endOfWeek);
+
+                LocalDateTime startOfMonth = now.with(TemporalAdjusters.firstDayOfMonth());
+                LocalDateTime endOfMonth = now.with(TemporalAdjusters.lastDayOfMonth());
+                Map<String, Integer> monthlyStatistics = applicationService.getStatisticsByCompanyAndTimePeriod(userLoggedIn.getCompany().getId(), startOfMonth, endOfMonth);
+
+                LocalDateTime startOfYear = now.with(TemporalAdjusters.firstDayOfYear());
+                LocalDateTime endOfYear = now.with(TemporalAdjusters.lastDayOfYear());
+                Map<String, Integer> yearlyStatistics = applicationService.getStatisticsByCompanyAndTimePeriod(userLoggedIn.getCompany().getId(), startOfYear, endOfYear);
+
+                model.addAttribute("weeklyStatistics", weeklyStatistics);
+                model.addAttribute("monthlyStatistics", monthlyStatistics);
+                model.addAttribute("yearlyStatistics", yearlyStatistics);
+
                 model.addAttribute("numberAcceptedCompany", numberAcceptedCompany);
                 model.addAttribute("numberLiveCompany", numberLiveCompany);
                 model.addAttribute("numberInterviewCompany", numberInterviewCompany);
                 model.addAttribute("numberUnsuitableCompany", numberUnsuitableCompany);
-
+                Map<String, Integer> applicationCountsByLevel = applicationService.getApplicationCountsByLevelAndCompany(userLoggedIn.getCompany().getId());
+                model.addAttribute("applicationCountsByLevel", applicationCountsByLevel);
                 return "Company/index";
             }
-
+            List<Application> upComingInterviews = userService.upComingInterviews(userLoggedIn);
+            model.addAttribute("upComingInterviews", upComingInterviews);
+            System.out.println("Upcoming Interviews are : " + upComingInterviews.size());
             return "applicant";
         }
     @GetMapping("/profile")

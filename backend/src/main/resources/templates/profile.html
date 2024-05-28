@@ -337,7 +337,7 @@
                         <div class="harvard-university-parent">
                           <div class="harvard-university" th:text="${education.getUniversity().name}">
                           </div>
-                          <div class="button44">
+                          <div class="button44"  th:attr="data-education-id=${education.id}" >
                             <img th:src="@{/images/x-circle.svg}">
                           </div>
                         </div>

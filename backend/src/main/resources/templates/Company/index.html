@@ -4,9 +4,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" th:href="@{./css/Company/global.css}" />
     <link rel="stylesheet" th:href="@{./css/Company/index.css}" />
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script th:src="@{./js/Company/index.js}"></script>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Red Hat Display:wght@700&display=swap"
@@ -187,14 +192,12 @@
         </header>
         <section class="greeting-filter">
           <div class="box-bunch">
-            <h3 class="good-morning-maria">Good morning, Maria</h3>
+            <h3 class="good-morning-maria" th:text="${'Good Morning , ' + userLoggedIn.getUserDisplayName()}"></h3>
             <div class="here-is-your">
-              Here is your job listings statistic report from July 19 - July 25.
             </div>
           </div>
           <div class="dropdown-wrapper">
             <div class="dropdown">
-              <div class="this-is-placeholder">Jul 19 - Jul 25</div>
               <div class="image-inventory">
                 <img class="icon12" alt=""th:src="@{./images/Company/icon-12.svg}" />
               </div>
@@ -234,17 +237,7 @@
                         Showing Jobstatistic Jul 19-25
                       </div>
                     </div>
-                    <div class="pill-tab">
-                      <button class="tab-menu">
-                        <div class="caption10">Week</div>
-                      </button>
-                      <button class="tab-menu1">
-                        <div class="caption11">Month</div>
-                      </button>
-                      <button class="tab-menu2">
-                        <div class="caption12">Year</div>
-                      </button>
-                    </div>
+
                   </div>
                   <div class="tabs">
                     <div class="tab-menu3">
@@ -276,96 +269,9 @@
                 <div class="job-statistic-inner">
                   <div class="frame-parent">
                     <div class="frame-group">
-                      <div class="bar-parent">
-                        <div class="bar">
-                          <div class="bar-child"></div>
-                          <div class="bar-item"></div>
-                        </div>
-                        <div class="frame-container">
-                          <div class="data-hub-parent">
-                            <div class="data-hub">
-                              <img
-                                class="shape-set-icon"
-                                loading="lazy"
-                                alt=""
-                               th:src="@{./images/Company/polygon-1.svg}"
-                              />
-
-                              <div class="visitors">
-                                <div class="frame-div">
-                                  <div class="image-stack-wrapper">
-                                    <input
-                                      class="image-stack"
-                                      type="checkbox"
-                                    />
-                                  </div>
-                                  <div class="symbol-saver">122</div>
-                                </div>
-                                <div class="frame-parent1">
-                                  <div class="rectangle-wrapper">
-                                    <input
-                                      class="rectangle-input"
-                                      type="checkbox"
-                                    />
-                                  </div>
-                                  <div class="div3">34</div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="frame-wrapper">
-                              <div class="bar-group">
-                                <div class="bar1">
-                                  <div class="path-piece"></div>
-                                  <div class="bar-inner"></div>
-                                </div>
-                                <div class="bar2">
-                                  <div class="rectangle-div"></div>
-                                  <div class="bar-child1"></div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="bar3">
-                            <div class="bar-child2"></div>
-                            <div class="bar-child3"></div>
-                          </div>
-                        </div>
-                        <div class="bar4">
-                          <div class="bar-child4"></div>
-                          <div class="bar-child5"></div>
-                        </div>
-                        <div class="bar5">
-                          <div class="bar-child6"></div>
-                          <div class="bar-child7"></div>
-                        </div>
-                        <div class="bar6">
-                          <div class="bar-child8"></div>
-                          <div class="bar-child9"></div>
-                        </div>
-                      </div>
-                      <div class="star-stellar">
-                        <div class="mon">Mon</div>
-                        <div class="tue">Tue</div>
-                        <div class="wed">Wed</div>
-                        <div class="thu">Thu</div>
-                        <div class="fri">Fri</div>
-                        <div class="sat">Sat</div>
-                        <div class="sun">Sun</div>
-                      </div>
-                      <div class="image-importer-parent">
-                        <div class="image-importer">
-                          <div class="symbol-swapper">
-                            <div class="color-collector"></div>
-                          </div>
-                          <div class="job-view">Job View</div>
-                        </div>
-                        <div class="image-importer1">
-                          <div class="image-importer-inner">
-                            <div class="frame-item"></div>
-                          </div>
-                          <div class="job-applied">Job Applied</div>
-                        </div>
-                      </div>
+                      <figure class="highcharts-figure">
+                        <div id="container-bar"></div>
+                      </figure>
                     </div>
                     <div class="stats">
                       <div class="card-dashboard">
@@ -445,60 +351,9 @@
                         <div class="applicants">Applicants</div>
                       </div>
                     </div>
-                    <div class="chart">
-                      <div class="shape-sort-shape-sorter"></div>
-                      <div class="shape-sort-shape-sorter1"></div>
-                      <div class="shape-sort-shape-sorter2"></div>
-                      <div class="data-processor">
-                        <div class="data-processor-child"></div>
-                        <div class="data-processor-item"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="image-analyzer">
-                    <div class="number-cruncher">
-                      <div class="string-transformer">
-                        <div class="list-manager">
-                          <div class="tree-builder">
-                            <div class="map-creator"></div>
-                            <div class="map-creator1"></div>
-                            <div class="map-creator2"></div>
-                          </div>
-                        </div>
-                        <div class="set-handler">
-                          <div class="full-time-container">
-                            <span>Full Time : </span>
-                            <span class="span">45</span>
-                          </div>
-                          <div class="part-time-24-container">
-                            <span>Part-Time : </span>
-                            <span class="span1">24</span>
-                          </div>
-                          <div class="remote-22-container">
-                            <span>Remote : </span>
-                            <span class="span2">22</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="stack-supplier">
-                        <div class="dictionary-builder">
-                          <div class="hash-table-handler">
-                            <div class="hash-table-handler-child"></div>
-                            <div class="hash-table-handler-item"></div>
-                          </div>
-                        </div>
-                        <div class="internship-32-parent">
-                          <div class="internship-32-container">
-                            <span>Internship : </span>
-                            <span class="span3">32</span>
-                          </div>
-                          <div class="contract-30-container">
-                            <span>Contract : </span>
-                            <span class="span4">30</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <figure class="highcharts-figure">
+                      <div id="container-bar-levels"></div>
+                    </figure>
                   </div>
                 </div>
               </div>
@@ -506,48 +361,44 @@
             <div class="job-updates">
               <div class="title3">
                 <div class="job-updates1">Job Updates</div>
-                <button class="button-parent">
+                <a th:href="@{/joblisting}" class="button-parent">
                   <div class="button1">View All</div>
                   <div class="icon-container">
                     <img class="icon20" alt=""th:src="@{./images/Company/icon-20.svg}" />
                   </div>
-                </button>
+                </a>
               </div>
-              <div class="row">
+              <div class="row" th:each="post : ${userLoggedIn.getCompany().getPosts()}">
                 <div class="job-list1">
                   <div class="content">
                     <div class="header1">
                       <img
                         class="company-logo-icon1"
-                        alt=""
-                       th:src="@{./images/Company/company-logo-1.svg}"
+                        loading="lazy"
+                        th:src="@{/company/image/{id}(id=${userLoggedIn.getCompany().id})}" alt="Company Avatar"
+
                       />
 
                       <button class="label">
-                        <div class="caption19">Full-Time</div>
+                        <div class="caption19" th:text="${post.getLevel().name}"></div>
                       </button>
                     </div>
                     <div class="job-title1">
-                      <div class="social-media-assistant">
-                        Social Media Assistant
+                      <div class="social-media-assistant" th:text="${post.getTitle()}">
                       </div>
                       <div class="location">
-                        <div class="nomad1">Nomad</div>
+                        <div class="nomad1" th:text="${post.getCompany().getName()}"></div>
                         <div class="location-inner">
                           <div class="frame-inner"></div>
                         </div>
-                        <div class="paris-france">Paris, France</div>
+                        <div class="paris-france" th:text="${post.getLocation().getName()}"></div>
                       </div>
                     </div>
                   </div>
-                  <div class="labels">
+                  <div class="labels" th:each="category : ${post.getCategories()}">
                     <button class="label1">
                       <div class="label-child"></div>
-                      <div class="caption20">Marketing</div>
-                    </button>
-                    <button class="label2">
-                      <div class="label-item"></div>
-                      <div class="caption21">Design</div>
+                      <div class="caption20" th:text="${category.name}"></div>
                     </button>
                   </div>
                   <div class="progress-bar-parent">
@@ -561,173 +412,9 @@
                       <div class="progress-bar-inner"></div>
                     </div>
                     <div class="applied-of-10-container">
-                      <span class="applied">5 applied</span>
+                      <span class="applied" th:text="${post.getApplicants().size() + ' Applied'}"></span>
                       <span class="of-10-capacity">
                         <span class="span5"> </span>
-                        <span>of 10 capacity</span>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div class="job-list2">
-                  <div class="content1">
-                    <div class="header2">
-                      <img
-                        class="company-logo-icon2"
-                        alt=""
-                       th:src="@{./images/Company/company-logo-2.svg}"
-                      />
-
-                      <button class="label3">
-                        <div class="caption22">Full-Time</div>
-                      </button>
-                    </div>
-                    <div class="job-title2">
-                      <div class="social-media-assistant1">Brand Designer</div>
-                      <div class="location1">
-                        <div class="nomad2">Nomad</div>
-                        <div class="location-child">
-                          <div class="ellipse-div"></div>
-                        </div>
-                        <div class="paris-france1">Paris, France</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="labels1">
-                    <button class="label4">
-                      <div class="label-inner"></div>
-                      <div class="caption23">Business</div>
-                    </button>
-                    <button class="label5">
-                      <div class="label-child1"></div>
-                      <div class="caption24">Design</div>
-                    </button>
-                  </div>
-                  <div class="progress-bar-group">
-                    <div class="progress-bar1">
-                      <div class="progress-bar-child1"></div>
-                      <div class="progress-bar-child2"></div>
-                      <div class="rectangle-group">
-                        <div class="frame-child3"></div>
-                        <div class="frame-child4"></div>
-                      </div>
-                      <div class="progress-bar-child3"></div>
-                    </div>
-                    <div class="applied-of-10-container1">
-                      <span class="applied1">5 applied</span>
-                      <span class="of-10-capacity1">
-                        <span class="span6"> </span>
-                        <span>of 10 capacity</span>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div class="job-list3">
-                  <div class="content2">
-                    <div class="header3">
-                      <img
-                        class="company-logo-icon3"
-                        alt=""
-                       th:src="@{./images/Company/company-logo-3.svg}"
-                      />
-
-                      <button class="label6">
-                        <div class="caption25">Full-Time</div>
-                      </button>
-                    </div>
-                    <div class="job-title3">
-                      <div class="social-media-assistant2">
-                        Interactive Developer
-                      </div>
-                      <div class="location2">
-                        <div class="nomad3">Terraform</div>
-                        <div class="location-inner1">
-                          <div class="frame-child5"></div>
-                        </div>
-                        <div class="paris-france2">Berlin, Germany</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="labels2">
-                    <button class="label7">
-                      <div class="label-child2"></div>
-                      <div class="caption26">Marketing</div>
-                    </button>
-                    <button class="label8">
-                      <div class="label-child3"></div>
-                      <div class="caption27">Design</div>
-                    </button>
-                  </div>
-                  <div class="progress-bar-container">
-                    <div class="progress-bar2">
-                      <div class="progress-bar-child4"></div>
-                      <div class="progress-bar-child5"></div>
-                      <div class="rectangle-container">
-                        <div class="frame-child6"></div>
-                        <div class="frame-child7"></div>
-                      </div>
-                      <div class="progress-bar-child6"></div>
-                    </div>
-                    <div class="applied-of-10-container2">
-                      <span class="applied2">5 applied</span>
-                      <span class="of-10-capacity2">
-                        <span class="span7"> </span>
-                        <span>of 10 capacity</span>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div class="job-list4">
-                  <div class="content3">
-                    <div class="header4">
-                      <img
-                        class="company-logo-icon4"
-                        alt=""
-                       th:src="@{./images/Company/company-logo-4@2x.png}"
-                      />
-
-                      <button class="label9">
-                        <div class="caption28">Full-Time</div>
-                      </button>
-                    </div>
-                    <div class="job-title4">
-                      <div class="social-media-assistant3">
-                        Product Designer
-                      </div>
-                      <div class="location3">
-                        <div class="nomad4">ClassPass</div>
-                        <div class="location-inner2">
-                          <div class="frame-child8"></div>
-                        </div>
-                        <div class="paris-france3">Berlin, Germ..</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="labels3">
-                    <button class="label10">
-                      <div class="label-child4"></div>
-                      <div class="caption29">Business</div>
-                    </button>
-                    <button class="label11">
-                      <div class="label-child5"></div>
-                      <div class="caption30">Design</div>
-                    </button>
-                  </div>
-                  <div class="progress-bar-parent1">
-                    <div class="progress-bar3">
-                      <div class="progress-bar-child7"></div>
-                      <div class="progress-bar-child8"></div>
-                      <div class="rectangle-parent1">
-                        <div class="frame-child9"></div>
-                        <div class="frame-child10"></div>
-                      </div>
-                      <div class="progress-bar-child9"></div>
-                    </div>
-                    <div class="applied-of-10-container3">
-                      <span class="applied3">5 applied</span>
-                      <span class="of-10-capacity3">
-                        <span class="span8"> </span>
-                        <span>of 10 capacity</span>
                       </span>
                     </div>
                   </div>
@@ -739,4 +426,62 @@
       </main>
     </div>
   </body>
+ <script th:inline="javascript">
+    /*<![CDATA[*/
+    var weeklyStatistics = /*[[${weeklyStatistics}]]*/ 'default';
+    var monthlyStatistics = /*[[${monthlyStatistics}]]*/ 'default';
+    var yearlyStatistics = /*[[${yearlyStatistics}]]*/ 'default';
+
+    Highcharts.chart('container-bar', {
+      chart: {
+        type: 'bar'
+      },
+      title: {
+        text: 'Company Statistics'
+      },
+      xAxis: {
+        categories: Object.keys(weeklyStatistics)
+      },
+      yAxis: {
+        title: {
+          text: 'Number of Applications'
+        }
+      },
+      series: [{
+        name: 'Weekly',
+        data: Object.values(weeklyStatistics)
+      }, {
+        name: 'Monthly',
+        data: Object.values(monthlyStatistics)
+      }, {
+        name: 'Yearly',
+        data: Object.values(yearlyStatistics)
+      }]
+    });
+    /*]]>*/
+    /*<![CDATA[*/
+    var applicationCountsByLevel = /*[[${applicationCountsByLevel}]]*/ 'default';
+
+    Highcharts.chart('container-bar-levels', {
+      chart: {
+        type: 'bar'
+      },
+      title: {
+        text: 'Application Counts by Level and Company'
+      },
+      xAxis: {
+        categories: Object.keys(applicationCountsByLevel)
+      },
+      yAxis: {
+        title: {
+          text: 'Number of Applications'
+        }
+      },
+      series: [{
+        name: 'Applications',
+        data: Object.values(applicationCountsByLevel)
+      }]
+    });
+    /*]]>*/
+  </script>
 </html>

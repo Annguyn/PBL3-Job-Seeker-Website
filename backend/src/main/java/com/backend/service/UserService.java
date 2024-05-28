@@ -3,6 +3,7 @@ package com.backend.service;
 
 import java.util.List;
 
+import com.backend.entity.Application;
 import org.springframework.stereotype.Service;
 
 import com.backend.dto.UserDto;
@@ -17,4 +18,5 @@ public interface UserService {
     List<User> getAllUsers();
     void save(User user);
     User findById(int id);
+    List<Application> upComingInterviews(User user);
 }

@@ -196,16 +196,31 @@
             </div>
           </div>
           <div class="button9">
-            <div class="icon-wrapper2">
-              <img class="icon137" alt="" th:src="@{./images/Company/icon-133.svg}" />
-            </div>
-            <b class="caption134" onclick="showDropdown()">More Action</b>
-            <select id="statusDropdown" style="display: none;" th:field="*{applyForm.status}">
-              <option value="unsuitable">Unsuitable</option>
-              <option value="interviewed">Interviewed</option>
-              <option value="live">Live</option>
-              <option value="accepted">Accepted</option>
-            </select>
+<!--            <div class="icon-wrapper2">-->
+<!--              <img class="icon137" alt="" th:src="@{./images/Company/icon-133.svg}" />-->
+<!--            </div>-->
+<!--            <b class="caption134" onclick="showDropdown()">More Action</b>-->
+            <form id="statusForm" method="post" th:action="@{/updateStatus}" th:object="${applyForm}">
+              <input type="hidden" name="id" th:field="*{id}" />
+              <select class="select" name="status" id="statusSelect">
+                <option value="Live" th:selected="${applyForm.status == 'Live'}">Live</option>
+                <option value="Unsuitable" th:selected="${applyForm.status == 'Unsuitable'}">Unsuitable</option>
+                <option value="Interview" th:selected="${applyForm.status == 'Interview'}">Interview</option>
+                <option value="Accepted" th:selected="${applyForm.status == 'Accepted'}">Accepted</option>
+              </select>
+
+              <div id="interviewModal" class="modal">
+                <div class="modal-content">
+                  <label for="interviewDate">Date:</label>
+                  <input type="date" id="interviewDate" name="interviewDate">
+                  <label for="interviewTime">Time:</label>
+                  <input type="time" id="interviewTime" name="interviewTime">
+                  <button id="saveButton" type="button">Save</button>
+                </div>
+              </div>
+
+              <input type="submit" class="button8" value="Update Status">
+            </form>
           </div>
         </section>
         <section class="binary-tree-leaf" >
@@ -232,7 +247,7 @@
                 <div class="jobs">
                   <div class="product-development" th:text="${applyForm.getPost().getTitle()}"></div>
                   <div class="company-name-location-job2">
-                    <div class="marketing" th:text="${applyForm.getPost().getLocation()}"></div>
+                    <div class="marketing" th:text="${applyForm.getPost().getLocation().name}"></div>
                     <div class="stack1">
                       <div class="tree-traversal"></div>
                     </div>
@@ -396,6 +411,8 @@
                         <a th:href="@{/resume/pdf/{id}(id=${applyForm.user.getID()})}" target="_blank">View Resume</a>
                         </div>
                       </div>
+                    <div class="about-me2">
+                      <a th:href="@{/viewProfile(id=${applyForm.id})}" target="_blank">View Profile</a>                  </div>
                     </div>
                 </div>
               </div>

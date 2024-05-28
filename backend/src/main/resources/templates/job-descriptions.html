@@ -390,7 +390,7 @@
     <!-- Modal content -->
     <div class="modal-content">
         <!-- Your form goes here -->
-        <div id="applicationForm" class="landing-page-submit-applicat">
+        <form th:action="@{/jobdetails}" method="post" id="applicationForm" class="landing-page-submit-applicat" enctype="multipart/form-data">
             <div class="landing-page-submit-applicat">
                 <div class="base1"></div>
                 <img class="icon56" loading="lazy" alt="" th:src="@{/images/icon-211.svg}" />
@@ -398,8 +398,9 @@
                 <div class="input-splitter">
                     <div class="input-fields">
                         <div class="role">
-                            <img class="company-logo-icon16" loading="lazy" alt=""
-                                 th:src="@{/images/company-logo.svg}" />
+                            <img class="company-logo-icon16" loading="lazy"
+                                 th:src="@{/company/image/{id}(id=${post.getCompany().id})}" alt="Company Avatar" />
+                            />
 
                             <div class="job-title-container">
                                 <div class="job-title10">
@@ -407,14 +408,12 @@
                                         Social Media Assistant
                                     </h3>
                                     <div class="frame">
-                                        <div class="nomad9">Nomad</div>
+                                        <div class="nomad9" th:text="${post.getCompany().getName()}"></div>
                                         <div class="error-handler1"></div>
-                                        <div class="paris-france10">
-                                            Paris, France
+                                        <div class="paris-france10" th:text="${post.getLocation().getName()}">
                                         </div>
                                         <div class="error-handler2"></div>
-                                        <div class="full-time2">
-                                            Full-Time
+                                        <div class="full-time2" th:text="${post.getLevel().name}">
                                         </div>
                                     </div>
                                 </div>
@@ -425,13 +424,12 @@
                             <h3 class="submit-your-application1">
                                 Submit your application
                             </h3>
-                            <div class="the-following-is">
-                                The following is required and will only be
-                                shared with Nomad
+                            <div class="the-following-is" th:text="${'The following is required and will only be shared with ' + post.getCompany().getName()}">
                             </div>
                         </div>
+                        <input hidden="hidden" name="id" th:value="${post.id}">
                         <div class="textfield">
-                            <div class="label50">Full name</div>
+                            <div class="label50">Fullname</div>
                             <div class="input1">
                                 <input class="this-is-placeholder1" placeholder="Enter your fullname" type="text" />
                             </div>
@@ -469,9 +467,9 @@
                             </div>
                         </div>
                         <div class="textfield5">
-                            <div class="label55">Portfolio URL</div>
+                            <div class="label55">Github URL</div>
                             <div class="input6">
-                                <input class="this-is-placeholder6" placeholder="Link to your portfolio URL"
+                                <input class="this-is-placeholder6" placeholder="Link to your github URL"
                                        type="text" />
                             </div>
                         </div>
@@ -522,7 +520,7 @@
                             </button>
                         </div>
                         <div class="divider8"></div>
-                        <button class="button14">
+                        <button type="submit" class="button14">
                             <b class="caption63">Submit Application</b>
                         </button>
                         <div class="by-sending-the-container">
@@ -536,7 +534,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 </body>

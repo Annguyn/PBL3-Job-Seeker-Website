@@ -19,7 +19,7 @@ public class Application {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -58,7 +58,7 @@ public class Application {
     private byte[] resume;
 
     @Column(name="status" , nullable = true)
-    private String status ;
+    private String status = "Live" ; // Live , Rejected , Interviewing , Hired
 
     @Column(name="interview_start_time" , nullable = true)
     private LocalDateTime interviewStartTime;

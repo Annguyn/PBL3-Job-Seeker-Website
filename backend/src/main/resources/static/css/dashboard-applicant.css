@@ -2260,3 +2260,46 @@
     flex-wrap: wrap;
   }
 }
+.link-list div {
+  /* Add styles for each interview div */
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  color: black;
+}
+
+.link-list p {
+  /* Add styles for the paragraph */
+  font-size: 16px;
+  color: black;
+}
+
+.link-list div {
+  /* Add styles for each interview div */
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.link-list h4 {
+  /* Add styles for the title */
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.link-list span {
+  /* Add styles for the time span */
+  font-weight: bold;
+}
+
+.link-list img {
+  /* Add styles for the company logo */
+  width: 50px;
+  height: 50px;
+}
+.card-dashboard5 {
+  height: 30rem;
+}

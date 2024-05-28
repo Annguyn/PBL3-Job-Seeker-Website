@@ -2,10 +2,9 @@ package com.backend.controller.admin;
 
 import com.backend.service.EducationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class EducationController {
@@ -17,8 +16,9 @@ public class EducationController {
         this.educationService = educationService;
     }
 
-    @DeleteMapping("deleteEducation")
-    public void deleteEducation(@RequestParam("id") int id) {
+    @DeleteMapping("/deleteEducation/{id}")
+    public ResponseEntity<Void> deleteEducation(@PathVariable("id") int id) {
         educationService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

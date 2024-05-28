@@ -189,15 +189,15 @@ public class FindJobsController {
     }
     @PostMapping("/jobdetails")
     public String applyJob(
-            @RequestParam("id") Integer postId,
-            @RequestParam("fullName") String fullName,
-            @RequestParam("emailAddress") String emailAddress,
-            @RequestParam("phoneNumber") String phoneNumber,
-            @RequestParam("JobTitle") String jobTitle,
-            @RequestParam("linkedInUrl") String linkedInUrl,
-            @RequestParam("portfolioUrl") String portfolioUrl,
-            @RequestParam("additionalInformation") String additionalInformation,
-            @RequestParam("resume") MultipartFile resume) throws IOException {
+            @RequestParam(value = "id" , required = false) Integer postId,
+            @RequestParam(value = "fullName" , required = false) String fullName,
+            @RequestParam(value = "emailAddress", required = false) String emailAddress,
+            @RequestParam(value = "phoneNumber", required = false) String phoneNumber,
+            @RequestParam(value = "JobTitle", required = false) String jobTitle,
+            @RequestParam(value = "linkedInUrl", required = false) String linkedInUrl,
+            @RequestParam(value = "portfolioUrl", required = false) String portfolioUrl,
+            @RequestParam(value = "additionalInformation", required = false) String additionalInformation,
+            @RequestParam(value = "resume" , required = false) MultipartFile resume ) throws IOException {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User userLoggedIn = null;
         if (authentication != null && authentication.getPrincipal() instanceof UserDetails userDetails) {
@@ -206,7 +206,12 @@ public class FindJobsController {
         if (userLoggedIn == null) {
             userLoggedIn = new User();  // Add a default User object if userLoggedIn is null
         }
-
+        byte[] resumeBytes;
+        if (resume != null) {
+            resumeBytes = resume.getBytes();
+        } else {
+            resumeBytes = new byte[0];
+        }
         Application application = new Application(
                 userLoggedIn,
                 postService.getPostById(postId),
@@ -217,7 +222,7 @@ public class FindJobsController {
                 linkedInUrl,
                 portfolioUrl,
                 additionalInformation,
-                resume.getBytes());
+                resumeBytes );
         // Save the application
          applicationService.save(application);
         return "redirect:/home";

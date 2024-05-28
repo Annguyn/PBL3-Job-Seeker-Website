@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 @Controller
 @AllArgsConstructor
 public class JobListingController {
@@ -76,5 +79,21 @@ public class JobListingController {
     public String postApplicant(@ModelAttribute("applyForm") Application application) {
         applicationService.save(application);
         return "redirect:/applicant?id=" + application.getId();
+    }
+
+    @PostMapping("/updateStatus")
+    public String updateStatus(@RequestParam("id") int id, @RequestParam("status") String status, @RequestParam("interviewDate") String interviewDate, @RequestParam("interviewTime") String interviewTime) {
+        Application application = applicationService.findById(id);
+        if (application != null) {
+            application.setStatus(status);
+            if(application.getStatus().equals("Interview") && (interviewDate == null || interviewTime == null)) {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                LocalDateTime interviewStartDateTime = LocalDateTime.parse(interviewDate + " " + interviewTime, formatter);
+                application.setInterviewStartTime(interviewStartDateTime);
+            }
+            applicationService.save(application);
+            applicationService.updateStatus(id, status);
+        }
+        return "redirect:/applicant?id=" + id;
     }
 }

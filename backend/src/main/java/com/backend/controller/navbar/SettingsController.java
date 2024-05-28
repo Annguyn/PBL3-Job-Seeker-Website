@@ -76,6 +76,7 @@ import java.util.List;
             if (currentUser.getRole().equals("company")) {
                 Company existingCompany = currentUser.getCompany();
                 existingCompany.setCompanyWebsite(formCompany.getCompanyWebsite());
+                existingCompany.setAvatar(avatarFile.getBytes());
                 existingCompany.setName(formCompany.getName());
                 existingCompany.setProfileDescription(formCompany.getProfileDescription());
                 companyService.saveCompany(existingCompany);

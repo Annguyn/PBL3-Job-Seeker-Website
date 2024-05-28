@@ -7,13 +7,18 @@ import com.backend.repository.ApplicationRepository;
 import com.backend.service.ApplicationService;
 import com.backend.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,5 +49,44 @@ public class InterviewController {
         model.addAttribute("applyForm" , application);
         model.addAttribute("company", company);
         return "Company/applicant-interview";
+    }
+    @GetMapping("/interviewSchedule")
+    public String showInterviewScheduleForm(@RequestParam(value = "date" , required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date, Model model) {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        User user = userService.getUserbyEmail(username);
+
+        if (date == null) {
+            date = LocalDate.now();
+        }
+
+        LocalDateTime startDateTime = date.atStartOfDay();
+        LocalDateTime endDateTime = date.plusDays(1).atStartOfDay();
+
+        List<Application> upcomingApplications = applicationRepository.findApplicationsByDateAndCompany(startDateTime, endDateTime, user.getCompany().getId());
+        model.addAttribute("upcomingApplications", upcomingApplications);
+        return "Company/interview-schedule";
+    }
+    @PostMapping("/storeInterviewDetails")
+    public ResponseEntity<String> storeInterviewDetails(@RequestParam String interviewDate, @RequestParam String interviewTime) {
+
+        return ResponseEntity.ok("Interview details stored successfully");
+    }
+    @GetMapping("/viewProfile")
+    public String viewProfile(Model model , @RequestParam("id") Integer id ) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        User user = userService.getUserbyEmail(username);
+        Company company = user.getCompany() ;
+        if (id == null) {
+            return "error";
+        }
+        Application application = applicationService.findById(id);
+        User user1 = application.getUser();
+        model.addAttribute("applyForm" , application);
+        model.addAttribute("company", company);
+        model.addAttribute("user", user1);
+        return "Company/applicant-profile-details";
     }
 }

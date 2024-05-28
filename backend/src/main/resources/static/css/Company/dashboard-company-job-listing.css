@@ -862,7 +862,9 @@ a.fill-div {
   justify-content: flex-start;
   box-sizing: border-box;
   max-width: 100%;
+  color: #202430;
 }
+
 .table-header {
   flex: 1;
   background-color: var(--color-white);
@@ -2086,4 +2088,19 @@ a.fill-div {
   .page-views1 {
     flex-wrap: wrap;
   }
+}
+.job-postings-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.job-postings-table th,
+.job-postings-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.job-postings-table th {
+  background-color: #f2f2f2;
 }

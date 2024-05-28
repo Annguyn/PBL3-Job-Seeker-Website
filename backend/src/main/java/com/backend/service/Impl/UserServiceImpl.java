@@ -1,6 +1,7 @@
 package com.backend.service.Impl;
 
-import org.hibernate.mapping.List;
+import com.backend.entity.Application;
+import com.backend.repository.ApplicationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,8 @@ import com.backend.service.UserService;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -21,6 +24,8 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     @Autowired
     private CompanyRepository companyRepository;
+    @Autowired
+    private ApplicationRepository applicationRepository;
 
     @Override
     public void save(UserDto userDto) {
@@ -69,5 +74,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findById(int id) {
         return userRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<Application> upComingInterviews(User user) {
+        LocalDateTime now = LocalDateTime.now();
+
+        List<Application> allApplications = applicationRepository.findAllByUser(user);
+
+        return allApplications.stream()
+                .filter(application -> application.getInterviewStartTime() != null && application.getInterviewStartTime().isAfter(now) && application.getStatus().equals("Interview"))
+                .collect(Collectors.toList());
     }
 }

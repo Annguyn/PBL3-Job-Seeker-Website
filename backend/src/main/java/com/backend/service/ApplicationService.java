@@ -6,7 +6,9 @@ import com.backend.repository.ApplicationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public interface ApplicationService {
@@ -16,4 +18,9 @@ public interface ApplicationService {
     List<Application> findAllByPostCompany(int companyId);
     void save(Application application);
     String createStyledResume(String fullName, String emailAddress, String phoneNumber, String jobTitle, String additionalInformation);
-}
+     Map<String, Integer> getStatisticsByCompanyAndTimePeriod(int companyId, LocalDateTime startDate, LocalDateTime endDate) ;
+     int countApplicationsByStatusAndCompanyAndTimePeriod(String status, int companyId, LocalDateTime startDate, LocalDateTime endDate) ;
+    int countApplicationsByCompanyAndTimePeriod(int companyId, LocalDateTime startDate, LocalDateTime endDate) ;
+    Map<String, Integer> getApplicationCountsByLevelAndCompany(int companyId);
+    void updateStatus(int id, String status);
+    }

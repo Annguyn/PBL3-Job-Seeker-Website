@@ -20,9 +20,20 @@ public class TestController {
 
     @GetMapping("/testPrediction")
     public ResponseEntity<String> testPrediction() {
-        Post post = postService.getPostById(134);
-        PredictionForm predictionForm = new PredictionForm(post);
-        Double predictedSalary = predictionController.predictSalary(predictionForm);
-        return ResponseEntity.ok("The predicted salary is: " + predictedSalary);
+        try {
+            Post post = postService.getPostById(134);
+            if (post == null) {
+                return ResponseEntity.status(404).body("Post not found");
+            }
+            PredictionForm predictionForm = new PredictionForm(post);
+            ResponseEntity<Double> response = predictionController.predictSalary(predictionForm);
+            if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
+                return ResponseEntity.ok("The predicted salary is: " + response.getBody());
+            } else {
+                return ResponseEntity.status(500).body("Error predicting salary");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("An error occurred: " + e.getMessage());
+        }
     }
 }

@@ -865,7 +865,8 @@
   color: var(--neutrals-60);
   display: inline-block;
   max-width: 100%;
-  width: -webkit-fill-available;
+  width: 50rem;
+
 }
 .basic-information4 {
   align-self: stretch;
