@@ -57,9 +57,9 @@ data_filtered = data.loc[(data['maxSalary_std'] != 0) &
 features = [ 'experience', 'Python', 'Java',
        'JavaScript', 'C++', 'C#', 'PHP', 'Ruby', 'Swift', 'TypeScript', 'Go',
        'Kotlin', 'Rust', 'Lua', 'Perl', 'SQL', 'HTML', 'CSS', 'R', 'MATLAB',
-       'Shell', 'Assembly', '.NET', 'C', 'Tiếng Anh', 'Tiếng Nhật', 'Tiếng Trung', 'Web', 'Android',
-       'IOS', 'Backend', 'Frontend', 'Machine Learning', 'Data', 'Game',
-       'Embedded', 'Network', 'Computer Science', 'Software', 'Security',
+       'Shell', 'Assembly', '.NET', 'C', 'Web', 'Android',
+       'IOS', 'Backend', 'Frontend',  'Data', 'Game',
+       'Embedded', 'Network', 'Software', 'Security',
        'Robot', 'Cloud', 'AI', 'Nhúng', 'Bridge', 'Software.1', 'Designer',
        'Scrum', 'BrSE', 'Tester', 'Comtor' ,'level_number','location_number']
 
@@ -130,8 +130,8 @@ def predict_salary(data):
     # Manually specify the order of features
     feature_names = ['experience', 'level_number', 'Python', 'Java', 'JavaScript', 'C++', 'C#', 'PHP', 'Ruby', 'Swift', 'TypeScript',
                      'Go', 'Kotlin', 'Rust', 'Lua', 'Perl', 'SQL', 'HTML', 'CSS', 'R', 'MATLAB', 'Shell',
-                     'Assembly', '.NET', 'C', 'Web', 'Android', 'IOS', 'Backend', 'Frontend', 'Machine Learning',
-                     'Data', 'Game', 'Embedded', 'Network', 'Computer Science', 'Software', 'Security', 'Robot',
+                     'Assembly', '.NET', 'C', 'Web', 'Android', 'IOS', 'Backend', 'Frontend', 
+                     'Data', 'Game', 'Embedded', 'Network', 'Software', 'Security', 'Robot',
                      'Cloud', 'AI', 'Nhúng', 'Bridge', 'Software.1', 'Designer', 'Scrum', 'BrSE', 'Tester',
                      'Comtor', 'location_number']
 
@@ -146,12 +146,3 @@ def predict_salary(data):
 
     return predicted_salary[0]
 
-
-import sys
-import json 
-
-if __name__ == "__main__":
-    json_data = sys.argv[1]
-    data = json.loads(json_data)
-    predicted_salary = predict_salary(data)
-    print(predicted_salary)
