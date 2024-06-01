@@ -67,25 +67,12 @@
                   <div class="caption">Dashboard</div>
                 </div>
               </div>
-              <div class="sidebar-menu1">
-                <div class="icon-parent">
-                  <img class="icon1" alt=""th:src="@{./images/Company/icon-1.svg}" />
-
-                  <div class="caption1">Messages</div>
-                </div>
-                <div class="badge">
-                  <div class="badge-child"></div>
-                  <div class="wrapper">
-                    <div class="div">1</div>
-                  </div>
-                </div>
-              </div>
-              <a  th:href="@{/profile}" class="sidebar-menu2">
+              <div  class="sidebar-menu2">
 <!--                <a th:href="@{/profile}" class="fill-div">-->
                 <img class="icon2" alt="" th:src="@{./images/Company/icon-2.svg}" />
-                <div class="caption2">Company Profile</div>
+                <a th:href="@{/profile}" class="caption2">Company Profile</a>
 <!--                </a>-->
-              </a>
+              </div>
               <div class="sidebar-menu3">
                 <img class="icon3" alt=""th:src="@{./images/Company/icon-3.svg}" />
 
@@ -99,7 +86,7 @@
               <div class="sidebar-menu5">
                 <img class="icon5" alt="" th:src="@{./images/Company/icon-5.svg}" />
 
-                <div class="caption5">My Schedule</div>
+                <a th:href="@{/interviewSchedule}" class="caption5">My Schedule</a>
               </div>
               <div class="sidebar-menu6">
                 <img class="icon6" alt="" />
@@ -138,12 +125,12 @@
                   class="avatar-icon"
                   loading="lazy"
                   alt=""
-                 th:src="@{./images/Company/avatar@2x.png}"
+                 th:src="@{/user/image/{id}(id=${userLoggedIn.getID()})}"
                 />
               </div>
               <div class="name-email">
-                <div class="maria-kelly">Maria Kelly</div>
-                <div class="mariakllyemailcom">MariaKlly@email.com</div>
+                <div class="maria-kelly" th:text="${userLoggedIn.getUserDisplayName()}"></div>
+                <div class="mariakllyemailcom" th:text="${userLoggedIn.getEmail()}"></div>
               </div>
             </div>
           </div>
@@ -164,13 +151,13 @@
             <img
               class="company-logo-icon"
               alt=""
-             th:src="@{./images/Company/company-logo.svg}"
+             th:src="@{/company/image/{id}(id=${userLoggedIn.getCompany().getId()})}"
             />
 
             <div class="job-title">
               <div class="company">Company</div>
               <div class="nomad-parent">
-                <div class="nomad">Nomad</div>
+                <div class="nomad" th:text="${userLoggedIn.getCompany().getName()}"></div>
                 <img class="icon10" alt=""th:src="@{./images/Company/icon-10.svg}" />
               </div>
             </div>
@@ -233,9 +220,6 @@
                   <div class="title">
                     <div class="job-statistics-parent">
                       <div class="job-statistics">Job statistics</div>
-                      <div class="showing-jobstatistic-jul">
-                        Showing Jobstatistic Jul 19-25
-                      </div>
                     </div>
 
                   </div>
@@ -249,21 +233,6 @@
                        th:src="@{./images/Company/rectangle-173.svg}"
                       />
                     </div>
-                    <div class="tab-menu4">
-                      <div class="caption14">Jobs View</div>
-                    </div>
-                    <div class="tab-menu5">
-                      <div class="caption15">Jobs Applied</div>
-                    </div>
-                    <div class="tab-menu6">
-                      <div class="caption16">Notifications</div>
-                    </div>
-                    <div class="tab-menu7">
-                      <div class="caption17">Notifications</div>
-                    </div>
-                    <div class="tab-menu8">
-                      <div class="caption18">Notifications</div>
-                    </div>
                   </div>
                 </div>
                 <div class="job-statistic-inner">
@@ -273,60 +242,7 @@
                         <div id="container-bar"></div>
                       </figure>
                     </div>
-                    <div class="stats">
-                      <div class="card-dashboard">
-                        <div class="title1">
-                          <div class="job-views">Job Views</div>
-                          <div class="align-alignment">
-                            <img
-                              class="icon16"
-                              alt=""
-                             th:src="@{./images/Company/icon-16.svg}"
-                            />
-                          </div>
-                        </div>
-                        <div class="spacer-sizer">
-                          <div class="arrange-arrangement">2,342</div>
-                          <div class="proximity-proximity">
-                            <div class="this-week">This Week</div>
-                            <div class="shape-sort-shapes-parent">
-                              <div class="shape-sort-shapes">6.4%</div>
-                              <img
-                                class="icon17"
-                                alt=""
-                               th:src="@{./images/Company/icon-17.svg}"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card-dashboard1">
-                        <div class="title2">
-                          <div class="job-applied1">Job Applied</div>
-                          <div class="icon-wrapper">
-                            <img
-                              class="icon18"
-                              alt=""
-                             th:src="@{./images/Company/icon-18.svg}"
-                            />
-                          </div>
-                        </div>
-                        <div class="group">
-                          <div class="div4">654</div>
-                          <div class="this-week-parent">
-                            <div class="this-week1">This Week</div>
-                            <div class="container">
-                              <div class="div5">0.5%</div>
-                              <img
-                                class="icon19"
-                                alt=""
-                               th:src="@{./images/Company/icon-19.svg}"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+
                   </div>
                 </div>
               </div>
@@ -334,7 +250,7 @@
                 <div class="job-open">
                   <div class="job-open1">Job Open</div>
                   <div class="color-color-picker">
-                    <div class="gradient-gradient-editor">12</div>
+                    <div class="gradient-gradient-editor" th:text="${userLoggedIn.getCompany().getPosts().size()}"></div>
                     <div class="blend-box-blender">
                       <div class="jobs-opened">Jobs Opened</div>
                     </div>
@@ -347,17 +263,18 @@
                   <div class="distribute-distributor">
                     <div class="spacer-sizer-sizer">
                       <div class="arrange-arranger">
-                        <div class="proximity-proximate">67</div>
-                        <div class="applicants">Applicants</div>
+<!--                        <div class="proximity-proximate" th:text="${userLoggedIn.}">67</div>-->
+<!--                        <div class="applicants">Applicants</div>-->
                       </div>
                     </div>
-                    <figure class="highcharts-figure">
-                      <div id="container-bar-levels"></div>
-                    </figure>
+
                   </div>
                 </div>
               </div>
             </div>
+            <figure class="highcharts-figure">
+              <div id="container-bar-levels"></div>
+            </figure>
             <div class="job-updates">
               <div class="title3">
                 <div class="job-updates1">Job Updates</div>
@@ -434,7 +351,9 @@
 
     Highcharts.chart('container-bar', {
       chart: {
-        type: 'bar'
+        type: 'bar',
+        width: null,
+        height:400
       },
       title: {
         text: 'Company Statistics'
@@ -464,7 +383,9 @@
 
     Highcharts.chart('container-bar-levels', {
       chart: {
-        type: 'bar'
+        type: 'bar',
+        width:null,
+        height:400
       },
       title: {
         text: 'Application Counts by Level and Company'

@@ -61,19 +61,7 @@
 
                   <a th:href="@{/dashboard}" class="caption191">Dashboard</a>
                 </div>
-                <div class="sidebar-menu1">
-                  <div class="icon-parent14">
-                    <img class="icon102" alt=""th:src="@{/images/icon-111.svg}" />
 
-                    <div class="caption192">Messages</div>
-                  </div>
-                  <div class="badge">
-                    <div class="badge-child"></div>
-                    <div class="wrapper">
-                      <div class="div10">1</div>
-                    </div>
-                  </div>
-                </div>
                 <div class="sidebar-menu2">
                   <div class="icon103">
                     <img
@@ -95,7 +83,7 @@
                 <div class="sidebar-menu4">
                   <img class="icon105" alt=""th:src="@{/images/icon-32.svg}" />
 
-                  <div class="caption195">Browse Companies</div>
+                  <a th:href="@{/findCompany}" class="caption195">Browse Companies</a>
                 </div>
                 <button class="sidebar-menu5">
                   <div class="indicator-wrapper">
@@ -380,9 +368,8 @@
                     <div class="jakegyllemailcom4" th:text="${user.contactNumber}"></div>
                   </div>
                   <div class="email9">
-                    <img class="icon125" alt=""th:src="@{/images/icon-213.svg}" />
-                    <div class="jakegyllemailcom4" th:text="${user.dob}"></div>
-                  </div>
+                    <img class="icon125" alt=""th:src="@{/images/dob.jpg}" />
+                    <div class="jakegyllemailcom4" th:text="${#dates.format(user.dob, 'dd/MM/yyyy')}"></div>                  </div>
                 </div>
                 <div class="social-links">
                   <div class="social-links-parent">
@@ -392,7 +379,7 @@
                     </div>
                   </div>
                   <div class="email10">
-                    <img class="icon127" alt=""th:src="@{/images/icon-232.svg}" />
+                    <img class="icon127" alt=""th:src="@{/images/github.jpg}" />
 
                     <div class="content12">
                       <div class="instagram">Github</div>
@@ -401,7 +388,7 @@
                     </div>
                   </div>
                   <div class="email11">
-                    <img class="icon128" alt=""th:src="@{/images/icon-242.svg}" />
+                    <img class="icon128" alt=""th:src="@{/images/linkedin.jpg}" />
 
                     <div class="content13">
                       <div class="twitter3">LinkedIn</div>
@@ -409,7 +396,7 @@
                     </div>
                   </div>
                   <div class="email12">
-                    <img class="icon129" alt=""th:src="@{/images/icon-252.svg}" />
+                    <img class="icon129" alt=""th:src="@{/images/fb.jpg}" />
 
                     <div class="content14">
                       <div class="website">Facebook</div>

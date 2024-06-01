@@ -43,7 +43,7 @@
                                 class="frame-child150"
                                 loading="lazy"
                                 alt=""
-                                th:src="@{./images/Company/frame-317.svg}"
+                                th:src="@{./images/Company/frame-33.svg}"
                         />
                     </div>
                     <h3 class="jobhuntly36">JobHuntly</h3>
@@ -56,36 +56,24 @@
                                 class="icon500"
                                 loading="lazy"
                                 alt=""
-                                th:src="@{./images/Company/icon2.svg}"
-                        />
+                                th:src="@{./images/Company/icon-2.svg}"                        />
 
-                        <div class="caption607">Dashboard</div>
-                    </div>
-                    <div class="sidebar-menu126">
-                        <div class="icon-parent50">
-                            <img class="icon501" alt="" th:src="@{./images/Company/icon-130.svg}" />
-
-                            <div class="caption608">Messages</div>
-                        </div>
-                        <div class="badge15">
-                            <div class="badge-child5"></div>
-                            <div class="div102">1</div>
-                        </div>
+                        <a th:href="@{/dashboard}" class="caption607">Dashboard/></a>
                     </div>
                     <div class="sidebar-menu127">
-                        <img class="icon502" alt="" th:src="@{./images/Company/icon-32.svg}" />
+                        <img class="icon502" alt=""th:src="@{./images/Company/icon-2.svg}" />
 
-                        <div class="caption609">Company Profile</div>
+                        <a th:href="@{/profile}" class="caption609">Company Profile</a>
                     </div>
                     <div class="sidebar-menu128">
-                        <img class="icon503" alt="" th:src="@{./images/Company/icon-34.svg}" />
+                        <img class="icon503" alt="" th:src="@{./images/Company/icon-3.svg}"/>
 
-                        <div class="caption610">All Applicants</div>
+                        <a th:href="@{/allApplicants}" class="caption610">All Applicants</a>
                     </div>
                     <div class="sidebar-menu129">
-                        <img class="icon504" alt="" th:src="@{./images/Company/icon-43.svg}" />
+                        <img class="icon504" alt="" th:src="@{./images/Company/icon-41.svg}" />
 
-                        <div class="caption611">Job Listing</div>
+                        <a th:href="@{/joblisting}" class="caption611">Job Listing</a>
                     </div>
                     <button class="sidebar-menu130">
                         <div class="indicator-wrapper6">
@@ -96,9 +84,9 @@
                             />
                         </div>
                         <div class="menu83">
-                            <img class="icon505" alt="" th:src="@{./images/Company/icon-55.svg}" />
+                            <img class="icon505" alt="" th:src="@{./images/Company/icon-5.svg}" />
 
-                            <div class="caption612">My Schedule</div>
+                            <a th:href="@{/interviewSchedule}" class="caption612">My Schedule</a>
                         </div>
                     </button>
                     <div class="sidebar-menu131">
@@ -114,12 +102,12 @@
                     </div>
                     <div class="menu84">
                         <div class="sidebar-menu132">
-                            <img class="icon507" alt="" th:src="@{./images/Company/icon-51.svg}" />
+                            <img class="icon507" alt="" th:src="@{./images/Company/icon-7.svg}" />
 
-                            <div class="caption614">Settings</div>
+                            <a th:href="@{/settings}" class="caption614">Settings</a>
                         </div>
                         <div class="sidebar-menu133">
-                            <img class="icon508" alt="" th:src="@{./images/Company/icon-810.svg}" />
+                            <img class="icon508" alt="" th:src="@{./images/Company/icon-8.svg}"/>
 
                             <div class="caption615">Help Center</div>
                         </div>
@@ -164,14 +152,15 @@
                 <img
                         class="company-logo-icon84"
                         alt=""
-                        th:src="@{./images/Company/company-logo10.svg}"
+                        th:src="@{/company/image/{id}(id=${user.getCompany().getId()})}"
+
                 />
 
                 <div class="job-title80">
                     <div class="company13">Company</div>
                     <div class="nomad-container">
-                        <div class="nomad76">Nomad</div>
-                        <img class="icon510" alt="" th:src="@{./images/Company/icon-107.svg}" />
+                        <div class="nomad76" th:text="${user.getCompany().getName()}"></div>
+<!--                        <img class="icon510" alt="" th:src="@{./images/Company/icon-107.svg}" />-->
                     </div>
                 </div>
             </div>
@@ -184,7 +173,7 @@
                 />
 
                 <button class="button126">
-                    <img class="icon511" alt="" th:src="@{./images/Company/icon-1110.svg}" />
+                    <img class="icon511" alt="" th:src="@{./images/Company/icon-112.svg}" />
 
                     <b class="caption616">Post a job</b>
                 </button>

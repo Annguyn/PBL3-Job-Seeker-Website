@@ -3277,3 +3277,15 @@ a.fill-div {
   width: 100%;
   text-decoration: none;
 }
+#container-bar, #container-bar-levels {
+  width: 100%;
+  height: 100%;
+}
+a {
+  text-underline: none;
+  text-decoration-color: #007BFF;
+}
+a :hover {
+  text-underline: none;
+  text-decoration-color: #007BFF;
+}

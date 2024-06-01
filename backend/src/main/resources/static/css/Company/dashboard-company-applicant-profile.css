@@ -1917,4 +1917,11 @@ select {
 }
 .menu17 {
   background: white;
+}a {
+   text-underline: none;
+   text-decoration-color: #ffffff;
+ }
+a :hover {
+  text-underline: none;
+  text-decoration-color: #ffffff;
 }

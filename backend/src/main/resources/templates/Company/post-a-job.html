@@ -35,25 +35,12 @@
             <div class="sidebar-menu99">
               <img class="icon347" loading="lazy" alt="" th:src="@{./images/Company/icon1.svg}" />
 
-              <div class="caption269">Dashboard</div>
-            </div>
-            <div class="sidebar-menu100">
-              <div class="icon-parent36">
-                <img class="icon348" alt="" th:src="@{./images/Company/icon-14.svg}" />
-
-                <div class="caption270">Messages</div>
-              </div>
-              <div class="badge11">
-                <div class="stepper6"></div>
-                <div class="search-bar">
-                  <div class="toggle-switch">1</div>
-                </div>
-              </div>
+              <a th:href="@{/dashboard}" class="caption269">Dashboard</a>
             </div>
             <div class="sidebar-menu101">
               <img class="icon349" alt="" th:src="@{./images/Company/icon-2.svg}" />
 
-              <div class="caption271">Company Profile</div>
+              <a th:href="@{/profile}" class="caption271">Company Profile</a>
             </div>
             <button class="sidebar-menu102">
               <div class="indicator-wrapper7">
@@ -62,18 +49,18 @@
               <div class="menu46">
                 <img class="icon350" alt="" th:src="@{./images/Company/icon-35.svg}" />
 
-                <div class="caption272">All Applicants</div>
+                <a th:href="@{/allApplicants}" class="caption272">All Applicants</a>
               </div>
             </button>
             <div class="sidebar-menu103">
               <img class="icon351" alt="" th:src="@{./images/Company/icon-4.svg}" />
 
-              <div class="caption273">Job Listing</div>
+              <a th:href="@{joblisting}" class="caption273">Job Listing</a>
             </div>
             <div class="sidebar-menu104">
               <img class="icon352" alt="" th:src="@{./images/Company/icon-5.svg}" />
 
-              <div class="caption274">My Schedule</div>
+              <a th:href="@{/interviewSchedule}" class="caption274">My Schedule</a>
             </div>
             <div class="sidebar-menu105">
               <img class="icon353" alt=""  src=""/>
@@ -90,7 +77,7 @@
               <div class="sidebar-menu106">
                 <img class="icon354" alt="" th:src="@{./images/Company/icon-7.svg}" />
 
-                <div class="caption276">Settings</div>
+                <a th:href="@{/settings}" class="caption276">Settings</a>
               </div>
               <div class="sidebar-menu107">
                 <img class="icon355" alt="" th:src="@{./images/Company/icon-8.svg}" />
@@ -108,11 +95,11 @@
         <div class="profile-wrapper4">
           <div class="profile24">
             <div class="alert-message">
-              <img class="avatar-icon35" loading="lazy" alt="" th:src="@{./images/Company/avatar12x.png}" />
+              <img class="avatar-icon35" loading="lazy" alt=""                  th:src="@{/user/image/{id}(id=${user.getID()})}"/>
             </div>
             <div class="name-email11">
-              <div class="maria-kelly11">Maria Kelly</div>
-              <div class="mariakllyemailcom11">MariaKlly@email.com</div>
+              <div class="maria-kelly11" th:text="${user.getUserDisplayName()}"></div>
+              <div class="mariakllyemailcom11" th:text="${user.getEmail()}"></div>
             </div>
           </div>
         </div>
@@ -120,7 +107,7 @@
           <div class="rounded-rectangle11"></div>
           <div class="frame11">
             <div class="logout22">
-              <div class="logout23">Logout</div>
+              <a href="/logout" class="logout23">Logout</a>
               <img class="icon356" alt="" />
             </div>
           </div>
@@ -130,12 +117,13 @@
     <main class="breadcrumbs">
       <header class="top-nav16">
         <div class="job-list19">
-          <img class="company-logo-icon21" alt="" th:src="@{./images/Company/company-logo.svg}" />
+          <img class="company-logo-icon21" alt="" th:src="@{/company/image/{id}(id=${user.getCompany().getId()})}"
+          />
 
           <div class="job-title19">
             <div class="company11">Company</div>
             <div class="steps">
-              <div class="nomad20">Nomad</div>
+              <div class="nomad20" th:text="${user.getCompany().getName()}"></div>
               <img class="icon357" alt="" th:src="@{./images/Company/icon-10.svg}" />
             </div>
           </div>
@@ -160,7 +148,6 @@
       <section class="string-manipulator">
         <div class="steppers2">
           <div class="stepper7">
-            <img class="stepper-icon6" loading="lazy" alt="" th:src="@{./images/Company/stepper-icon12x.png}" />
 
             <div class="step-1312">
               <div class="job-information6">Job Information</div>

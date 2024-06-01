@@ -54,30 +54,17 @@
                  th:src="@{./images/Company/icon1.svg}"
                 />
 
-                <div class="caption98">Dashboard</div>
-              </div>
-              <div class="sidebar-menu28">
-                <div class="icon-parent16">
-                  <img class="icon101" alt=""th:src="@{./images/Company/icon-111.svg}" />
-
-                  <div class="caption99">Messages</div>
-                </div>
-                <div class="badge3">
-                  <div class="badge-inner"></div>
-                  <div class="greeting-instance">
-                    <div class="dropdown-instance">1</div>
-                  </div>
-                </div>
+                <a th:href="@{/dashboard}" class="caption98">Dashboard</a>
               </div>
               <div class="sidebar-menu29">
                 <img class="icon102" alt=""th:src="@{./images/Company/icon-2.svg}" />
 
-                <div class="caption100">Company Profile</div>
+                <a th:href="@{/profile}" class="caption100">Company Profile</a>
               </div>
               <div class="sidebar-menu30">
                 <img class="icon103" alt=""th:src="@{./images/Company/icon-3.svg}" />
 
-                <div class="caption101">All Applicants</div>
+                <a th:href="@{/allApplicants}" class="caption101">All Applicants</a>
               </div>
               <button class="sidebar-menu31">
                 <div class="indicator-wrapper1">
@@ -96,7 +83,7 @@
               <div class="sidebar-menu32">
                 <img class="icon105" alt=""th:src="@{./images/Company/icon-5.svg}" />
 
-                <a href="#" class="caption103">My Schedule</a>
+                <a th:href="@{/interviewSchedule}" class="caption103">My Schedule</a>
               </div>
               <div class="sidebar-menu33">
                 <img class="icon106" alt="" />
@@ -161,13 +148,13 @@
             <img
               class="company-logo-icon7"
               alt=""
-             th:src="@{./images/Company/company-logo.svg}"
+             th:src="@{company/image/{id}(id=${company.getId()})}"
             />
 
             <div class="job-title7">
               <div class="company3">Company</div>
               <div class="page-viewssize">
-                <div class="nomad7">Nomad</div>
+                <div class="nomad7" th:text="${company.getName()}"></div>
                 <img class="icon110" alt=""th:src="@{./images/Company/icon-411.svg}" />
               </div>
             </div>
@@ -191,15 +178,6 @@
           <div class="greeting2">
             <h3 class="good-morning-jake">Job Listing</h3>
             <div class="here-is-whats">
-              Here is your jobs listing status from July 19 - July 25.
-            </div>
-          </div>
-          <div class="dashboard-filter">
-            <div class="dropdown1">
-              <div class="this-is-placeholder2">Jul 19 - Jul 25</div>
-              <div class="filter-sort-icon1">
-                <img class="icon112" alt="" th:src="@{./images/Company/icon-123.svg}" />
-              </div>
             </div>
           </div>
         </section>

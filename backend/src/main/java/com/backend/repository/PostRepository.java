@@ -41,4 +41,6 @@ public interface PostRepository extends JpaRepository<Post, Integer> , JpaSpecif
             "LOWER(c.name) LIKE LOWER(CONCAT('%', :query, '%')) OR " +
             "LOWER(p.level.name) LIKE LOWER(CONCAT('%', :query, '%'))")
     List<String> findPostDetailsByQuery(@Param("query") String query);
+
+
 }

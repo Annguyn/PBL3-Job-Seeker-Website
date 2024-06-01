@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.backend.entity.*;
+import com.backend.repository.ApplicationRepository;
 import com.backend.service.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -35,6 +36,7 @@ public class HomeController {
     private final PostService postService;
     private final UserService userService;
     private final ApplicationService applicationService;
+    private final ApplicationRepository applicationRepository;
 
     @ModelAttribute("userdto")
     public UserDto userDto() {

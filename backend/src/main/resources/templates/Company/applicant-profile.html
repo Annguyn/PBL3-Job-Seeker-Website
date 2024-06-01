@@ -52,25 +52,12 @@
                   th:src="@{./images/Company/icon1.svg}"
                 />
 
-                <div class="caption124">Dashboard</div>
-              </div>
-              <div class="sidebar-menu37">
-                <div class="icon-parent17">
-                  <img class="icon125" alt="" th:src="@{./images/Company/icon-113.svg}" />
-
-                  <div class="caption125">Messages</div>
-                </div>
-                <div class="badge4">
-                  <div class="badge-child1"></div>
-                  <div class="rooted-tree">
-                    <div class="upward-connection">1</div>
-                  </div>
-                </div>
+                <a th:href="@{/dashboard}" class="caption124">Dashboard</a>
               </div>
               <div class="sidebar-menu38">
                 <img class="icon126" alt="" th:src="@{./images/Company/icon-2.svg}" />
 
-                <div class="caption126">Company Profile</div>
+                <a th:href="@{/profile}" class="caption126">Company Profile</a>
               </div>
               <button class="sidebar-menu39">
                 <div class="indicator-wrapper2">
@@ -83,18 +70,18 @@
                 <div class="menu18">
                   <img class="icon127" alt="" th:src="@{./images/Company/icon-35.svg}" />
 
-                  <div class="caption127">All Applicants</div>
+                  <a th:href="@{/allApplicants}" class="caption127">All Applicants</a>
                 </div>
               </button>
               <div class="sidebar-menu40">
                 <img class="icon128" alt="" th:src="@{./images/Company/icon-4.svg}" />
 
-                <div class="caption128">Job Listing</div>
+                <a th:href="@{/joblisting}" class="caption128">Job Listing</a>
               </div>
               <div class="sidebar-menu41">
                 <img class="icon129" alt="" th:src="@{./images/Company/icon-5.svg}" />
 
-                <div class="caption129">My Schedule</div>
+                <a th:href="@{/interviewSchedule}" class="caption129">My Schedule</a>
               </div>
               <div class="sidebar-menu42">
                 <img class="icon130" alt="" />
@@ -111,7 +98,7 @@
                 <div class="sidebar-menu43">
                   <img class="icon131" alt="" th:src="@{./images/Company/icon-7.svg}" />
 
-                  <div class="caption131">Settings</div>
+                  <a th:href="@{/settings}" class="caption131">Settings</a>
                 </div>
                 <div class="sidebar-menu44">
                   <img class="icon132" alt="" th:src="@{./images/Company/icon-8.svg}" />
@@ -133,12 +120,12 @@
                   class="avatar-icon14"
                   loading="lazy"
                   alt=""
-                  th:src="@{./images/Company/avatar@2x.png}"
+                  th:src="@{user/image/{id}(id=${applyForm.getPost().getCompany().getUser().getID()})}"
                 />
               </div>
               <div class="name-email4">
-                <div class="maria-kelly4">Maria Kelly</div>
-                <div class="mariakllyemailcom4">MariaKlly@email.com</div>
+                <div class="maria-kelly4" th:text="${applyForm.getPost().getCompany().getUser().getUserDisplayName()}"></div>
+                <div class="mariakllyemailcom4" th:text="${applyForm.getPost().getCompany().getUser().getEmail()}"></div>
               </div>
             </div>
           </div>
@@ -278,7 +265,7 @@
                   </div>
                 </div>
                 <div class="email3">
-                  <img class="icon142" alt="" th:src="@{./images/Company/icon-181.svg}" />
+                  <img class="icon142" alt="" th:src="@{./images/linkedin.jpg}" />
 
                   <div class="content7">
                     <div class="instagram">LinkedIn</div>
@@ -286,17 +273,14 @@
                     </div>
                   </div>
                 </div>
-                <div class="email4">
-                  <img class="icon143" alt="" th:src="@{./images/Company/icon-191.svg}" />
+                <div class="email3">
+                  <img class="icon142" alt="" th:src="@{./images/github.jpg}" />
 
-                  <div class="content8">
-                    <div class="twitter">Github</div>
-                    <div class="twittercomjeromebell" th:text="${applyForm.getGithubUrl()}">
+                  <div class="content7">
+                    <div class="instagram">Github</div>
+                    <div class="instagramcomjeromebell" th:text="${applyForm.getGithubUrl()}">
                     </div>
                   </div>
-                </div>
-                <div class="email5">
-                  <img class="icon144" alt="" th:src="@{./images/Company/icon-201.svg}" />
                 </div>
               </div>
             </div>
@@ -311,21 +295,7 @@
                       th:src="@{./images/Company/rectangle-173.svg}"
                     />
                   </div>
-                  <div class="tab-menu25">
-                    <div class="caption137">Resume</div>
-                  </div>
-                  <div class="tab-menu26">
-                    <div class="caption138">Hiring Progress</div>
-                  </div>
-                  <div class="tab-menu27">
-                    <div class="caption139">Interview Schedule</div>
-                  </div>
-                  <div class="tab-menu28">
-                    <div class="caption140">Notifications</div>
-                  </div>
-                  <div class="tab-menu29">
-                    <div class="caption141">Notifications</div>
-                  </div>
+
                 </div>
               </div>
               <div class="content-wrapper">
@@ -341,9 +311,9 @@
                         <div class="dob">
                           <div class="date-of-birth">Date of Birth</div>
                           <div class="march-23-1995-container">
-                            <span ></span>
-                            <span class="yo">(26 y.o)</span>
-                            <span> </span>
+                            <span th:text="${#dates.format(applyForm.getUser().getDob(), 'dd/MM/yyyy')}"></span>
+<!--                            <span class="yo" th:text="'(' + #temporals.yearsBetween(applyForm.getUser().getDob(), #temporals.createNow()) + ' y.o)'"></span>-->
+<!--                            <span> </span>-->
                           </div>
                         </div>
                       </div>
@@ -377,14 +347,13 @@
                       <div class="col-11">
                         <div class="current-job">
                           <div class="current-job1">Current Job</div>
-                          <div class="product-designer1">Product Designer</div>
+                          <div class="product-designer1" th:text="${applyForm.user.experienceDetail.getLast().getTitle()}"></div>
                         </div>
                         <div class="highest-qualification">
                           <div class="highest-qualification-held">
                             Highest Qualification Held
                           </div>
-                          <div class="bachelors-in-engineering">
-                            Bachelors in Engineering
+                          <div class="bachelors-in-engineering" th:text="${applyForm.getUser().getEducationDetail().getLast().getUniversity().getName()}">
                           </div>
                         </div>
                       </div>

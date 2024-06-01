@@ -43,19 +43,6 @@
 
                         <a th:href="@{/dashboard}" class="caption206">Dashboard</a>
                     </div>
-                    <div class="sidebar-menu9">
-                        <div class="icon-parent15">
-                            <img class="icon134" loading="lazy" alt="" th:src="@{/images/icon-112.svg}" />
-
-                            <div class="caption207">Messages</div>
-                        </div>
-                        <div class="badge1">
-                            <div class="badge-item"></div>
-                            <div class="container">
-                                <div class="div14">1</div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="sidebar-menu10">
                         <div class="icon135">
                             <img class="vector-stroke-icon1" alt="" th:src="@{/images/vector-stroke.svg}" />
@@ -176,8 +163,11 @@
                         </div>
                         <div class="sequential-flow">
                             <div class="job-title36">
-                                <h1 class="social-media-assistant36"
+                                <h1 th:if="${post.title == null }" class="social-media-assistant36"
                                     th:text="${post.categories[0].name + ' Engineer'}">
+                                </h1>
+                                <h1 th:if="${post.title != null }" class="social-media-assistant36"
+                                    th:text="${post.title}">
                                 </h1>
                                 <div class="company-name-location-job35">
                                     <div class="nomad34" th:text="${post.getCompany().name}"></div>
@@ -197,8 +187,15 @@
                     </div>
                     <div class="error-handler3">
                         <div class="data-merger">
-                            <div class="icon-wrapper15">
-                                <img class="icon143" loading="lazy" alt="" th:src="@{/images/icon-92.svg}" />
+                            <div id="predict-icon"   th:attr="data-post-id=${post.id}"  class="icon-wrapper15">
+                                <img class="icon143" loading="lazy" alt="" th:src="@{/images/predict.png}" />
+                            </div>
+                            <div id="predict-modal" class="modal">
+                                <div class="modal-content">
+                                    <span class="close">&times;</span>
+                                    <h2>Estimating Analyst Salaries Based on Facebook Posts</h2>
+                                    <p id="modal-content">Loading...</p>
+                                </div>
                             </div>
                             <div class="line16"></div>
                             <button id="applyButton" class="button52">
@@ -269,7 +266,7 @@
                     <h3 class="about-this-role2">About this role</h3>
                     <div class="progress-bar11">
                         <div class="applied-of-10-container9">
-                            <span class="applied9" th:text="${post.getApplicants().size() } + 'Applied'"> </span>
+                            <span class="applied9" th:text="${post.getApplications().size() } + ' Applied'"> </span>
                         </div>
                         <div class="progress-bar12">
                             <div class="progress-bar-child34"></div>
@@ -294,7 +291,7 @@
                     <div class="salary4">
                         <div class="salary5">Salary</div>
                         <div class="k-85k-usd2"
-                             th:text="${post.minSalary/1000000 + ' -> ' +  post.maxSalary/1000000 + 'M VND'}"></div>
+                             th:text="${post.minSalary/1000000+ ' -> ' +  post.maxSalary/1000000 + 'M VND'}"></div>
                     </div>
                 </div>
                 <div class="line17"></div>

@@ -148,7 +148,7 @@
         <div class="row-1">
           <div class="job-category">
             <a class="fill-div" th:href="@{/findjobs(filterCategory=${categories[0].name})}">
-            <img class="icon4" alt="" th:src="@{/images/icon-4.svg}" />
+            <img class="icon4" alt="" th:src="@{/images/web.jpg}" />
             <div class="category-name">
               <h3 class="design" th:text="${categories[0].name}"></h3>
               <div class="jobs-available">
@@ -160,7 +160,7 @@
           </div>
           <div class="job-category1">
             <a class="fill-div" th:href="@{/findjobs(filterCategory=${categories[1].name})}">
-            <img class="icon6" alt="" th:src="@{/images/icon-6.svg}" />
+            <img class="icon6" alt="" th:src="@{/images/android.jpg}" />
 
             <div class="category-name1">
               <h3 class="design1" th:text="${categories[1].name}"></h3>
@@ -173,7 +173,7 @@
           </div>
           <div class="job-category2">
             <a class="fill-div" th:href="@{/findjobs(filterCategory=${categories[2].name})}">
-            <img class="icon8" alt="" th:src="@{/images/icon-8.svg}" />
+            <img class="icon8" alt="" th:src="@{/images/ios.png}" />
 
             <div class="category-name2">
               <h3 class="marketing" th:text="${categories[2].name}"></h3>
@@ -186,7 +186,7 @@
           </div>
           <div class="job-category3">
             <a class="fill-div" th:href="@{/findjobs(filterCategory=${categories[3].name})}">
-            <img class="icon10" alt="" th:src="@{/images/icon-10.svg}" />
+            <img class="icon10" alt="" th:src="@{/images/backend.jpg}" />
 
             <div class="category-name3">
               <h3 class="design2" th:text="${categories[3].name}"></h3>
@@ -201,7 +201,7 @@
         <div class="row-2">
           <div class="job-category4">
             <a class="fill-div" th:href="@{/findjobs(filterCategory=${categories[4].name})}">
-            <img class="icon12" alt="" th:src="@{/images/icon-12.svg}" />
+            <img class="icon12" alt="" th:src="@{/images/frontend.png}" />
 
             <div class="category-name4">
               <h3 class="design3" th:text="${categories[4].name}"></h3>
@@ -214,7 +214,7 @@
           </div>
           <div class="job-category5">
             <a class="fill-div" th:href="@{/findjobs(filterCategory=${categories[5].name})}">
-            <img class="icon14" alt="" th:src="@{/images/icon-14.svg}" />
+            <img class="icon14" alt="" th:src="@{/images/machinelearning.jpg}" />
 
             <div class="category-name5">
               <h3 class="design4" th:text="${categories[5].name}"></h3>
@@ -240,7 +240,7 @@
           </div>
           <div class="job-category7">
             <a class="fill-div" th:href="@{/findjobs(filterCategory=${categories[7].name})}">
-            <img class="icon18" alt="" th:src="@{/images/icon-18.svg}" />
+            <img class="icon18" alt="" th:src="@{/images/game.jpg}" />
 
             <div class="category-name7">
               <h3 class="design6" th:text="${categories[7].name}"></h3>
@@ -275,7 +275,7 @@
           <div class="job-list">
             <a class="fill-div" th:href="@{/jobdetails(id=${posts[0].getId()})}">
             <div class="header1">
-              <img class="company-logo-icon1" alt="" th:src="@{/images/company-logo-1@2x.png}" />
+              <img class="company-logo-icon1" alt="" th:src="@{/company/image/{id}(id=${posts[0].getCompany().id})}" />
 
               <button class="tag">
                 <div class="jobs2" th:text="${posts[0].level.name}"></div>
@@ -284,7 +284,7 @@
             <div class="title5">
               <div class="email-marketing" th:text="${posts[0].categories[0].name}"></div>
               <div class="job-title-label">
-                <div class="revolut">Revolut</div>
+                <div class="revolut" th:text="${posts[0].getCompany().getName()}"></div>
                 <div class="company-logo-wrapper">
                   <div class="company-logo"></div>
                 </div>
@@ -306,7 +306,7 @@
           <div class="job-list1">
             <a class="fill-div" th:href="@{/jobdetails(id=${posts[1].getId()})}">
             <div class="header2">
-              <img class="company-logo-icon2" alt="" th:src="@{/images/company-logo-2.svg}" />
+              <img class="company-logo-icon2" alt="" th:src="@{/company/image/{id}(id=${posts[1].getCompany().id})}" />
 
               <button class="tag1">
                 <div class="jobs3" th:text="${posts[1].level.name}"></div>
@@ -315,7 +315,7 @@
             <div class="title6">
               <div class="email-marketing1" th:text="${posts[1].categories[0].name}"></div>
               <div class="revolut-parent">
-                <div class="revolut1">Dropbox</div>
+                <div class="revolut1"  th:text="${posts[1].getCompany().getName()}"></div>
                 <div class="left-column-wrapper">
                   <div class="left-column"></div>
                 </div>
@@ -338,7 +338,7 @@
           <div class="job-list2">
             <a class="fill-div" th:href="@{/jobdetails(id=${posts[2].getId()})}">
             <div class="header3">
-              <img class="company-logo-icon3" alt="" th:src="@{/images/company-logo-3@2x.png}" />
+              <img class="company-logo-icon3" alt="" th:src="@{/company/image/{id}(id=${posts[2].getCompany().id})}" />
 
               <button class="tag2">
                 <div class="jobs4" th:text="${posts[2].level.name}"></div>
@@ -347,7 +347,7 @@
             <div class="title7">
               <div class="email-marketing2" th:text="${posts[2].categories[0].name}"></div>
               <div class="revolut-group">
-                <div class="revolut2">Pitch</div>
+                <div class="revolut2"  th:text="${posts[2].getCompany().getName()}"></div>
                 <div class="ellipse-wrapper">
                   <div class="ellipse-div"></div>
                 </div>
@@ -369,7 +369,7 @@
           <div class="job-list3">
             <a class="fill-div" th:href="@{/jobdetails(id=${posts[3].getId()})}">
             <div class="header4">
-              <img class="company-logo-icon4" alt="" th:src="@{/images/company-logo-4@2x.png}" />
+              <img class="company-logo-icon4" alt="" th:src="@{/company/image/{id}(id=${posts[3].getCompany().id})}" />
 
               <button class="tag3">
                 <div class="jobs5" th:text="${posts[3].level.name}"></div>
@@ -378,7 +378,7 @@
             <div class="title8">
               <div class="email-marketing3" th:text="${posts[3].categories[0].name}"></div>
               <div class="revolut-container">
-                <div class="revolut3">Blinklist</div>
+                <div class="revolut3"  th:text="${posts[3].getCompany().getName()}"></div>
                 <div class="ellipse-container">
                   <div class="frame-child4"></div>
                 </div>
@@ -402,7 +402,7 @@
           <div class="job-list4">
             <a class="fill-div" th:href="@{/jobdetails(id=${posts[4].getId()})}">
             <div class="header5">
-              <img class="company-logo-icon5" alt="" th:src="@{/images/company-logo-5@2x.png}" />
+              <img class="company-logo-icon5" alt="" th:src="@{/company/image/{id}(id=${posts[4].getCompany().id})}" />
 
               <button class="tag4">
                 <div class="jobs6" th:text="${posts[4].level.name}"></div>
@@ -411,7 +411,7 @@
             <div class="title9">
               <div class="email-marketing4" th:text="${posts[4].categories[0].name}"></div>
               <div class="revolut-parent1">
-                <div class="revolut4">ClassPass</div>
+                <div class="revolut4"  th:text="${posts[4].getCompany().getName()}"></div>
                 <div class="ellipse-frame">
                   <div class="frame-child5"></div>
                 </div>
@@ -435,7 +435,7 @@
             <div class="header6">
               <button class="company-logo1">
                 <div class="container-logo-title"></div>
-                <img class="v-6ghzad-400x400-icon" alt="" th:src="@{/images/v6ghzad-400x400@2x.png}" />
+                <img class="v-6ghzad-400x400-icon" alt="" th:src="@{/company/image/{id}(id=${posts[5].getCompany().id})}" />
               </button>
               <button class="tag5">
                 <div class="jobs7" th:text="${posts[5].level.name}"></div>
@@ -444,7 +444,7 @@
             <div class="title10">
               <div class="email-marketing5" th:text="${posts[5].categories[0].name}"></div>
               <div class="revolut-parent2">
-                <div class="revolut5">Canva</div>
+                <div class="revolut5"  th:text="${posts[5].getCompany().getName()}"></div>
                 <div class="ellipse-wrapper1">
                   <div class="frame-child6"></div>
                 </div>
@@ -467,7 +467,7 @@
           <div class="job-list6">
             <a class="fill-div" th:href="@{/jobdetails(id=${posts[6].getId()})}">
             <div class="header7">
-              <img class="company-logo-icon6" alt="" th:src="@{/images/company-logo-6@2x.png}" />
+              <img class="company-logo-icon6" alt="" th:src="@{/company/image/{id}(id=${posts[6].getCompany().id})}" />
 
               <button class="tag6">
                 <div class="jobs8" th:text="${posts[6].level.name}"></div>
@@ -476,7 +476,7 @@
             <div class="title11">
               <div class="email-marketing6" th:text="${posts[6].categories[0].name}"></div>
               <div class="revolut-parent3">
-                <div class="revolut6">GoDaddy</div>
+                <div class="revolut6"  th:text="${posts[6].getCompany().getName()}"></div>
                 <div class="ellipse-wrapper2">
                   <div class="frame-child7"></div>
                 </div>
@@ -498,7 +498,7 @@
           <div class="job-list7">
             <a class="fill-div" th:href="@{/jobdetails(id=${posts[7].getId()})}">
             <div class="header8">
-              <img class="company-logo-icon7" alt="" th:src="@{/images/company-logo-7@2x.png}" />
+              <img class="company-logo-icon7" alt="" th:src="@{/company/image/{id}(id=${posts[7].getCompany().id})}" />
 
               <button class="tag7">
                 <div class="jobs9" th:text="${posts[7].level.name}"></div>
@@ -507,7 +507,7 @@
             <div class="title12">
               <div class="email-marketing7" th:text="${posts[7].categories[0].name}"></div>
               <div class="revolut-parent4">
-                <div class="revolut7">Twitter</div>
+                <div class="revolut7"  th:text="${posts[7].getCompany().getName()}"></div>
                 <div class="ellipse-wrapper3">
                   <div class="frame-child8"></div>
                 </div>
@@ -554,12 +554,12 @@
         <div class="list1">
           <div class="col-1">
             <div class="job-list8">
-              <img class="company-logo-icon8" alt="" th:src="@{/images/company-logo-8.svg}" />
+              <img class="company-logo-icon8" alt=""  th:src="@{/company/image/{id}(id=${posts_newest[0].getCompany().id})}" />
             <div class="job-title1">
               <a class="fill-div" th:href="@{/jobdetails(id=${posts_newest[0].getId()})}">
                 <div class="social-media-assistant"  th:text="${posts_newest[0].categories[0].name + ' Engineer'}"></div>
                 <div class="company-name-location-job">
-                  <div class="nomad">Nomad</div>
+                  <div class="nomad" th:text="${posts_newest[0].getCompany().getName()}"></div>
                   <div class="logo-wrapper">
                     <div class="logo1"></div>
                   </div>
@@ -583,14 +583,14 @@
               </div>
             </div>
             <div class="job-list9">
-              <img class="company-logo-icon9" alt="" th:src="@{/images/company-logo-9.svg}" />
+              <img class="company-logo-icon9" alt="" th:src="@{/company/image/{id}(id=${posts_newest[1].getCompany().id})}" />
 
               <div class="job-title2">
                 <a class="fill-div" th:href="@{/jobdetails(id=${posts_newest[1].getId()})}">
 
                 <div class="social-media-assistant1" th:text="${posts_newest[1].categories[1] + ' Engineer'}"></div>
                 <div class="company-name-location-job1">
-                  <div class="nomad1">Dropbox</div>
+                  <div class="nomad1" th:text="${posts_newest[1].getCompany().getName()}" ></div>
                   <div class="company-name-location-job-inner">
                     <div class="frame-child9"></div>
                   </div>
@@ -614,13 +614,13 @@
               </div>
             </div>
             <div class="job-list10">
-              <img class="company-logo-icon10" alt="" th:src="@{/images/company-logo-10.svg}" />
+              <img class="company-logo-icon10" alt="" th:src="@{/company/image/{id}(id=${posts_newest[2].getCompany().id})}" />
 
               <div class="job-title3">
                 <a class="fill-div" th:href="@{/jobdetails(id=${posts_newest[2].getId()})}">
                 <div class="social-media-assistant2" th:text="${posts_newest[2].categories[0].name + ' Engineer'}"></div>
                 <div class="company-name-location-job2">
-                  <div class="nomad2">Terraform</div>
+                  <div class="nomad2" th:text="${posts_newest[2].getCompany().getName()}"></div>
                   <div class="company-name-location-job-child">
                     <div class="frame-child10"></div>
                   </div>
@@ -644,13 +644,13 @@
               </div>
             </div>
             <div class="job-list11">
-              <img class="company-logo-icon11" alt="" th:src="@{/images/company-logo-11.svg}" />
+              <img class="company-logo-icon11" alt="" th:src="@{/company/image/{id}(id=${posts_newest[3].getCompany().id})}" />
 
               <div class="job-title4">
                 <a class="fill-div" th:href="@{/jobdetails(id=${posts_newest[3].getId()})}">
                 <div class="social-media-assistant3" th:text="${posts_newest[3].categories[0].name + ' Engineer'}" ></div>
                 <div class="company-name-location-job3">
-                  <div class="nomad3">Packer</div>
+                  <div class="nomad3" th:text="${posts_newest[3].getCompany().getName()}"></div>
                   <div class="company-name-location-job-inner1">
                     <div class="frame-child11"></div>
                   </div>
@@ -676,13 +676,13 @@
           </div>
           <div class="col-2">
             <div class="job-list12">
-              <img class="company-logo-icon12" alt="" th:src="@{/images/company-logo-12@2x.png}" />
+              <img class="company-logo-icon12" alt="" th:src="@{/company/image/{id}(id=${posts_newest[4].getCompany().id})}"/>
 
               <div class="job-title5">
                 <a class="fill-div" th:href="@{/jobdetails(id=${posts_newest[4].getId()})}">
                 <div class="social-media-assistant4" th:text="${posts_newest[4].categories[0].name + 'Engineer'}"></div>
                 <div class="company-name-location-job4">
-                  <div class="nomad4">Netlify</div>
+                  <div class="nomad4" th:text="${posts_newest[4].getCompany().getName()}"></div>
                   <div class="company-name-location-job-inner2">
                     <div class="frame-child12"></div>
                   </div>
@@ -706,13 +706,13 @@
               </div>
             </div>
             <div class="job-list13">
-              <img class="company-logo-icon13" alt="" th:src="@{/images/company-logo-13@2x.png}" />
+              <img class="company-logo-icon13" alt="" th:src="@{/company/image/{id}(id=${posts_newest[5].getCompany().id})}" />
 
               <div class="job-title6">
                 <a class="fill-div" th:href="@{/jobdetails(id=${posts_newest[5].getId()})}">
                 <div class="social-media-assistant5" th:text="${posts_newest[5].categories[0].name + ' Engineer'}"></div>
                 <div class="company-name-location-job5">
-                  <div class="nomad5">Maze</div>
+                  <div class="nomad5" th:text="${posts_newest[5].getCompany().getName()}"></div>
                   <div class="company-name-location-job-inner3">
                     <div class="frame-child13"></div>
                   </div>
@@ -736,14 +736,14 @@
               </div>
             </div>
             <div class="job-list14">
-              <img class="company-logo-icon14" alt="" th:src="@{/images/company-logo-14@2x.png}" />
+              <img class="company-logo-icon14" alt="" th:src="@{/company/image/{id}(id=${posts_newest[6].getCompany().id})}" />
 
               <div class="job-title7">
                 <a class="fill-div" th:href="@{/jobdetails(id=${posts_newest[6].getId()})}">
                 <div class="social-media-assistant6" th:text="${posts_newest[6].categories[0].name + ' Engineer'}">
                 </div>
                 <div class="company-name-location-job6">
-                  <div class="nomad6">Udacity</div>
+                  <div class="nomad6" th:text="${posts_newest[6].getCompany().getName()}"></div>
                   <div class="company-name-location-job-inner4">
                     <div class="frame-child14"></div>
                   </div>
@@ -767,12 +767,12 @@
               </div>
             </div>
             <div class="job-list15">
-              <img class="company-logo-icon15" alt="" th:src="@{/images/company-logo-15@2x.png}" />
+              <img class="company-logo-icon15" alt="" th:src="@{/company/image/{id}(id=${posts_newest[7].getCompany().id})}" />
               <div class="job-title8">
                 <a class="fill-div" th:href="@{/jobdetails(id=${posts_newest[7].getId()})}">
                 <div class="social-media-assistant7" th:text="${posts_newest[7].categories[0].name + ' Engineer'}"></div>
                 <div class="company-name-location-job7">
-                  <div class="nomad7">Webflow</div>
+                  <div class="nomad7" th:text="${posts_newest[7].getCompany().getName()}"></div>
                   <div class="company-name-location-job-inner5">
                     <div class="frame-child15"></div>
                   </div>

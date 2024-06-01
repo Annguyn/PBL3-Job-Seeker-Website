@@ -1,5 +1,6 @@
 package com.backend.controller.navbar;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.backend.entity.*;
@@ -52,6 +53,12 @@ public class PostAJobsController {
         List<Location> locations = locationService.getAllLocations();
         List<NiceToHaves> niceToHaves = niceToHavesService.getAllNiceToHaves();
         List<ProgramingLanguage> programingLanguages = programingLanguageService.getAllProgramingLanguages() ;
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication.getPrincipal() instanceof UserDetails) {
+            String username = ((UserDetails) authentication.getPrincipal()).getUsername();
+            User userLoggedIn = userService.getUserbyEmail(username);
+            model.addAttribute("user", userLoggedIn);
+        }
         model.addAttribute("locations", locations);
         model.addAttribute("niceToHaves", niceToHaves);
         model.addAttribute("levels", levels);
@@ -68,25 +75,21 @@ public class PostAJobsController {
         User userLoggedIn = null;
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.getPrincipal() instanceof UserDetails userDetails) {
-            userLoggedIn = userService.getUserbyEmail(userDetails.getUsername());
-            model.addAttribute("userLoggedIn", userLoggedIn);
+        if (authentication.getPrincipal() instanceof UserDetails) {
+            String username = ((UserDetails) authentication.getPrincipal()).getUsername();
+            userLoggedIn = userService.getUserbyEmail(username);
         }
-        if (userLoggedIn == null || userLoggedIn.getCompany() == null) {
-            model.addAttribute("errorMessage", "An error occurred while posting the job");
-            return "Company/post-a-job";
-        }
-
         try {
             Post post = new Post(
                     userLoggedIn.getCompany().getId(),
-                    postDto.getMaxSalary(),
-                    postDto.getMinSalary(),
+                    postDto.getMaxSalary().multiply(BigDecimal.valueOf(1000000)),
+                    postDto.getMinSalary().multiply(BigDecimal.valueOf(1000000)),
                     postDto.getPhoneNumber(),
                     postDto.getEmail(),
                     postDto.getContent(),
                     postDto.getImages(),
-                    postDto.getExperience());
+                    postDto.getExperience()
+            );
             post.setLocation(locationService.getLocationById(postDto.getLocationId()));
             post.setDatePosted(java.time.LocalDateTime.now());
             post.setTitle(postDto.getTitle());
@@ -99,7 +102,6 @@ public class PostAJobsController {
             post.setNiceToHaves(niceToHavesSelected);
             post.setContent(postDto.getContent());
             postService.save(post);
-            System.out.println("Post saved : " + post.getMinSalary());
             model.addAttribute("successMessage", "Job posted successfully");
             return "redirect:/home";
         } catch (Exception e) {

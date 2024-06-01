@@ -17,6 +17,10 @@ import com.backend.service.UserService;
 
 import lombok.AllArgsConstructor;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 @Controller
 @AllArgsConstructor
 public class UserRegistrationController {
@@ -48,7 +52,12 @@ public String registerUserAccount(@ModelAttribute("userdto") UserDto userDto,
         userService.save(userDto);
         // Create a new company
         Company company = new Company();
-        // Set the company's properties here
+        try {
+            byte[] defaultAvatar = Files.readAllBytes(Paths.get("static/images/defaultCompanyLogo.jpg"));
+            company.setAvatar(defaultAvatar);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         companyService.saveCompany(company);
         return "redirect:/registration?type=company&success";
     } else {

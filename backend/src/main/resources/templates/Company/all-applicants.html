@@ -51,25 +51,13 @@
                   th:src="@{./images/Company/icon1.svg}"
                 />
 
-                <div class="caption145">Dashboard</div>
+                <a th:href="@{/dashboard}" class="caption145">Dashboard</a>
               </div>
-              <div class="sidebar-menu46">
-                <div class="icon-parent18">
-                  <img class="icon146" alt="" th:src="@{./images/Company/icon-113.svg}" />
 
-                  <div class="caption146">Messages</div>
-                </div>
-                <div class="badge5">
-                  <div class="icon147"></div>
-                  <div class="wrapper2">
-                    <div class="div43">1</div>
-                  </div>
-                </div>
-              </div>
               <div class="sidebar-menu47">
                 <img class="icon148" alt="" th:src="@{./images/Company/icon-2.svg}" />
 
-                <div class="caption147">Company Profile</div>
+                <a th:href="@{/profile}" class="caption147">Company Profile</a>
               </div>
               <button class="sidebar-menu48">
                 <div class="indicator-wrapper3">
@@ -82,18 +70,18 @@
                 <div class="menu22">
                   <img class="icon149" alt="" th:src="@{./images/Company/icon-35.svg}" />
 
-                  <div class="caption148">All Applicants</div>
+                  <a  th:href="@{/allApplicants}" class="caption148">All Applicants</a>
                 </div>
               </button>
               <div class="sidebar-menu49">
                 <img class="icon150" alt="" th:src="@{./images/Company/icon-4.svg}" />
 
-                <div class="caption149">Job Listing</div>
+                <a th:href="@{/joblisting}" class="caption149">Job Listing</a>
               </div>
               <div class="sidebar-menu50">
                 <img class="icon151" alt="" th:src="@{./images/Company/icon-5.svg}" />
 
-                <div class="caption150">My Schedule</div>
+                <a th:href="@{/interviewSchedule}" class="caption150">My Schedule</a>
               </div>
               <div class="sidebar-menu51">
                 <img class="icon152" alt="" />
@@ -110,7 +98,7 @@
                 <div class="sidebar-menu52">
                   <img class="icon153" alt="" th:src="@{./images/Company/icon-7.svg}" />
 
-                  <div class="caption152">Settings</div>
+                  <a  th:href="@{/settings}" class="caption152">Settings</a>
                 </div>
                 <div class="sidebar-menu53">
                   <img class="icon154" alt="" th:src="@{./images/Company/icon-8.svg}" />
@@ -158,13 +146,13 @@
             <img
               class="company-logo-icon9"
               alt=""
-              th:src="@{./images/Company/company-logo.svg}"
+              th:src="@{company/image/{id}(id=${user.getCompany().getId()})}"
             />
 
             <div class="job-title9">
               <div class="company5">Company</div>
               <div class="panel">
-                <div class="nomad9">Nomad</div>
+                <div class="nomad9" th:text="${user.getCompany().getName()}"></div>
                 <img class="icon156" alt="" th:src="@{./images/Company/icon-411.svg}" />
               </div>
             </div>
@@ -186,43 +174,7 @@
         </section>
         <section class="company-dashboard-search-f1">
           <div class="total-applicants-19-wrapper">
-            <h3 class="total-applicants1">Total Applicants : 19</h3>
-          </div>
-          <div class="filter1">
-            <div class="input-processor">
-              <div class="input1">
-                <div class="icon-wrapper3">
-                  <img class="icon158" alt="" th:src="@{./images/Company/icon-125.svg}" />
-                </div>
-                <input
-                  class="this-is-placeholder3"
-                  placeholder="Search Applicants"
-                  type="text"
-                />
-              </div>
-              <button class="filter-sort4">
-                <div class="icon-wrapper4">
-                  <img class="icon159" alt="" th:src="@{./images/Company/icon-15.svg}" />
-                </div>
-                <div class="caption155">Filter</div>
-              </button>
-            </div>
-            <div class="divider-wrapper">
-              <div class="divider2"></div>
-            </div>
-            <div class="pill-tab-wrapper">
-              <div class="pill-tab2">
-                <button class="tab-menu30">
-                  <div class="caption156">Pipeline View</div>
-                </button>
-                <button class="tab-menu31">
-                  <div class="caption157">Table View</div>
-                </button>
-                <div class="tab-menu32">
-                  <div class="caption158">Caption</div>
-                </div>
-              </div>
-            </div>
+            <h3 class="total-applicants1" th:text="${'Total Applicants : ' + applications.size()}"></h3>
           </div>
         </section>
         <section class="company-dashboard-applicants-wrapper">
@@ -233,32 +185,26 @@
                   <div class="checkboxfalse">
                     <img class="icon-check" alt="" />
                   </div>
-                  <div class="caption159">Caption</div>
                 </div>
                 <div class="dijkstra-algorithm">
                   <div class="full-name4">Full Name</div>
-                  <img class="icon160" alt="" th:src="@{./images/Company/icon-161.svg}" />
                 </div>
               </div>
-              <div class="score2">
-                <div class="score3">Score</div>
-                <img class="icon161" alt="" th:src="@{./images/Company/icon-161.svg}" />
-              </div>
               <div class="stage2">
-                <div class="hiring-stage1">Hiring Stage</div>
-                <img class="icon162" alt="" th:src="@{./images/Company/icon-161.svg}" />
+                <div class="hiring-stage1">Job Title</div>
               </div>
+              <div class="score2">
+                <div class="score3">Status</div>
+              </div>
+
               <div class="applied-date3">
                 <div class="applied-date4">Applied Date</div>
-                <img class="icon163" alt="" th:src="@{./images/Company/icon-161.svg}" />
               </div>
-              <div class="applied-date5">
-                <div class="job-role">Job Role</div>
-                <img class="icon164" alt="" th:src="@{./images/Company/icon-161.svg}" />
-              </div>
+<!--              <div class="applied-date5">-->
+<!--                <div class="job-role">Job Role</div>-->
+<!--              </div>-->
               <div class="applied-date6">
                 <div class="action8">Action</div>
-                <img class="icon165" alt="" th:src="@{./images/Company/icon-161.svg}" />
               </div>
             </nav>
             <div class="rows1">
@@ -283,13 +229,10 @@
                 <div class="label48">
                   <button class="label49">
                     <div class="label-child30"></div>
-                    <div class="caption160">Inreview</div>
+                    <div class="caption160" th:text="${applicant.getStatus()}"></div>
                   </button>
                 </div>
                 <div class="july-202110"  th:if="${applicant.getTimeApplied() != null }" th:text="${applicant.getTimeApplied()}"></div>
-                <div class="designer" >
-<!--                  TODO: Do after have idea-->
-                </div>
                 <div class="graph-theory">
                   <button class="buttonsecondaryfilledsmall10">
                     <a th:href="@{/applicant(id=${applicant.id})}" class="caption161">See Application</a>

@@ -3956,16 +3956,35 @@
   font-weight: bold;
   width: fit-content;
 }
-
 .sort-options {
+  width: 200px;
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+#defaultOption {
+  color: #333;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#otherOptions {
+  display: none;
   margin-top: 10px;
 }
 
-.sort-option {
+#otherOptions .sort-option {
   display: block;
-  margin-bottom: 5px;
-  color: #008CBA;
+  color: #007BFF;
   text-decoration: none;
+  margin-bottom: 5px;
+}
+
+#otherOptions .sort-option:hover {
+  color: #0056b3;
 }
 
 .sort-option:hover {
@@ -3976,4 +3995,54 @@
   display: block;
   border: 1px solid #ccc;
   padding: 10px;
+}/* General input styles */
+input[type="text"], select {
+  width: 100%; /* Full width */
+  padding: 12px 20px; /* Some padding */
+  margin: 8px 0; /* Some margin */
+  box-sizing: border-box; /* Ensure padding and width are included in the total width */
+  border: 2px solid #ccc; /* Gray border */
+  border-radius: 4px; /* Rounded corners */
+  font-size: 16px; /* Font size */
+  font-family: Arial, sans-serif; /* Font family */
+}
+
+/* Focus state */
+input[type="text"]:focus, select:focus {
+  border: 2px solid #555; /* Darker border when focused */
+}
+
+/* Placeholder text */
+input[type="text"]::placeholder {
+  color: #999; /* Placeholder color */
+  opacity: 1; /* Make sure the placeholder is fully opaque */
+  font-style: italic; /* Italic placeholder text */
+}
+
+/* Location select specific styles */
+select#locationInput {
+  background: #f8f8f8; /* Light gray background */
+  color: #333; /* Dark text color */
+}
+
+/* Search button styles */
+button.search-button {
+  background-color: #007BFF; /* Blue background */
+  color: white; /* White text */
+  padding: 12px 20px; /* Padding */
+  border: none; /* No border */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 16px; /* Font size */
+  font-family: Arial, sans-serif; /* Font family */
+}
+
+button.search-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+a.fill-div {
+  display: block;
+  height: 100%;
+  width: 100%;
+  text-decoration: none;
 }

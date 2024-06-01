@@ -52,7 +52,7 @@
                                         class="frame-child146"
                                         loading="lazy"
                                         alt=""
-                                        th:src="@{./images/frame-3-15.svg}"
+                                        th:src="@{/images/frame-3-3.svg}"
                                 />
                             </div>
                             <h3 class="jobhuntly34">JobHuntly</h3>
@@ -71,15 +71,22 @@
                 </div>
             </div>
             <div class="buttons6">
-                <a th:href="@{/login}" class="button122">
-                    <b class="caption561">Login</b>
-                </a>
-                <div class="divider-wrapper8">
-                    <div class="divider24"></div>
+                <div th:if="${authentication.principal}">
+                    <a th:href="@{/logout}" class="button122">
+                        <b class="caption561">Sign Out</b>
+                    </a>
                 </div>
-                <a th:href="@{/registration}" class="button123">
-                    <b class="caption562">Sign Up</b>
-                </a>
+                <div th:unless="${authentication.principal}">
+                    <a th:href="@{/login}" class="button122">
+                        <b class="caption561">Login</b>
+                    </a>
+                    <div class="divider-wrapper8">
+                        <div class="divider24"></div>
+                    </div>
+                    <a th:href="@{/registration}" class="button123">
+                        <b class="caption562">Sign Up</b>
+                    </a>
+                </div>
             </div>
         </header>
         <div class="content-wrapper2">

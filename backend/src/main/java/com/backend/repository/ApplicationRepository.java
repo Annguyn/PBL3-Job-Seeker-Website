@@ -20,6 +20,7 @@ public interface ApplicationRepository extends JpaRepository<Application, Intege
     Application findById(int id);
 
     List<Application> findAllByUser(User user);
+;
 
     @Query("SELECT a FROM Application a WHERE a.post IN (SELECT p FROM Post p WHERE p.company.id = :companyId)")
     List<Application> findAllByPostCompany(@Param("companyId") int companyId);

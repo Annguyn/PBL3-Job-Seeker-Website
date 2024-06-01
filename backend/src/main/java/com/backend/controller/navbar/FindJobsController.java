@@ -3,9 +3,11 @@ package com.backend.controller.navbar;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import com.backend.entity.*;
+import com.backend.repository.PostRepository;
 import com.backend.service.*;
 import jnr.ffi.Struct;
 import org.springframework.data.domain.Page;
@@ -26,6 +28,9 @@ import com.backend.dto.UserDto;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import static org.python.bouncycastle.asn1.ua.DSTU4145NamedCurves.params;
 
 @Controller
 @AllArgsConstructor
@@ -33,6 +38,7 @@ public class FindJobsController {
     private final ApplicationService applicationService;
     private final CompanyService companyService;
     private final CommentService commentService;
+    private final PostRepository postRepository;
     private UserService userService;
     private PostService postService;
     private CategoryService categoryService;
@@ -52,7 +58,7 @@ public class FindJobsController {
             @RequestParam(name = "filterLevel", required = false) String filterLevel,
             @RequestParam(name = "filterSalary", required = false) String filterSalary,
             @RequestParam(name = "location", required = false) String location,
-            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(name = "page" , defaultValue = "1") int page,
             Model model) {
 
         StringBuilder redirectUrl = new StringBuilder("redirect:/findjobs?keySearch=").append(keySearch);
@@ -76,6 +82,8 @@ public class FindJobsController {
 
         return redirectUrl.toString();
     }
+
+
     @GetMapping("/findjobs")
     public String showFindJobsForm(Model model,
                                    @RequestParam(defaultValue = "1") int page,
@@ -86,6 +94,8 @@ public class FindJobsController {
                                    @RequestParam(name="keySearch" , required = false) String keySearch,
                                    @RequestParam(name="location" , required = false) String location) {
 
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("authentication", authentication);
         List<String> categories = null;
         List<String> levels = null;
         List<String> salaries = null;
@@ -105,9 +115,18 @@ public class FindJobsController {
             } else {
                 pageable = PageRequest.of(page - 1, 6, Sort.by("datePosted").descending());
             }
-            Page<Post> postPage = postService.getAllPosts(pageable, categories, levels, salaries, keySearch, location);            int numberPost = postPage.getNumberOfElements();
-            if(categories != null) {
+            Page<Post> postPage = postService.getAllPosts(pageable, categories, levels, salaries, keySearch, location);
+            int numberPost  ;
+            if(categories == null) {
                 numberPost = postService.getAllPosts().size(); ;
+            } else {
+                int totalPage = postPage.getTotalPages();
+                numberPost = 0;
+                for (int i = 0; i < totalPage; i++) {
+                    Pageable pageable1 = PageRequest.of(i, 6);
+                    Page<Post> postPage1 = postService.getAllPosts(pageable1, categories, levels, salaries, keySearch, location);
+                    numberPost = postPage1.getContent().size()-1;
+                }
             }
             model.addAttribute("numberPost", numberPost);
             for (Post post : postPage) {
@@ -132,6 +151,8 @@ public class FindJobsController {
             return "find-jobs";
         }
     }
+
+
 
     @GetMapping("/jobdetails")
     public String JobDetailsForm(Model model, @RequestParam("id") Integer id) {
@@ -236,6 +257,8 @@ public class FindJobsController {
 
     @GetMapping("/findCompany")
     public String findCompany(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("authentication", authentication);
         try {
             List<Company> companies = companyService.getAllCompanies();
             model.addAttribute("companies", companies);

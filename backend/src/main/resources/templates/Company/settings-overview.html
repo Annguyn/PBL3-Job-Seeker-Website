@@ -52,40 +52,27 @@
                  th:src="@{./images/Company/icon1.svg}"
                 />
 
-                <div class="caption223">Dashboard</div>
-              </div>
-              <div class="sidebar-menu73">
-                <div class="icon-parent30">
-                  <img class="icon254" alt="" th:src="@{./images/Company/icon-113.svg}" />
-
-                  <div class="caption224">Messages</div>
-                </div>
-                <div class="badge8">
-                  <div class="badge-child4"></div>
-                  <div class="wrapper4">
-                    <div class="div62">1</div>
-                  </div>
-                </div>
+                <a th:href="@{/dashboard}" class="caption223">Dashboard</a>
               </div>
               <div class="sidebar-menu74">
                 <img class="icon255" alt="" th:src="@{./images/Company/icon-2.svg}" />
 
-                <div class="caption225">Company Profile</div>
+                <a th:href="@{/profile}" class="caption225">Company Profile</a>
               </div>
               <div class="sidebar-menu75">
                 <img class="icon256" alt="" th:src="@{./images/Company/icon-3.svg}" />
 
-                <div class="caption226">All Applicants</div>
+                <a th:href="@{/allApplicants}" class="caption226">All Applicants</a>
               </div>
               <div class="sidebar-menu76">
                 <img class="icon257" alt="" th:src="@{./images/Company/icon-4.svg}" />
 
-                <div class="caption227">Job Listing</div>
+                <a th:href="@{/joblisting}" class="caption227">Job Listing</a>
               </div>
               <div class="sidebar-menu77">
                 <img class="icon258" alt="" th:src="@{./images/Company/icon-5.svg}" />
 
-                <div class="caption228">My Schedule</div>
+                <a th:href="@{/interviewSchedule}" class="caption228">My Schedule</a>
               </div>
               <div class="sidebar-menu78">
                 <img class="icon259" alt="" />
@@ -179,7 +166,7 @@
             <button class="button38">
               <img class="icon264" alt="" th:src="@{./images/Company/icon-112.svg}" />
 
-              <b class="caption232">Post a job</b>
+              <a th:href="@{/postjobs}" class="caption232">Post a job</a>
             </button>
           </div>
         </header>

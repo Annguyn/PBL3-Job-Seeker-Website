@@ -52,25 +52,12 @@
                                 th:src="@{./images/Company/icon1.svg}"
                         />
 
-                        <div class="caption124">Dashboard</div>
-                    </div>
-                    <div class="sidebar-menu37">
-                        <div class="icon-parent17">
-                            <img class="icon125" alt="" th:src="@{./images/Company/icon-113.svg}" />
-
-                            <div class="caption125">Messages</div>
-                        </div>
-                        <div class="badge4">
-                            <div class="badge-child1"></div>
-                            <div class="rooted-tree">
-                                <div class="upward-connection">1</div>
-                            </div>
-                        </div>
+                        <a th:href="@{/dashboard}" class="caption124">Dashboard</a>
                     </div>
                     <div class="sidebar-menu38">
                         <img class="icon126" alt="" th:src="@{./images/Company/icon-2.svg}" />
 
-                        <div class="caption126">Company Profile</div>
+                        <a th:href="@{/profile}" class="caption126">Company Profile</a>
                     </div>
                     <button class="sidebar-menu39">
                         <div class="indicator-wrapper2">
@@ -83,18 +70,18 @@
                         <div class="menu18">
                             <img class="icon127" alt="" th:src="@{./images/Company/icon-35.svg}" />
 
-                            <div class="caption127">All Applicants</div>
+                            <a th:href="@{/allApplicants}" class="caption127">All Applicants</a>
                         </div>
                     </button>
                     <div class="sidebar-menu40">
                         <img class="icon128" alt="" th:src="@{./images/Company/icon-4.svg}" />
 
-                        <div class="caption128">Job Listing</div>
+                        <a th:href="@{/joblisting}" class="caption128">Job Listing</a>
                     </div>
                     <div class="sidebar-menu41">
                         <img class="icon129" alt="" th:src="@{./images/Company/icon-5.svg}" />
 
-                        <div class="caption129">My Schedule</div>
+                        <a th:href="@{/interviewSchedule}" class="caption129">My Schedule</a>
                     </div>
                     <div class="sidebar-menu42">
                         <img class="icon130" alt="" />
@@ -111,7 +98,7 @@
                         <div class="sidebar-menu43">
                             <img class="icon131" alt="" th:src="@{./images/Company/icon-7.svg}" />
 
-                            <div class="caption131">Settings</div>
+                            <a th:href="@{/settings}" class="caption131">Settings</a>
                         </div>
                         <div class="sidebar-menu44">
                             <img class="icon132" alt="" th:src="@{./images/Company/icon-8.svg}" />
@@ -133,12 +120,12 @@
                                 class="avatar-icon14"
                                 loading="lazy"
                                 alt=""
-                                th:src="@{./images/Company/avatar@2x.png}"
+                                th:src="@{user/image/{id}(id=${user.getID()})}"
                         />
                     </div>
                     <div class="name-email4">
-                        <div class="maria-kelly4">Maria Kelly</div>
-                        <div class="mariakllyemailcom4">MariaKlly@email.com</div>
+                        <div class="maria-kelly4" th:text="${applyForm.getPost().getCompany().getUser().getUserDisplayName()}"></div>
+                        <div class="mariakllyemailcom4" th:text="${applyForm.getPost().getCompany().getUser().getEmail()}"></div>
                     </div>
                 </div>
             </div>
@@ -146,7 +133,7 @@
                 <div class="rounded-rectangle4"></div>
                 <div class="frame4">
                     <div class="logout8">
-                        <div class="logout9">Logout</div>
+                        <a href="/logout" class="logout9">Logout</a>
                         <img class="icon133" alt="" />
                     </div>
                 </div>
@@ -389,7 +376,7 @@
                             </div>
                             <div class="email9">
                                 <img class="icon125" alt=""th:src="@{/images/icon-213.svg}" />
-                                <div class="jakegyllemailcom4" th:text="${user.dob}"></div>
+                                <div class="jakegyllemailcom4" th:text="${#dates.format(applyForm.getUser().getDob(), 'dd/MM/yyyy')}"></div>
                             </div>
                         </div>
                         <div class="social-links">
@@ -400,7 +387,7 @@
                                 </div>
                             </div>
                             <div class="email10">
-                                <img class="icon127" alt=""th:src="@{/images/icon-232.svg}" />
+                                <img class="icon127" alt=""th:src="@{/images/github.jpg}" />
 
                                 <div class="content12">
                                     <div class="instagram">Github</div>
@@ -409,7 +396,7 @@
                                 </div>
                             </div>
                             <div class="email11">
-                                <img class="icon128" alt=""th:src="@{/images/icon-242.svg}" />
+                                <img class="icon128" alt=""th:src="@{/images/linkedin.jpg}" />
 
                                 <div class="content13">
                                     <div class="twitter3">LinkedIn</div>
@@ -417,7 +404,7 @@
                                 </div>
                             </div>
                             <div class="email12">
-                                <img class="icon129" alt=""th:src="@{/images/icon-252.svg}" />
+                                <img class="icon129" alt=""th:src="@{/images/fb.jpg}" />
 
                                 <div class="content14">
                                     <div class="website">Facebook</div>

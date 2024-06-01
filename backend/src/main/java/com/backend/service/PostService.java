@@ -27,5 +27,6 @@ public interface PostService {
     List<Post> getPostByCompany(Company company);
     void save(Post post);
     void delete(Post post);
-    Page<Post> getAllPosts(Pageable pageable, List<String> filterCategory, List<String> filterLevel, List<String> filterSalary, String keySearch, String location);    List<String> getPostDetailsContaining(String query);
+    Page<Post> getAllPosts(Pageable pageable, List<String> filterCategory, List<String> filterLevel, List<String> filterSalary, String keySearch, String location);
+    List<String> getPostDetailsContaining(String query);
 }

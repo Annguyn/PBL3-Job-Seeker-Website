@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="initial-scale=1, width=device-width" />
-
+        <script th:src="@{/js/applicant-history.js}"></script>
         <link rel="stylesheet" th:href="@{/css/global.css}" />
         <link
             rel="stylesheet"
@@ -59,23 +59,6 @@
                                 />
 
                                 <a th:href="@{/dashboard}" class="caption283">Dashboard</a>
-                            </div>
-                            <div class="sidebar-menu25">
-                                <div class="icon-parent29">
-                                    <img
-                                        class="icon184"
-                                        alt=""
-                                        th:src="@{/images/icon-115.svg}"
-                                    />
-
-                                    <div class="caption284">Messages</div>
-                                </div>
-                                <div class="badge3">
-                                    <div class="assessment-tab"></div>
-                                    <div class="offered-tab">
-                                        <div class="hired-tab">1</div>
-                                    </div>
-                                </div>
                             </div>
                             <button class="sidebar-menu26">
                                 <div class="filter-sort-icon">
@@ -169,15 +152,14 @@
                                 class="avatar-icon5"
                                 loading="lazy"
                                 alt=""
-                                th:src="@{/images/avatar1@2x.png}"
+                                th:src="@{user/image/{id}(id=${user.getID()})}"
                             />
 
                             <div class="name-email3">
                                 <div class="jake-gyll-frame">
-                                    <div class="jake-gyll7">Jake Gyll</div>
+                                    <div class="jake-gyll7" th:text="${user.getUserDisplayName()}"></div>
                                 </div>
-                                <div class="jakegyllemailcom7">
-                                    jakegyll@email.com
+                                <div class="jakegyllemailcom7" th:text="${user.getEmail()}">
                                 </div>
                             </div>
                         </div>
@@ -216,53 +198,7 @@
                 </header>
                 <section class="applicant-dashboard-greeting">
                     <div class="greeting">
-                        <h3 class="good-morning-jake">Keep it up, Jake</h3>
-                        <div class="here-is-whats1">
-                            Here is job applications status from July 19 - July
-                            25.
-                        </div>
-                    </div>
-                    <div class="all">
-                        <div class="dropdown">
-                            <div class="this-is-placeholder15">
-                                Jul 19 - Jul 25
-                            </div>
-                            <div class="label186">
-                                <img
-                                    class="icon192"
-                                    alt=""
-                                    th:src="@{/images/icon-85.svg}"
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="pagination16">
-                    <div class="announcements">
-                        <div class="rectangle4"></div>
-                        <div class="applicant-dashboard-applicatio">
-                            <img
-                                class="icon193"
-                                alt=""
-                                th:src="@{/images/icon-93.svg}"
-                            />
-                        </div>
-                        <div class="text-container">
-                            <div class="text22">
-                                <div class="new-feature">New Feature</div>
-                                <div class="you-can-request">
-                                    You can request a follow-up 7 days after
-                                    applying for a job if the application status
-                                    is in review. Only one follow-up is allowed
-                                    per job.
-                                </div>
-                            </div>
-                        </div>
-                        <img
-                            class="icon194"
-                            alt=""
-                            th:src="@{/images/icon-211.svg}"
-                        />
+                        <h3 class="good-morning-jake" th:text="${'Keep it up '  + user.getUserDisplayName()}"></h3>
                     </div>
                 </section>
                 <section class="applications-history">
@@ -321,11 +257,19 @@
                                         <div class="caption294" th:text="${app.getStatus()}"></div>
                                     </div>
                                 </div>
-                                <img
-                                    class="icon197"
-                                    alt=""
-                                    th:src="@{/images/icon-131.svg}"
-                                />
+                                <div id="myModal" class="modal">
+                                    <div class="modal-content">
+                                        <input hidden="hidden" id="interviewTime" th:value="${app.getInterviewStartTime()}"/>
+                                        <span class="close">&times;</span>
+                                        <p id="displayInterviewTime"></p>
+                                    </div>
+                                </div>
+                                <form th:action="@{/deleteApplication}" method="post" onsubmit="return confirm('Do you want to delete this application?');">
+                                    <input type="hidden" name="applicationId" th:value="${app.getId()}" />
+                                    <button type="submit">
+                                        <img class="icon197" alt="" th:src="@{/images/icon-131.svg}" />
+                                    </button>
+                                </form>
                             </div>
                         </div>
                         </div>

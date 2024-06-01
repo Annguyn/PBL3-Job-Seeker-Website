@@ -114,6 +114,7 @@ public class AdminController {
             if (imageFile != null && !imageFile.isEmpty()) {
                 university.setPhoto(imageFile.getBytes());
             }
+
             universityRepository.save(university);
         } catch (IOException e) {
             // Handle the exception

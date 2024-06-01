@@ -64,6 +64,7 @@ public class InterviewController {
         LocalDateTime startDateTime = date.atStartOfDay();
         LocalDateTime endDateTime = date.plusDays(1).atStartOfDay();
 
+        model.addAttribute("user", user);
         List<Application> upcomingApplications = applicationRepository.findApplicationsByDateAndCompany(startDateTime, endDateTime, user.getCompany().getId());
         model.addAttribute("upcomingApplications", upcomingApplications);
         return "Company/interview-schedule";
