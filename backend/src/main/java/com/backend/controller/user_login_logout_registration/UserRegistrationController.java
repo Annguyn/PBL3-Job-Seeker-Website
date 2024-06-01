@@ -1,5 +1,6 @@
 package com.backend.controller.user_login_logout_registration;
 
+import com.backend.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -41,7 +42,7 @@ public class UserRegistrationController {
 
     @PostMapping("/registration")
 public String registerUserAccount(@ModelAttribute("userdto") UserDto userDto,
-        @RequestParam(required = false) String type) {
+        @RequestParam(required = false) String type) throws IOException {
 
     if ("company".equals(type)) {
         userDto.setRole("company");
@@ -49,16 +50,8 @@ public String registerUserAccount(@ModelAttribute("userdto") UserDto userDto,
             return "redirect:/registration?type=comapny&emailexist";
         }
         userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        userService.save(userDto);
         // Create a new company
-        Company company = new Company();
-        try {
-            byte[] defaultAvatar = Files.readAllBytes(Paths.get("static/images/defaultCompanyLogo.jpg"));
-            company.setAvatar(defaultAvatar);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        companyService.saveCompany(company);
+        userService.save(userDto);
         return "redirect:/registration?type=company&success";
     } else {
         userDto.setRole("user");

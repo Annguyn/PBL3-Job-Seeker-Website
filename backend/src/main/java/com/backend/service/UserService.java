@@ -1,6 +1,7 @@
 package com.backend.service;
 
 
+import java.io.IOException;
 import java.util.List;
 
 import com.backend.entity.Application;
@@ -11,7 +12,7 @@ import com.backend.entity.User;
 
 @Service
 public interface UserService {
-    void save(UserDto userDto);
+    void save(UserDto userDto) throws IOException;
     Boolean checkPasswordUser(String email,String password);
     Boolean checkUserbyEmail(String email);
     User getUserbyEmail(String email);

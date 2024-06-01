@@ -45,55 +45,5 @@ public class JobListingController {
         return "Company/job-listing";
     }
 
-    @GetMapping("/viewApplicants")
-    public String viewApplicants(Model model , @RequestParam("id") Integer id ) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName();
-        User user = userService.getUserbyEmail(username);
-        Company company = user.getCompany() ;
-        if (id == null) {
-            return "error";
-        }
-        model.addAttribute("Applicants" , applicationService.findByPostId(id));
-        model.addAttribute("currentPost" , companyService.getCompanyById(id)) ;
-        model.addAttribute("userLoggedIn" , user);
-        model.addAttribute("company", company);
-        return "Company/applicants-table-view";
-    }
 
-    @GetMapping("/applicant")
-    public String viewApplicant(Model model , @RequestParam("id") Integer id ) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName();
-        User user = userService.getUserbyEmail(username);
-        Company company = user.getCompany() ;
-        if (id == null) {
-            return "error";
-        }
-        Application application = applicationService.findById(id);
-        model.addAttribute("applyForm" , application);
-        model.addAttribute("company", company);
-        return "Company/applicant-profile";
-    }
-    @PostMapping("/applicant")
-    public String postApplicant(@ModelAttribute("applyForm") Application application) {
-        applicationService.save(application);
-        return "redirect:/applicant?id=" + application.getId();
-    }
-
-    @PostMapping("/updateStatus")
-    public String updateStatus(@RequestParam("id") int id, @RequestParam("status") String status, @RequestParam("interviewDate") String interviewDate, @RequestParam("interviewTime") String interviewTime) {
-        Application application = applicationService.findById(id);
-        if (application != null) {
-            application.setStatus(status);
-            if(application.getStatus().equals("Interview") && (interviewDate == null || interviewTime == null)) {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-                LocalDateTime interviewStartDateTime = LocalDateTime.parse(interviewDate + " " + interviewTime, formatter);
-                application.setInterviewStartTime(interviewStartDateTime);
-            }
-            applicationService.save(application);
-            applicationService.updateStatus(id, status);
-        }
-        return "redirect:/applicant?id=" + id;
-    }
 }

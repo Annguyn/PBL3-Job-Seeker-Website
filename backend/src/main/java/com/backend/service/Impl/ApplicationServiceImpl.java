@@ -144,7 +144,7 @@ public class ApplicationServiceImpl implements ApplicationService {
                 "For any inquiries, please contact us at jobhuntly@gmail.com.";
         switch (status) {
             case "Accepted":
-                subject = " <strong> Your Application for " + application.getPost().getTitle() + " – Congratulations! </strong>";
+                subject = "<strong> Your Application for " + application.getPost().getTitle() + " – Congratulations! </strong>";
                 text = "Dear <strong> " + application.getUser().getUserDisplayName() + " </strong> ,<br/><br/>" +
                         "We are pleased to inform you that your application for the position of " + application.getPost().getTitle() + " at " + application.getPost().getCompany().getName() + " has been accepted. Your skills and experience align well with our requirements, and we are excited about the prospect of you joining our team.<br/><br/>" +
                         "Please be advised that your official offer letter, including details regarding compensation, benefits, and start date, will be sent to you shortly. In the meantime, should you have any questions, feel free to reach out to us.<br/><br/>" +
@@ -154,7 +154,7 @@ public class ApplicationServiceImpl implements ApplicationService {
                 text += footer;
                 break;
             case "Unsuitable":
-                subject = "<strong> Your Application for <strong> " + application.getPost().getTitle() + " – We regret to inform you </strong>" ;
+                subject = "<strong> Your Application for  " + application.getPost().getTitle() + " – We regret to inform you </strong>" ;
                 text = "Dear " + application.getUser().getUserDisplayName() + ",<br/><br/>" +
                         " Thank you for your interest in the position of <strong>" + application.getPost().getTitle() + "</strong at <strong>" + application.getPost().getCompany().getName() + ".</strong> We appreciate you taking the time to apply and share your qualifications with us.<br/><br/>" +
                         "After careful consideration of your application and the numerous qualified candidates we received, we regret to inform you that we have decided to pursue other applicants whose skills and experience more closely align with the requirements of this position.<br/><br/>" +
@@ -175,7 +175,5 @@ public class ApplicationServiceImpl implements ApplicationService {
                 break;
         }
         mailService.sendSimpleMessage(toUser, subject, text, imagePath);
-
-//        mailService.sendSimpleMessage(toUser, subject, text);
     }
 }

@@ -12,6 +12,9 @@ import com.backend.repository.CompanyRepository;
 import com.backend.repository.UserRepository;
 import com.backend.service.UserService;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -28,7 +31,7 @@ public class UserServiceImpl implements UserService {
     private ApplicationRepository applicationRepository;
 
     @Override
-    public void save(UserDto userDto) {
+    public void save(UserDto userDto) throws IOException {
         LocalDateTime Date = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         String creationDate = Date.format(formatter);
@@ -39,7 +42,9 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);        
         if ("company".equals(userDto.getRole())) {
             Company company = new Company();
-
+            File fi = new File("src/main/resources/static/images/defaultCompanyLogo.jpg");
+            byte[] fileContent = Files.readAllBytes(fi.toPath());
+            company.setAvatar(fileContent);
             company.setUser(user);
             user.setCompany(company);
             companyRepository.save(company);

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import com.backend.dto.ApplicationDTO;
 import com.backend.entity.*;
 import com.backend.repository.PostRepository;
 import com.backend.service.*;
@@ -154,37 +155,6 @@ public class FindJobsController {
 
 
 
-    @GetMapping("/jobdetails")
-    public String JobDetailsForm(Model model, @RequestParam("id") Integer id) {
-        if (id == null) {
-            return "job-descriptions";
-        }
-        User userLoggedIn = null;
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.getPrincipal() instanceof UserDetails userDetails) {
-                userLoggedIn = userService.getUserbyEmail(userDetails.getUsername());
-        }
-        if (userLoggedIn == null) {
-            userLoggedIn = new User();
-        }
-        List<Comment> comments = postService.getPostById(id).getComments();
-        model.addAttribute("comments", comments);
-        model.addAttribute("userLoggedIn", userLoggedIn);
-        try {
-            Post post = postService.getPostById(id);
-            if (post.getLocation() == null) {
-                post.setLocation(new Location());
-            }
-            if (post.getLocation().getName() == null) {
-                post.getLocation().setName("N/A");  // Set the name to "N/A" if it's null
-            }
-            model.addAttribute("post", post);
-            return "job-descriptions";
-        } catch (Exception e) {
-            model.addAttribute("errorMessage", e.getMessage());
-            return "error";
-        }
-    }
     @PostMapping("/addComment")
     public String addComment(@RequestParam String content, @RequestParam Integer postId, Authentication authentication) {
         User user = userService.getUserbyEmail(authentication.getName());
@@ -208,46 +178,7 @@ public class FindJobsController {
 
         return "redirect:/jobdetails?id=" + comment.getPost().getId();
     }
-    @PostMapping("/jobdetails")
-    public String applyJob(
-            @RequestParam(value = "id" , required = false) Integer postId,
-            @RequestParam(value = "fullName" , required = false) String fullName,
-            @RequestParam(value = "emailAddress", required = false) String emailAddress,
-            @RequestParam(value = "phoneNumber", required = false) String phoneNumber,
-            @RequestParam(value = "JobTitle", required = false) String jobTitle,
-            @RequestParam(value = "linkedInUrl", required = false) String linkedInUrl,
-            @RequestParam(value = "portfolioUrl", required = false) String portfolioUrl,
-            @RequestParam(value = "additionalInformation", required = false) String additionalInformation,
-            @RequestParam(value = "resume" , required = false) MultipartFile resume ) throws IOException {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User userLoggedIn = null;
-        if (authentication != null && authentication.getPrincipal() instanceof UserDetails userDetails) {
-            userLoggedIn = userService.getUserbyEmail(userDetails.getUsername());
-        }
-        if (userLoggedIn == null) {
-            userLoggedIn = new User();  // Add a default User object if userLoggedIn is null
-        }
-        byte[] resumeBytes;
-        if (resume != null) {
-            resumeBytes = resume.getBytes();
-        } else {
-            resumeBytes = new byte[0];
-        }
-        Application application = new Application(
-                userLoggedIn,
-                postService.getPostById(postId),
-                fullName,
-                emailAddress,
-                phoneNumber,
-                jobTitle,
-                linkedInUrl,
-                portfolioUrl,
-                additionalInformation,
-                resumeBytes );
-        // Save the application
-         applicationService.save(application);
-        return "redirect:/home";
-    }
+
     @PostMapping("/findCompany")
     public String searchCompany(@RequestParam(name ="query") String keySearch, Model model) {
             List<Company> companies = companyService.searchCompany(keySearch);

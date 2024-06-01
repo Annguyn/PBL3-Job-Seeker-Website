@@ -6,7 +6,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
     btn.onclick = function() {
         modal.style.display = "block";
     }
-
+    var closeBtn = document.getElementsByClassName("icon56")[0];
+    closeBtn.onclick = function() {
+        modal.style.display = "none";
+    }
     window.onclick = function(event) {
         if (event.target === modal) {
             modal.style.display = "none";

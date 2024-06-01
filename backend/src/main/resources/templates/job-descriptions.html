@@ -384,65 +384,63 @@
 </div>
 <!-- Modal -->
 <div id="myModal" class="modal">
-    <!-- Modal content -->
-    <div class="modal-content">
-        <!-- Your form goes here -->
-        <form th:action="@{/jobdetails}" method="post" id="applicationForm" class="landing-page-submit-applicat" enctype="multipart/form-data">
-            <div class="landing-page-submit-applicat">
-                <div class="base1"></div>
-                <img class="icon56" loading="lazy" alt="" th:src="@{/images/icon-211.svg}" />
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <!-- Your form goes here -->
+                                <form th:action="@{/jobdetails}" th:object="${ApplicationDTO}" method="post" id="applicationForm" class="landing-page-submit-applicat" enctype="multipart/form-data">
+                                <div class="landing-page-submit-applicat">
+                                        <div class="base1"></div>
+                                        <img class="icon56" loading="lazy" alt="" th:src="@{/images/icon-211.svg}" />
 
-                <div class="input-splitter">
-                    <div class="input-fields">
-                        <div class="role">
-                            <img class="company-logo-icon16" loading="lazy"
-                                 th:src="@{/company/image/{id}(id=${post.getCompany().id})}" alt="Company Avatar" />
-                            />
+                                        <div class="input-splitter">
+                                            <div class="input-fields">
+                                                <div class="role">
+                                                    <img class="company-logo-icon16" loading="lazy"
+                                                         th:src="@{/company/image/{id}(id=${post.getCompany().id})}" alt="Company Avatar" />
+                                                    />
 
-                            <div class="job-title-container">
-                                <div class="job-title10">
-                                    <h3 class="social-media-assistant10">
-                                        Social Media Assistant
-                                    </h3>
-                                    <div class="frame">
-                                        <div class="nomad9" th:text="${post.getCompany().getName()}"></div>
-                                        <div class="error-handler1"></div>
-                                        <div class="paris-france10" th:text="${post.getLocation().getName()}">
-                                        </div>
-                                        <div class="error-handler2"></div>
-                                        <div class="full-time2" th:text="${post.getLevel().name}">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="divider5"></div>
-                        <div class="submit-your-application">
-                            <h3 class="submit-your-application1">
-                                Submit your application
-                            </h3>
-                            <div class="the-following-is" th:text="${'The following is required and will only be shared with ' + post.getCompany().getName()}">
+                                                    <div class="job-title-container">
+                                                        <div class="job-title10">
+                                                            <h3 class="social-media-assistant10" th:if="${post.getTitle() != null}" th:text="${post.getTitle()}"></h3>                                    </h3>
+                                                            <div class="frame">
+                                                                <div class="nomad9" th:text="${post.getCompany().getName()}"></div>
+                                                                <div class="error-handler1"></div>
+                                                                <div class="paris-france10" th:text="${post.getLocation().getName()}">
+                                                                </div>
+                                                                <div class="error-handler2"></div>
+                                                                <div class="full-time2" th:text="${post.getLevel().name}">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="divider5"></div>
+                                                <div class="submit-your-application">
+                                                    <h3 class="submit-your-application1">
+                                                        Submit your application
+                                                    </h3>
+                                                    <div class="the-following-is" th:text="${'The following is required and will only be shared with ' + post.getCompany().getName()}">
                             </div>
                         </div>
                         <input hidden="hidden" name="id" th:value="${post.id}">
                         <div class="textfield">
                             <div class="label50">Fullname</div>
                             <div class="input1">
-                                <input class="this-is-placeholder1" placeholder="Enter your fullname" type="text" />
+                                <input class="this-is-placeholder1" placeholder="Enter your fullname" type="text" th:field="*{fullName}" />
                             </div>
                         </div>
                         <div class="textfield1">
                             <div class="label51">Email address</div>
                             <div class="input2">
                                 <input class="this-is-placeholder2" placeholder="Enter your email address"
-                                       type="text" />
+                                       type="text" th:field="*{emailAddress}" />
                             </div>
                         </div>
                         <div class="textfield2">
                             <div class="label52">Phone number</div>
                             <div class="input3">
                                 <input class="this-is-placeholder3" placeholder="Enter your phone number"
-                                       type="text" />
+                                       type="text" th:field="*{phoneNumber}" />
                             </div>
                         </div>
                         <div class="textfield3">
@@ -451,7 +449,7 @@
                             </div>
                             <div class="input4">
                                 <input class="this-is-placeholder4"
-                                       placeholder="What’s your current or previous job title?" type="text" />
+                                       placeholder="What’s your current or previous job title?" type="text" th:field="*{jobTitle}" />
                             </div>
                         </div>
                         <div class="divider6"></div>
@@ -460,14 +458,14 @@
                             <div class="label54">LinkedIn URL</div>
                             <div class="input5">
                                 <input class="this-is-placeholder5" placeholder="Link to your LinkedIn URL"
-                                       type="text" />
+                                       type="text" th:field="*{linkedInUrl}"/>
                             </div>
                         </div>
                         <div class="textfield5">
                             <div class="label55">Github URL</div>
                             <div class="input6">
                                 <input class="this-is-placeholder6" placeholder="Link to your github URL"
-                                       type="text" />
+                                       type="text" th:field="*{portfolioUrl}" />
                             </div>
                         </div>
                         <div class="divider7"></div>
@@ -478,7 +476,7 @@
                             <div class="content3">
                                     <textarea class="form"
                                               placeholder="Add a cover letter or anything else you want to share" rows="{8}"
-                                              cols="{29}">
+                                              cols="{29}" th:field="*{additionalInformation}">
                                 </textarea>
                                 <div class="icon57">
                                     <img class="icon58" loading="lazy" alt="" th:src="@{/images/icon-221.svg}" />
@@ -501,21 +499,21 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="textfield7">
-                            <div class="attach-your-resume-wrapper">
-                                <div class="attach-your-resume">
-                                    Attach your resume
-                                </div>
-                            </div>
-                            <button class="form-attach">
-                                <div class="icon-wrapper6">
-                                    <img class="icon64" alt="" th:src="@{/images/icon-281.svg}" />
-                                </div>
-                                <div class="attach-resumecv">
-                                    Attach Resume/CV
-                                </div>
-                            </button>
-                        </div>
+<!--                        <div class="textfield7">-->
+<!--                            <div class="attach-your-resume-wrapper">-->
+<!--                                <div class="attach-your-resume">-->
+<!--                                    Attach your resume-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <button class="form-attach">-->
+<!--                                <div class="icon-wrapper6">-->
+<!--                                    <img class="icon64" alt="" th:src="@{/images/icon-281.svg}" />-->
+<!--                                </div>-->
+<!--                                <div class="attach-resumecv">-->
+<!--                                    Attach Resume/CV-->
+<!--                                </div>-->
+<!--                            </button>-->
+<!--                        </div>-->
                         <div class="divider8"></div>
                         <button type="submit" class="button14">
                             <b class="caption63">Submit Application</b>

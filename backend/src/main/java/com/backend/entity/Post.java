@@ -70,7 +70,7 @@ public class Post {
 
     @ManyToMany
     @JoinTable(
-            name = "job_applicants",
+            name = "applications",
             joinColumns = @JoinColumn(name = "post_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
 private List<User> applicants;
