@@ -46,7 +46,7 @@ import java.util.List;
             model.addAttribute("companies", companies);
             model.addAttribute("UniversityId", universities.get(1).getId());
             if (authentication != null && authentication.getPrincipal() instanceof UserDetails userDetails) {
-                User userLoggedIn = userService.getUserbyEmail(userDetails.getUsername());
+                User userLoggedIn = userService.getLoggedInUser();
                 if (userLoggedIn.getRole().equals("company")) {
                     model.addAttribute("companyLoggedIn", userLoggedIn.getCompany());
                     return "Company/settings-overview";
@@ -69,33 +69,20 @@ import java.util.List;
                                    @RequestParam(value = "startDate" ,required = false) String startDate,
                                    @RequestParam(value = "endDate" ,required = false) String endDate,
                                    @ModelAttribute("experience")ExperienceDto experienceDto) throws IOException, IOException {
-            User currentUser = userService.getUserbyEmail(auth.getName());
+            User currentUser = userService.getLoggedInUser();
             if (avatarFile != null && !avatarFile.isEmpty()) {
                 currentUser.setPhoto(avatarFile.getBytes());
             }
             if (currentUser.getRole().equals("company")) {
                 Company existingCompany = currentUser.getCompany();
-                existingCompany.setCompanyWebsite(formCompany.getCompanyWebsite());
-                existingCompany.setAvatar(avatarFile.getBytes());
-                existingCompany.setName(formCompany.getName());
-                existingCompany.setProfileDescription(formCompany.getProfileDescription());
-                companyService.saveCompany(existingCompany);
+                companyService.updateCompany(existingCompany, formCompany, avatarFile);
                 model.addAttribute("successMessage", "Company settings saved successfully");
             } else {
-                if(UniversityId != null) {
-                    University university = universityService.findById(UniversityId);
-                    Education education = new Education();
-                    education.setUniversity(university);
-                    education.setUser(currentUser) ;
-                    education.setMajor(MajorUni);
-                    education.setCertificateDegreeName(Degree);
-                    education.setStartDate(startDate);
-                    education.setGradDate(endDate);
-                    educationService.save(education);
-                    if(user.getEducationDetail() != null){
+                if (UniversityId != null) {
+                    Education education = educationService.createAndSaveEducation(UniversityId, currentUser, MajorUni, Degree, startDate, endDate);
+                    if (user.getEducationDetail() != null) {
                         user.getEducationDetail().add(education);
-                    }
-                    else {
+                    } else {
                         List<Education> educationList = new ArrayList<>();
                         educationList.add(education);
                         user.setEducationDetail(educationList);
@@ -104,44 +91,16 @@ import java.util.List;
                 else {
                     System.out.print("UniversityId is null");
                 }
-                if(user.getUserDisplayName() != null) {
-                    currentUser.setUserDisplayName(user.getUserDisplayName());
+                userService.updateUser(currentUser, user);
+                try {
+                    Companies company = companiesService.findById(experienceDto.getCompanyId());
+                    if (company != null) {
+                        experienceService.saveExperience(experienceDto, currentUser, companiesService);
+                    }
+                } catch (Exception e) {
+                    //TODO : Handle exception
                 }
-                if(user.getContactNumber() != null) {
-                    currentUser.setContactNumber(user.getContactNumber());
-                }
-                if(user.getEmail() != null) {
-                    currentUser.setEmail(user.getEmail());
-                }
-                if(user.getDob() != null) {
-                    currentUser.setDob(user.getDob());
-                }
-                if(user.getGender() != null) {
-                    currentUser.setGender(user.getGender());
-                }
-                if(user.getGithub() != null) {
-                    currentUser.setGithub(user.getGithub());
-                }
-                if(user.getLinkedin() != null) {
-                    currentUser.setLinkedin(user.getLinkedin());
-                }
-                if(user.getMajor() != null) {
-                    currentUser.setMajor(user.getMajor());
-                }
-                if(user.getExperienceInYears() != null) {
-                    currentUser.setExperienceInYears(user.getExperienceInYears());
-                }
-                if(user.getLocation() != null ) {
-                    currentUser.setLocation(locationService.getLocationById(user.getLocation().getId()));
-                }
-                if(user.getRole() != null) {
-                    currentUser.setRole(user.getRole());
-                }
-                if(user.getBio() != null) {
-                    currentUser.setBio(user.getBio());
-                }
-                // Experience
-                experienceService.saveExperience(experienceDto, currentUser, companiesService);
+
                 userService.save(currentUser);
                 model.addAttribute("successMessage", "User settings saved successfully");
             }

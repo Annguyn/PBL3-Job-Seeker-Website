@@ -12,7 +12,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "job_location")
+@Table(name = "post_location")
 @Data
 @NoArgsConstructor
 public class Location implements Serializable  {

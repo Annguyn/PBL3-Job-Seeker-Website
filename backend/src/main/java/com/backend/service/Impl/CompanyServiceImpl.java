@@ -1,5 +1,6 @@
 package com.backend.service.Impl;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.backend.entity.Company;
 import com.backend.repository.CompanyRepository;
 import com.backend.service.CompanyService;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class CompanyServiceImpl implements CompanyService {
@@ -44,5 +46,14 @@ public class CompanyServiceImpl implements CompanyService {
         return companyRepository.findAll((root, query, criteriaBuilder) ->
                 criteriaBuilder.like(criteriaBuilder.lower(root.get("name")), "%" + keyword.toLowerCase() + "%")
         );
+    }
+
+    @Override
+    public void updateCompany(Company existingCompany, Company formCompany, MultipartFile avatarFile) throws IOException {
+        existingCompany.setCompanyWebsite(formCompany.getCompanyWebsite());
+        existingCompany.setAvatar(avatarFile.getBytes());
+        existingCompany.setName(formCompany.getName());
+        existingCompany.setProfileDescription(formCompany.getProfileDescription());
+        saveCompany(existingCompany);
     }
 }

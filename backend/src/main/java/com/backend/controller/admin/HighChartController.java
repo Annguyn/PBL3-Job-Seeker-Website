@@ -32,7 +32,6 @@ public class HighChartController {
         this.userService = userService;
     }
 
-
     @GetMapping("/get-data")
     public ResponseEntity<Map<String, List<Map<String, Object>>>> getPieChart(@RequestParam String type, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fromDate, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate toDate) {
         List<Post> posts = postService.getAllPosts();

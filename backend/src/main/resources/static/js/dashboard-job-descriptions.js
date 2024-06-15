@@ -1,10 +1,15 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     var modal = document.getElementById("myModal");
-
     var btn = document.getElementById("applyButton");
 
     btn.onclick = function() {
-        modal.style.display = "block";
+        var isAvailable = $(this).attr('data-is-live');
+        console.log("Available : " + isAvailable)
+        if (isAvailable === "true") {
+            modal.style.display = "block";
+        } else {
+            alert('This post is not available.');
+        }
     }
     var closeBtn = document.getElementsByClassName("icon56")[0];
     closeBtn.onclick = function() {
@@ -42,7 +47,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             modal.style.display = 'block';
 
             $.ajax({
-                url: '/predict',  // replace with the URL of your prediction endpoint
+                url: '/predict',
                 type: 'POST',
                 data: {
                     postId: postId

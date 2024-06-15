@@ -32,25 +32,12 @@ public class JobDetailsController {
         if (id == null) {
             return "job-descriptions";
         }
-        User userLoggedIn = null;
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.getPrincipal() instanceof UserDetails userDetails) {
-            userLoggedIn = userService.getUserbyEmail(userDetails.getUsername());
-        }
-        if (userLoggedIn == null) {
-            userLoggedIn = new User();
-        }
+        User userLoggedIn = userService.getLoggedInUser();
         List<Comment> comments = postService.getPostById(id).getComments();
         model.addAttribute("comments", comments);
         model.addAttribute("userLoggedIn", userLoggedIn);
         try {
-            Post post = postService.getPostById(id);
-            if (post.getLocation() == null) {
-                post.setLocation(new Location());
-            }
-            if (post.getLocation().getName() == null) {
-                post.getLocation().setName("N/A");  // Set the name to "N/A" if it's null
-            }
+            Post post = postService.getPostAndSetDefaults(id);
             model.addAttribute("post", post);
             return "job-descriptions";
         } catch (Exception e) {
@@ -60,33 +47,8 @@ public class JobDetailsController {
     }
     @PostMapping("/jobdetails")
     public String applyJob(@ModelAttribute("ApplicationDTO") ApplicationDTO jobApplicationDto , @RequestParam("id") Integer postId) throws IOException {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User userLoggedIn = null;
-        if (authentication != null && authentication.getPrincipal() instanceof UserDetails userDetails) {
-            userLoggedIn = userService.getUserbyEmail(userDetails.getUsername());
-        }
-        if (userLoggedIn == null) {
-            userLoggedIn = new User();
-        }
-        byte[] resumeBytes;
-        if (jobApplicationDto.getResume() != null) {
-            resumeBytes = jobApplicationDto.getResume().getBytes();
-        } else {
-            resumeBytes = new byte[0];
-        }
-        Application application = new Application(
-                userLoggedIn,
-                postService.getPostById(postId),
-                jobApplicationDto.getFullName(),
-                jobApplicationDto.getEmailAddress(),
-                jobApplicationDto.getPhoneNumber(),
-                jobApplicationDto.getJobTitle(),
-                jobApplicationDto.getLinkedInUrl(),
-                jobApplicationDto.getPortfolioUrl(),
-                jobApplicationDto.getAdditionalInformation(),
-                resumeBytes );
-        // Save the application
-        applicationService.save(application);
-        return "redirect:/home";
+        User userLoggedIn = userService.getLoggedInUser();
+        applicationService.createAndSaveApplication(jobApplicationDto, userLoggedIn, postId);
+        return "redirect:/jobdetails?id=" + postId;
     }
 }

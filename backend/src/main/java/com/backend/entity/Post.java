@@ -10,7 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "recruitment_post")
+@Table(name = "post")
 @Data
 @NoArgsConstructor
 public class Post {
@@ -66,14 +66,14 @@ public class Post {
     private Location location;
 
     @Column(name = "is_live")
-    private boolean isLive;
+    private boolean isLive = true;
 
     @ManyToMany
     @JoinTable(
             name = "applications",
             joinColumns = @JoinColumn(name = "post_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
-private List<User> applicants;
+    private List<User> applicants;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Application> applications = new ArrayList<>();
@@ -87,11 +87,11 @@ private List<User> applicants;
     private List<ProgramingLanguage> programingLanguages;
 
     @ManyToMany
-    @JoinTable(name = "job_nice_to_haves", joinColumns = @JoinColumn(name = "post_id"), inverseJoinColumns = @JoinColumn(name = "nth_id"))
+    @JoinTable(name = "post_nice_to_haves", joinColumns = @JoinColumn(name = "post_id"), inverseJoinColumns = @JoinColumn(name = "nth_id"))
     private List<NiceToHaves> niceToHaves;
 
 
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments;
 
     public Post(int CompanyId, BigDecimal maxSalary, BigDecimal minSalary, String phoneNumber, String email,

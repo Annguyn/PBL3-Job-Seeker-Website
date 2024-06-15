@@ -73,7 +73,7 @@
     <div class="landing-page-sign-up-deskt-wrapper">
       <div class="landing-page-sign-up-deskt">
         <div class="sign-up-options-group">
-          <div class="sign-up-options1">
+          <div th:if="${param.type==null}" class="sign-up-options1">
             <button class="tab-menu2">
               <div class="caption94">Job Seeker</div>
             </button>
@@ -81,18 +81,26 @@
               <a class="caption95" th:href="@{/registration?type=company}">Company</a>
             </div>
           </div>
+          <div th:if="${param.type!=null}" class="sign-up-options1">
+            <button class="tab-menu2">
+              <div class="caption94">Company</div>
+            </button>
+            <div class="tab-menu3">
+              <a class="caption95" th:href="@{/registration}">Job Seeker</a>
+            </div>
+          </div>
           <h1 class="get-more-opportunities">Get more opportunities</h1>
-          <button class="button20">
-            <img class="icon68" alt="" th:src="@{images/icon.svg}" />
-            <b class="caption96">Sign Up with Google</b>
-          </button>
+<!--          <button class="button20">-->
+<!--            <img class="icon68" alt="" th:src="@{images/icon.svg}" />-->
+<!--            <b class="caption96">Sign Up with Google</b>-->
+<!--          </button>-->
         </div>
         <div class="or-sign-up-with-email1">
           <div class="login-button-instance">
             <div class="line7"></div>
           </div>
 
-          <div class="or-sign-up">Or sign up with email</div>
+          <div class="or-sign-up"> Sign up with email</div>
           <div class="login-button-instance1">
             <div class="line8"></div>
           </div>
@@ -121,7 +129,7 @@
           <div class="textfield12">
             <div class="label93">Password</div>
             <div class="input12">
-              <input class="this-is-placeholder12" placeholder="Enter password" type="text" th:field="*{password}"
+              <input class="this-is-placeholder12" placeholder="Enter password" type="password" th:field="*{password}"
                 required />
             </div>
           </div>

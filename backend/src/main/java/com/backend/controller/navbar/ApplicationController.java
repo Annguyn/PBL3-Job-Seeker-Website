@@ -29,9 +29,7 @@ public class ApplicationController {
 
     @GetMapping("/viewApplicants")
     public String viewApplicants(Model model , @RequestParam("id") Integer id ) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName();
-        User user = userService.getUserbyEmail(username);
+        User user = userService.getLoggedInUser();
         Company company = user.getCompany() ;
         if (id == null) {
             return "error";
@@ -45,9 +43,7 @@ public class ApplicationController {
 
     @GetMapping("/applicant")
     public String viewApplicant(Model model , @RequestParam("id") Integer id ) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName();
-        User user = userService.getUserbyEmail(username);
+        User user = userService.getLoggedInUser();
         Company company = user.getCompany() ;
         if (id == null) {
             return "error";
@@ -64,21 +60,9 @@ public class ApplicationController {
     }
 
     @PostMapping("/updateStatus")
-    public String updateStatus(@RequestParam("id") int id, @RequestParam("status") String status, @RequestParam("interviewDate") String interviewDate, @RequestParam("interviewTime") String interviewTime) {
+    public String updateStatus(@RequestParam("id") int id, @RequestParam(value = "status", required = false) String status, @RequestParam(value = "interviewDate" , required = false) String interviewDate, @RequestParam(value = "interviewTime" , required = false) String interviewTime) {
         Application application = applicationService.findById(id);
-        if (application != null) {
-            application.setStatus(status);
-            if(application.getStatus().equals("Interview") && (interviewDate == null || interviewTime == null)) {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-                LocalDateTime interviewStartDateTime = LocalDateTime.parse(interviewDate + " " + interviewTime, formatter);
-                application.setInterviewStartTime(interviewStartDateTime);
-            }
-            if(application.getStatus().equals("Unsuitable") || application.getStatus().equals("Accepted")) {
-                application.setInterviewEndTime(LocalDateTime.now());
-            }
-            applicationService.save(application);
-            applicationService.updateStatus(id, status);
-        }
+        applicationService.updateApplicationStatus(application, status, interviewDate, interviewTime);
         return "redirect:/applicant?id=" + id;
     }
 }

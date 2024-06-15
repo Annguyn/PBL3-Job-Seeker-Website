@@ -54,11 +54,8 @@ public class PostAJobsController {
         List<NiceToHaves> niceToHaves = niceToHavesService.getAllNiceToHaves();
         List<ProgramingLanguage> programingLanguages = programingLanguageService.getAllProgramingLanguages() ;
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication.getPrincipal() instanceof UserDetails) {
-            String username = ((UserDetails) authentication.getPrincipal()).getUsername();
-            User userLoggedIn = userService.getUserbyEmail(username);
-            model.addAttribute("user", userLoggedIn);
-        }
+        User userLoggedIn = userService.getLoggedInUser();
+        model.addAttribute("user", userLoggedIn);
         model.addAttribute("locations", locations);
         model.addAttribute("niceToHaves", niceToHaves);
         model.addAttribute("levels", levels);
@@ -74,36 +71,11 @@ public class PostAJobsController {
                            BindingResult result, RedirectAttributes redirectAttributes, Model model) {
         User userLoggedIn = null;
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication.getPrincipal() instanceof UserDetails) {
-            String username = ((UserDetails) authentication.getPrincipal()).getUsername();
-            userLoggedIn = userService.getUserbyEmail(username);
-        }
+        userLoggedIn = userService.getLoggedInUser();
         try {
-            Post post = new Post(
-                    userLoggedIn.getCompany().getId(),
-                    postDto.getMaxSalary().multiply(BigDecimal.valueOf(1000000)),
-                    postDto.getMinSalary().multiply(BigDecimal.valueOf(1000000)),
-                    postDto.getPhoneNumber(),
-                    postDto.getEmail(),
-                    postDto.getContent(),
-                    postDto.getImages(),
-                    postDto.getExperience()
-            );
-            post.setLocation(locationService.getLocationById(postDto.getLocationId()));
-            post.setDatePosted(java.time.LocalDateTime.now());
-            post.setTitle(postDto.getTitle());
-            post.setLevel(levelService.getLevelById(postDto.getLevelId()));
-            List<Category> categoriesSelected = categoryService.getCategoriesByIds(categoriesID);
-            post.setCategories(categoriesSelected);
-            List<ProgramingLanguage> languages = programingLanguageService.getProgramingLanguageByIds(programmingLanguagesID);
-            post.setProgramingLanguages(languages);
-            List<NiceToHaves> niceToHavesSelected = niceToHavesService.getNiceToHavesByIds(niceToHavesID);
-            post.setNiceToHaves(niceToHavesSelected);
-            post.setContent(postDto.getContent());
-            postService.save(post);
+            postService.createAndSavePost(postDto, userLoggedIn, categoriesID, programmingLanguagesID, niceToHavesID);
             model.addAttribute("successMessage", "Job posted successfully");
-            return "redirect:/home";
+            return STR."redirect:/jobdetails?id=\{postService.getAllPosts().getLast().getId()}";
         } catch (Exception e) {
             model.addAttribute("errorMessage", "An error occurred while posting the job");
             return "redirect:/home";

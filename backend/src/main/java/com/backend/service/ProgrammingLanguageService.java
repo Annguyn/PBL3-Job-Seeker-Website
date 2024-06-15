@@ -8,6 +8,7 @@ import com.backend.entity.ProgramingLanguage;
 
 @Service
 public interface ProgrammingLanguageService {
-    public List<ProgramingLanguage> getAllProgramingLanguages();   
-    public List<ProgramingLanguage> getProgramingLanguageByIds(List<Integer> ids);
+    List<ProgramingLanguage> getAllProgramingLanguages();
+    List<ProgramingLanguage> getProgramingLanguageByIds(List<Integer> ids);
+    void updateProgramingLanguageQuantities();
 }

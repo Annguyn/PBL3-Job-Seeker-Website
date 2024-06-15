@@ -19,7 +19,7 @@ public class MailService {
 
     public void sendSimpleMessage(String to, String subject, String text) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("noreply@yourdomain.com");
+        message.setFrom("jobhuntly@gmail.com");
         message.setTo(to);
         message.setSubject(subject);
         message.setText(text);
@@ -31,7 +31,7 @@ public class MailService {
             MimeMessage message = emailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
-            helper.setFrom("noreply@yourdomain.com");
+            helper.setFrom("jobhuntly@gmail.com");
             helper.setTo(to);
             helper.setSubject(subject);
             helper.setText(text, true);

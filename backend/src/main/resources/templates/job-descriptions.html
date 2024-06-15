@@ -50,7 +50,8 @@
                             <div class="icon-inner"></div>
                             <div class="icon-child1"></div>
                         </div>
-                        <a th:href="@{/jobApplied}" class="caption208">My Applications</a>
+                        <a th:if="${userLoggedIn.getRole() == 'user'}" th:href="@{/jobApplied}" class="caption208">My Applications</a>
+                        <a th:if="${userLoggedIn.getRole() == 'company'}" th:href="@{/profile}" class="caption208">Company Profile</a>
                     </div>
                     <button class="sidebar-menu11">
                         <div class="indicator-container">
@@ -59,19 +60,25 @@
                         <div class="menu21">
                             <img class="icon136" alt="" th:src="@{/images/icon-214.svg}" />
 
-                            <div class="caption209">Find Jobs</div>
+                            <div th:if="${userLoggedIn.getRole() == 'user'}" class="caption209">Find Jobs</div>
+                            <div th:if="${userLoggedIn.getRole() == 'company'}" class="caption209">Job Listing</div>
                         </div>
                     </button>
                     <div class="sidebar-menu12">
                         <img class="icon137" loading="lazy" alt="" th:src="@{/images/icon-32.svg}" />
 
-                        <a th:href="@{/findCompany}" class="caption210">Browse Companies</a>
+                        <a th:if="${userLoggedIn.getRole() == 'user'}" th:href="@{/findCompany}" class="caption210">Browse Companies</a>
+                        <a th:if="${userLoggedIn.getRole() == 'company'}" th:href="@{/allApplicants}" class="caption210">All Applicants</a>
                     </div>
                     <div class="sidebar-menu13">
                         <img class="icon138" loading="lazy" alt="" th:src="@{/images/icon-41.svg}" />
 
-                        <a th:href="@{/profile}" class="caption211">
+                        <a th:if="${userLoggedIn.getRole()=='user'}" th:href="@{/profile}" class="caption211">
                             My Profile
+                        </a>
+
+                        <a th:if="${userLoggedIn.getRole()=='company'}" th:href="@{/interviewSchedule}" class="caption211">
+                            My Schedule
                         </a>
                     </div>
                 </div>
@@ -198,7 +205,7 @@
                                 </div>
                             </div>
                             <div class="line16"></div>
-                            <button id="applyButton" class="button52">
+                            <button id="applyButton" class="button52" th:attr="data-is-live=${post.isLive()}">
                                 <b class="caption215">Apply</b>
                             </button>
                         </div>
@@ -251,11 +258,10 @@
                 </div>
                 <div class="nice-to-haves4">
                     <h3 class="nice-to-haves5">Nice-To-Haves</h3>
-                    <div class="frame-parent28">
+                    <div class="frame-parent28" th:each="nicetoHave : ${post.getNiceToHaves()}">
                         <div class="icon-parent25">
                             <img class="icon154" loading="lazy" alt="" th:src="@{/images/icon-102.svg}" />
-                            <div class="fluent-in-english2">
-                                Fluent in English
+                            <div class="fluent-in-english2" th:text="${nicetoHave.getName()}">
                             </div>
                         </div>
                     </div>
@@ -277,16 +283,18 @@
                         </div>
                     </div>
                     <div class="apply-before4">
-                        <div class="apply-before5">Apply Before</div>
-                        <div class="july-31-20212">July 31, 2021</div>
-                    </div>
+                        <div class="apply-before5">Active</div>
+                        <div class="july-31-20212">
+                            <span th:if="${post.isLive()}">Is active</span>
+                            <span th:if="${!post.isLive()}">Not available</span>
+                        </div>                    </div>
                     <div class="job-posted-on4">
                         <div class="job-posted-on5">Job Posted On</div>
                         <div class="july-1-20212" th:text="${post.datePosted}"></div>
                     </div>
                     <div class="job-type4">
-                        <div class="job-type5">Job Type</div>
-                        <div class="full-time8">Full-Time</div>
+                        <div class="job-type5">Experience</div>
+                        <div class="full-time8" th:text="${'Above ' + post.experience  + ' years'}"></div>
                     </div>
                     <div class="salary4">
                         <div class="salary5">Salary</div>
@@ -478,25 +486,7 @@
                                               placeholder="Add a cover letter or anything else you want to share" rows="{8}"
                                               cols="{29}" th:field="*{additionalInformation}">
                                 </textarea>
-                                <div class="icon57">
-                                    <img class="icon58" loading="lazy" alt="" th:src="@{/images/icon-221.svg}" />
 
-                                    <img class="icon59" loading="lazy" alt="" th:src="@{/images/icon-231.svg}" />
-
-                                    <img class="icon60" loading="lazy" alt="" th:src="@{/images/icon-241.svg}" />
-
-                                    <img class="icon61" loading="lazy" alt="" th:src="@{/images/icon-251.svg}" />
-
-                                    <img class="icon62" loading="lazy" alt="" th:src="@{/images/icon-261.svg}" />
-
-                                    <img class="icon63" loading="lazy" alt="" th:src="@{/images/icon-271.svg}" />
-                                </div>
-                                <div class="helper-text">
-                                    <div class="maximum-500-characters">
-                                        Maximum 500 characters
-                                    </div>
-                                    <div class="div2">0 / 500</div>
-                                </div>
                             </div>
                         </div>
 <!--                        <div class="textfield7">-->

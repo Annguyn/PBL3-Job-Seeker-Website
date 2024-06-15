@@ -210,6 +210,7 @@
             </form>
           </div>
         </section>
+        <button id="downloadBtn">Download PDF</button>
         <section class="binary-tree-leaf" >
           <div class="binary-tree-internal">
             <div class="company-dashboard-applicant">
@@ -347,13 +348,19 @@
                       <div class="col-11">
                         <div class="current-job">
                           <div class="current-job1">Current Job</div>
-                          <div class="product-designer1" th:text="${applyForm.user.experienceDetail.getLast().getTitle()}"></div>
+                          <div class="product-designer1" th:if="${!applyForm.user.experienceDetail.isEmpty() && applyForm.user.experienceDetail.getLast().getTitle() != null}" th:text="${applyForm.user.experienceDetail.getLast().getTitle()}"></div>
                         </div>
                         <div class="highest-qualification">
                           <div class="highest-qualification-held">
                             Highest Qualification Held
                           </div>
-                          <div class="bachelors-in-engineering" th:text="${applyForm.getUser().getEducationDetail().getLast().getUniversity().getName()}">
+                          <div class="bachelors-in-engineering">
+    <span th:switch="${applyForm.getUser().getEducationDetail().getLast().getCertificateDegreeName()}">
+        <span th:case="'PhD'" th:text="${applyForm.getUser().getEducationDetail().getLast().getUniversity().getName()}"></span>
+        <span th:case="'Master\'s'" th:text="${applyForm.getUser().getEducationDetail().getLast().getUniversity().getName()}"></span>
+        <span th:case="'Bachelor\'s'" th:text="${applyForm.getUser().getEducationDetail().getLast().getUniversity().getName()}"></span>
+        <span th:case="*" th:text="''"></span>
+    </span>
                           </div>
                         </div>
                       </div>
@@ -374,12 +381,12 @@
                         </div>
                       </div>
                     </div>
-                    <div class="about-me">
-                      <div class="about-me1">Resume </div>
-                      <div class="about-me2">
-                        <a th:href="@{/resume/pdf/{id}(id=${applyForm.user.getID()})}" target="_blank">View Resume</a>
-                        </div>
-                      </div>
+<!--                    <div class="about-me">-->
+<!--                      <div class="about-me1">Resume </div>-->
+<!--                      <div class="about-me2">-->
+<!--                        <a th:href="@{/resume/pdf/{id}(id=${applyForm.user.getID()})}" target="_blank">View Resume</a>-->
+<!--                        </div>-->
+<!--                      </div>-->
                     <div class="about-me2">
                       <a th:href="@{/viewProfile(id=${applyForm.id})}" target="_blank">View Profile</a>                  </div>
                     </div>
@@ -389,6 +396,7 @@
           </div>
         </section>
       </main>
-    </div>
+    </div> <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
   </body>
 </html>

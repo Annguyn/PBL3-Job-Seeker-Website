@@ -34,6 +34,7 @@
       <div class="side-bar-dashboard-company">
         <div class="menu">
           <div class="logo-2-wrapper">
+            <a th:href="@{/home}" class="fill-div">
             <div class="logo-2">
               <div class="logo-2-inner">
                 <img
@@ -45,6 +46,7 @@
               </div>
               <h3 class="jobhuntly">JobHuntly</h3>
             </div>
+            </a>
           </div>
           <div class="main-menu">
             <div class="menu1">
@@ -173,7 +175,7 @@
             <button class="button">
               <img class="icon11" alt=""th:src="@{./images/Company/icon-11.svg}" />
 
-              <b class="caption9">Post a job</b>
+              <a th:href="@{/postjobs}" class="caption9">Post a job</a>
             </button>
           </div>
         </header>

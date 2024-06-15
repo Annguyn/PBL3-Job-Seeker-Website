@@ -13,9 +13,8 @@ import com.backend.entity.User;
 @Repository
 @EnableJpaRepositories
 public interface LocationRepository extends JpaRepository<Location, Integer> {
-    // Không cần phải viết các phương thức CRUD, chúng được cung cấp sẵn bởi JpaRepository
     @Query(
-            value = "select * from job_location",
+            value = "select * from post_location",
             nativeQuery = true)
     List<Location> getAllLocation();
     Location getLocationById(int id);

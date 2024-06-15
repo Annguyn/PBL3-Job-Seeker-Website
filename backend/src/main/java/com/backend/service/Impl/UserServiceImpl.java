@@ -2,7 +2,11 @@ package com.backend.service.Impl;
 
 import com.backend.entity.Application;
 import com.backend.repository.ApplicationRepository;
+import com.backend.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.backend.dto.UserDto;
@@ -29,6 +33,8 @@ public class UserServiceImpl implements UserService {
     private CompanyRepository companyRepository;
     @Autowired
     private ApplicationRepository applicationRepository;
+    @Autowired
+    private LocationService locationService;
 
     @Override
     public void save(UserDto userDto) throws IOException {
@@ -90,5 +96,102 @@ public class UserServiceImpl implements UserService {
         return allApplications.stream()
                 .filter(application -> application.getInterviewStartTime() != null && application.getInterviewStartTime().isAfter(now) && application.getStatus().equals("Interview"))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public User getLoggedInUser() {
+        Authentication authen = SecurityContextHolder.getContext().getAuthentication();
+        User userLoggedIn = null;
+        if (authen != null && authen.getPrincipal() instanceof UserDetails userDetails) {
+            userLoggedIn = getUserbyEmail(userDetails.getUsername());
+        }
+        if (userLoggedIn == null) {
+            userLoggedIn = new User();
+        }
+        return userLoggedIn;
+    }
+
+    @Override
+    public User updateUser(User currentUser, User user) {
+        if(user.getUserDisplayName() != null) {
+            currentUser.setUserDisplayName(user.getUserDisplayName());
+        }
+        if(user.getContactNumber() != null) {
+            currentUser.setContactNumber(user.getContactNumber());
+        }
+        if(user.getEmail() != null) {
+            currentUser.setEmail(user.getEmail());
+        }
+        if(user.getDob() != null) {
+            currentUser.setDob(user.getDob());
+        }
+        if(user.getGender() != null) {
+            currentUser.setGender(user.getGender());
+        }
+        if(user.getGithub() != null) {
+            currentUser.setGithub(user.getGithub());
+        }
+        if(user.getLinkedin() != null) {
+            currentUser.setLinkedin(user.getLinkedin());
+        }
+        if(user.getMajor() != null) {
+            currentUser.setMajor(user.getMajor());
+        }
+        if(user.getExperienceInYears() != null) {
+            currentUser.setExperienceInYears(user.getExperienceInYears());
+        }
+        if(user.getLocation() != null ) {
+            currentUser.setLocation(locationService.getLocationById(user.getLocation().getId()));
+        }
+        if(user.getRole() != null) {
+            currentUser.setRole(user.getRole());
+        }
+        if(user.getBio() != null) {
+            currentUser.setBio(user.getBio());
+        }
+        return currentUser;
+    }
+    @Override
+    public void updateUser(User user) {
+        User existingUser = userRepository.findById(user.getID()).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + user.getID()));
+        existingUser.setContactNumber(user.getContactNumber());
+        existingUser.setRole(user.getRole());
+        existingUser.setDob(user.getDob());
+        existingUser.setGender(user.getGender());
+        existingUser.setGithub(user.getGithub());
+        existingUser.setLinkedin(user.getLinkedin());
+        existingUser.setMajor(user.getMajor());
+        existingUser.setExperienceInYears(user.getExperienceInYears());
+        existingUser.setBio(user.getBio());
+
+        userRepository.save(existingUser);
+    }
+    @Override
+    public void updateUser(UserDto userDto) {
+        User existingUser = userRepository.findById(userDto.getID()).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + userDto.getID()));
+
+        if (userDto.getBio() != null) {
+            existingUser.setBio(userDto.getBio());
+        }
+        if (userDto.getGithub() != null) {
+            existingUser.setGithub(userDto.getGithub());
+        }
+        if (userDto.getLinkedin() != null) {
+            existingUser.setLinkedin(userDto.getLinkedin());
+        }
+        if (userDto.getMajor() != null) {
+            existingUser.setMajor(userDto.getMajor());
+        }
+        if (userDto.getContactNumber() != null) {
+            existingUser.setContactNumber(userDto.getContactNumber());
+        }
+        if (userDto.getSocialLink() != null) {
+            existingUser.setSocialLink(userDto.getSocialLink());
+        }
+        if (userDto.getRole() != null) {
+            existingUser.setRole(userDto.getRole());
+        }
+
+        userRepository.save(existingUser);
     }
 }

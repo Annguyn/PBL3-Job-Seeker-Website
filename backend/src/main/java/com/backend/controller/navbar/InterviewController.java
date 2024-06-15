@@ -31,9 +31,7 @@ public class InterviewController {
 
     @GetMapping("/interview")
     public String showInterviewForm(Model model , @RequestParam("id") Integer id ) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName();
-        User user = userService.getUserbyEmail(username);
+        User user = userService.getLoggedInUser();
         Company company = user.getCompany() ;
         if (id == null) {
             return "error";
@@ -53,16 +51,18 @@ public class InterviewController {
     @GetMapping("/interviewSchedule")
     public String showInterviewScheduleForm(@RequestParam(value = "date" , required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date, Model model) {
 
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName();
-        User user = userService.getUserbyEmail(username);
+        User user = userService.getLoggedInUser();
+
+        LocalDateTime startDateTime;
+        LocalDateTime endDateTime;
 
         if (date == null) {
-            date = LocalDate.now();
+            startDateTime = LocalDate.now().atStartOfDay();
+            endDateTime = LocalDateTime.of(2030, 1, 1, 0, 0);
+        } else {
+            startDateTime = date.atStartOfDay();
+            endDateTime = date.plusDays(1).atStartOfDay();
         }
-
-        LocalDateTime startDateTime = date.atStartOfDay();
-        LocalDateTime endDateTime = date.plusDays(1).atStartOfDay();
 
         model.addAttribute("user", user);
         List<Application> upcomingApplications = applicationRepository.findApplicationsByDateAndCompany(startDateTime, endDateTime, user.getCompany().getId());
@@ -76,9 +76,7 @@ public class InterviewController {
     }
     @GetMapping("/viewProfile")
     public String viewProfile(Model model , @RequestParam("id") Integer id ) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName();
-        User user = userService.getUserbyEmail(username);
+        User user = userService.getLoggedInUser();
         Company company = user.getCompany() ;
         if (id == null) {
             return "error";

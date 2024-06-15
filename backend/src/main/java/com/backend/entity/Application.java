@@ -21,6 +21,8 @@ public class Application {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -28,7 +30,8 @@ public class Application {
     @ManyToOne
     @JoinColumn(name = "post_id")
     private Post post;
-
+    @Version
+    private int version;
     @Column(name = "time_applied")
     private LocalDateTime timeApplied;
 

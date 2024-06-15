@@ -117,28 +117,7 @@ public class FindJobsController {
                 pageable = PageRequest.of(page - 1, 6, Sort.by("datePosted").descending());
             }
             Page<Post> postPage = postService.getAllPosts(pageable, categories, levels, salaries, keySearch, location);
-            int numberPost  ;
-            if(categories == null) {
-                numberPost = postService.getAllPosts().size(); ;
-            } else {
-                int totalPage = postPage.getTotalPages();
-                numberPost = 0;
-                for (int i = 0; i < totalPage; i++) {
-                    Pageable pageable1 = PageRequest.of(i, 6);
-                    Page<Post> postPage1 = postService.getAllPosts(pageable1, categories, levels, salaries, keySearch, location);
-                    numberPost = postPage1.getContent().size()-1;
-                }
-            }
-            model.addAttribute("numberPost", numberPost);
-            for (Post post : postPage) {
-                if (post.getLocation() == null) {
-                    post.setLocation(new Location());
-                }
-                if (post.getLocation().getName() == null) {
-                    post.getLocation().setName("N/A");
-                }
-            }
-
+            postService.getPostsAndSetDefaults();
             List<Level> allLevels = levelService.getAllLevel();
             List<Category> allCategories = categoryService.getAllCategories();
             List<Location> locations = locationService.getAllLocations();
@@ -180,18 +159,21 @@ public class FindJobsController {
     }
 
     @PostMapping("/findCompany")
-    public String searchCompany(@RequestParam(name ="query") String keySearch, Model model) {
-            List<Company> companies = companyService.searchCompany(keySearch);
-            model.addAttribute("companies", companies);
-            return "company-search";
+    public String searchCompany(@RequestParam(name ="query") String keySearch) {
+        return "redirect:/findCompany?query=" + keySearch;
     }
 
     @GetMapping("/findCompany")
-    public String findCompany(Model model) {
+    public String findCompany(Model model, @RequestParam(name="query" , required = false) String keySearch) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("authentication", authentication);
         try {
-            List<Company> companies = companyService.getAllCompanies();
+            List<Company> companies;
+            if (keySearch != null && !keySearch.isEmpty()) {
+                companies = companyService.searchCompany(keySearch);
+            } else {
+                companies = companyService.getAllCompanies();
+            }
             model.addAttribute("companies", companies);
             return "company-search";
         } catch (Exception e) {

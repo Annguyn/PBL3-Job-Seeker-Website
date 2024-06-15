@@ -239,6 +239,7 @@
                             <div th:each="app, iterStat : ${user.getApplications()}">
                             <div class="application-history">
                                 <div class="div23" th:text="${iterStat.count}"></div>
+
                                 <div class="company-logo-company-logo-comp">
                                     <img
                                         class="company-logo-icon49"
@@ -248,8 +249,10 @@
 
                                     <div class="nomad42" th:text="${app.getPost().getCompany().getName()}"></div>
                                 </div>
+                                <a class="fill-div" th:href="@{/jobdetails(id=${app.post.id})}">
                                 <div class="social-media-assistant44" th:text="${app.getPost().getTitle()}">
                                 </div>
+                                </a>
                                 <div class="july-2021" th:text="${app.timeApplied}"></div>
                                 <div class="label-wrapper">
                                     <div class="label187">
@@ -257,11 +260,11 @@
                                         <div class="caption294" th:text="${app.getStatus()}"></div>
                                     </div>
                                 </div>
-                                <div id="myModal" class="modal">
+                                <div th:id="'myModal' + ${app.getId()}" class="modal">
                                     <div class="modal-content">
-                                        <input hidden="hidden" id="interviewTime" th:value="${app.getInterviewStartTime()}"/>
+                                        <input hidden="hidden" th:id="'interviewTime' + ${app.getId()}" th:value="${app.getInterviewStartTime()}"/>
                                         <span class="close">&times;</span>
-                                        <p id="displayInterviewTime"></p>
+                                        <p th:id="'displayInterviewTime' + ${app.getId()}"></p>
                                     </div>
                                 </div>
                                 <form th:action="@{/deleteApplication}" method="post" onsubmit="return confirm('Do you want to delete this application?');">

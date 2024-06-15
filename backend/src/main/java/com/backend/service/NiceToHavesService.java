@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 public interface NiceToHavesService {
-    public List<NiceToHaves> getAllNiceToHaves() ;
-    public NiceToHaves getNiceToHavesById(int id);
-    public List<NiceToHaves> getNiceToHavesByIds(List<Integer> ids);
+    List<NiceToHaves> getAllNiceToHaves() ;
+    NiceToHaves getNiceToHavesById(int id);
+    List<NiceToHaves> getNiceToHavesByIds(List<Integer> ids);
 }

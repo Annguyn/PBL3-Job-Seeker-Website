@@ -27,6 +27,12 @@ public interface PostService {
     List<Post> getPostByCompany(Company company);
     void save(Post post);
     void delete(Post post);
+    void deletePost(int id);
     Page<Post> getAllPosts(Pageable pageable, List<String> filterCategory, List<String> filterLevel, List<String> filterSalary, String keySearch, String location);
     List<String> getPostDetailsContaining(String query);
+    List<Post> getPostsAndSetDefaults();
+    Post getPostAndSetDefaults(Integer id);
+    Post createAndSavePost(PostDto postDto, User userLoggedIn, List<Integer> categoriesID, List<Integer> programmingLanguagesID, List<Integer> niceToHavesID);
+    void setPostInactive(int id);
+    void setPostActive(int id);
 }

@@ -233,7 +233,7 @@
                     <div class="headline2">
                         <div class="all-jobs-parent">
                             <h1 class="all-jobs">All Jobs</h1>
-                            <div class="showing-73-results" th:text="${'Showing ' + numberPost + ' results'}">
+                            <div class="showing-73-results">
                             </div>
                         </div>
                         <div class="filter-wrapper">
@@ -242,9 +242,8 @@
                                     <div class="filter-sort">
                                         <span class="sort-by">Sort by:</span>
                                         <div class="sort-options" onclick="toggleOptions()">
-                                            <span id="defaultOption">Most relevant</span>
+                                            <span id="defaultOption">Choose your sort option</span>
                                             <div id="otherOptions" style="display: none;">
-<!--                                                <a class="sort-option" th:href="@{/findjobs(page=${page != null ? page.number + 1 : 0}, sort='most-relevant', location=${param.location != null ? param.location[0] : ''})}">Most relevant</a>-->
                                                 <a class="sort-option" th:href="@{/findjobs(page=${page != null ? page.number + 1 : 0}, sort='time', location=${param.location != null ? param.location[0] : ''})}">Time</a>
                                                 <a class="sort-option" th:href="@{/findjobs(page=${page != null ? page.number + 1 : 0}, sort='salary', location=${param.location != null ? param.location[0] : ''})}">Salary</a>
                                             </div>
@@ -277,7 +276,7 @@
                             <img class="company-logo-icon33" loading="lazy" th:src="@{/company/image/{id}(id=${post.getCompany().id})}" alt="Company Avatar" />
 
                             <div class="job-title29">
-                              <div class="social-media-assistant29" th:text="${post.categories[0].name+' Engineer'}">
+                                <div class="social-media-assistant29" th:text="${post.title != null ? post.title : (post.categories[0] != null ? post.categories[0].name : 'Untitled')}">
                                 <!-- Job title will be inserted here -->
                               </div>
                               <div class="company-name-location-job26">

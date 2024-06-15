@@ -32,9 +32,7 @@ public class JobListingController {
 
     @GetMapping("/joblisting")
     public String getJobListing(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName();
-        User user = userService.getUserbyEmail(username);
+        User user = userService.getLoggedInUser();
         Company company = user.getCompany() ;
 
         model.addAttribute("company", company);
@@ -44,6 +42,4 @@ public class JobListingController {
     public String postJobListing() {
         return "Company/job-listing";
     }
-
-
 }

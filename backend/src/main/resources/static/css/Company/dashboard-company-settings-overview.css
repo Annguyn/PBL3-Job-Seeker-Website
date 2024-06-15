@@ -962,7 +962,7 @@
   min-width: 126px;
 }
 .this-is-placeholder9 {
-  width: 56px;
+  width: 10rem;
   border: 0;
   outline: 0;
   background-color: transparent;
@@ -1872,7 +1872,4 @@ a {
 a :hover {
   text-underline: none;
   text-decoration-color: #ffffff;
-}
-.this-is-placeholder9 {
-  width: 6rem;
 }

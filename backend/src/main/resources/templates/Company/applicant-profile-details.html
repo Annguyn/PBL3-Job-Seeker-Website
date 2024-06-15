@@ -183,6 +183,7 @@
                 </div>
             </div>
         </section>
+        <button id="downloadBtn">Download PDF</button>
         <section class="binary-tree-leaf" >
             <div class="logic-operator">
                 <div class="frame-parent22">
@@ -200,7 +201,7 @@
                                         <img
                                                 class="photo-icon"
                                                 loading="lazy"
-                                                th:if="${user.getPhoto() != null}" th:src="@{/user/image/{id}(id=${user.getID()})}" alt="User Avatar"
+                                                th:if="${user.getPhoto() != null}" th:src="@{/user/image/{id}(id=${applyForm.user.getID()})}" alt="User Avatar"
                                         />
                                     </div>
                                 </div>
@@ -251,16 +252,6 @@
                             <div class="im-a-product" th:text="${user.getBio()}">
                             </div>
                         </div>
-                        <div class="applicant-dashboard-about-me">
-                            <div class="about-me-parent">
-                                <div class="about-me">Additional Information</div>
-                                <div class="button41">
-                                    <input class="icon113" type="checkbox" />
-                                </div>
-                            </div>
-                            <div class="im-a-product" th:text="${user.getBio()}">
-                            </div>
-                        </div>
                         <div class="applicant-dashboard-experien">
                             <div class="conditional-splitter">
                                 <div class="value-filter">
@@ -278,7 +269,6 @@
                                             alt=""
                                             th:src="@{/companies/image/{id}(id=${experience.getCompany().getId()})}"
                                     />
-
                                     <div class="main-content7">
                                         <div class="role-experience-detail">
                                             <div class="frame-parent23">
@@ -418,5 +408,7 @@
 </section>
 </main>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
 </body>
 </html>

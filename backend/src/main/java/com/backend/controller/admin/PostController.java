@@ -5,6 +5,7 @@ import com.backend.entity.Post;
 import com.backend.repository.PostRepository;
 import com.backend.service.PostService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.social.ResourceNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,8 +28,17 @@ public class PostController {
     }
     @DeleteMapping("/post/{id}")
     public ResponseEntity<?> deletePost(@PathVariable Integer id) {
-        postRepository.deleteById(id);
+        postService.deletePost(id);
         return ResponseEntity.ok().build();
-
+    }
+    @PutMapping("/post/{id}/inactive")
+    public ResponseEntity<?> setPostInactive(@PathVariable Integer id) {
+        postService.setPostInactive(id);
+        return ResponseEntity.ok().build();
+    }
+    @PutMapping("/post/{id}/active")
+    public ResponseEntity<?> setPostActive(@PathVariable Integer id) {
+        postService.setPostActive(id);
+        return ResponseEntity.ok().build();
     }
 }

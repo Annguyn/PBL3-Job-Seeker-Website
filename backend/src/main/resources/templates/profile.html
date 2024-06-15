@@ -141,9 +141,8 @@
                   class="avatar-icon2"
                   loading="lazy"
                   alt=""
-                 th:src="@{/images/avatar1@2x.png}"
+                 th:src="@{/user/image/{id}(id=${user.getID()})}"
                 />
-
                 <div class="name-email">
                   <div class="jake-gyll-wrapper">
                     <div class="jake-gyll3" th:text="${user.getUserDisplayName()}"></div>
@@ -244,23 +243,24 @@
                   <div class="im-a-product" th:text="${user.getBio()}">
                   </div>
                 </div>
-                <div class="applicant-dashboard-about-me">
-                  <div class="about-me-parent">
-                    <div class="about-me">Additional Information</div>
-                    <div class="button41">
-                      <input class="icon113" type="checkbox" />
-                    </div>
-                  </div>
-                  <div class="im-a-product" th:text="${user.getBio()}">
-                  </div>
-                </div>
+<!--                <div class="applicant-dashboard-about-me">-->
+<!--                  <div class="about-me-parent">-->
+<!--                    <div class="about-me">Additional Information</div>-->
+<!--                    <div class="button41">-->
+<!--                      <input class="icon113" type="checkbox" />-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="im-a-product" th:text="${user.getBio()}">-->
+<!--                  </div>-->
+<!--                </div>-->
                 <div class="applicant-dashboard-experien">
                   <div class="conditional-splitter">
                     <div class="value-filter">
                       <div class="experiences">Experiences</div>
                     </div>
                     <div class="edit1">
-                      <img class="icon114" alt=""th:src="@{/images/icon-121.svg}" />
+                      <a th:if="${user.getRole()=='user'}" class="fill-div" th:href="@{/settings?type=experience}">
+                      <img class="icon114" alt="" th:src="@{/images/icon-121.svg}" /></a>
                     </div>
                   </div>
                   <div th:each ="experience : ${user.experienceDetail}">
@@ -278,7 +278,7 @@
                           <div class="product-designer-wrapper">
                             <div class="product-designer" th:text="${experience.getTitle()}"></div>
                           </div>
-                          <button class="button42">
+                          <button class="button42" th:attr="data-experience-id=${experience.id}">
                             <img th:src="@{/images/x-circle.svg}">
                           </button>
                         </div>
@@ -310,7 +310,10 @@
                       <div class="educations">Educations</div>
                     </div>
                     <div class="edit2">
+                      <a th:if="${user.getRole()=='user'}" class="fill-div" th:href="@{/settings?type=education}">
+
                       <img class="icon119" alt=""th:src="@{/images/icon-121.svg}" />
+                        </a>
                     </div>
                   </div>
                   <div th:each ="education : ${user.educationDetail}">

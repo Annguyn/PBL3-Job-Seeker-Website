@@ -52,45 +52,18 @@ public class HomeController {
         List<Location> locations = locationService.getAllLocations();
         List<Level> levels = levelService.getAllLevel();
         List<Category> categories = categoryService.getAllCategories();
-        List<Post> posts= postService.getAllPosts();
+        List<Post> posts = postService.getPostsAndSetDefaults();
         List<Post> posts_newest = postService.getAllPostsOrderByDatetime();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.getPrincipal() instanceof UserDetails userDetails) {
             User userLoggedIn = userService.getUserbyEmail(userDetails.getUsername());
             model.addAttribute("userLoggedIn", userLoggedIn);
         }
-        for (Post post : posts) {
-            if(post.getCategories().isEmpty()){
-                Category category1 = new Category();
-                category1.setName("N/A");
-                post.getCategories().add(category1);
-
-                Category category2 = new Category();
-                category2.setName("N/A");
-                post.getCategories().add(category2);
-            }
-            else if(post.getCategories().size() == 1){
-                Category category = post.getCategories().get(0);
-                if(category.getName() == null){
-                    category.setName("N/A");
-                }
-
-                Category category2 = new Category();
-                category2.setName("N/A");
-                post.getCategories().add(category2);
-            }
-            if (post.getLocation() == null) {
-                post.setLocation(new Location());
-            }
-            if (post.getLocation().getName() == null) {
-                post.getLocation().setName("N/A");  // Set the name to "N/A" if it's null
-            }
-        }
         model.addAttribute("posts", posts);
         model.addAttribute("locations", locations);
         model.addAttribute("categories", categories);
         model.addAttribute("levels", levels);
-        model.addAttribute("posts_newest", posts_newest) ;
+        model.addAttribute("posts_newest", posts_newest);
         return "index";
     }
 
@@ -202,7 +175,6 @@ public class HomeController {
     public String showAllApplicants(Model model , Authentication auth) {
         User user = userService.getUserbyEmail(auth.getName());
         List<Application> applications = applicationService.findAllByPostCompany(user.getCompany().getId());
-        System.out.println("Applcation are : " + applications.size());
         model.addAttribute("applications", applications);
         model.addAttribute("user", user);
         return "Company/all-applicants";

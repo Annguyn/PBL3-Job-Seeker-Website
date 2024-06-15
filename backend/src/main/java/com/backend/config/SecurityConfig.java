@@ -23,7 +23,7 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(authz -> authz
-                .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()  // Cho phép truy cập vào thư mục css, js, và images
+                .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
                 .requestMatchers("/login", "/registration", "/home" ).permitAll()
                 .anyRequest().authenticated()
             )

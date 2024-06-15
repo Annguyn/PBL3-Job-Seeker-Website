@@ -42,9 +42,9 @@ public class User implements Serializable {
     @OneToOne
     @JoinColumn(name = "company_id")
     private Company company;
-
-    @ManyToMany(mappedBy = "applicants")
-    private List<Post> appliedPosts;
+//
+//    @ManyToMany(mappedBy = "applicants")
+//    private List<Post> appliedPosts;
 
     @Column(name="dob")
     @DateTimeFormat(pattern = "yyyy-MM-dd")

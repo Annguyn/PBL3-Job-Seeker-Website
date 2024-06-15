@@ -1,6 +1,10 @@
 package com.backend.controller.admin;
 
 
+import com.backend.dto.CompaniesDto;
+import com.backend.dto.CompanyDto;
+import com.backend.dto.UniversityDto;
+import com.backend.dto.UserDto;
 import com.backend.entity.Companies;
 import com.backend.entity.Company;
 import com.backend.entity.University;
@@ -9,10 +13,13 @@ import com.backend.repository.CompaniesRepository;
 import com.backend.repository.CompanyRepository;
 import com.backend.repository.UniversityRepository;
 import com.backend.repository.UserRepository;
+import com.backend.service.*;
 import com.backend.service.Impl.CompaniesService;
-import com.backend.service.UniversityService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -37,19 +44,27 @@ public class AdminController {
 
     @Autowired
     private UniversityService universityService;
+    @Autowired
+    private CategoryService categoryService;
+    @Autowired
+    private ProgrammingLanguageService programmingLanguageService;
+    @Autowired
+    private LevelService levelService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/users")
     public String getUsers(Model model) {
         model.addAttribute("users", userRepository.findAll());
+        model.addAttribute("userDto", new User()); // Add this line
         return "Admin/user";
     }
-
     @PostMapping("/users/edit/{id}")
-    public String updateUser(@PathVariable int id, @ModelAttribute User user) {
-        userRepository.save(user);
+    public String updateUser(@PathVariable int id, @ModelAttribute UserDto userDto) {
+        userDto.setID(id);
+        userService.updateUser(userDto);
         return "redirect:/admin/users";
     }
-
     @PostMapping("/users/delete/{id}")
     public String deleteUser(@PathVariable int id) {
         userRepository.deleteById(id);
@@ -68,24 +83,14 @@ public class AdminController {
         return "redirect:/admin/companies";
     }
     @PostMapping("/companies/save/{id}")
-    public String saveCompany(@PathVariable int id, @RequestParam(value = "name") String name, @RequestParam(value = "image", required = false) MultipartFile imageFile) {
+    public String saveCompany(@PathVariable int id, @RequestParam("name") String name, @RequestParam("image1") MultipartFile image) {
         try {
-            Companies company = companiesService.findById(id);
-            if (company == null) {
-                company = new Companies();
-            }
-            company.setName(name);
-            if (imageFile != null && !imageFile.isEmpty()) {
-                company.setImage(imageFile.getBytes());
-            }
-            else {
-                company.setImage(new byte[0]);
-            }
-            companiesRepository.save(company);
-        } catch (IOException e) {
-            // Handle the exception
+            CompaniesDto companyDto = companiesService.createCompanyDto(id, name, image);
+            companiesService.saveCompany(companyDto);
+            return "redirect:/admin/companies";
+        } catch (Exception e) {
+            return "redirect:/admin/companies";
         }
-        return "redirect:/admin/companies";
     }
 
     @GetMapping("/companies/delete/{id}")
@@ -97,35 +102,22 @@ public class AdminController {
     @GetMapping("/universities")
     public String getUniversities(Model model) {
         model.addAttribute("universities", universityRepository.findAll());
-        model.addAttribute("university", new University());  // Add this line
         return "Admin/university";
     }
-
     @PostMapping("/universities/save/{id}")
-    public String saveUniversity(@PathVariable(required = false) Integer id,  @RequestParam(value = "image", required = false) MultipartFile imageFile) {
+    public String saveUniversities(@PathVariable int id, @RequestParam("name") String name, @RequestParam("image") MultipartFile image) {
         try {
-            University university = null;
-            if (id != null) {
-                university = universityService.findById(id);
-            }
-            if (university == null) {
-                university = new University();
-            }
-            if (imageFile != null && !imageFile.isEmpty()) {
-                university.setPhoto(imageFile.getBytes());
-            }
-
-            universityRepository.save(university);
-        } catch (IOException e) {
-            // Handle the exception
+            UniversityDto universityDto = universityService.createUniversityDto(id, name, image);
+            universityService.saveUniversity(universityDto);
+            return "redirect:/admin/universities";
+        } catch (Exception e) {
+            return "redirect:/admin/universities";
         }
-        return "redirect:/admin/universities";
     }
+
     @PostMapping("/universities/add")
     public String addUniversity() {
-        University university = new University();
-        university.setName("New University");
-        university.setPhoto(new byte[0]);
+        University university = universityService.createNewUniversity();
         universityRepository.save(university);
         return "redirect:/admin/universities";
     }
@@ -138,6 +130,13 @@ public class AdminController {
     @PostMapping("/universities/delete/{id}")
     public String deleteUniversity(@PathVariable int id) {
         universityRepository.deleteById(id);
+        return "redirect:/admin/universities";
+    }
+    @GetMapping("/update")
+    public String updateAllQuantities() {
+        categoryService.updateCategoryQuantities();
+        programmingLanguageService.updateProgramingLanguageQuantities();
+        levelService.updateLevelQuantities();
         return "redirect:/admin/universities";
     }
 }

@@ -50,7 +50,6 @@ public String registerUserAccount(@ModelAttribute("userdto") UserDto userDto,
             return "redirect:/registration?type=comapny&emailexist";
         }
         userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        // Create a new company
         userService.save(userDto);
         return "redirect:/registration?type=company&success";
     } else {

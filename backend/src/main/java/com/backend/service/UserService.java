@@ -20,4 +20,8 @@ public interface UserService {
     void save(User user);
     User findById(int id);
     List<Application> upComingInterviews(User user);
+    User getLoggedInUser();
+    User updateUser(User currentUser, User user);
+    void updateUser(User user);
+    void updateUser(UserDto userDto);
 }

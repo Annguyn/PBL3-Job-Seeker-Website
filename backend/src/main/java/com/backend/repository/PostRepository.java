@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
 @EnableJpaRepositories
 public interface PostRepository extends JpaRepository<Post, Integer> , JpaSpecificationExecutor<Post> {
     @Query(
-            value = "select * from recruitment_post",
+            value = "select * from post",
             nativeQuery = true)
     List<Post> getAllPost();
     List<Post> findAllByCompany(Company company);

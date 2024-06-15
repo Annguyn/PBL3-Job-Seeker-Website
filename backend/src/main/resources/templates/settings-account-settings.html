@@ -92,7 +92,7 @@
               <div class="sidebar-menu44">
                 <img class="icon227" alt="" th:src="@{/images/icon-32.svg}" />
 
-                <div class="caption315">Browse Companies</div>
+                <a th:href="@{/findCompany}" class="caption315">Browse Companies</a>
               </div>
               <div class="sidebar-menu45">
                 <img class="icon228" alt="" th:src="@{/images/icon-41.svg}" />
@@ -138,14 +138,14 @@
                 class="avatar-icon7"
                 loading="lazy"
                 alt=""
-                th:src="@{/images/avatar1@2x.png}"
+                th:src="@{/user/image/{id}(id=${user.getID()})}"
               />
 
               <div class="name-email5">
                 <div class="jake-gyll-wrapper1">
-                  <div class="jake-gyll9">Jake Gyll</div>
+                  <div class="jake-gyll9" th:text="${user.getUserDisplayName()}"></div>
                 </div>
-                <div class="jakegyllemailcom9">jakegyll@email.com</div>
+                <div class="jakegyllemailcom9" th:text="${user.getEmail()}"></div>
               </div>
             </div>
           </div>
@@ -169,7 +169,7 @@
           </div>
           <div class="action5">
             <button class="button67">
-              <b class="caption320">Back to homepage</b>
+              <a th:href="@{/home}" class="caption320">Back to homepage</a>
             </button>
             <div class="icon233">
               <img
@@ -184,13 +184,7 @@
         <div class="tabs-wrapper">
           <div class="tabs1">
             <div class="tab-menu5">
-              <div class="caption321">My Profile</div>
-              <img
-                class="tab-menu-item"
-                loading="lazy"
-                alt=""
-                th:src="@{/images/rectangle-1731.svg}"
-              />
+              <a th:href="@{/settings}"  class="caption321">My Profile</a>
             </div>
             <a class="tab-menu6" th:href="@{/settings?type=education}">
               <div class="caption322">Education</div>
@@ -201,7 +195,7 @@
           </div>
         </div>
         <form class="applicant-dashboard-my-profi" method="post" action="/settings" enctype="multipart/form-data">
-        <div th:unless="${param.type}" class="basic-information">
+          <div th:unless="${param.type}" class="basic-information">
             <div class="basic-information1">Basic Information</div>
             <input class="this-is-your" placeholder="This is your personal information that you can update anytime." th:field="*{user.bio}">
             </input>
@@ -211,8 +205,7 @@
             <div class="profile-photo1">
               <div class="profile-photo2">Profile Photo</div>
               <div class="this-image-will">
-                This image will be shown as your profile picture, it
-                will help recruiters recognize you!
+                This image will be shown as your profile picture, it will help recruiters recognize you!
               </div>
             </div>
             <div class="photo">
@@ -220,18 +213,15 @@
               <div class="textfield13">
                 <div class="name4">
                   <img class="icon234" alt="" th:src="@{/images/icon-87.svg}" />
-
                   <div class="click-to-replace-or-drag-and-d-parent">
                     <div class="click-to-replace-container">
                       <span class="click-to-replace">Click to replace</span>
                       <span class="or-drag-and-drop">
-                        <span class="span18"> </span>
-                        <span class="or-drag-and">or drag and drop</span>
-                      </span>
+                <span class="span18"> </span>
+                <span class="or-drag-and">or drag and drop</span>
+              </span>
                     </div>
-                    <div class="svg-png-jpg">
-                      SVG, PNG, JPG or GIF (max. 400 x 400px)
-                    </div>
+                    <div class="svg-png-jpg">SVG, PNG, JPG or GIF (max. 400 x 400px)</div>
                     <input type="file" accept=".svg, .png, .jpg, .gif" name="avatarFile" />
                   </div>
                 </div>
@@ -248,12 +238,7 @@
                   <span class="span19">*</span>
                 </div>
                 <div class="input16">
-                  <input
-                    class="fill-div"
-                    placeholder="Jake Gyll"
-                    type="text"
-                    th:field="*{user.userDisplayName}"
-                  />
+                  <input class="fill-div" placeholder="Jake Gyll" type="text" th:field="*{user.userDisplayName}" />
                 </div>
               </div>
               <div class="row-25">
@@ -263,12 +248,7 @@
                     <span class="span20">*</span>
                   </div>
                   <div class="input17">
-                    <input
-                      class="fill-div"
-                      placeholder="+44 1245 572 135"
-                      type="text"
-                      th:field="*{user.contactNumber}"
-                    />
+                    <input class="fill-div" placeholder="+44 1245 572 135" type="text" th:field="*{user.contactNumber}" />
                   </div>
                 </div>
                 <div class="textfield16">
@@ -277,12 +257,7 @@
                     <span class="span21">*</span>
                   </div>
                   <div class="input17">
-                    <input
-                            class="fill-div"
-                            placeholder="jobhuntly@gmail.com"
-                            type="text"
-                            th:field="*{user.email}"
-                    />
+                    <input class="fill-div" placeholder="jobhuntly@gmail.com" type="text" th:field="*{user.email}"  readonly/>
                   </div>
                 </div>
               </div>
@@ -293,13 +268,7 @@
                     <span class="span22">*</span>
                   </div>
                   <div class="dropdown2">
-                    <input
-                            class="this-is-placeholder20"
-                            placeholder="2004-09-19"
-                            type="date"
-                            th:field="*{user.dob}"
-                    />
-
+                    <input class="this-is-placeholder20" placeholder="2004-09-19" type="date" th:field="*{user.dob}" />
                     <img class="icon235" alt="" th:src="@{/images/icon-95.svg}" />
                   </div>
                 </div>
@@ -319,7 +288,7 @@
             </div>
           </div>
           <div class="tab-menu-separator1"></div>
-          <div th:unless="${param.type}"  class="personal-details">
+          <div th:unless="${param.type}" class="personal-details">
             <div class="personal-details1">Additional Information</div>
             <div class="forms2">
               <div class="textfield14">
@@ -328,12 +297,7 @@
                   <span class="span19">*</span>
                 </div>
                 <div class="input16">
-                  <input
-                          class="fill-div"
-                          placeholder="github.com/Annguyn"
-                          type="text"
-                          th:field="*{user.github}"
-                  />
+                  <input class="fill-div" placeholder="github.com/Annguyn" type="text" th:field="*{user.github}" />
                 </div>
               </div>
               <div class="row-25">
@@ -343,12 +307,7 @@
                     <span class="span20">*</span>
                   </div>
                   <div class="input17">
-                    <input
-                            class="fill-div"
-                            placeholder="linkedin/annguyn"
-                            type="text"
-                            th:field="*{user.linkedin}"
-                    />
+                    <input class="fill-div" placeholder="linkedin/annguyn" type="text" th:field="*{user.linkedin}" />
                   </div>
                 </div>
                 <div class="textfield16">
@@ -357,12 +316,7 @@
                     <span class="span21">*</span>
                   </div>
                   <div class="input17">
-                    <input
-                            class="fill-div"
-                            placeholder="jobhuntly@gmail.com"
-                            type="text"
-                            th:field="*{user.major}"
-                    />
+                    <input class="fill-div" placeholder="jobhuntly@gmail.com" type="text" th:field="*{user.major}" />
                   </div>
                 </div>
               </div>
@@ -373,13 +327,7 @@
                     <span class="span22">*</span>
                   </div>
                   <div class="dropdown2">
-                    <input
-                            class="this-is-placeholder20"
-                            placeholder="2"
-                            type="text"
-                            th:field="*{user.experienceInYears}"
-                    />
-
+                    <input class="this-is-placeholder20" placeholder="2" type="text" th:field="*{user.experienceInYears}" />
                     <img class="icon235" alt="" th:src="@{/images/icon-95.svg}" />
                   </div>
                 </div>
@@ -419,12 +367,7 @@
                     <span class="span20">*</span>
                   </div>
                   <div class="input17">
-                    <input
-                            class="fill-div"
-                            placeholder="2022"
-                            type="text"
-                            name="startDate"
-                    />
+                    <input class="fill-div" placeholder="2022" type="text" name="startDate" />
                   </div>
                 </div>
               </div>
@@ -435,12 +378,7 @@
                     <span class="span20">*</span>
                   </div>
                   <div class="input17">
-                    <input
-                            class="fill-div"
-                            placeholder="2026"
-                            type="text"
-                            name="endDate"
-                    />
+                    <input class="fill-div" placeholder="2026" type="text" name="endDate" />
                   </div>
                 </div>
               </div>
@@ -451,12 +389,7 @@
                     <span class="span20">*</span>
                   </div>
                   <div class="input17">
-                    <input
-                            class="fill-div"
-                            placeholder="Information Technology(Japanese)"
-                            type="text"
-                            name="MajorUni"
-                    />
+                    <input class="fill-div" placeholder="Information Technology(Japanese)" type="text" name="MajorUni" />
                   </div>
                 </div>
               </div>
@@ -475,55 +408,52 @@
               </div>
             </div>
           </div>
-          <form th:object="${experience}" method="post" action="/settings" enctype="multipart/form-data">
-            <div th:if="${param.type != null && param.type[0] == 'experience'}" class="personal-details">
-              <div class="personal-details1">Experience Information</div>
-              <div class="forms2">
-                <div class="textfield14">
-                  <div class="label195">
-                    <span class="full-name">Job Title</span>
-                    <span class="span19">*</span>
-                  </div>
-                  <input class="fill-div" placeholder="Designer" type="text" th:field="*{title}" />
+          <div th:if="${param.type != null && param.type[0] == 'experience'}" class="personal-details">
+            <div class="personal-details1">Experience Information</div>
+            <div class="forms2">
+              <div class="textfield14">
+                <div class="label195">
+                  <span class="full-name">Job Title</span>
+                  <span class="span19">*</span>
                 </div>
-                <div class="row-25">
-                  <div class="textfield15">
-                    <div class="label196">
-                      <span class="phone-number">Start year</span>
-                      <span class="span20">*</span>
-                    </div>
-                    <input class="fill-div" placeholder="2022" type="text" th:field="*{startDate}" />
+                <input class="fill-div" placeholder="Designer" type="text" th:field="*{experience.title}" />
+              </div>
+              <div class="row-25">
+                <div class="textfield15">
+                  <div class="label196">
+                    <span class="phone-number">Start year</span>
+                    <span class="span20">*</span>
                   </div>
+                  <input class="fill-div" placeholder="2022" type="text" th:field="*{experience.startDate}" />
                 </div>
-                <div class="row-25">
-                  <div class="textfield15">
-                    <div class="label196">
-                      <span class="phone-number">End year</span>
-                      <span class="span20">*</span>
-                    </div>
-                    <input class="fill-div" placeholder="2026" type="text" th:field="*{endDate}" />
+              </div>
+              <div class="row-25">
+                <div class="textfield15">
+                  <div class="label196">
+                    <span class="phone-number">End year</span>
+                    <span class="span20">*</span>
                   </div>
+                  <input class="fill-div" placeholder="2026" type="text" th:field="*{experience.endDate}" />
                 </div>
-                <div class="row-3">
-                  <div class="textfield18">
-                    <div class="label199">
-                      <span class="gender">Company </span>
-                      <span class="span23">*</span>
-                    </div>
-                    <select th:field="*{companyId}">
+              </div>
+              <div class="row-3">
+                <div class="textfield18">
+                  <div class="label199">
+                    <span class="gender">Company </span>
+                    <span class="span23">*</span>
+                  </div>
+                  <div class="dropdown3">
+                    <select th:field="*{experience.companyId}">
                       <option th:each="company : ${companies}" th:value="${company.id}" th:text="${company.name}"></option>
                     </select>
                   </div>
                 </div>
               </div>
-
-            <button type="submit" class="button68">
-              <b class="caption327">Save Experience</b>
-            </button>
-    </div>
-          </form>
+            </div>
+          </div>
           <div class="tab-menu-separator2"></div>
-          <div th:unless="${param.type}" class="close-button">            <div class="account-type">
+          <div th:unless="${param.type}" class="close-button">
+            <div class="account-type">
               <div class="account-type1">Account Type</div>
               <div class="you-can-update">You can update your account type</div>
             </div>
@@ -539,8 +469,7 @@
               </div>
               <div class="job-seeker3">
                 <div class="job-seeker4">
-                  <input class="radio-button1" type="radio"  th:field="*{user.role}" value="company"/>
-
+                  <input class="radio-button1" type="radio" th:field="*{user.role}" value="company" />
                   <div class="content18">
                     <div class="employer">Employer</div>
                     <div class="hiring-sourcing-candidates">
@@ -552,10 +481,11 @@
             </div>
           </div>
           <div class="tab-menu-separator3"></div>
-          <button  type="submit" class="button68">
+          <button type="submit" class="button68">
             <b class="caption327">Save Profile</b>
           </button>
         </form>
+
       </main>
     </div>
   </body>
