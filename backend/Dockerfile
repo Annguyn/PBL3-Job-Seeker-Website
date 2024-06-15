@@ -1,7 +1,7 @@
 # Stage 1: Build the application
 FROM openjdk:22 AS BUILD
 WORKDIR /app
-COPY backend /app
+COPY . .
 RUN mvn clean package -DskipTests
 
 # Stage 2: Run the application
