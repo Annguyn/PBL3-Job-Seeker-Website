@@ -246,8 +246,8 @@ def crawl_post_data(driver, post_ids, data_list, content_type='page' ):
 driver = webdriver.Edge()
 isLogin = checkLiveClone(driver) 
 print(isLogin)
-userName = '0325835204'
-passWord = 'trungbkdn1022'
+userName = 'nguyenbaxuanan.quarter.tomorrow@gmail.com'
+passWord = 'ilovequartertomorrow'
 
 if (isLogin == False):
     login(driver, userName, passWord)

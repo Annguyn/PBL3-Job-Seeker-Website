@@ -13,7 +13,6 @@ def add_double_quotes(json_data):
             lines[i] = '"' + line[:index].strip() + '":' + line[index+1:].strip()
     return '\n'.join(lines)
 
-# Load the model
 model = joblib.load(r"C:\Users\nguye\OneDrive - The University of Technology\GITHUB CLONE REPO\PBL3-Applying-AI-to-analyze-recruitment-information-on-Facebook\DataAnalysis\linear_model_alone.pkl")
 
 input_dict = json.loads(add_double_quotes(sys.argv[1]))
@@ -23,7 +22,6 @@ prediction = model.predict(input_data)
 
 from decimal import Decimal, getcontext
 
-# Set the precision of Decimal objects
 getcontext().prec = 15
 
 print(f'{prediction[0]:.0f}')
